@@ -81,16 +81,17 @@
 <body>
 <header class="site">
   <div class="inner">
-    <div class="brand"><span class="accent">MTL</span> · Midterm Numericals Vault <span class="small">(also called MTT)</span></div>
-    <div class="sub">Machine Tool Technology · MIE 3223 · Manipal Dubai · B.Tech Mech Sem VI · every numerical from Mehta ch 3·4·5 solved</div>
+    <div class="brand"><span class="accent">MTL</span> · Midterm Study Guide <span class="small">(also called MTT · MIE 3223)</span></div>
+    <div class="sub">Machine Tool Technology · Manipal Dubai · B.Tech Mech Sem VI · 60% theory + 40% numerical · full CLO1–CLO5 from Mehta book + course PPTs (Dr. Vyshak Sureshkumar)</div>
     <nav class="tabs" id="tabs">
-      <button data-t="start" class="active">🎯 Start Here</button>
+      <button data-t="start" class="active">🎯 Start</button>
       <button data-t="clo1">CLO1 · Drives</button>
-      <button data-t="clo2">CLO2 · Speed Regn</button>
-      <button data-t="ch3">Ch3 · Structures ★</button>
-      <button data-t="ch4">Ch4 · Guideways ★</button>
-      <button data-t="ch5">Ch5 · Spindles ★</button>
-      <button data-t="formula">📐 Formula Vault</button>
+      <button data-t="clo2">CLO2 · Speed/Feed</button>
+      <button data-t="ch4">CLO3 · Guideways</button>
+      <button data-t="ch3">CLO4 · Structures</button>
+      <button data-t="ch5">CLO4 · Spindles</button>
+      <button data-t="clo5">CLO5 · Vibrations</button>
+      <button data-t="formula">📐 Formulas</button>
       <button data-t="recall">🧠 Recall</button>
       <button data-t="paper">📄 Last Paper</button>
     </nav>
@@ -101,105 +102,280 @@
 
 <!-- ===================== START HERE ===================== -->
 <section class="tab active" id="start">
-  <h1>The numericals don't change. Learn the worked answers.</h1>
-  <p class="lead">Abdulla's intel + the May-2026 paper confirm it: <mark>the professor lifts numerical questions straight from Mehta's textbook, values unchanged.</mark> Last paper's Q6 (I-section torsion) <b>is review-problem 3.12 verbatim.</b> So this vault solves <b>every</b> numerical in chapters 3, 4, 5 — those become your answer key.</p>
+  <h1>Theory deep. Numericals drilled. Whole syllabus.</h1>
+  <p class="lead">Full in-depth study guide for the MTL/MTT midterm — built from the <b>Mehta textbook</b> + the <b>course PPTs</b> (Module 4&amp;5 spindles, Module 6 vibrations). Weighted to the real paper: <mark>≈ 60% theory, 40% numerical.</mark> Every CLO has deep theory, a model-answer question bank, and worked numericals.</p>
 
   <div class="callout red">
-    <b>Proof it's verbatim →</b> Exam Q6 = Mehta Prob 3.12: I-section 140×80, flanges 20, web 10, M<sub>t</sub>=1000 kgf·m, G=8×10⁵, L=100 cm. Same numbers. Answer: <b>I<sub>t</sub>=55.2 cm⁴, τ<sub>max</sub>=3623 kgf/cm², θ=12.97°</b>. (See Ch3 → Prob 3.12.)
+    <b>Two rules from the professor:</b><br>
+    1. <b>Midterm questions won't repeat</b> — especially numericals. So don't memorise the last paper; learn the <b>method</b> across <i>all</i> the textbook problems (they're solved here for that reason).<br>
+    2. <b>Numericals still come from Mehta ch 3, 4, 5</b> (structures, guideways, spindles) — just different problems each time. That's why this guide solves the whole review-question set, not only the ones already used.
   </div>
 
-  <h2>Exam shape (from the May-2026 paper)</h2>
+  <h2>How marks fall (≈ 60 / 40)</h2>
   <table>
-    <tr><th>Part</th><th>Marks</th><th>Type</th><th>CLO</th></tr>
-    <tr><td>A — fill blanks / short</td><td>5</td><td>recall + 2-mark definition</td><td>CLO1, CLO2, CLO3</td></tr>
-    <tr><td>B — long Q5</td><td>8</td><td>GP speed gearbox (numerical + diagrams)</td><td>CLO2</td></tr>
-    <tr><td>B — long Q6</td><td>8</td><td>section torsion / stiffness numerical</td><td>CLO4</td></tr>
-    <tr><td>B — long Q7</td><td>9</td><td>design case + stiffness calc</td><td>CLO1/3/4</td></tr>
+    <tr><th>Block</th><th>~Weight</th><th>What to expect</th></tr>
+    <tr><td>Theory (definitions, classifications, "explain/compare", design reasoning)</td><td><b>≈ 60%</b></td><td>CLO1–CLO5 — the bulk. See each CLO tab's theory + question bank.</td></tr>
+    <tr><td>Numericals</td><td><b>≈ 40%</b></td><td>From Mehta ch 3, 4, 5 (+ GP gearbox &amp; cutting speed). All solved here.</td></tr>
+    <tr><td>CLO1 &amp; CLO2</td><td>≈ 10 marks each</td><td>Drives/kinematics; speed-feed regulation.</td></tr>
   </table>
-  <p class="small">New intel for the upcoming paper: CLO1 &amp; CLO2 ≈ 10 marks each; rest 20–30; focus chapters 3, 4, 5 + their numericals.</p>
 
-  <h2>CLO → chapter map</h2>
+  <h2>CLO → module → chapter map</h2>
   <table>
-    <tr><th>CLO</th><th>Topic</th><th>Where</th></tr>
-    <tr><td>CLO1</td><td>Drives, working motions, kinematics, cutting speed</td><td>Tab: CLO1</td></tr>
-    <tr><td>CLO2</td><td>Speed/feed regulation, GP, structural/ray/speed diagrams</td><td>Tab: CLO2</td></tr>
-    <tr><td>CLO3</td><td>Guideways: functions, requirements, slideways, power screws</td><td>Ch4</td></tr>
-    <tr><td>CLO4</td><td>Strength &amp; stiffness of structures; spindle design</td><td>Ch3 + Ch5</td></tr>
+    <tr><th>CLO</th><th>Module</th><th>Topic</th><th>Source</th></tr>
+    <tr><td>CLO1</td><td>1</td><td>Drives, working motions, kinematics, cutting speed</td><td>Mehta ch 1</td></tr>
+    <tr><td>CLO2</td><td>2</td><td>Speed/feed regulation, GP, structural/ray/speed diagrams</td><td>Mehta ch 2</td></tr>
+    <tr><td>CLO3</td><td>3</td><td>Guideways: functions, requirements, slideways, power screws</td><td>Mehta ch 4</td></tr>
+    <tr><td>CLO4</td><td>3,&nbsp;<b>4&nbsp;&amp;&nbsp;5</b></td><td>Strength/stiffness of structures + <b>spindles &amp; bearings</b> (CLO4 = Modules 4 and 5 together)</td><td>Mehta ch 3 + ch 5 · PPT M4&amp;5</td></tr>
+    <tr><td>CLO5</td><td>6</td><td>Vibrations: sources, types, chatter, effects, control</td><td>Mehta ch 6 · PPT M6</td></tr>
   </table>
 
   <h2>Study order (highest ROI first)</h2>
   <ol>
-    <li><b>Ch3 → Prob 3.12</b> (exam Q6, torsion). Burn it in — it <i>will</i> appear in some section form.</li>
-    <li><b>CLO2 → Q5</b> GP speed gearbox: common ratio, speed list, the three diagrams. Last-paper 8-marker.</li>
-    <li><b>Ch3 structures</b>: torsion (open vs closed), bending rigidity, stiffness k=F/δ.</li>
-    <li><b>Ch4 guideways</b>: slideway width, pulling force, lead screw, ball screw.</li>
-    <li><b>Ch5 spindles</b>: compliance (5.1, 5.2, 5.11), run-out (5.12), bearing selection.</li>
-    <li><b>Formula Vault + Recall</b>: lock the fill-in-the-blanks (free marks).</li>
+    <li><b>Theory first</b> — it's 60%. Run each CLO tab's theory + question bank (click "Show answer").</li>
+    <li><b>CLO4 Structures</b> — torsion (open vs closed), bending rigidity, stiffness k=F/δ; then its numericals.</li>
+    <li><b>CLO2</b> — GP gearbox: common ratio, speed list, the three diagrams.</li>
+    <li><b>CLO3 Guideways</b> + <b>CLO4 Spindles</b> — requirements, types, compliance; then numericals.</li>
+    <li><b>CLO5 Vibrations</b> — sources/types/chatter/control + the 4 worked numericals.</li>
+    <li><b>CLO1</b> + <b>Formula Vault</b> + <b>Recall</b> — lock the fill-in-the-blanks (free marks).</li>
   </ol>
 
   <div class="callout">
-    <b>Exam discipline:</b> always (1) write the formula with its Mehta eq. number, (2) convert <b>everything to cm + kgf</b> before substituting, (3) box the answer with units. The professor accepts clearly-stated "assume suitable data" — flag your assumptions.
+    <b>Exam discipline:</b> theory answers — lead with a one-line definition, then classify/compare, then the "why". Numericals — write the formula, convert to <b>cm + kgf</b>, substitute, box the answer with units. "Assume suitable data" is allowed — state your assumption.
   </div>
 </section>
 
 <!-- ===================== CLO1 DRIVES ===================== -->
 <section class="tab" id="clo1">
-  <h2>CLO1 — Drives, Working Motions, Kinematics</h2>
-  <p>Identify drives, the kinematic chain, and the working motions of machine tools. Numerical core = <b>cutting speed</b>.</p>
+  <h2>CLO1 — Drives, Working Motions &amp; Kinematics</h2>
+  <p class="small">Module 1 · Mehta ch 1 · ≈ 10 marks. Identify the drives, process kinematics and working motions of machine tools.</p>
 
-  <div class="callout blue">
-    <b>Working motions</b> = (1) <b>primary / cutting motion</b> (provides the cutting speed) + (2) <b>feed motion</b> (advances the tool/work to remove the next layer). Auxiliary motions = clamping, indexing, rapid traverse — no chip.
-  </div>
+<h3>1. Working and Auxiliary Motions</h3>
+<div class="callout blue"><b>Definition.</b> A <b>machine tool</b> imparts the required shape to a workpiece, with the desired accuracy, by removing metal as chips. The relative motions between cutting edge and workpiece that are essential to impart the shape are called <b>working motions</b>.</div>
+<p>Working motions are geometrically <b>rotary</b> or <b>translatory</b>, and functionally:</p>
+<ol>
+<li><b>Drive / primary cutting motion</b> — carries the cutting edge through the material and removes the chip. Its velocity is the <b>cutting speed v</b> (m/min); it absorbs most of the cutting power.</li>
+<li><b>Feed motion</b> — progressively brings fresh material into the cutting edge's path so the cut spreads over the whole surface. Its velocity is the <b>feed s</b> (small).</li>
+</ol>
+<table>
+<tr><th>Machine</th><th>Primary cutting motion</th><th>Feed motion</th></tr>
+<tr><td>Lathe / boring</td><td><b>rotation of the workpiece</b></td><td>translatory motion of the tool (axial = turning, radial = facing)</td></tr>
+<tr><td>Drilling</td><td>rotation of the drill</td><td>axial translation of the drill</td></tr>
+<tr><td>Milling</td><td>rotation of the cutter</td><td>translatory motion of the workpiece</td></tr>
+<tr><td>Shaping / planing</td><td>reciprocation of tool (shaper) / work (planer)</td><td><b>intermittent</b> feed (once per stroke)</td></tr>
+<tr><td>Grinding</td><td>rotation of the wheel</td><td>rotary <b>and</b> translatory feed of work</td></tr>
+</table>
+<div class="callout"><b>Exam point.</b> In shaping/planing the feed is <b>intermittent</b> (cutting only on the forward stroke). In grinding the feed has two components (longitudinal traverse + radial in-feed). <b>Auxiliary motions</b> (clamping, idle rapid travel, gear shifting, engaging/disengaging) do <b>not</b> form the surface — manual on general machines, automated on automatics.</div>
 
-  <h3>Key facts (fill-blank ammo)</h3>
-  <table>
-    <tr><th>Machine</th><th>Primary cutting motion</th><th>Feed motion</th></tr>
-    <tr><td>Lathe (turning a shaft)</td><td><b>rotation of the workpiece</b></td><td>linear travel of tool (carriage)</td></tr>
-    <tr><td>Drilling</td><td>rotation of the drill</td><td>axial feed of the drill</td></tr>
-    <tr><td>Milling</td><td>rotation of the cutter</td><td>table feed (work)</td></tr>
-    <tr><td>Shaping</td><td>reciprocation of ram (tool)</td><td>intermittent feed of work</td></tr>
-    <tr><td>Grinding</td><td>rotation of the wheel</td><td>work/table feed</td></tr>
-  </table>
+<h3>2. Generation of Surfaces</h3>
+<table>
+<tr><th>Method</th><th>Principle</th><th>Example</th></tr>
+<tr><td><b>Forming</b></td><td>Cutting edge carries the profile of the surface; a simple feed reproduces it. Accuracy = tool profile.</td><td>Form-tool turning, gear cutting with a disc cutter</td></tr>
+<tr><td><b>Generating</b></td><td>Surface = envelope of successive cutting-edge positions via coordinated tool–work motion.</td><td>Turning a cylinder, gear hobbing</td></tr>
+<tr><td><b>Tracing</b></td><td>A single-point tool lays the surface down line-by-line.</td><td>Plain turning, shaping a flat</td></tr>
+<tr><td><b>Copying</b></td><td>Tool guided by a template / master / NC programme.</td><td>Copy turning, CNC contouring</td></tr>
+</table>
 
-  <h3>Drive types</h3>
-  <ul>
-    <li><b>Individual (separate) drive</b> — one motor for one machine tool → independent operation, the modern standard. <span class="small">(Part-A blank #2 answer.)</span></li>
-    <li><b>Group / line-shaft drive</b> — one motor drives several machines via a common shaft &amp; belts (obsolete).</li>
-    <li><b>Multi-motor drive</b> — separate motors for spindle, feed, rapid traverse, coolant on one machine.</li>
-  </ul>
+<h3>3. Machine Tool Drives</h3>
+<div class="callout blue"><b>Definition.</b> A <b>machine tool drive</b> is the aggregate of mechanisms that transmits motion from the energy source (usually a 3-φ induction motor) to the operative elements, providing the working/auxiliary motion and a means of <b>speed regulation</b>.</div>
+<h4>Classification — by speed regulation</h4>
+<table>
+<tr><th>Type</th><th>Speed</th><th>Character</th></tr>
+<tr><td><b>Stepped</b></td><td>Finite discrete steps</td><td>Mechanical gearboxes (sliding-gear, clutch)</td></tr>
+<tr><td><b>Stepless</b> (infinitely variable)</td><td>Continuous</td><td>Hydraulic &amp; electrical (always); mechanical variators</td></tr>
+</table>
+<h4>Classification — by means of transmission</h4>
+<ul>
+<li><b>Mechanical</b> — gears/belts/chains/screws; stepped or stepless.</li>
+<li><b>Hydraulic</b> — pump/valve/cylinder circuit; <b>always stepless</b>; smooth, easy reversal, overload protection; but oil leakage &amp; viscosity/temperature dependence.</li>
+<li><b>Electrical</b> — variable-speed electric circuits; <b>always stepless</b>; ideal for NC/CNC; costlier control gear.</li>
+</ul>
+<div class="callout"><b>Exam point — why stepless is desirable.</b> The optimum cutting speed from v = πdn/1000 usually falls <i>between</i> two stepped speeds, forcing the operator to the nearest lower rpm and lengthening machining time. A stepless drive sets the exact optimum → higher productivity.</div>
 
+<h3>4. Types of Drive (power distribution)</h3>
+<table>
+<tr><th>Type</th><th>Description</th><th>Remark</th></tr>
+<tr><td><b>Group / line-shaft</b></td><td>One motor drives many machines via an overhead shaft &amp; belts</td><td>Obsolete — high losses, all stop if shaft stops, unsafe</td></tr>
+<tr><td><b>Individual</b></td><td>Each machine has its own motor + gearbox</td><td><b>Standard.</b> Independent speed control, efficient, safe</td></tr>
+<tr><td><b>Multi-motor</b></td><td>One machine, several motors (spindle, feed, coolant, rapid traverse)</td><td>Large/automatic/CNC; shortens kinematic chains</td></tr>
+</table>
+
+<h3>5. Kinematic Structure — Chains &amp; Diagram</h3>
+<div class="callout blue"><b>Definition.</b> A <b>kinematic chain</b> is the full sequence of transmission elements (gears, belts, screws, clutches) connecting a motion source to an operative element, fixing the velocity relationship. The set of all chains = the <b>kinematic structure</b>, shown by a <b>kinematic diagram</b>.</div>
+<ul>
+<li><b>Speed (main) chain</b>: motor → speed gearbox → spindle → work; sets cutting speed.</li>
+<li><b>Feed chain</b>: spindle (or feed motor) → feed gearbox → lead screw / feed rod → carriage; sets feed (tied to spindle for threading).</li>
+</ul>
+<p>Motion passes through elementary transmissions in series; overall ratio = <b>product</b> of individual ratios. Gear pair: n₂ = n₁·(Z₁/Z₂). Ratio &gt;1 increases speed, &lt;1 reduces (worm pair always reduces, self-locking).</p>
+<div class="callout"><b>Exam point.</b> Kinematic accuracy (e.g. spindle-rotation vs lead-screw travel in threading) improves with <b>shorter chains</b> and accurate gears — fewer pairs = fewer accumulated errors.</div>
+
+<h3>6. Mechanisms &amp; Lathe Layout</h3>
+<ul>
+<li><b>Sliding-gear (cluster)</b> — a gear block shifted on a splined shaft to change ratio (stepped speeds).</li>
+<li><b>Clutch type</b> — gears permanently mesh; ratio selected by a clutch (jaw = no slip but engage at rest; friction/electromagnetic = engage at speed, used in NC).</li>
+<li><b>Quick-return</b> (shaper/slotter): cutting stroke slow, return fast. <b>Slider-crank</b> (small strokes, return not much faster) vs <b>crank-and-rocker / Whitworth</b> (cutting over larger angle α, return over smaller β → true quick return, large strokes).</li>
+<li><b>Lathe (formula AOXYcwd):</b> A = work rotation (primary motion); O = bed; X = carriage feed; Y = cross-slide feed; c,w,d = tool-post setting motions. Elements: bed, headstock (spindle + speed box), tailstock, carriage/saddle+apron, cross/compound slide, tool post, feed box + lead screw.</li>
+</ul>
+
+  <h2>Theory question bank + numericals</h2>
+  <div class="bar"><button class="btn" data-reveal="clo1">Reveal all</button><button class="btn" data-hide="clo1">Hide all</button></div>
+  <div id="clo1-body">
+
+<article class="prob"><h3>TQ1 — Working vs auxiliary motion <span class="tag clo">CLO1</span></h3>
+<p class="statement"><b>Q:</b> Define working motion and auxiliary motion in a machine tool. (2 marks)</p>
+<div class="soln-wrap"><span class="soln-toggle">Show answer ▸</span><div class="soln">
+<p class="step"><b>Working motions</b> are the relative motions between cutting edge and workpiece essential to impart the shape (they form the surface) — the drive/primary cutting motion + the feed motion. <b>Auxiliary motions</b> do not form the surface but are needed for the working motions to function — clamping/unclamping, idle rapid travel, gear (speed) changing, engaging/disengaging.</p></div></div></article>
+
+<article class="prob"><h3>TQ2 — Primary vs feed motion <span class="tag clo">CLO1</span></h3>
+<p class="statement"><b>Q:</b> Distinguish drive (primary cutting) motion from feed motion and identify each for a lathe, drill and mill. (5 marks)</p>
+<div class="soln-wrap"><span class="soln-toggle">Show answer ▸</span><div class="soln">
+<p class="step"><b>Drive/primary cutting motion</b> carries the cutting edge through the material and removes the chip; velocity = cutting speed v (m/min); absorbs most cutting power. <b>Feed motion</b> brings fresh material into the path so the cut spreads; velocity = feed s, comparatively small. <b>Lathe:</b> primary = work rotation; feed = tool translation. <b>Drill:</b> primary = drill rotation; feed = axial drill travel. <b>Mill:</b> primary = cutter rotation; feed = workpiece translation.</p></div></div></article>
+
+<article class="prob"><h3>TQ3 — Methods of generating surfaces <span class="tag clo">CLO1</span></h3>
+<p class="statement"><b>Q:</b> Explain the methods of producing surfaces on machine tools, one example each. (5 marks)</p>
+<div class="soln-wrap"><span class="soln-toggle">Show answer ▸</span><div class="soln">
+<p class="step"><b>Forming</b> — edge carries the profile, simple feed reproduces it (form-tool turning). <b>Generating</b> — surface = envelope of cutting-edge positions via coordinated motion (gear hobbing). <b>Tracing</b> — single-point tool lays surface line-by-line (plain turning). <b>Copying</b> — tool follows a template/master/NC (copy turning, CNC contour). Contrast: forming copies tool profile; generating builds an envelope; tracing lays line-by-line; copying follows a master.</p></div></div></article>
+
+<article class="prob"><h3>TQ4 — Stepped vs stepless drives <span class="tag clo">CLO1</span></h3>
+<p class="statement"><b>Q:</b> Classify drives by speed regulation and by transmission. Why is a stepless drive advantageous? (5 marks)</p>
+<div class="soln-wrap"><span class="soln-toggle">Show answer ▸</span><div class="soln">
+<p class="step"><b>By regulation:</b> stepped (discrete steps, mechanical gearboxes) vs stepless (continuous; hydraulic, electrical, mechanical variators). <b>By transmission:</b> mechanical (stepped or stepless), hydraulic (always stepless), electrical (always stepless). <b>Advantage of stepless:</b> the optimum speed v = πdn/1000 usually lies between two steps; a stepped drive forces the nearest lower rpm, lengthening machining time. Stepless sets the exact optimum → maximum productivity and finish.</p></div></div></article>
+
+<article class="prob"><h3>TQ5 — Hydraulic vs electrical vs mechanical drives <span class="tag clo">CLO1</span></h3>
+<p class="statement"><b>Q:</b> Compare hydraulic, electrical and mechanical stepless drives (advantages/disadvantages). (5 marks)</p>
+<div class="soln-wrap"><span class="soln-toggle">Show answer ▸</span><div class="soln">
+<p class="step"><b>Hydraulic:</b> + smooth stepless speed/feed, easy reversal, rotary &amp; translatory motion, overload protection; − oil leakage, speed varies with oil temp/viscosity, costlier, lower efficiency. <b>Electrical:</b> + stepless, easily automated, ideal for NC/CNC, clean; − costly control gear, plain induction motor needs extra equipment for variable speed. <b>Mechanical:</b> + simple, robust, no power conversion; − stepped versions can't hit exact optimum, variators slip/wear and have limited range.</p></div></div></article>
+
+<article class="prob"><h3>TQ6 — Types of drive <span class="tag clo">CLO1</span></h3>
+<p class="statement"><b>Q:</b> Differentiate individual, group (line-shaft) and multi-motor drives. (5 marks)</p>
+<div class="soln-wrap"><span class="soln-toggle">Show answer ▸</span><div class="soln">
+<p class="step"><b>Group/line-shaft:</b> one motor drives many machines via an overhead shaft &amp; belts — obsolete (high losses, all stop together, unsafe). <b>Individual:</b> each machine has its own motor &amp; gearbox — independent control, efficient, safe, standard practice. <b>Multi-motor:</b> one machine uses several motors (spindle, feed, coolant, rapid traverse) — shortens kinematic chains, independent optimised control; common on large/automatic/CNC machines.</p></div></div></article>
+
+<article class="prob"><h3>TQ7 — Quick-return mechanisms <span class="tag clo">CLO1</span></h3>
+<p class="statement"><b>Q:</b> Why is a quick-return mechanism needed in shaping/slotting? Compare slider-crank with crank-and-rocker. (5 marks)</p>
+<div class="soln-wrap"><span class="soln-toggle">Show answer ▸</span><div class="soln">
+<p class="step">Metal is cut only on the forward stroke; the return is idle, so making the return faster raises productivity. <b>Slider-crank:</b> forward and reverse each take half a crank revolution → return not appreciably faster; small strokes (&lt;300 mm). <b>Crank-and-rocker (Whitworth):</b> crank turns a rocker; cutting over the larger angle α, return over the smaller β (α&gt;β) → genuinely faster return; large strokes (up to ~1000 mm), used in shapers/slotters.</p></div></div></article>
+
+<article class="prob"><h3>TQ8 — Kinematic structure &amp; lathe layout (long) <span class="tag clo">CLO1</span></h3>
+<p class="statement"><b>Q:</b> Explain the kinematic structure of a machine tool — speed &amp; feed chains, how motion is transmitted/regulated, and the layout/elements of a lathe. (10 marks)</p>
+<div class="soln-wrap"><span class="soln-toggle">Show answer ▸</span><div class="soln">
+<p class="step"><b>Structure:</b> a drive is an aggregate of mechanisms transmitting motion from a 3-φ motor to the operative elements; the sequence connecting a source to an operative element is a <b>kinematic chain</b>, the set of all chains is the structure (shown by a kinematic diagram). <b>Speed chain:</b> motor → speed gearbox → spindle (sets cutting speed). <b>Feed chain:</b> spindle/feed-motor → feed box → lead screw/feed rod → carriage (sets feed; tied to spindle for threading). <b>Transmission/regulation:</b> elementary transmissions in series, overall ratio = product; gear pair n₂=n₁(Z₁/Z₂); regulated in steps (sliding-gear/clutch) or steplessly (hydraulic/electrical); shorter chains → better kinematic accuracy. <b>Lathe (AOXYcwd):</b> A = work rotation (primary), O = bed, X = carriage feed, Y = cross feed, c,w,d = tool-post setting. Elements: bed, headstock (spindle+speed box), tailstock, carriage/saddle+apron, cross/compound slide, tool post, feed box + lead screw. A lathe shows all three motion classes at once.</p></div></div></article>
+
+  <h2>Numerical</h2>
   <article class="prob">
-    <h3>Worked — Cutting speed ↔ spindle rpm <span class="tag clo">CLO1</span></h3>
+    <h3>Cutting speed ↔ spindle rpm <span class="tag clo">CLO1</span></h3>
     <p class="statement"><b>Given:</b> Turn a workpiece of diameter D = 100 mm. Recommended cutting speed V = 40 m/min.</p>
-    <p class="ask"><b>Find:</b> required spindle speed N; and if the machine's nearest available speed is 125 rpm, the actual cutting speed.</p>
+    <p class="ask"><b>Find:</b> required spindle speed N; and if the nearest available speed is 125 rpm, the actual cutting speed.</p>
     <div class="soln-wrap"><span class="soln-toggle">Show solution ▸</span>
       <div class="soln">
-        <p class="step"><b>Formula.</b> V = πDN/1000 (D in mm, N in rpm, V in m/min) → N = 1000V/(πD).</p>
+        <p class="step"><b>Formula.</b> V = πDN/1000 (D mm, N rpm, V m/min) → N = 1000V/(πD).</p>
         <p class="step"><b>Substitute.</b> N = 1000×40/(π×100) = 40000/314.16 = 127.3 rpm.</p>
-        <p class="step"><b>Actual speed at N = 125 rpm.</b> V = π×100×125/1000 = 39.3 m/min.</p>
+        <p class="step"><b>At N = 125 rpm.</b> V = π×100×125/1000 = 39.3 m/min.</p>
         <p class="answer"><b>Answer:</b> N ≈ 127 rpm → pick 125 rpm → actual V ≈ 39.3 m/min.</p>
-        <p class="tip"><b>Exam tip:</b> V=πDN/1000 is the single most-used CLO1 numerical. Available speeds come from the GP gearbox (see CLO2) — that's why the geometric step matters.</p>
+        <p class="tip"><b>Exam tip:</b> V=πDN/1000 is the core CLO1 numerical. Available speeds come from the GP gearbox (CLO2).</p>
       </div>
     </div>
   </article>
-
-  <div class="callout">
-    <b>Kinematic chain (Q7a style answer).</b> In a lathe turning centre: <b>speed (main) chain</b> = motor → speed gearbox → spindle → workpiece (sets cutting speed). <b>Feed chain</b> = spindle → feed gearbox / lead-screw or feed-rod → carriage/cross-slide (sets feed, synchronised to spindle for threading). Each "chain" is the train of gears/screws transmitting one working motion.
   </div>
 </section>
 
 <!-- ===================== CLO2 SPEED REGULATION ===================== -->
 <section class="tab" id="clo2">
-  <h2>CLO2 — Regulation of Speed &amp; Feed (Stepped Drives)</h2>
+  <h2>CLO2 — Regulation of Speed &amp; Feed Rates</h2>
+  <p class="small">Module 2 · Mehta ch 2 · ≈ 10 marks. Deduce the means to regulate speed and feed in machine tools.</p>
 
-  <div class="callout blue">
-    <b>Why geometric progression (GP)?</b> Spindle speeds in a stepped gearbox are arranged in a <b>geometric progression</b> so the <b>percentage</b> speed change between steps is constant. This keeps the <b>maximum loss of cutting speed</b> (and hence productivity loss) the same across the whole range — the optimal arrangement. <span class="small">(Part-A blank #3 = "geometric".)</span>
-  </div>
+<h3>1. Aim of Regulation</h3>
+<p>Every operation must run at the cutting parameters (v, s, t) that give the <b>minimum cost</b> of the part. To machine any diameter at the optimum cutting speed the spindle rpm must be settable to n = 1000v/(πD).</p>
+<div class="callout blue"><b>Definition.</b> <b>Stepped regulation</b> provides only discrete rpm/feed values (geared drive). <b>Stepless</b> regulation allows any value in the range, so the tool always runs at the exact optimum. Most machines use stepped regulation (stepless is not yet economical for all).</div>
 
-  <h3>Core formulas</h3>
-  <span class="fblock">common ratio   φ = (n_max / n_min)^(1/(z−1))
-speed steps    n₁=n_min , n₂=n₁φ , n₃=n₁φ² , … , n_z = n_min·φ^(z−1)
-standard φ ∈ {1.06, 1.12, 1.26, 1.41, 1.58, 1.78, 2.0}</span>
+<h3>2. Why Geometric Progression?</h3>
+<p>The worst loss of economic cutting speed is when v<sub>opt</sub> sits midway between two speeds n<sub>j</sub>, n<sub>j+1</sub>:</p>
+<span class="fblock">(Δv)_max = [(φ − 1)/(φ + 1)]·v_opt ,   φ = n_(j+1)/n_j</span>
+<div class="callout"><b>Exam point.</b> This loss depends <b>only on the step ratio φ</b>. For it to be constant over the whole range, φ must be constant → speeds must be a <b>geometric progression</b>. GP also gives constant productivity loss (Q = 1000·s·v) and lets one gearbox make the whole series by changing gear pairs.</div>
+<p>Compared: <b>arithmetic</b> — step ratio falls ~2 → 1.09, high range redundant; <b>harmonic</b> — constant diameter range but high-range speeds too far apart; <b>logarithmic</b> — best operationally but impractical (trial-built). GP is the practical compromise.</p>
+
+<h3>3. Standard φ and Range</h3>
+<table>
+<tr><th>φ</th><th>1.06</th><th>1.12</th><th>1.26</th><th>1.41</th><th>1.58</th><th>1.78</th><th>2.0</th></tr>
+<tr><td>R-series</td><td>R40</td><td>R20</td><td>R10</td><td>R20/3</td><td>R5</td><td>R4</td><td>R10/3</td></tr>
+<tr><td>% speed loss</td><td>3</td><td>5</td><td>12</td><td>17</td><td>22</td><td>28</td><td>33</td></tr>
+</table>
+<span class="fblock">Range ratio  R_n = n_max/n_min = R_v·R_d = φ^(z−1)
+Number of steps  z = 1 + (log R_n)/(log φ)   (round to 2^E·3^E form: 6,8,9,12,18)</span>
+<p>Common φ: 1.26 (large–medium), 1.41 (medium), 1.58 (small); heavy-duty 1.12. Large φ → small machines, small φ → large machines.</p>
+
+<h3>4. Gearbox Design — Structural Formula &amp; the Three Diagrams</h3>
+<p>z steps are obtained in u stages: z = p₁×p₂×…×p_u. Each group has a <b>characteristic X</b> (number of GP-steps between its adjacent ratios). The <b>structural formula</b>:</p>
+<span class="fblock">z = p₁(X₁)·p₂(X₂)·…·p_u(X_u) ,  X₁=1, X₂=p₁, X₃=p₁p₂ …
+group range  i_g = φ^((p−1)X) ≤ 8   (since 1/4 ≤ i ≤ 2 per pair)</span>
+<table>
+<tr><th>Diagram</th><th>Shows</th><th>Rules</th></tr>
+<tr><td><b>Structural</b> (net)</td><td>No. of shafts &amp; gears/shaft, order of groups, each group's range &amp; characteristic (ratios not yet fixed)</td><td>u+1 shaft lines; z lines spaced log φ; group range ≤ 8</td></tr>
+<tr><td><b>Ray</b> diagram</td><td>Actual transmission ratios as rays</td><td>horizontal = i 1; up = i&gt;1 (≤2); down = i&lt;1 (≥¼)</td></tr>
+<tr><td><b>Speed</b> chart</td><td>Every actual rpm of every shaft + motor</td><td>max reduction placed in the last group</td></tr>
+</table>
+<div class="callout"><b>Exam point — best layout.</b> Choose the structural diagram that (a) keeps every ratio within ¼–2 (group range ≤ 8) and (b) gives minimum total shaft size Σd — achieved when X₁&lt;X₂&lt;…&lt;X_u (max n<sub>min</sub>, min n<sub>max</sub> on intermediate shafts). For z=12, φ=1.26 the best is <b>2(1)·3(2)·2(6)</b>.</div>
+
+<h3>5. Number of Teeth</h3>
+<p>All gears of a group share the same module → <b>sum of teeth on each pair is constant</b>, Z₁+Z₂ = C. Start from the minimum-ratio pair (set Z<sub>min</sub> ≥ 20 in speed boxes), then Z₁ = C·i/(1+i), Z₂ = C/(1+i), rounded. Actual rpm must deviate ≤ ±10(φ−1)%.</p>
+
+<h3>6. Feed Regulation &amp; Special Mechanisms</h3>
+<p>Feed boxes generally use GP feeds (constant productivity loss). Exceptions: thread-cutting pitches form an <b>arithmetic</b> progression; ratchet feeds (shaping/grinding) are intermittent. Feed limits are wider: i ≤ 2.8, i ≥ 1/5.</p>
+<table>
+<tr><th>Feature</th><th>Norton (tumbler)</th><th>Meander (clustered)</th></tr>
+<tr><td>Construction</td><td>Cone of gears on the driving shaft; a tumbler gear on a swing arm meshes any one</td><td>Identical double-cluster gears on two shafts; a tumbler transmits to the next</td></tr>
+<tr><td>Output</td><td>Direct precise ratios → exact thread pitches</td><td>Successive ratios form a GP naturally</td></tr>
+<tr><td>Use / flaw</td><td>Thread-cutting lathes; poor rigidity, dirt entry</td><td>Thread-cutting lathes; halves available ratios</td></tr>
+</table>
+<p>Other feed methods: change gears (precise, slow to set), sliding gears (large torque), gear cone + sliding key, jaw/friction clutches.</p>
+
+<h3>7. Stepless Drives</h3>
+<p>Allow exact-optimum speed and change-without-stopping. <b>Hydraulic</b> (variable-delivery pump / throttle, R<sub>v</sub> 50–60). <b>Electrical</b> (vary frequency/poles/slip; DC shunt, Ward-Leonard R<sub>v</sub> 8–16; modern VVVF). <b>Mechanical variators</b> — friction faceplate/cone, and the <b>PIV</b> (Positive Infinitely Variable) cone-pulley + laminated chain: positive no-slip drive, R<sub>v</sub> 10, η 0.9.</p>
+
+  <h2>Theory question bank + numericals</h2>
+  <div class="bar"><button class="btn" data-reveal="clo2">Reveal all</button><button class="btn" data-hide="clo2">Hide all</button></div>
+  <div id="clo2-body">
+
+<article class="prob"><h3>TQ1 — Aim of regulation, stepped vs stepless <span class="tag clo">CLO2</span></h3>
+<p class="statement"><b>Q:</b> State the aim of speed/feed regulation and distinguish stepped from stepless regulation. (2 marks)</p>
+<div class="soln-wrap"><span class="soln-toggle">Show answer ▸</span><div class="soln">
+<p class="step">Aim: run every operation at the parameters (v,s,t) giving minimum part cost — i.e. the optimum cutting speed for each diameter/material, since n = 1000v/(πD). Stepped = only discrete rpm/feed values (geared, most machines); stepless = any value in the range, so the tool always runs at the exact optimum.</p></div></div></article>
+
+<article class="prob"><h3>TQ2 — Why geometric progression <span class="tag clo">CLO2</span></h3>
+<p class="statement"><b>Q:</b> Show with derivation why spindle speeds are in GP; compare with AP and HP. (5 marks)</p>
+<div class="soln-wrap"><span class="soln-toggle">Show answer ▸</span><div class="soln">
+<p class="step">Worst loss when v<sub>opt</sub> is midway between n<sub>j</sub>, n<sub>j+1</sub>: (Δv)<sub>max</sub> = [(φ−1)/(φ+1)]·v<sub>opt</sub>, φ = n<sub>j+1</sub>/n<sub>j</sub>. This depends only on φ, so a constant % loss needs constant φ → GP. GP also gives constant productivity loss and a buildable gearbox. AP: step ratio falls 2→1.09 (high range redundant, low range coarse). HP: constant diameter range but high-range speeds too far apart. GP is the practical compromise.</p></div></div></article>
+
+<article class="prob"><h3>TQ3 — Standard φ &amp; R-series <span class="tag clo">CLO2</span></h3>
+<p class="statement"><b>Q:</b> List standard φ, the two conditions they satisfy, and recommended φ by machine size. (5 marks)</p>
+<div class="soln-wrap"><span class="soln-toggle">Show answer ▸</span><div class="soln">
+<p class="step">Standard φ: 1.06, 1.12, 1.26, 1.41, 1.58, 1.78, 2.0 (R40…R10/3). Two conditions: (1) series repeats on doubling (2-speed motors), n·φ^S₁=2n; (2) agrees with preferred numbers, n·φ^S₂=10n. % loss = (φ−1)/(φ+1)×100 (3%→33%). Recommended: heavy-duty 1.12; large–medium 1.26; medium 1.41; small 1.58. Large φ → small machines, small φ → large machines.</p></div></div></article>
+
+<article class="prob"><h3>TQ4 — Structural formula &amp; characteristic <span class="tag clo">CLO2</span></h3>
+<p class="statement"><b>Q:</b> Define the structural formula and the characteristic of a group. For z=12 in 3 stages, write one valid formula and explain. (5 marks)</p>
+<div class="soln-wrap"><span class="soln-toggle">Show answer ▸</span><div class="soln">
+<p class="step">z = p₁(X₁)·p₂(X₂)·…·p_u(X_u): p<sub>m</sub> = steps in group m, X<sub>m</sub> = its characteristic (GP-steps between adjacent ratios); group range i<sub>m</sub> = φ^((p−1)X). Main group X₁=1, then X₂=p₁, X₃=p₁p₂. For z=12=2×3×2 → <b>2(1)·3(2)·2(6)</b>: group 1 (2 steps, X=1), group 2 (3 steps, X=2), group 3 (2 steps, X=6). Largest range φ⁶ &lt; 8 for φ=1.26 ✓.</p></div></div></article>
+
+<article class="prob"><h3>TQ5 — The three diagrams <span class="tag clo">CLO2</span></h3>
+<p class="statement"><b>Q:</b> Differentiate the structural diagram, ray diagram and speed chart. (5 marks)</p>
+<div class="soln-wrap"><span class="soln-toggle">Show answer ▸</span><div class="soln">
+<p class="step"><b>Structural (net):</b> symmetrical graph (u+1 shaft lines, z lines spaced log φ) showing shafts, gears/shaft, order of groups, each group's range &amp; characteristic — not actual ratios. <b>Ray:</b> actual ratios as rays (horizontal i 1, up i&gt;1≤2, down i&lt;1≥¼). <b>Speed chart:</b> every actual rpm of every shaft with motor located, from the chosen best structural diagram. Sequence: structural formula → structural diagram → ray diagram → speed chart → gearing → teeth.</p></div></div></article>
+
+<article class="prob"><h3>TQ6 — Number of teeth <span class="tag clo">CLO2</span></h3>
+<p class="statement"><b>Q:</b> Explain how the number of teeth of gears in a group is determined. (5 marks)</p>
+<div class="soln-wrap"><span class="soln-toggle">Show answer ▸</span><div class="soln">
+<p class="step">All gears of a group share one module → equal centre distance → <b>Z₁+Z₂ = C (constant)</b>. Start from the minimum-ratio pair, set the small gear to Z<sub>min</sub> (≥20 speed box, ≥16 feed box, avoid undercutting). Then Z₁ = C·i/(1+i), Z₂ = C/(1+i), rounded to whole teeth; try several C, pick least adjustment; actual rpm deviation ≤ ±10(φ−1)%.</p></div></div></article>
+
+<article class="prob"><h3>TQ7 — Norton vs Meander <span class="tag clo">CLO2</span></h3>
+<p class="statement"><b>Q:</b> Describe the Norton (tumbler) and Meander feed mechanisms and compare them. (5 marks)</p>
+<div class="soln-wrap"><span class="soln-toggle">Show answer ▸</span><div class="soln">
+<p class="step"><b>Norton:</b> a cone of gears on the driving shaft; a tumbler gear on a swing arm is slid and meshed with any cone gear → direct precise ratios (exact thread pitches), compact, single-lever; poor rigidity, dirt entry. <b>Meander:</b> identical double-cluster gears; a tumbler meshes successively so ratios naturally form a GP; halves available ratios. Both compact, single-lever, used in thread-cutting lathes, same rigidity/accuracy flaws.</p></div></div></article>
+
+<article class="prob"><h3>TQ8 — Complete speed-gearbox design (long) <span class="tag clo">CLO2</span></h3>
+<p class="statement"><b>Q:</b> Explain the complete design of a stepped speed gearbox using structural, ray and speed diagrams, with layout-selection rules and ratio limits. (10 marks)</p>
+<div class="soln-wrap"><span class="soln-toggle">Show answer ▸</span><div class="soln">
+<p class="step"><b>1 Data:</b> fix n<sub>max</sub>, n<sub>min</sub>, R<sub>n</sub>=R<sub>v</sub>R<sub>d</sub>, choose φ. <b>2 Steps:</b> z = 1+(log R<sub>n</sub>)/(log φ), rounded to 2^E·3^E. <b>3 Break-up:</b> z = p₁×…×p_u (p≈z^(1/u)). <b>4 Structural formulae:</b> p₁(X₁)…p_u(X_u), X₁=1; group range φ^((p−1)X). <b>5 Structural diagrams:</b> plot each (u+1 verticals, z horizontals log φ). <b>6 Best version:</b> (a) ratio limit ¼≤i≤2 → group range ≤8; (b) min Σd since M<sub>t</sub>=KN/n (low-rpm shaft = largest dia) → X₁&lt;X₂&lt;…&lt;X_u; guidelines: min gears on spindle, max reduction in last group, ≤3–4 gears/shaft. e.g. z=12,φ=1.26 → 2(1)3(2)2(6). <b>7 Ray diagram:</b> actual ratios, max reduction last. <b>8 Speed chart:</b> add motor rpm → all shaft speeds. <b>9 Gearing &amp; teeth:</b> Z₁+Z₂=C, Z<sub>min</sub>≥20, deviation ≤±10(φ−1)%.</p></div></div></article>
+
+  <h2>Numericals</h2>
 
   <article class="prob">
     <h3>Prob (= Last Exam Q5) — 9-speed GP gearbox <span class="tag exam">★ ON LAST EXAM (Q5)</span> <span class="tag clo">CLO2</span></h3>
@@ -258,12 +434,78 @@ standard φ ∈ {1.06, 1.12, 1.26, 1.41, 1.58, 1.78, 2.0}</span>
       </div>
     </div>
   </article>
+  </div>
 </section>
 
 <!-- ===================== CH3 ===================== -->
 <section class="tab" id="ch3">
-  <h2>Chapter 3 — Design of Machine Tool Structures (CLO4)</h2>
-  <p class="small">Beds, columns, bases/tables. Core: torsion of open/closed thin sections, bending rigidity, stiffeners, stiffness. <b>Prob 3.12 = exam Q6.</b></p>
+  <h2>CLO4 (Module 3) — Design of Machine Tool Structures</h2>
+  <p class="small">Mehta ch 3. Apply strength &amp; stiffness criteria to beds, columns, housings, bases, tables. (CLO4 also covers spindles — see the CLO4 · Spindles tab.)</p>
+
+<h3>1. Functions &amp; Classification of Structures</h3>
+<p>Structures (beds, bases, columns, housings, tables, carriages, cross-rails, arms, rams) form the load-carrying skeleton: they support all sub-assemblies and keep the correct relative position of tool and workpiece under load, preserving accuracy over the machine's life.</p>
+<table>
+<tr><th>Group</th><th>Members</th><th>Function</th></tr>
+<tr><td>1</td><td>Beds, bases</td><td>Foundation members carrying the whole machine, transmitting load to floor</td></tr>
+<tr><td>2</td><td>Box-type housings (speed/feed box, spindle head)</td><td>Enclose &amp; locate gear/bearing units</td></tr>
+<tr><td>3</td><td>Tables, carriages, saddles, knees, cross-rails, arms, rams</td><td>Support/move workpiece or tool along guideways</td></tr>
+</table>
+
+<h3>2. Requirements of Structures</h3>
+<ol>
+<li>High accuracy of mating/locating surfaces.</li>
+<li>Long-term dimensional stability (resist ageing, residual-stress relaxation).</li>
+<li>Strength — stresses &amp; deformations (mechanical + thermal) within limits.</li>
+<li>High static &amp; dynamic stiffness.</li>
+<li>Good damping.</li>
+<li>Low thermal deformation.</li>
+<li>High wear resistance of guideways (moving members).</li>
+<li>Manufacturability &amp; economy of metal.</li>
+</ol>
+<div class="callout"><b>Exam point.</b> These reduce to <b>two fundamentals</b>: (i) proper material selection, (ii) high static &amp; dynamic stiffness. For moving members add (iii) wear resistance of guiding surfaces.</div>
+
+<h3>3. Strength vs Stiffness — Optimum l²/h</h3>
+<span class="fblock">Strength volume   V_σ = (3/2)(P/[σ])(l²/h)
+Stiffness volume  V_δ = (P/4E[δ])(l²/h)²
+Optimum (V_σ=V_δ):  (l²/h)_opt = 6E[δ]/[σ]</span>
+<div class="callout"><b>Exam point.</b> Real machine tools have l²/h <b>greater</b> than the optimum → the V<sub>δ</sub> curve dominates → <b>stiffness, not strength, is the decisive sizing criterion</b>. Design for stiffness first; check strength afterwards.</div>
+
+<h3>4. Materials</h3>
+<p>Selection index = <b>unit rigidity E/γ</b>. All steels &amp; duralumin have nearly equal E/γ (~2.6×10⁸), so costly alloy steel gives no benefit; plain structural steel suffices. Grey CI E/γ ≈ 1.66×10⁸.</p>
+<table>
+<tr><th>Criterion</th><th>Grey cast iron</th><th>Welded steel</th></tr>
+<tr><td>Damping</td><td><b>High</b> (graphite dissipates energy)</td><td>Low (only at welds)</td></tr>
+<tr><td>Sliding/wear (guideways)</td><td>Good (graphite lubricates)</td><td>Inferior</td></tr>
+<tr><td>Castability of complex shapes</td><td>Easy; cored holes</td><td>Hard; needs many ribs, machined holes</td></tr>
+<tr><td>Unit rigidity E/γ</td><td>Lower → bulkier sections</td><td>Higher → thinner, lighter, deeper</td></tr>
+<tr><td>Repair / prototyping</td><td>Difficult</td><td>Easy</td></tr>
+<tr><td>Best for</td><td>Complex parts, normal load, large runs</td><td>Simple, heavily loaded, small numbers</td></tr>
+</table>
+<p>Also: <b>combined cast-and-welded</b> construction; <b>polymer concrete / granite</b> (very high damping, thermal stability).</p>
+
+<h3>5. Static &amp; Dynamic Stiffness</h3>
+<div class="callout blue"><b>Definition.</b> <b>Static stiffness</b> K = P/Y (force ÷ displacement in the force direction). <b>Compliance</b> C = 1/K. <b>Dynamic stiffness</b> K<sub>dyn</sub> = K/A relates a time-varying force to displacement (A = magnification factor).</div>
+<ul>
+<li><b>Series</b> (force path): compliances add, C = C₁+C₂+C₃ → stiffen the <b>weakest</b> element; for shaft trains the <b>last shaft</b> dominates.</li>
+<li><b>Parallel</b> (equal deformation): stiffnesses add, K = K₁+K₂+K₃ → improve the <b>strongest</b> element.</li>
+<li>Reduced by: apertures, joints (contact compliance), slender proportions. Dynamic stiffness also falls near resonance; raise damping &amp; keep natural freq ≥ 2.5× highest excitation.</li>
+</ul>
+
+<h3>6. Profiles — Open vs Closed</h3>
+<table>
+<tr><th>Section (equal area)</th><th>Bending deflection (rel.)</th><th>Torsional twist (rel.)</th></tr>
+<tr><td>Solid square</td><td>1</td><td>1</td></tr>
+<tr><td>Closed rectangular box</td><td>1.6</td><td><b>31.4</b></td></tr>
+<tr><td>Open I-section</td><td><b>1.8</b></td><td>1.9</td></tr>
+</table>
+<div class="callout"><b>Exam point.</b> <b>I-section excels in bending</b> (material far from neutral axis → large I) but is <b>poor in torsion</b>. <b>Closed box excels in torsion</b> because I<sub>t</sub> ∝ A₀² (enclosed area squared): τ = M<sub>t</sub>/(2A₀δ). Machine members carry combined bending + torsion → closed box preferred. Open: I<sub>t</sub> = β·⅓Σbt³ (β: rect 1.0, channel 1.12, I 1.20).</div>
+<p><b>Apertures</b> cut stiffness (round hole disturbs ≈2d; torsional loss worst, recover bending with cover plates). <b>Stiffeners:</b> diagonal (Warren beam) best for both bending &amp; torsion; perpendicular help bending only.</p>
+
+<h3>7. Design Procedure &amp; Model Technique</h3>
+<p>Mark all forces → (1) design for bending stiffness, (2) torsional stiffness, (3) check strength (principal stress σ<sub>p</sub> = σ/2 + √[(σ/2)²+τ²] ≤ [σ]); take the largest dimensions. <b>Model technique:</b> because exact analysis errs 30–50%, behaviour is predicted from small-scale <b>Perspex</b> models (E/G close to metals → ~3–5% error). Scaling: f<sub>s</sub>/f<sub>m</sub> = (1/λ)√(E<sub>s</sub>ρ<sub>m</sub>/E<sub>m</sub>ρ<sub>s</sub>). Perspex creeps above ~68 kgf/cm² → use a compensating ring.</p>
+
+  <h2>Theory question bank + numericals</h2>
+  <p class="small">Numericals come from Mehta ch 3 review questions — the professor draws from this set (different problems each time, so know the method for all).</p>
   <div class="bar"><button class="btn" data-reveal="ch3">Reveal all solutions</button><button class="btn" data-hide="ch3">Hide all</button></div>
 
   <div class="callout">
@@ -288,6 +530,49 @@ standard φ ∈ {1.06, 1.12, 1.26, 1.41, 1.58, 1.78, 2.0}</span>
   </svg>
 
   <div id="ch3-body">
+
+<article class="prob"><h3>TQ — Static stiffness &amp; compliance <span class="tag clo">CLO4</span></h3>
+<p class="statement"><b>Q:</b> Define static stiffness and compliance of a machine tool element. (2 marks)</p>
+<div class="soln-wrap"><span class="soln-toggle">Show answer ▸</span><div class="soln">
+<p class="step"><b>Static stiffness</b> K = P/Y = static force ÷ displacement in the force direction (slope dP/dY). <b>Compliance</b> C = 1/K = displacement per unit force. High K (low C) → small deflection under cutting force → better accuracy and dynamic stability.</p></div></div></article>
+
+<article class="prob"><h3>TQ — Two fundamental requirements <span class="tag clo">CLO4</span></h3>
+<p class="statement"><b>Q:</b> State the two fundamental requirements of all structures and the extra one for moving members. (2 marks)</p>
+<div class="soln-wrap"><span class="soln-toggle">Show answer ▸</span><div class="soln">
+<p class="step">(1) Proper material selection; (2) high static &amp; dynamic stiffness. Moving members (carriages, tables) add: (3) high wear resistance of guiding/guided surfaces.</p></div></div></article>
+
+<article class="prob"><h3>TQ — Why cast iron for beds; CI vs welded steel <span class="tag clo">CLO4</span></h3>
+<p class="statement"><b>Q:</b> Why is grey cast iron the traditional bed material? Compare with welded steel. (5 marks)</p>
+<div class="soln-wrap"><span class="soln-toggle">Show answer ▸</span><div class="soln">
+<p class="step"><b>CI:</b> high inherent damping (graphite), good sliding/wear, excellent castability of complex ribbed profiles (cored holes), cheap in large runs; but lower strength/E (bulkier) and min wall thickness limited by casting. <b>Steel:</b> higher strength &amp; E/γ (thinner, lighter, deeper sections), easy repair/prototyping; but poor damping (welds only), inferior sliding, needs many ribs, machined holes. → Steel for simple heavily-loaded parts in small numbers; CI for complex parts in large numbers; combined cast-and-welded otherwise.</p></div></div></article>
+
+<article class="prob"><h3>TQ — Closed box for torsion, open I for bending <span class="tag clo">CLO4</span></h3>
+<p class="statement"><b>Q:</b> Justify why torsion-loaded beds are closed boxes while bending-loaded beds may be open I-sections. (5 marks)</p>
+<div class="soln-wrap"><span class="soln-toggle">Show answer ▸</span><div class="soln">
+<p class="step"><b>Bending → I:</b> stiffness ∝ I about the neutral axis; the I places material in flanges far from the axis → max I per unit area → min deflection. <b>Torsion → closed box:</b> for a thin closed section τ = M<sub>t</sub>/(2A₀δ) and I<sub>t</sub> ∝ A₀² (enclosed area squared); an open section has no enclosed area so I<sub>t</sub> = β·⅓Σbt³ is tiny. Equal-area data: box twists 8.8–31.4× stiffer vs I-section 1.9×. Hence box for torsion, open I for bending.</p></div></div></article>
+
+<article class="prob"><h3>TQ — Apertures &amp; stiffeners <span class="tag clo">CLO4</span></h3>
+<p class="statement"><b>Q:</b> How do apertures and ribs affect box-structure stiffness, and how are losses compensated? (5 marks)</p>
+<div class="soln-wrap"><span class="soln-toggle">Show answer ▸</span><div class="soln">
+<p class="step"><b>Apertures</b> cut the load path: a round hole disturbs ≈2d, an elongated one ≈l+d; width has the greatest effect. Bending loss (worst for holes in walls ⟂ to the bending plane) is recovered by bolted cover plates; torsional loss is more serious and needs a reduction factor (cover plates help only if bolts are tight enough). <b>Stiffeners:</b> simple longitudinal/transverse ribs add weight with little torsional gain; only <b>diagonal</b> stiffeners (Warren beam) improve both bending &amp; torsion significantly.</p></div></div></article>
+
+<article class="prob"><h3>TQ — Optimum l²/h; stiffness governs <span class="tag clo">CLO4</span></h3>
+<p class="statement"><b>Q:</b> Show the optimum l²/h ratio and explain why stiffness (not strength) governs structure dimensions. (5 marks)</p>
+<div class="soln-wrap"><span class="soln-toggle">Show answer ▸</span><div class="soln">
+<p class="step">V<sub>σ</sub> = (3/2)(P/[σ])(l²/h), V<sub>δ</sub> = (P/4E[δ])(l²/h)²; setting V<sub>σ</sub>=V<sub>δ</sub> → <b>(l²/h)<sub>opt</sub> = 6E[δ]/[σ]</b>. Below it strength governs, above it stiffness governs. Real machine tools have l²/h &gt; optimum, so the V<sub>δ</sub> curve dominates → dimensions are fixed by deflection (stiffness), strength only checked. (So the ~13× steel-vs-CI metal saving from strength alone isn't realised — steel must be ribbed.)</p></div></div></article>
+
+<article class="prob"><h3>TQ — Model technique &amp; Perspex <span class="tag clo">CLO4</span></h3>
+<p class="statement"><b>Q:</b> Describe the model technique in structure design. Why Perspex, and its limitations? (5 marks)</p>
+<div class="soln-wrap"><span class="soln-toggle">Show answer ▸</span><div class="soln">
+<p class="step">Exact analysis of complex profiles errs 30–50%, so a small-scale model (scale λ) is tested and the structure's behaviour predicted: f<sub>s</sub>/f<sub>m</sub> = (1/λ)√(E<sub>s</sub>ρ<sub>m</sub>/E<sub>m</sub>ρ<sub>s</sub>); validity needs similar geometry, loading and E/G (Poisson). <b>Perspex</b>: easily machined, transparent, E/G close to metals (~3–5% error). <b>Limits:</b> creeps above ~68 kgf/cm² (use a compensating ring); E varies with frequency; absorbs ~2% moisture lowering E ~10% (controlled humidity).</p></div></div></article>
+
+<article class="prob"><h3>TQ — Functions, requirements, materials (long) <span class="tag clo">CLO4</span></h3>
+<p class="statement"><b>Q:</b> Discuss the functions, requirements and materials of machine tool structures. (10 marks)</p>
+<div class="soln-wrap"><span class="soln-toggle">Show answer ▸</span><div class="soln">
+<p class="step"><b>Functions:</b> the load-carrying skeleton supporting sub-assemblies and maintaining tool–work relative position under load. Group 1 beds/bases (foundation), Group 2 housings (enclose gear/bearing units), Group 3 tables/saddles/cross-rails/rams (carry/move work or tool). <b>Requirements:</b> accurate mating surfaces; long-term stability; strength (mechanical+thermal); high static &amp; dynamic stiffness; good damping; low thermal deformation; guideway wear resistance; manufacturability — reducing to material selection + stiffness (+ wear for moving members). Since l²/h &gt; optimum, stiffness governs (design bending then torsion, check strength). <b>Materials:</b> index E/γ (all steels equal → plain steel fine). Grey CI: high damping, good sliding, castable, cheap, but bulky; welded steel: stronger/stiffer/lighter, easy repair, but poor damping, many ribs; combined cast-and-welded and polymer concrete also used. → steel for simple heavy parts in small numbers, CI for complex parts in large numbers.</p></div></div></article>
+
+  <h2>Numericals (Mehta ch 3 review questions)</h2>
+
 <article class="prob" id="p3-1">
   <h3>Prob 3.1 <span class="tag clo">CLO4</span></h3>
   <p class="statement"><b>Given:</b> Solid rectangular structure, height <i>h</i>, width <i>b</i>, length <i>l</i>, simply supported, loaded as Fig 3.32 (central load P + symmetric UDLs q₁, q₂). Permissible stress [σ], permissible deflection [δ], modulus E.</p>
@@ -453,8 +738,62 @@ standard φ ∈ {1.06, 1.12, 1.26, 1.41, 1.58, 1.78, 2.0}</span>
 
 <!-- ===================== CH4 ===================== -->
 <section class="tab" id="ch4">
-  <h2>Chapter 4 — Design of Guideways &amp; Power Screws (CLO3)</h2>
-  <p class="small">Functions/requirements of guideways, slideway sizing, hydrostatic/hydrodynamic bearings, lead &amp; ball screws.</p>
+  <h2>CLO3 (Module 3) — Design of Guideways &amp; Power Screws</h2>
+  <p class="small">Mehta ch 4. Design machine tool guideways, identifying their functions and requirements.</p>
+
+<h3>1. Function &amp; Requirements</h3>
+<div class="callout blue"><b>Definition.</b> A <b>guideway</b> guides a moving member (carriage, table, saddle, ram) along a predetermined path — <b>linear</b> (lathe, drilling, planing) or <b>circular</b> (rotary tables of VTLs/boring mills).</div>
+<p>Requirements: (1) high accuracy &amp; surface finish of the surfaces; (2) high accuracy of travel; (3) durability (retain initial accuracy); (4) low friction → less wear; (5) <b>minimum variation of μ</b>; (6) high rigidity/stiffness; (7) good damping. Plus: easy lubrication, wear compensation (gibs), wear-resistant material, protection from chips/dust.</p>
+<div class="callout"><b>Exam point.</b> It is not the magnitude of μ but its <b>variation</b> (with speed and time-since-oiling) that ruins precision — it causes stick-slip. That's why liquid-friction / anti-friction ways replace plain slideways in precision machines. Cutting-force components: <b>P<sub>z</sub> tangential, P<sub>y</sub> radial, P<sub>x</sub> axial.</b></div>
+
+<h3>2. Classification</h3>
+<table>
+<tr><th>Class</th><th>Principle</th></tr>
+<tr><td><b>Sliding (slideways)</b></td><td>Dry / semi-liquid / liquid friction at the interface</td></tr>
+<tr><td><b>Anti-friction (rolling)</b></td><td>Balls or rollers (with/without recirculation) → rolling friction</td></tr>
+<tr><td><b>Hydrostatic</b></td><td>Oil pumped under pressure → film at any speed incl. zero</td></tr>
+<tr><td><b>Aerostatic</b></td><td>Compressed-air film (same principle, air medium)</td></tr>
+</table>
+<p>Also by motion: linear vs circular. <b>Hydrodynamic</b> = wedge film lifts only at high speed; <b>hydrostatic</b> = lifted at any speed by external pressure.</p>
+
+<h3>3. Slideway Profiles</h3>
+<table>
+<tr><th>Profile</th><th>Manufacture</th><th>Load</th><th>Wear compensation</th><th>Clearance adjust</th></tr>
+<tr><td><b>Flat</b></td><td>Easiest, easy to check</td><td>High (large area)</td><td>None (wear not auto-compensated)</td><td>Needs gib/strip</td></tr>
+<tr><td><b>V (triangular)</b></td><td>Difficult, costly</td><td>Moderate</td><td><b>Self-adjusting</b> under weight; best travel accuracy</td><td>Usually none</td></tr>
+<tr><td><b>Dovetail</b></td><td>Hardest</td><td>Moderate, compact</td><td>No</td><td>Simplest — one gib both directions</td></tr>
+<tr><td><b>Cylindrical</b></td><td>Tight tolerances</td><td>Low (low rigidity)</td><td>No</td><td>Very difficult</td></tr>
+</table>
+<p><b>Open</b> ways: high speed, good lubricant retention. <b>Closed</b> ways: prevent chip build-up and resist lift-off/tipping loads. Clearance set by flat strips or, best, <b>taper gibs</b> (1:40–1:100) on the less-loaded side. Materials: grey CI (induction-hardened, ≥2×/4× wear life), SG iron, hard coatings (chrome/Mo), steel strips, plastic (PTFE — low friction but poor rigidity).</p>
+
+<h3>4. Design of Slideways</h3>
+<p>Designed for <b>wear resistance</b> (p ≤ [p]) and <b>stiffness</b> (δ ≤ [δ]). Resolve carriage equilibrium for reactions, e.g. two-flat ways:</p>
+<span class="fblock">B = P_y
+C = (P_z·y_p − P_y·h)/b + G/2
+A = P_z + G/2 − (P_z·y_p − P_y·h)/b
+Pulling force  Q = P_x + f(P_z + P_y + G)
+Face width on wear basis  c' = A_reaction/([p_av]·L)</span>
+<div class="callout"><b>Exam point — no tipping.</b> Every reaction must stay <b>compressive (positive)</b>. If a reaction comes out negative, part of the carriage has <b>lifted off</b> — it tends to tip. An open way cannot resist this; a <b>closed</b> way carries the lift-off load. Permissible CI pressures: feed 25–30, planing/shaping 10–12, precision 1–2 kgf/cm² ([p<sub>av</sub>] ≈ ½[p<sub>max</sub>]).</div>
+
+<h3>5. Friction, Stick-Slip &amp; Liquid-Friction Ways</h3>
+<div class="callout blue"><b>Definition.</b> <b>Stick-slip</b> = jerky slow-feed motion because static friction &gt; kinetic friction: the member sticks until drive force exceeds static friction, then slips suddenly. Cures: hydrodynamic/hydrostatic/anti-friction ways, anti-stick-slip oils, PTFE facing.</div>
+<p><b>Hydrodynamic</b>: wedge film lifts only at high speed (used where motion is the primary cutting motion). <b>Hydrostatic</b>: pumped pocket gives film at any speed → high load at zero speed, no starting friction, negligible wear, high stiffness, good damping; but costly and hard to lock. Multiple pockets need a <b>restrictor</b> (capillary l<sub>c</sub>≥20d<sub>c</sub>, or orifice) per pocket so one pump serves all; max stiffness at p₀/p<sub>p</sub> = 2/3. Film gap varies as load^(1/3) (vs ^(1/2) hydrodynamic → hydrostatic far stiffer).</p>
+
+<h3>6. Aerostatic &amp; Anti-friction Ways</h3>
+<p><b>Aerostatic</b> (air film): no oil, clamp by cutting air, self-cleaning, tiny pull force (~1 kgf); but low stiffness (~10 kgf/µm) &amp; damping → setting motions of precision machines only. <b>Anti-friction (rolling)</b>: low friction, no stick-slip, high stiffness if <b>preloaded</b>, high speed; but low load per element (point/line contact), costly, dirt-sensitive. The element centre moves at half the carriage speed → either limit travel or <b>recirculate</b> balls/rollers.</p>
+
+<h3>7. Power Screws &amp; Ball Screws</h3>
+<p>Sliding power screws use the <b>Acme (trapezoidal)</b> thread; design criteria: (1) wear/bearing pressure, (2) strength (core under axial+torsion), (3) buckling (column), (4) pitch accuracy (lead screw). The <b>recirculating ball screw</b> rolls hardened balls in helical grooves:</p>
+<table>
+<tr><th>Aspect</th><th>Acme (sliding)</th><th>Ball screw</th></tr>
+<tr><td>Friction / efficiency</td><td>High / ~30–50%</td><td>Rolling / ~90%+</td></tr>
+<tr><td>Stick-slip, backlash</td><td>Present</td><td>None (preloaded double nut)</td></tr>
+<tr><td>Positioning stiffness</td><td>Lower</td><td>High → NC/CNC standard</td></tr>
+<tr><td>Cost / self-locking</td><td>Cheap; self-locking</td><td>Costly; needs brake on vertical axes</td></tr>
+</table>
+
+  <h2>Theory question bank + numericals</h2>
+  <p class="small">Numericals from Mehta ch 4 review questions — know the method across the whole set.</p>
   <div class="bar"><button class="btn" data-reveal="ch4">Reveal all solutions</button><button class="btn" data-hide="ch4">Hide all</button></div>
 
   <div class="callout">
@@ -462,6 +801,49 @@ standard φ ∈ {1.06, 1.12, 1.26, 1.41, 1.58, 1.78, 2.0}</span>
   </div>
 
   <div id="ch4-body">
+
+<article class="prob"><h3>TQ — Two requirements of a guideway <span class="tag clo">CLO3</span></h3>
+<p class="statement"><b>Q:</b> List any two requirements a machine-tool guideway must satisfy. (2 marks)</p>
+<div class="soln-wrap"><span class="soln-toggle">Show answer ▸</span><div class="soln">
+<p class="step">Any two of: high accuracy/finish of surfaces; high accuracy of travel; durability; low friction → less wear; minimum variation of μ; high rigidity; good damping (also: easy lubrication, wear compensation, protection from chips).</p></div></div></article>
+
+<article class="prob"><h3>TQ — Hydrodynamic vs hydrostatic slideway <span class="tag clo">CLO3</span></h3>
+<p class="statement"><b>Q:</b> Differentiate hydrodynamic and hydrostatic slideways. (2 marks)</p>
+<div class="soln-wrap"><span class="soln-toggle">Show answer ▸</span><div class="soln">
+<p class="step"><b>Hydrodynamic:</b> oil film generated by the moving surface's wedge action → lift only at <b>high speed</b>. <b>Hydrostatic:</b> oil pumped externally under pressure → lift at <b>any speed including zero</b>.</p></div></div></article>
+
+<article class="prob"><h3>TQ — V vs flat slideway <span class="tag clo">CLO3</span></h3>
+<p class="statement"><b>Q:</b> Compare V and flat slideways (manufacture, load, wear compensation, clearance). (5 marks)</p>
+<div class="soln-wrap"><span class="soln-toggle">Show answer ▸</span><div class="soln">
+<p class="step"><b>Manufacture:</b> flat easiest/checkable, V difficult/costly. <b>Load:</b> flat high (large area), V moderate (open apex to 120° for more). <b>Wear/accuracy:</b> V <b>self-adjusts</b> under weight → wear auto-compensated, best travel accuracy; flat does not → wear opens clearance. <b>Clearance:</b> V needs no device; flat needs separate gibs/strips for both directions.</p></div></div></article>
+
+<article class="prob"><h3>TQ — Stick-slip <span class="tag clo">CLO3</span></h3>
+<p class="statement"><b>Q:</b> Explain stick-slip in slideways, why it occurs, and how it is overcome. (5 marks)</p>
+<div class="soln-wrap"><span class="soln-toggle">Show answer ▸</span><div class="soln">
+<p class="step">At slow feed the member moves in jerks because static μ &gt; kinetic μ: the drive builds force to beat static friction, the member slips, friction drops, stored energy releases → jerk, then sticks again (worsened by μ falling as oil is squeezed out over time). It ruins slow-feed smoothness and positioning. Cures: hydrodynamic/hydrostatic (zero starting friction) or anti-friction ways, anti-stick-slip oils, PTFE facing.</p></div></div></article>
+
+<article class="prob"><h3>TQ — Why a restrictor in hydrostatic ways <span class="tag clo">CLO3</span></h3>
+<p class="statement"><b>Q:</b> Why can't several hydrostatic pockets be fed directly from one pump, and how does a restrictor solve it? (5 marks)</p>
+<div class="soln-wrap"><span class="soln-toggle">Show answer ▸</span><div class="soln">
+<p class="step">Pockets carry different loads → need different pressures. Fed directly, the <b>lower-loaded</b> pocket lifts first and all excess oil escapes through it, so the heavier pocket never reaches its required pressure. A <b>restrictor</b> (capillary l<sub>c</sub>≥20d<sub>c</sub>, or orifice) in each branch passes only limited flow, letting one pump hold a high supply pressure p<sub>p</sub> while each pocket builds its own p₀; max stiffness at p₀/p<sub>p</sub> = 2/3.</p></div></div></article>
+
+<article class="prob"><h3>TQ — Anti-friction ways &amp; recirculation <span class="tag clo">CLO3</span></h3>
+<p class="statement"><b>Q:</b> State advantages/limitations of anti-friction guideways and why recirculation is needed. (5 marks)</p>
+<div class="soln-wrap"><span class="soln-toggle">Show answer ▸</span><div class="soln">
+<p class="step"><b>Adv:</b> low friction, uniform slow-speed motion (no stick-slip), high stiffness when preloaded, high speed. <b>Limits:</b> low load per element (point/line contact, needs hard ways), costlier, dirt-sensitive. <b>Recirculation:</b> the rolling element's centre moves at half the carriage velocity, so elements lag and run out over a long stroke; recirculating them keeps enough between the surfaces for unlimited travel.</p></div></div></article>
+
+<article class="prob"><h3>TQ — Ball screw vs Acme screw <span class="tag clo">CLO3</span></h3>
+<p class="statement"><b>Q:</b> What is a recirculating ball screw? Advantages over an Acme screw and why preferred on NC/CNC? (5 marks)</p>
+<div class="soln-wrap"><span class="soln-toggle">Show answer ▸</span><div class="soln">
+<p class="step">Hardened balls roll in matching helical grooves of screw and nut and recirculate through a return tube. Adv: rolling friction → ~90% efficiency (vs 30–50%), no stick-slip, backlash eliminated by preloaded double nut → high stiffness, long life. NC/CNC: high efficiency + zero backlash + high stiffness → accurate repeatable servo positioning. Trade-off: costly, not self-locking (needs a brake on vertical axes).</p></div></div></article>
+
+<article class="prob"><h3>TQ — Functions, requirements, types of guideways (long) <span class="tag clo">CLO3</span></h3>
+<p class="statement"><b>Q:</b> Discuss the functions and requirements of guideways and explain their classification. (10 marks)</p>
+<div class="soln-wrap"><span class="soln-toggle">Show answer ▸</span><div class="soln">
+<p class="step"><b>Function:</b> guide the operative element along a predetermined path (linear/circular). <b>Requirements:</b> accuracy &amp; finish of surfaces; accuracy of travel; durability; low friction; minimum variation of μ (the real cause of stick-slip); high rigidity; good damping; plus lubrication, wear compensation, protection. <b>Classification (by friction):</b> (a) <b>sliding</b> (slideways) — flat/V/dovetail/cylindrical profiles, open or closed; (b) <b>liquid-friction</b> — hydrodynamic (wedge, high speed) and hydrostatic (pumped, any speed, very stiff, restrictor-fed); (c) <b>aerostatic</b> (air film — setting motions only, low stiffness); (d) <b>anti-friction</b> (rolling — low friction, no stick-slip, preloaded for stiffness, recirculated for long travel). Secondary: linear vs circular.</p></div></div></article>
+
+  <h2>Numericals (Mehta ch 4 review questions)</h2>
+
 <article class="prob" id="p4-1">
   <h3>Prob 4.1 — Saddle lift-off from face A <span class="tag clo">CLO3</span></h3>
   <p class="statement"><b>Given:</b> Parting on a lathe with V + flat slideways (Fig 4.10). μ = 0.5, V half-angle α = 50°, h/b = 0.5; resultant cutting force R at 40° to vertical; parting → P<sub>x</sub> = 0.</p>
@@ -605,8 +987,67 @@ standard φ ∈ {1.06, 1.12, 1.26, 1.41, 1.58, 1.78, 2.0}</span>
 
 <!-- ===================== CH5 ===================== -->
 <section class="tab" id="ch5">
-  <h2>Chapter 5 — Design of Spindles &amp; Spindle Supports (CLO4)</h2>
-  <p class="small">Compliance, optimum bearing span, hollow-spindle sizing, bearing selection, run-out.</p>
+  <h2>CLO4 (Modules 4 &amp; 5) — Spindles &amp; Spindle Supports</h2>
+  <p class="small">Mehta ch 5 · course PPT Module 4&amp;5. CLO4 = Module 4 (spindles &amp; assemblies) + Module 5 (spindle design, supports, bearing selection).</p>
+
+<h3>1. Functions of the Spindle Unit</h3>
+<ol>
+<li><b>Centre</b> the workpiece (lathe/turret/boring) or tool (drilling).</li>
+<li><b>Clamp</b> it reliably during machining.</li>
+<li><b>Impart motion</b> — rotary (lathe) or rotary+translatory (drill) — and <b>transmit cutting power</b>.</li>
+</ol>
+<p>Spindle-assembly comparison (PPT): <b>lathe</b> spindle rotates the work, hollow for bar feed, high rotational accuracy; <b>milling</b> spindle rotates the cutter, resists fluctuating loads, high stiffness; <b>drilling</b> spindle rotates + feeds the drill, mainly torsion + axial thrust.</p>
+
+<h3>2. Requirements</h3>
+<ol>
+<li><b>Rotational accuracy</b> — radial &amp; axial run-out of the nose within limits (governed mainly by the <b>front bearing</b>).</li>
+<li>High <b>static stiffness</b> (spindle + bearings; bending/axial/torsional).</li>
+<li>High <b>dynamic stiffness &amp; damping</b> (resist chatter).</li>
+<li><b>Wear resistance</b> of hardened journals/quills.</li>
+<li>Low <b>thermal deformation</b> (front bearing = key heat source).</li>
+<li>Standardised <b>nose taper</b> for quick centring/clamping.</li>
+</ol>
+<table>
+<tr><th>Taper</th><th>Machine</th><th>Why</th></tr>
+<tr><td>7:24 (self-releasing)</td><td>Milling</td><td>Steep → holds under pulsating force, releases for tool change</td></tr>
+<tr><td>Morse (self-holding)</td><td>Drilling/boring</td><td>Small angle → drive by friction, self-locks under thrust</td></tr>
+<tr><td>7°7′30″ / 1:3</td><td>Heavy lathe / grinding</td><td>Chuck-plate centring / wheel-adaptor concentricity</td></tr>
+</table>
+
+<h3>3. Materials</h3>
+<p>Blank: rolled stock &lt;150 mm, casting &gt;150 mm. <b>Stiffness, not strength, governs</b> — all steels have nearly equal E, so alloy steel gives no stiffness benefit (alloying only for hardness/wear). Normal: C45/C59 hardened RC≈30; precision: case-hardened/nitrided alloy steels RC 56–68; hollow heavy-duty: grey/SG iron.</p>
+
+<h3>4. Machine-Tool Compliance</h3>
+<span class="fblock">C_mt = 1/K_s + (1/K_A)(1 − x/L)² + (1/K_B)(x/L)²
+       (x measured from the headstock A)</span>
+<div class="callout"><b>Exam point.</b> Compliance is the <b>series sum</b> of saddle, headstock and tailstock compliances and is <b>position-dependent</b> (varies with x). Profile accuracy is best when headstock &amp; tailstock stiffnesses are <b>equal</b> (α = K<sub>B</sub>/K<sub>A</sub> = 1); then (y<sub>max</sub>−y<sub>min</sub>) is least.</div>
+
+<h3>5. Spindle as a Beam on Two Elastic Supports</h3>
+<p>Spindle = supported span <b>l</b> (drive force P₂) + cantilever overhang <b>c</b> (nose force P₁). Designed for stiffness: nose deflection y ≤ [y] (&lt; ⅓ of run-out tolerance). y = y₁ + y₂ + y₃:</p>
+<ul>
+<li><b>y₁</b> — bending of the spindle axis (incl. shear).</li>
+<li><b>y₂</b> — compliance of the two bearing supports; the <b>front-bearing</b> yield δ<sub>B</sub> dominates (the nose overhangs it).</li>
+<li><b>y₃</b> — taper-joint contact compliance (often small).</li>
+</ul>
+<span class="fblock">Nose / run-out:  y = δ_B(1 + c/l) + δ_A(c/l)</span>
+
+<h3>6. Optimum Bearing Spacing</h3>
+<div class="callout"><b>Exam point.</b> As span l increases, bending y₁ <b>rises</b> but support-compliance y₂ <b>falls</b> → their sum has a <b>minimum</b> at optimum λ = l/c. In practice <b>λ<sub>opt</sub> ≈ 3–5</b> (depends on α = K<sub>B</sub>/K<sub>A</sub>); enforce λ ≥ 2.5 for anti-friction bearings (else bearing play → large run-out). Keep overhang c short, front bearing near the nose.</div>
+
+<h3>7. Bearings &amp; Preloading</h3>
+<table>
+<tr><th>Property</th><th>Anti-friction</th><th>Hydrodynamic</th><th>Hydrostatic</th><th>Aerostatic</th></tr>
+<tr><td>Stiffness</td><td>High (preloaded)</td><td>Varies w/ ω,μ,T</td><td>Very high, constant</td><td>Low–moderate</td></tr>
+<tr><td>Damping</td><td>Low</td><td>High</td><td>Very high</td><td>Low</td></tr>
+<tr><td>Accuracy/run-out</td><td>Good</td><td>Moderate (journal shifts)</td><td>Excellent (0.1–0.2 µm)</td><td>Excellent</td></tr>
+<tr><td>Heat</td><td>Low</td><td>High</td><td>Moderate</td><td>Negligible</td></tr>
+<tr><td>Cost</td><td>Low (standard)</td><td>Low (self-acting)</td><td>High (pump+restrictor)</td><td>High (clean air)</td></tr>
+</table>
+<p>Bearing types: cylindrical roller (radial only), angular-contact ball (radial + one-way axial, <b>low heat → high speed, common front bearing</b>), taper roller (both, but raises run-out), ball thrust (axial only). Sliding bearings chosen for very high speed, very high accuracy, or shock/vibration (greater damping).</p>
+<div class="callout blue"><b>Definition — preloading.</b> Giving a bearing an initial internal (axial) load before the working load, by a small relative axial displacement of the races. It removes clearance, makes the δ–P curve smooth (no jump on load reversal), and converts a simply-supported end toward a <b>clamped</b> one → higher stiffness, less nose deflection. <b>Optimum preload = no clearance but no overheating</b> (excess interference → heat + reduced life). Applied by ground race faces / unequal spacers (constant preload) or springs (adjustable, compensates high-rpm weakening).</div>
+
+  <h2>Theory question bank + numericals</h2>
+  <p class="small">Numericals from Mehta ch 5 review questions — know the method across the set.</p>
   <div class="bar"><button class="btn" data-reveal="ch5">Reveal all solutions</button><button class="btn" data-hide="ch5">Hide all</button></div>
 
   <div class="callout">
@@ -614,6 +1055,49 @@ standard φ ∈ {1.06, 1.12, 1.26, 1.41, 1.58, 1.78, 2.0}</span>
   </div>
 
   <div id="ch5-body">
+
+<article class="prob"><h3>TQ — Functions of a spindle unit <span class="tag clo">CLO4</span></h3>
+<p class="statement"><b>Q:</b> List the principal functions of a machine-tool spindle unit. (2 marks)</p>
+<div class="soln-wrap"><span class="soln-toggle">Show answer ▸</span><div class="soln">
+<p class="step">(1) Centre the workpiece (lathe/turret/boring) or tool (drilling); (2) clamp it reliably; (3) impart rotary (or rotary+translatory) motion and transmit cutting power. These govern accuracy, finish and productivity.</p></div></div></article>
+
+<article class="prob"><h3>TQ — Why stiffness governs spindle material <span class="tag clo">CLO4</span></h3>
+<p class="statement"><b>Q:</b> Why is stiffness (not strength) the spindle design criterion, and what blank is used by size? (2 marks)</p>
+<div class="soln-wrap"><span class="soln-toggle">Show answer ▸</span><div class="soln">
+<p class="step">Stiffness depends on E, and all steels have nearly the same E → costly alloy steel gives no stiffness gain (alloy only for hardness/wear). Blank: rolled stock &lt;150 mm, casting &gt;150 mm. Normal C45/C59 (RC≈30); precision case-hardened/nitrided (RC 56–68).</p></div></div></article>
+
+<article class="prob"><h3>TQ — Spindle nose tapers <span class="tag clo">CLO4</span></h3>
+<p class="statement"><b>Q:</b> Compare the 7:24 and Morse spindle-nose tapers. (5 marks)</p>
+<div class="soln-wrap"><span class="soln-toggle">Show answer ▸</span><div class="soln">
+<p class="step"><b>7:24 (milling):</b> steep, <b>self-releasing</b> — holds the arbor/cutter under pulsating milling force, releases cleanly for tool change; drive by positive clamp. <b>Morse (drilling/boring):</b> small-angle, <b>self-holding</b> — drive by friction, so a small angle is essential; locks under axial thrust. (Also 7°7′30″ heavy lathe chuck centring; 1:3 grinding-wheel adaptor.)</p></div></div></article>
+
+<article class="prob"><h3>TQ — Three components of nose deflection <span class="tag clo">CLO4</span></h3>
+<p class="statement"><b>Q:</b> What are the components of spindle-nose deflection and which dominates? (5 marks)</p>
+<div class="soln-wrap"><span class="soln-toggle">Show answer ▸</span><div class="soln">
+<p class="step">Spindle = supported span l + cantilever overhang c. y = y₁ (bending of spindle axis, incl. shear) + y₂ (compliance of the two bearing supports, δ<sub>A</sub>=R<sub>A</sub>/K<sub>A</sub>, δ<sub>B</sub>=R<sub>B</sub>/K<sub>B</sub>) + y₃ (taper-joint contact compliance, often small). The <b>front-bearing yield δ<sub>B</sub> dominates</b> because the nose overhangs it: y = δ<sub>B</sub>(1+c/l) + δ<sub>A</sub>(c/l). Design: y ≤ [y] &lt; ⅓ of run-out.</p></div></div></article>
+
+<article class="prob"><h3>TQ — Optimum bearing span <span class="tag clo">CLO4</span></h3>
+<p class="statement"><b>Q:</b> Why is there an optimum bearing span λ = l/c, and what is its value/limits? (5 marks)</p>
+<div class="soln-wrap"><span class="soln-toggle">Show answer ▸</span><div class="soln">
+<p class="step">Bending y₁ <b>increases</b> with span (longer, flexible beam) while support-compliance y₂ <b>decreases</b> (wider base reduces magnified bearing yield at the nose). Opposite trends → sum y has a minimum, dy/dλ=0 → <b>λ<sub>opt</sub> ≈ 3–5</b> (depends on α=K<sub>B</sub>/K<sub>A</sub>). Enforce λ ≥ 2.5 for anti-friction bearings (else play → large run-out); keep overhang short.</p></div></div></article>
+
+<article class="prob"><h3>TQ — Anti-friction vs sliding bearings <span class="tag clo">CLO4</span></h3>
+<p class="statement"><b>Q:</b> Compare anti-friction and sliding spindle bearings; when is each preferred? (5 marks)</p>
+<div class="soln-wrap"><span class="soln-toggle">Show answer ▸</span><div class="soln">
+<p class="step"><b>Anti-friction:</b> low friction/heat, low starting resistance, high load per width, easy maintenance, standardised/cheap; but low damping, finite high-speed life. <b>Sliding:</b> much greater damping (viscous film) → better chatter behaviour, very high speed, high accuracy (thick-film); but larger size, friction/heat (hydrodynamic), pump needed (hydrostatic/aerostatic). <b>Use sliding when:</b> speeds make rolling-bearing life uneconomical, very high accuracy is needed, or shocks/vibration require damping. Otherwise anti-friction (often angular-contact ball at the front).</p></div></div></article>
+
+<article class="prob"><h3>TQ — Preloading of bearings <span class="tag clo">CLO4</span></h3>
+<p class="statement"><b>Q:</b> Why are anti-friction spindle bearings preloaded? Explain via the δ–P curve and two methods. (5 marks)</p>
+<div class="soln-wrap"><span class="soln-toggle">Show answer ▸</span><div class="soln">
+<p class="step"><b>Why:</b> a bearing with <b>clearance</b> has a δ–P curve with an abrupt jump on load reversal (bad for accuracy). <b>Interference (preload)</b> smooths the curve and, at higher loads, more rolling elements share load → higher stiffness; it converts a simply-supported end toward a clamped one → less nose deflection. Excess interference → heat + reduced life, so optimum = no clearance but no overheating. <b>Methods:</b> (1) ground race faces / unequal-width spacers (fixed preload); (2) spring preload (constant, adjustable, compensates high-rpm weakening).</p></div></div></article>
+
+<article class="prob"><h3>TQ — Spindle unit design &amp; bearing selection (long) <span class="tag clo">CLO4</span></h3>
+<p class="statement"><b>Q:</b> Discuss the functions, requirements, beam-on-elastic-supports design, and bearing selection of a spindle unit. (10 marks)</p>
+<div class="soln-wrap"><span class="soln-toggle">Show answer ▸</span><div class="soln">
+<p class="step"><b>Functions:</b> centre, clamp, impart motion + transmit power. <b>Requirements:</b> rotational accuracy (run-out, front bearing), high static &amp; dynamic stiffness + damping, journal wear resistance, low thermal deformation, standardised nose taper; material stiffness-governed (C45/C59 normal, alloy precision). <b>Design as beam on two elastic supports:</b> span l (P₂) + overhang c (P₁); nose y = y₁ (bending) + y₂ (support compliance, front δ<sub>B</sub> dominant) + y₃ (taper joint) ≤ [y]. Optimum span λ=l/c ≈ 3–5 (y₁ rises, y₂ falls; min at dy/dλ=0); λ ≥ 2.5 for anti-friction; short overhang. Whole-machine compliance = position-dependent series sum (best when headstock = tailstock stiffness). <b>Bearings:</b> anti-friction (angular-contact ball front for low heat/high speed; cylindrical roller high load; taper roller raises run-out) — <b>preloaded</b>; sliding (hydrodynamic, multiple-wedge, hydrostatic, aerostatic) for high speed/accuracy/damping. Selection is a compromise — no single bearing is best on all indices.</p></div></div></article>
+
+  <h2>Numericals (Mehta ch 5 review questions)</h2>
+
 <article class="prob" id="p5-1">
   <h3>Prob 5.1 <span class="tag clo">CLO4</span></h3>
   <p class="statement"><b>Given:</b> Workpiece between centres, L=750 mm, dia 100 mm. Radial P<sub>y</sub>=150 kgf, tool 200 mm from tailstock. Stiffness saddle 3000, headstock 4000, tailstock 2500 kgf/mm.</p>
@@ -784,6 +1268,177 @@ standard φ ∈ {1.06, 1.12, 1.26, 1.41, 1.58, 1.78, 2.0}</span>
   </div>
 </section>
 
+<!-- ===================== CLO5 VIBRATIONS ===================== -->
+<section class="tab" id="clo5">
+  <h2>CLO5 (Module 6) — Vibrations in Machine Tools</h2>
+  <p class="small">Mehta ch 6 · course PPT Module 6. Identify sources of vibration and the means to eliminate it. (Mostly theory — high yield for the 60% theory block.)</p>
+
+<div class="callout blue"><b>Definition.</b> <b>Vibration in machine tools</b> = unwanted oscillatory motion of components, tool, workpiece or structure during machining, arising whenever an exciting force or process instability disturbs the steady tool–work motion. Even a tiny tool-tip vibration prints a visible mark on the surface.</div>
+
+<h3>1. Sources of Vibration</h3>
+<ul>
+<li><b>Misalignment</b> of shafts/couplings → periodic forces, noise, heat, bearing wear.</li>
+<li><b>Gear errors</b> — profile/pitch error, eccentricity, backlash, worn teeth → dynamic forces at meshing (forced excitation).</li>
+<li><b>Bearing defects</b> — wear, damaged elements, poor lubrication, wrong preload/clearance → corrupt spindle accuracy.</li>
+<li><b>Cutting-force variation</b> — variable chip thickness, tool wear, interrupted cut, BUE, uneven feed/depth (the process exciting force).</li>
+<li><b>Tool wear/geometry</b> — blunt tool, bad rake/clearance, long overhang, loose clamping.</li>
+<li><b>Workpiece flexibility</b> — slender/thin parts deflect &amp; vibrate.</li>
+<li><b>Structural flexibility</b> of bed/column/housing; <b>external disturbances</b> (floor, nearby machines, weak foundation).</li>
+</ul>
+<div class="callout"><b>Exam point.</b> Mehta frames this as a <b>closed loop</b>: the elastic system (ES) and the cutting process feed back — cutting force deflects the structure → deflection changes chip thickness → chip thickness changes the force. Whether a disturbance grows into chatter depends on the <b>dynamic stability</b> of this loop.</div>
+
+<h3>2. Types of Vibration</h3>
+<table>
+<tr><th>Feature</th><th>Free</th><th>Forced</th><th>Self-excited (chatter)</th></tr>
+<tr><td>Cause</td><td>Initial disturbance, then no force</td><td>Continuing external periodic force</td><td>Cutting process itself (feedback)</td></tr>
+<tr><td>Energy source</td><td>Initial only</td><td>External exciter</td><td>Cutting process</td></tr>
+<tr><td>Frequency</td><td>Natural ω<sub>n</sub> (decaying)</td><td>Forcing ω</td><td>≈ a natural frequency</td></tr>
+<tr><td>Amplitude</td><td>Decays</td><td>Constant (steady)</td><td>Grows then self-limits</td></tr>
+<tr><td>Example</td><td>Ring after tool entry</td><td>Unbalance, gear mesh</td><td>Regenerative chatter</td></tr>
+</table>
+<span class="fblock">ω_n = √(k/m)        f_n = ω_n/2π
+c_c = 2√(km)        ζ = c/c_c
+log decrement  δ = ln(x₁/x₂) = 2πζ/√(1−ζ²)   (n cycles: δ=(1/n)ln(x₁/x_(n+1)))
+Magnification  M = 1/√[(1−r²)²+(2ζr)²],  r = ω/ω_n
+Resonance at r≈1,  M_max ≈ 1/(2ζ)</span>
+
+<h3>3. Resonance</h3>
+<div class="callout blue"><b>Definition.</b> <b>Resonance</b> = forcing frequency ≈ a natural frequency (r ≈ 1). The magnification peaks (M<sub>max</sub> ≈ 1/2ζ), amplitude becomes very large (limited only by damping). Avoid by changing spindle speed or shifting ω<sub>n</sub> via mass/stiffness (ω<sub>n</sub> = √(k/m)).</div>
+
+<h3>4. Self-Excited Vibration &amp; Chatter</h3>
+<p><b>Self-excited (chatter)</b> is generated and sustained by the cutting process itself — no external periodic force; energy comes from the cut (mode coupling). Chatter frequency ≈ a structural natural frequency.</p>
+<ul>
+<li><b>Primary chatter</b> — instability in the cut itself (friction, chip-formation instability, BUE, mode coupling).</li>
+<li><b>Regenerative chatter</b> — the dominant type: waviness left by the <b>previous</b> revolution/tooth pass modulates the chip thickness on the <b>current</b> cut; the phase shift makes chip thickness — and force — fluctuate, amplifying the vibration.</li>
+</ul>
+<div class="callout"><b>Exam point — limiting width of cut.</b> Regenerative stability is set by a critical width b<sub>lim</sub>: above it chatter grows. Larger dynamic stiffness (↑k, ↑damping) → larger b<sub>lim</sub>. <b>Changing spindle speed</b> is the most effective fix — it shifts the phase between successive waves (stability lobes), not just the amplitude.</div>
+
+<h3>5. Effects of Vibration</h3>
+<table>
+<tr><th>Area</th><th>Effect</th></tr>
+<tr><td>Dimensional accuracy</td><td>size error, taper, ovality, out-of-roundness</td></tr>
+<tr><td>Surface finish</td><td>waviness, chatter marks, roughness</td></tr>
+<tr><td>Tool life</td><td>faster wear, edge chipping, micro-cracks, breakage</td></tr>
+<tr><td>Machine life</td><td>bearing/spindle/guideway/lead-screw wear, loose fasteners</td></tr>
+<tr><td>Heat / noise</td><td>rubbing → heat; chatter → loud noise (early warning)</td></tr>
+<tr><td>Productivity/cost</td><td>lower speed/feed, rework, rejection, downtime</td></tr>
+</table>
+<div class="callout"><b>Exam point — roughness vs waviness.</b> <b>Roughness</b> = small, closely-spaced marks from feed/tool geometry. <b>Waviness</b> = larger, widely-spaced undulations from vibration/chatter/deflection. In vibration problems <b>waviness</b> is the indicator.</div>
+
+<h3>6. Vibration Control</h3>
+<ol>
+<li><b>Reduce the source</b> (most effective): balance rotating parts, align shafts, replace bearings, improve gears, reduce backlash, tighten parts, improve foundation.</li>
+<li><b>Increase stiffness:</b> box/ribbed structures, thicker sections, short overhang, rigid holders, support long work (↑k raises ω<sub>n</sub> &amp; b<sub>lim</sub>).</li>
+<li><b>Increase damping:</b> cast-iron / polymer-concrete beds, damping layers, viscous/friction/constrained-layer damping, tuned mass dampers.</li>
+<li><b>Avoid resonance:</b> change spindle speed or mass/stiffness.</li>
+<li><b>Cutting conditions / tool geometry:</b> tune speed/feed/depth; sharp tool, correct rake/clearance, optimum nose radius, minimal overhang, rigid holder.</li>
+<li><b>Workpiece support &amp; clamping:</b> tailstock, steady/follower rest, fixtures, firm clamping.</li>
+<li><b>Foundation &amp; isolators:</b> heavy blocks, anti-vibration mounts (rubber/spring/cork/pneumatic — but too-soft reduces stability).</li>
+<li><b>Dampers &amp; chatter control:</b> tuned mass / dynamic absorbers; variable-pitch cutters; for regenerative chatter <b>change spindle speed</b>.</li>
+</ol>
+<table>
+<tr><th>Feature</th><th>Passive control</th><th>Active control</th></tr>
+<tr><td>Power</td><td>None</td><td>Required</td></tr>
+<tr><td>Complexity / cost</td><td>Simple / low</td><td>Complex / high</td></tr>
+<tr><td>Adaptability</td><td>Fixed</td><td>High (real-time)</td></tr>
+<tr><td>How</td><td>Dissipates/blocks energy</td><td>Sensor → controller → actuator counter-force (feedback)</td></tr>
+<tr><td>Examples</td><td>Dampers, isolators, stiffness</td><td>Sensor–actuator feedback systems</td></tr>
+</table>
+<div class="callout"><b>Exam point — control logic in one line.</b> ω<sub>n</sub>=√(k/m): ↑k raises natural freq &amp; dynamic stiffness; M<sub>max</sub>≈1/2ζ: ↑damping kills resonant amplitude; b<sub>lim</sub> ∝ dynamic stiffness; and a <b>spindle-speed change</b> beats regenerative chatter by shifting wave phase. Monitoring (accelerometers, AE, force, spindle-current sensors) enables condition-based maintenance.</div>
+
+  <h2>Theory question bank + numericals</h2>
+  <div class="bar"><button class="btn" data-reveal="clo5">Reveal all</button><button class="btn" data-hide="clo5">Hide all</button></div>
+  <div id="clo5-body">
+
+<article class="prob"><h3>TQ — Sources of vibration <span class="tag clo">CLO5</span></h3>
+<p class="statement"><b>Q:</b> Identify the principal sources of vibration in machine tools and briefly explain each. (5 marks)</p>
+<div class="soln-wrap"><span class="soln-toggle">Show answer ▸</span><div class="soln">
+<p class="step">(1) <b>Misalignment</b> of shafts/couplings → periodic forces, noise, heat. (2) <b>Gear errors</b> (profile/pitch/eccentricity/backlash) → forces at meshing. (3) <b>Bearing defects</b> → corrupt spindle accuracy. (4) <b>Cutting-force variation</b> (chip thickness, tool wear, interrupted cut, BUE) → process exciting force. (5) <b>Tool wear/geometry</b> (blunt, long overhang, loose clamp). (6) <b>Workpiece flexibility</b> (slender parts). (7) <b>Structural flexibility</b>. (8) <b>External disturbances</b> (floor/foundation/nearby machines). Group as rotating-element faults / process effects / flexibility / external.</p></div></div></article>
+
+<article class="prob"><h3>TQ — Free vs forced vs self-excited <span class="tag clo">CLO5</span></h3>
+<p class="statement"><b>Q:</b> Compare free, forced and self-excited (chatter) vibration. (5 marks)</p>
+<div class="soln-wrap"><span class="soln-toggle">Show answer ▸</span><div class="soln">
+<p class="step"><b>Free:</b> initial disturbance then no force; at ω<sub>n</sub>; amplitude decays (δ, ζ). <b>Forced:</b> external periodic force (unbalance, gear mesh); at forcing ω; steady amplitude X=(F₀/k)M; dangerous near resonance. <b>Self-excited (chatter):</b> sustained by the cut itself, no external force; near a natural frequency; amplitude grows then self-limits; energy from the cut. Discriminator: forced needs an external force; self-excited feeds on the cutting process.</p></div></div></article>
+
+<article class="prob"><h3>TQ — Resonance <span class="tag clo">CLO5</span></h3>
+<p class="statement"><b>Q:</b> What is resonance, why dangerous, and how avoided? (5 marks)</p>
+<div class="soln-wrap"><span class="soln-toggle">Show answer ▸</span><div class="soln">
+<p class="step">Resonance: forcing frequency ≈ natural frequency (r≈1). M = 1/√[(1−r²)²+(2ζr)²] peaks at M<sub>max</sub>≈1/2ζ → huge amplitude limited only by damping → can wreck finish, accuracy, tooling. Avoid: change spindle speed (shift ω); change stiffness/mass to shift ω<sub>n</sub>=√(k/m); add damping if running near ω<sub>n</sub> is unavoidable.</p></div></div></article>
+
+<article class="prob"><h3>TQ — Regenerative vs primary chatter <span class="tag clo">CLO5</span></h3>
+<p class="statement"><b>Q:</b> Describe regenerative chatter and contrast with primary chatter. (5 marks)</p>
+<div class="soln-wrap"><span class="soln-toggle">Show answer ▸</span><div class="soln">
+<p class="step"><b>Primary:</b> instability in the cut itself (friction, chip-formation instability, BUE, mode coupling). <b>Regenerative</b> (dominant): waviness from the <b>previous</b> revolution/tooth pass modulates chip thickness on the <b>current</b> cut; the phase shift makes chip thickness and force fluctuate, regenerating and amplifying vibration each revolution. Stability set by b<sub>lim</sub> and spindle speed (stability lobes). Difference: primary doesn't need a previously-cut wavy surface; regenerative is driven by re-cutting it. Fix: change spindle speed (shifts wave phase).</p></div></div></article>
+
+<article class="prob"><h3>TQ — Effects of vibration <span class="tag clo">CLO5</span></h3>
+<p class="statement"><b>Q:</b> Summarise the effects of vibration on the machining operation. (5 marks)</p>
+<div class="soln-wrap"><span class="soln-toggle">Show answer ▸</span><div class="soln">
+<p class="step"><b>Accuracy:</b> size error, taper, ovality, out-of-roundness. <b>Finish:</b> waviness, chatter marks. <b>Tool life:</b> faster wear, edge chipping, breakage. <b>Machine life:</b> bearing/spindle/guideway/lead-screw wear, loosened fasteners. <b>Heat:</b> rubbing → thermal expansion, hardness loss. <b>Noise:</b> chatter = early warning. <b>Productivity/cost:</b> lower speed/feed, rework, rejection, downtime.</p></div></div></article>
+
+<article class="prob"><h3>TQ — Roughness vs waviness <span class="tag clo">CLO5</span></h3>
+<p class="statement"><b>Q:</b> Distinguish surface roughness from waviness; which indicates vibration? (2 marks)</p>
+<div class="soln-wrap"><span class="soln-toggle">Show answer ▸</span><div class="soln">
+<p class="step"><b>Roughness</b> = small, closely-spaced irregularities from feed marks/tool geometry. <b>Waviness</b> = larger, widely-spaced undulations from vibration/chatter/deflection. <b>Waviness</b> is the vibration indicator.</p></div></div></article>
+
+<article class="prob"><h3>TQ — Vibration control methods <span class="tag clo">CLO5</span></h3>
+<p class="statement"><b>Q:</b> Enumerate the means to reduce/eliminate vibration in machine tools. (5 marks)</p>
+<div class="soln-wrap"><span class="soln-toggle">Show answer ▸</span><div class="soln">
+<p class="step">(1) <b>Reduce the source</b> (balance, align, fix bearings/gears, foundation) — most effective. (2) <b>Increase stiffness</b> (ribbed/box, short overhang, rigid holders, support work). (3) <b>Increase damping</b> (CI/polymer-concrete beds, damping layers, tuned mass dampers). (4) <b>Avoid resonance</b> (change speed or mass/stiffness). (5) <b>Cutting conditions/tool geometry</b>. (6) <b>Workpiece support &amp; clamping</b>. (7) <b>Foundation &amp; isolators</b>. (8) <b>Dampers &amp; chatter control</b> (variable-pitch cutters; change spindle speed for regenerative chatter). Lead with "remove the source first," then stiffness–damping–resonance.</p></div></div></article>
+
+<article class="prob"><h3>TQ — Active vs passive control <span class="tag clo">CLO5</span></h3>
+<p class="statement"><b>Q:</b> Differentiate passive and active vibration control, with examples. (5 marks)</p>
+<div class="soln-wrap"><span class="soln-toggle">Show answer ▸</span><div class="soln">
+<p class="step"><b>Passive:</b> dissipates/blocks energy, no external power, no feedback — simple, cheap, reliable, fixed-tuned; e.g. dampers, isolators, stiffness improvement, tuned absorbers. <b>Active:</b> sensor → controller → actuator feedback applies a counter-force — needs power, complex, costly, reliability depends on sensors, but highly adaptable; used in advanced precision machines. Passive = energy-dissipating/fixed; active = force-cancelling/adaptive.</p></div></div></article>
+
+  <h2>Numericals (vibration — SDOF)</h2>
+
+<article class="prob"><h3>Natural frequency of a SDOF structure <span class="tag clo">CLO5</span></h3>
+<p class="statement"><b>Given:</b> A boring-bar–tool-tip system modelled as SDOF: equivalent stiffness k = 2.0×10⁶ N/m, modal mass m = 5 kg, damping negligible.</p>
+<p class="ask"><b>Find:</b> natural angular frequency ω<sub>n</sub> and frequency f<sub>n</sub>.</p>
+<div class="soln-wrap"><span class="soln-toggle">Show solution ▸</span><div class="soln">
+<p class="step"><b>Step 1.</b> ω<sub>n</sub> = √(k/m) = √(2.0×10⁶/5) = √(4.0×10⁵) = 632.5 rad/s.</p>
+<p class="step"><b>Step 2.</b> f<sub>n</sub> = ω<sub>n</sub>/2π = 632.5/6.2832 = 100.7 Hz.</p>
+<p class="answer"><b>Answer:</b> ω<sub>n</sub> ≈ 632.5 rad/s ; f<sub>n</sub> ≈ 100.7 Hz.</p>
+</div></div>
+<p class="tip"><b>Exam tip:</b> keep SI (N/m, kg) → √(k/m) in rad/s. Keep forcing frequencies clear of ≈101 Hz.</p></article>
+
+<article class="prob"><h3>Damping ratio &amp; logarithmic decrement <span class="tag clo">CLO5</span></h3>
+<p class="statement"><b>Given:</b> A column vibrates freely; peak x₁ = 0.80 mm, peak 5 cycles later x₆ = 0.26 mm.</p>
+<p class="ask"><b>Find:</b> logarithmic decrement δ and damping ratio ζ.</p>
+<div class="soln-wrap"><span class="soln-toggle">Show solution ▸</span><div class="soln">
+<p class="step"><b>Step 1.</b> δ = (1/n)·ln(x₁/x₆) = (1/5)·ln(0.80/0.26) = (1/5)(1.1239) = 0.2248.</p>
+<p class="step"><b>Step 2.</b> ζ = δ/√(4π²+δ²) = 0.2248/√(39.478+0.0505) = 0.2248/6.287 = 0.0358.</p>
+<p class="answer"><b>Answer:</b> δ ≈ 0.225 ; ζ ≈ 0.036 (≈3.6% of critical).</p>
+</div></div>
+<p class="tip"><b>Exam tip:</b> divide ln by the number of cycles n. For ζ&lt;0.1 the shortcut δ≈2πζ works.</p></article>
+
+<article class="prob"><h3>Forced-vibration magnification (resonance check) <span class="tag clo">CLO5</span></h3>
+<p class="statement"><b>Given:</b> SDOF (k = 2.0×10⁶ N/m, f<sub>n</sub> = 100.7 Hz, ω<sub>n</sub> = 632.5 rad/s), ζ = 0.05. Unbalance force F₀ = 400 N at 5400 rev/min.</p>
+<p class="ask"><b>Find:</b> r, magnification M, amplitude X; near resonance?</p>
+<div class="soln-wrap"><span class="soln-toggle">Show solution ▸</span><div class="soln">
+<p class="step"><b>Step 1.</b> f = 5400/60 = 90 Hz → ω = 565.5 rad/s.</p>
+<p class="step"><b>Step 2.</b> r = 565.5/632.5 = 0.894; r² = 0.799.</p>
+<p class="step"><b>Step 3.</b> M = 1/√[(1−0.799)²+(2·0.05·0.894)²] = 1/√(0.0404+0.0080) = 1/0.220 = 4.55.</p>
+<p class="step"><b>Step 4.</b> X<sub>static</sub> = F₀/k = 400/2.0×10⁶ = 0.20 mm; X = 0.20×4.55 = 0.91 mm.</p>
+<p class="answer"><b>Answer:</b> r = 0.894, M ≈ 4.55, X ≈ 0.91 mm — <b>near resonance</b> (peak M≈1/2ζ=10 at r≈1).</p>
+</div></div>
+<p class="tip"><b>Exam tip:</b> rev/min ÷60 → Hz, ×2π → rad/s. M&gt;3–4 ⇒ near resonance: shift speed or raise k/ζ.</p></article>
+
+<article class="prob"><h3>Vibration isolation — transmissibility <span class="tag clo">CLO5</span></h3>
+<p class="statement"><b>Given:</b> Grinding machine m = 1200 kg on isolators of total k = 4.8×10⁶ N/m; disturbing frequency 1500 rev/min; damping negligible.</p>
+<p class="ask"><b>Find:</b> f<sub>n</sub>, r, transmissibility TR, % force isolated.</p>
+<div class="soln-wrap"><span class="soln-toggle">Show solution ▸</span><div class="soln">
+<p class="step"><b>Step 1.</b> ω<sub>n</sub> = √(4.8×10⁶/1200) = √4000 = 63.25 rad/s → f<sub>n</sub> = 10.06 Hz.</p>
+<p class="step"><b>Step 2.</b> f = 1500/60 = 25 Hz → ω = 157.1 rad/s; r = 157.1/63.25 = 2.484.</p>
+<p class="step"><b>Step 3.</b> TR = 1/|1−r²| = 1/|1−6.17| = 1/5.17 = 0.193.</p>
+<p class="step"><b>Step 4.</b> Force isolated = (1−0.193)×100 = 80.7%.</p>
+<p class="answer"><b>Answer:</b> f<sub>n</sub> ≈ 10.1 Hz, r ≈ 2.48, TR ≈ 0.19 — ≈81% isolated.</p>
+</div></div>
+<p class="tip"><b>Exam tip:</b> isolation only for r &gt; √2 (≈1.414); below that the mounts amplify. Softer mount → higher r → better isolation, but too soft reduces stability.</p></article>
+
+  </div>
+</section>
+
 <!-- ===================== FORMULA VAULT ===================== -->
 <section class="tab" id="formula">
   <h2>📐 Formula Vault</h2>
@@ -826,6 +1481,16 @@ Optimum span   λ = l/c ≈ 3–5  (≥ 2.5)
 Torque         M_t = 974·P/n   (P kW, n rpm → kgf·m)
 Journal brg    p = P/(l·d),  v = πdn/60,  h_min = c(1−ε),  c = ψd/2
 Heat balance   free surface A = 20·d·l (NOT πdl)</span>
+
+  <h3>CLO5 · Vibrations (Ch6)</h3>
+  <span class="fblock">Natural freq    ω_n = √(k/m),   f_n = ω_n/2π
+Critical damp   c_c = 2√(km),   ζ = c/c_c
+Log decrement   δ = ln(x₁/x₂) = 2πζ/√(1−ζ²)   (n cycles: δ = (1/n)ln(x₁/x_(n+1)))
+Recover ζ       ζ = δ/√(4π² + δ²)   (≈ δ/2π for ζ<0.1)
+Magnification   M = 1/√[(1−r²)² + (2ζr)²],   r = ω/ω_n
+Resonance       r ≈ 1,   M_max ≈ 1/(2ζ)
+Transmissibility (no damping)  TR = 1/|1−r²|   (isolation only for r > √2)
+Chatter         b_lim ∝ dynamic stiffness;  change spindle speed shifts wave phase</span>
 </section>
 
 <!-- ===================== RECALL ===================== -->
@@ -840,6 +1505,8 @@ Heat balance   free surface A = 20·d·l (NOT πdl)</span>
 <section class="tab" id="paper">
   <h2>📄 Last Paper — May 2026 (MIE 3223), mapped + answered</h2>
   <p class="small">Manipal Dubai · 1 hour · 30 marks · "Assume suitable data and state assumptions."</p>
+
+  <div class="callout red"><b>These won't repeat.</b> The professor said midterm questions (especially numericals) won't be reused. Study this paper for the <b>format and the method</b> — not to memorise answers. The actual numericals will be <i>different</i> problems from the same Mehta ch 3/4/5 sets (all solved under each CLO tab).</div>
 
   <h3>Part A — fill blanks / short (5 marks)</h3>
   <table>
@@ -924,7 +1591,22 @@ const recall = [
   ["Hydrostatic pad optimum pressure ratio?","p₀/p_p = 2/3 (max stiffness)."],
   ["V-slideway advantage over flat?","Self-centring; load split on two faces → less deflection."],
   ["Spindle torque from power?","M_t = 974·P/n (P kW, n rpm → kgf·m)."],
-  ["Journal-bearing min film thickness?","h_min = c(1−ε), c = ψd/2."]
+  ["Journal-bearing min film thickness?","h_min = c(1−ε), c = ψd/2."],
+  ["Methods of generating surfaces?","Forming, generating, tracing, copying."],
+  ["Quick-return: large-stroke mechanism?","Crank-and-rocker (Whitworth) — cut over angle α, return over β<α."],
+  ["Why preload anti-friction bearings?","Removes clearance → smooth δ–P curve, near-clamped end, higher stiffness."],
+  ["7:24 vs Morse taper?","7:24 self-releasing (milling); Morse self-holding, friction drive (drilling)."],
+  ["Stick-slip cause?","Static μ > kinetic μ → jerky slow feed."],
+  ["Ball screw vs Acme: key wins?","Rolling ~90% efficiency, no stick-slip, zero backlash (preload)."],
+  ["Natural frequency (SDOF)?","ω_n = √(k/m); f_n = ω_n/2π."],
+  ["Logarithmic decrement?","δ = ln(x₁/x₂) = 2πζ/√(1−ζ²)."],
+  ["Resonance condition & peak?","r = ω/ω_n ≈ 1; M_max ≈ 1/(2ζ)."],
+  ["Self-excited vibration in machining?","Chatter — sustained by the cutting process, no external force."],
+  ["Regenerative chatter mechanism?","Previous revolution's waviness modulates current chip thickness."],
+  ["Best fix for regenerative chatter?","Change spindle speed (shifts wave phase) + raise stiffness/damping."],
+  ["Roughness vs waviness?","Roughness = feed/tool marks; waviness = vibration indicator."],
+  ["Vibration isolation works when?","r > √2 (≈1.414); softer mount → better isolation."],
+  ["Why cast iron beds?","High inherent damping (graphite) + good sliding + castability."]
 ];
 const cw = document.getElementById('cards');
 recall.forEach(([q,a])=>{
