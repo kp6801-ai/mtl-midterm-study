@@ -127,7 +127,9 @@
     <tr><td>CLO3</td><td>3</td><td>Guideways: functions, requirements, slideways, power screws</td><td>Mehta ch 4</td></tr>
     <tr><td>CLO4</td><td>3,&nbsp;<b>4&nbsp;&amp;&nbsp;5</b></td><td>Strength/stiffness of structures + <b>spindles &amp; bearings</b> (CLO4 = Modules 4 and 5 together)</td><td>Mehta ch 3 + ch 5 · PPT M4&amp;5</td></tr>
     <tr><td>CLO5</td><td>6</td><td>Vibrations: sources, types, chatter, effects, control</td><td>Mehta ch 6 · PPT M6</td></tr>
+    <tr><td>CLO1–5</td><td><b>7</b></td><td>Integrated design problems, applications, <b>revision</b> — no new theory; the design-case style (like the paper's Q7) that combines kinematics + structures + guideways + spindles</td><td>this whole guide</td></tr>
   </table>
+  <div class="callout"><b>Coverage = the full midterm syllabus.</b> Modules 1–7 map to <b>Mehta chapters 1–6</b> (Module 7 = integrated/revision, no new chapter). All six are covered with deep theory + question banks + numericals. <b>Out of midterm scope</b> (the "Numerical Control" half of the book, normally end-sem): ch 7 Control Systems, ch 8 Numerical Control, ch 9 CNC/DNC/Machining Centres — <i>not</i> included here. Tell me if your midterm actually extends into those and I'll add them.</div>
 
   <h2>Study order (highest ROI first)</h2>
   <ol>
@@ -275,6 +277,21 @@
       </div>
     </div>
   </article>
+
+  <article class="prob">
+    <h3>Machining time (turning) <span class="tag clo">CLO1</span></h3>
+    <p class="statement"><b>Given:</b> Turn a length L = 300 mm, diameter D = 50 mm, in one pass. Cutting speed V = 60 m/min, feed s = 0.2 mm/rev. (Add approach/over-travel if specified.)</p>
+    <p class="ask"><b>Find:</b> spindle speed N and machining time T.</p>
+    <div class="soln-wrap"><span class="soln-toggle">Show solution ▸</span>
+      <div class="soln">
+        <p class="step"><b>Step 1.</b> N = 1000V/(πD) = 1000×60/(π×50) = 382 rpm.</p>
+        <p class="step"><b>Step 2.</b> Machining time T = L/(N·s) = 300/(382×0.2) = 300/76.4 = 3.93 min per pass.</p>
+        <p class="step"><b>Step 3 (multi-pass).</b> For total depth needing i passes: T = i·L/(N·s). Add idle/approach length L₀ to L if given.</p>
+        <p class="answer"><b>Answer:</b> N ≈ 382 rpm; T ≈ 3.93 min/pass.</p>
+        <p class="tip"><b>Exam tip:</b> machining time T = L/(N·s); productivity ∝ N·s. This is the ch1 "calculation of machining time" item (new-edition addition).</p>
+      </div>
+    </div>
+  </article>
   </div>
 </section>
 
@@ -330,6 +347,9 @@ group range  i_g = φ^((p−1)X) ≤ 8   (since 1/4 ≤ i ≤ 2 per pair)</span>
 
 <h3>7. Stepless Drives</h3>
 <p>Allow exact-optimum speed and change-without-stopping. <b>Hydraulic</b> (variable-delivery pump / throttle, R<sub>v</sub> 50–60). <b>Electrical</b> (vary frequency/poles/slip; DC shunt, Ward-Leonard R<sub>v</sub> 8–16; modern VVVF). <b>Mechanical variators</b> — friction faceplate/cone, and the <b>PIV</b> (Positive Infinitely Variable) cone-pulley + laminated chain: positive no-slip drive, R<sub>v</sub> 10, η 0.9.</p>
+
+<h3>8. Thread Cutting &amp; Indexing Kinematics</h3>
+<p><b>Thread cutting (lathe):</b> the lead-screw is kinematically tied to the spindle so that in one spindle revolution the tool advances exactly one thread pitch: <b>pitch of work = (spindle rev) × (lead-screw lead) × i</b>, i = change-gear ratio = (driver teeth)/(driven teeth) = pitch<sub>work</sub>/pitch<sub>leadscrew</sub>. This is why thread pitches form an <b>arithmetic</b> progression (not GP). <b>Indexing (milling, dividing head):</b> for N divisions the crank turns 40/N revolutions per division (40:1 worm), using index-plate holes for fractions. Both are <b>kinematic-accuracy</b> chains — shorter chains and accurate change gears keep the ratio exact.</p>
 
   <h2>Theory question bank + numericals</h2>
   <div class="bar"><button class="btn" data-reveal="clo2">Reveal all</button><button class="btn" data-hide="clo2">Hide all</button></div>
