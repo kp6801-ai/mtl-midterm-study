@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MTL / MTT Midterm — Interactive Study (MIE 3223)</title>
+<style>
+  :root{
+    --bg:#fafaf7; --paper:#fff; --ink:#1a1a1a; --muted:#6b6b6b;
+    --accent:#b91c1c; --accent2:#1e3a8a; --hl:#fff3a8; --rule:#e6e3dc;
+    --code-bg:#f4f1ea; --green:#14532d; --gold:#92580a; --gold-bg:#fdf6e3;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;background:var(--bg);color:var(--ink)}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.6;font-size:16px}
+  h1,h2,h3,h4{font-family:"Iowan Old Style","Palatino",Georgia,serif;font-weight:600;letter-spacing:-.01em}
+  h1{font-size:2.3rem;margin:0 0 .4rem}
+  h2{font-size:1.6rem;margin:2.2rem 0 .8rem;padding-bottom:.4rem;border-bottom:1px solid var(--rule)}
+  h3{font-size:1.18rem;margin:1.6rem 0 .5rem}
+  h4{font-size:1.02rem;margin:1.1rem 0 .3rem;color:var(--accent)}
+  p{margin:.5rem 0 1rem}
+  code,.formula{font-family:"JetBrains Mono","SF Mono",Menlo,monospace;background:var(--code-bg);padding:.1rem .4rem;border-radius:3px;font-size:.95em}
+  .fblock{display:block;background:var(--code-bg);padding:.9rem 1.1rem;margin:.8rem 0;border-left:3px solid var(--accent);border-radius:4px;font-family:"JetBrains Mono",Menlo,monospace;font-size:1.02rem;overflow-x:auto}
+  mark{background:var(--hl);padding:0 .2rem}
+  table{border-collapse:collapse;width:100%;margin:1rem 0;background:var(--paper);font-size:.93rem}
+  th,td{border:1px solid var(--rule);padding:.5rem .7rem;text-align:left;vertical-align:top}
+  th{background:#f0ede4;font-weight:600;font-family:"Iowan Old Style",serif}
+  ul,ol{padding-left:1.3rem}li{margin:.25rem 0}
+  .container{max-width:940px;margin:0 auto;padding:0 1.2rem 4rem}
+  header.site{background:var(--paper);border-bottom:1px solid var(--rule);padding:1.3rem 1.2rem .4rem;position:sticky;top:0;z-index:50}
+  header.site .inner{max-width:940px;margin:0 auto}
+  .brand{font-family:"Iowan Old Style",serif;font-size:1.3rem;font-weight:600}
+  .brand .accent{color:var(--accent)}
+  .sub{color:var(--muted);font-size:.84rem;margin-bottom:.6rem}
+  nav.tabs{display:flex;flex-wrap:wrap;gap:.2rem;border-bottom:1px solid var(--rule);margin-top:.4rem}
+  nav.tabs button{background:none;border:none;padding:.55rem .8rem;cursor:pointer;font-size:.9rem;font-family:inherit;color:var(--muted);border-bottom:2px solid transparent;margin-bottom:-1px;transition:.15s}
+  nav.tabs button:hover{color:var(--ink)}
+  nav.tabs button.active{color:var(--accent);border-bottom-color:var(--accent);font-weight:600}
+  section.tab{display:none;padding:1.3rem 0}
+  section.tab.active{display:block}
+  /* problem cards */
+  article.prob{border:1px solid var(--rule);border-radius:8px;background:var(--paper);padding:1rem 1.2rem;margin:1rem 0}
+  article.prob h3{margin-top:.2rem;font-size:1.1rem}
+  .statement,.ask{margin:.4rem 0}
+  .ask{color:var(--accent2)}
+  .soln-wrap{margin:.6rem 0 0}
+  .soln-toggle{cursor:pointer;user-select:none;font-weight:600;color:var(--accent);font-size:.9rem;display:inline-block;padding:.3rem .6rem;border:1px solid var(--rule);border-radius:5px;background:#f8f6f0}
+  .soln-toggle:hover{background:#f0ede4}
+  .soln{display:none;margin-top:.7rem;padding-top:.5rem;border-top:1px dashed var(--rule)}
+  .soln.show{display:block}
+  .step{margin:.35rem 0;font-size:.95rem}
+  .answer{background:var(--gold-bg);border-left:3px solid var(--gold);padding:.5rem .8rem;border-radius:4px;margin:.7rem 0 .3rem}
+  .tip{font-size:.88rem;color:var(--muted);font-style:italic;margin:.5rem 0 0}
+  .tag{display:inline-block;font-size:.68rem;font-weight:700;padding:.12rem .45rem;border-radius:10px;vertical-align:middle;margin-left:.3rem;letter-spacing:.03em}
+  .tag.exam{background:var(--accent);color:#fff}
+  .tag.clo{background:#e6e3dc;color:#444}
+  .pill{display:inline-block;background:var(--accent);color:#fff;font-size:.7rem;font-weight:700;padding:.15rem .5rem;border-radius:10px}
+  .callout{background:#fdf6e3;border:1px solid #ece0bd;border-left:4px solid var(--gold);border-radius:6px;padding:.8rem 1rem;margin:1rem 0}
+  .callout.red{background:#fdecec;border-color:#f3caca;border-left-color:var(--accent)}
+  .callout.blue{background:#eef2fb;border-color:#cdd8f0;border-left-color:var(--accent2)}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:.7rem}
+  @media(max-width:640px){.grid2{grid-template-columns:1fr}}
+  /* recall cards */
+  .cards{display:grid;grid-template-columns:1fr 1fr;gap:.6rem;margin:1rem 0}
+  @media(max-width:640px){.cards{grid-template-columns:1fr}}
+  .card{border:1px solid var(--rule);border-radius:8px;background:var(--paper);padding:.8rem .9rem;cursor:pointer;min-height:72px;transition:.15s}
+  .card:hover{border-color:var(--accent)}
+  .card .q{font-weight:600;font-size:.95rem}
+  .card .a{display:none;margin-top:.5rem;padding-top:.5rem;border-top:1px dashed var(--rule);color:var(--green);font-size:.92rem}
+  .card.flip .a{display:block}
+  .card .hint{color:var(--muted);font-size:.75rem;margin-top:.3rem}
+  .card.flip .hint{display:none}
+  svg.fig{display:block;margin:.8rem auto;background:var(--paper);border:1px solid var(--rule);border-radius:6px;max-width:100%}
+  .bar{display:flex;gap:.5rem;align-items:center;margin:.5rem 0 1rem;flex-wrap:wrap}
+  .btn{font-family:inherit;font-size:.82rem;padding:.4rem .7rem;border:1px solid var(--rule);border-radius:6px;background:var(--paper);cursor:pointer;color:var(--ink)}
+  .btn:hover{background:#f0ede4}
+  .lead{font-size:1.05rem;color:#333}
+  .small{font-size:.85rem;color:var(--muted)}
+</style>
+</head>
+<body>
+<header class="site">
+  <div class="inner">
+    <div class="brand"><span class="accent">MTL</span> · Midterm Numericals Vault <span class="small">(also called MTT)</span></div>
+    <div class="sub">Machine Tool Technology · MIE 3223 · Manipal Dubai · B.Tech Mech Sem VI · every numerical from Mehta ch 3·4·5 solved</div>
+    <nav class="tabs" id="tabs">
+      <button data-t="start" class="active">🎯 Start Here</button>
+      <button data-t="clo1">CLO1 · Drives</button>
+      <button data-t="clo2">CLO2 · Speed Regn</button>
+      <button data-t="ch3">Ch3 · Structures ★</button>
+      <button data-t="ch4">Ch4 · Guideways ★</button>
+      <button data-t="ch5">Ch5 · Spindles ★</button>
+      <button data-t="formula">📐 Formula Vault</button>
+      <button data-t="recall">🧠 Recall</button>
+      <button data-t="paper">📄 Last Paper</button>
+    </nav>
+  </div>
+</header>
+
+<div class="container">
+
+<!-- ===================== START HERE ===================== -->
+<section class="tab active" id="start">
+  <h1>The numericals don't change. Learn the worked answers.</h1>
+  <p class="lead">Abdulla's intel + the May-2026 paper confirm it: <mark>the professor lifts numerical questions straight from Mehta's textbook, values unchanged.</mark> Last paper's Q6 (I-section torsion) <b>is review-problem 3.12 verbatim.</b> So this vault solves <b>every</b> numerical in chapters 3, 4, 5 — those become your answer key.</p>
+
+  <div class="callout red">
+    <b>Proof it's verbatim →</b> Exam Q6 = Mehta Prob 3.12: I-section 140×80, flanges 20, web 10, M<sub>t</sub>=1000 kgf·m, G=8×10⁵, L=100 cm. Same numbers. Answer: <b>I<sub>t</sub>=55.2 cm⁴, τ<sub>max</sub>=3623 kgf/cm², θ=12.97°</b>. (See Ch3 → Prob 3.12.)
+  </div>
+
+  <h2>Exam shape (from the May-2026 paper)</h2>
+  <table>
+    <tr><th>Part</th><th>Marks</th><th>Type</th><th>CLO</th></tr>
+    <tr><td>A — fill blanks / short</td><td>5</td><td>recall + 2-mark definition</td><td>CLO1, CLO2, CLO3</td></tr>
+    <tr><td>B — long Q5</td><td>8</td><td>GP speed gearbox (numerical + diagrams)</td><td>CLO2</td></tr>
+    <tr><td>B — long Q6</td><td>8</td><td>section torsion / stiffness numerical</td><td>CLO4</td></tr>
+    <tr><td>B — long Q7</td><td>9</td><td>design case + stiffness calc</td><td>CLO1/3/4</td></tr>
+  </table>
+  <p class="small">New intel for the upcoming paper: CLO1 &amp; CLO2 ≈ 10 marks each; rest 20–30; focus chapters 3, 4, 5 + their numericals.</p>
+
+  <h2>CLO → chapter map</h2>
+  <table>
+    <tr><th>CLO</th><th>Topic</th><th>Where</th></tr>
+    <tr><td>CLO1</td><td>Drives, working motions, kinematics, cutting speed</td><td>Tab: CLO1</td></tr>
+    <tr><td>CLO2</td><td>Speed/feed regulation, GP, structural/ray/speed diagrams</td><td>Tab: CLO2</td></tr>
+    <tr><td>CLO3</td><td>Guideways: functions, requirements, slideways, power screws</td><td>Ch4</td></tr>
+    <tr><td>CLO4</td><td>Strength &amp; stiffness of structures; spindle design</td><td>Ch3 + Ch5</td></tr>
+  </table>
+
+  <h2>Study order (highest ROI first)</h2>
+  <ol>
+    <li><b>Ch3 → Prob 3.12</b> (exam Q6, torsion). Burn it in — it <i>will</i> appear in some section form.</li>
+    <li><b>CLO2 → Q5</b> GP speed gearbox: common ratio, speed list, the three diagrams. Last-paper 8-marker.</li>
+    <li><b>Ch3 structures</b>: torsion (open vs closed), bending rigidity, stiffness k=F/δ.</li>
+    <li><b>Ch4 guideways</b>: slideway width, pulling force, lead screw, ball screw.</li>
+    <li><b>Ch5 spindles</b>: compliance (5.1, 5.2, 5.11), run-out (5.12), bearing selection.</li>
+    <li><b>Formula Vault + Recall</b>: lock the fill-in-the-blanks (free marks).</li>
+  </ol>
+
+  <div class="callout">
+    <b>Exam discipline:</b> always (1) write the formula with its Mehta eq. number, (2) convert <b>everything to cm + kgf</b> before substituting, (3) box the answer with units. The professor accepts clearly-stated "assume suitable data" — flag your assumptions.
+  </div>
+</section>
+
+<!-- ===================== CLO1 DRIVES ===================== -->
+<section class="tab" id="clo1">
+  <h2>CLO1 — Drives, Working Motions, Kinematics</h2>
+  <p>Identify drives, the kinematic chain, and the working motions of machine tools. Numerical core = <b>cutting speed</b>.</p>
+
+  <div class="callout blue">
+    <b>Working motions</b> = (1) <b>primary / cutting motion</b> (provides the cutting speed) + (2) <b>feed motion</b> (advances the tool/work to remove the next layer). Auxiliary motions = clamping, indexing, rapid traverse — no chip.
+  </div>
+
+  <h3>Key facts (fill-blank ammo)</h3>
+  <table>
+    <tr><th>Machine</th><th>Primary cutting motion</th><th>Feed motion</th></tr>
+    <tr><td>Lathe (turning a shaft)</td><td><b>rotation of the workpiece</b></td><td>linear travel of tool (carriage)</td></tr>
+    <tr><td>Drilling</td><td>rotation of the drill</td><td>axial feed of the drill</td></tr>
+    <tr><td>Milling</td><td>rotation of the cutter</td><td>table feed (work)</td></tr>
+    <tr><td>Shaping</td><td>reciprocation of ram (tool)</td><td>intermittent feed of work</td></tr>
+    <tr><td>Grinding</td><td>rotation of the wheel</td><td>work/table feed</td></tr>
+  </table>
+
+  <h3>Drive types</h3>
+  <ul>
+    <li><b>Individual (separate) drive</b> — one motor for one machine tool → independent operation, the modern standard. <span class="small">(Part-A blank #2 answer.)</span></li>
+    <li><b>Group / line-shaft drive</b> — one motor drives several machines via a common shaft &amp; belts (obsolete).</li>
+    <li><b>Multi-motor drive</b> — separate motors for spindle, feed, rapid traverse, coolant on one machine.</li>
+  </ul>
+
+  <article class="prob">
+    <h3>Worked — Cutting speed ↔ spindle rpm <span class="tag clo">CLO1</span></h3>
+    <p class="statement"><b>Given:</b> Turn a workpiece of diameter D = 100 mm. Recommended cutting speed V = 40 m/min.</p>
+    <p class="ask"><b>Find:</b> required spindle speed N; and if the machine's nearest available speed is 125 rpm, the actual cutting speed.</p>
+    <div class="soln-wrap"><span class="soln-toggle">Show solution ▸</span>
+      <div class="soln">
+        <p class="step"><b>Formula.</b> V = πDN/1000 (D in mm, N in rpm, V in m/min) → N = 1000V/(πD).</p>
+        <p class="step"><b>Substitute.</b> N = 1000×40/(π×100) = 40000/314.16 = 127.3 rpm.</p>
+        <p class="step"><b>Actual speed at N = 125 rpm.</b> V = π×100×125/1000 = 39.3 m/min.</p>
+        <p class="answer"><b>Answer:</b> N ≈ 127 rpm → pick 125 rpm → actual V ≈ 39.3 m/min.</p>
+        <p class="tip"><b>Exam tip:</b> V=πDN/1000 is the single most-used CLO1 numerical. Available speeds come from the GP gearbox (see CLO2) — that's why the geometric step matters.</p>
+      </div>
+    </div>
+  </article>
+
+  <div class="callout">
+    <b>Kinematic chain (Q7a style answer).</b> In a lathe turning centre: <b>speed (main) chain</b> = motor → speed gearbox → spindle → workpiece (sets cutting speed). <b>Feed chain</b> = spindle → feed gearbox / lead-screw or feed-rod → carriage/cross-slide (sets feed, synchronised to spindle for threading). Each "chain" is the train of gears/screws transmitting one working motion.
+  </div>
+</section>
+
+<!-- ===================== CLO2 SPEED REGULATION ===================== -->
+<section class="tab" id="clo2">
+  <h2>CLO2 — Regulation of Speed &amp; Feed (Stepped Drives)</h2>
+
+  <div class="callout blue">
+    <b>Why geometric progression (GP)?</b> Spindle speeds in a stepped gearbox are arranged in a <b>geometric progression</b> so the <b>percentage</b> speed change between steps is constant. This keeps the <b>maximum loss of cutting speed</b> (and hence productivity loss) the same across the whole range — the optimal arrangement. <span class="small">(Part-A blank #3 = "geometric".)</span>
+  </div>
+
+  <h3>Core formulas</h3>
+  <span class="fblock">common ratio   φ = (n_max / n_min)^(1/(z−1))
+speed steps    n₁=n_min , n₂=n₁φ , n₃=n₁φ² , … , n_z = n_min·φ^(z−1)
+standard φ ∈ {1.06, 1.12, 1.26, 1.41, 1.58, 1.78, 2.0}</span>
+
+  <article class="prob">
+    <h3>Prob (= Last Exam Q5) — 9-speed GP gearbox <span class="tag exam">★ ON LAST EXAM (Q5)</span> <span class="tag clo">CLO2</span></h3>
+    <p class="statement"><b>Given:</b> Spindle gearbox for a medium-duty lathe. z = 9 speeds, n<sub>min</sub> = 100 rpm, n<sub>max</sub> = 1600 rpm, geometric progression, structural formula 9 = 3 × 3.</p>
+    <p class="ask"><b>Find:</b> common ratio φ; list the 9 speeds; explain the structural, ray and speed diagrams.</p>
+    <div class="soln-wrap"><span class="soln-toggle">Show solution ▸</span>
+      <div class="soln">
+        <p class="step"><b>Step 1 — common ratio.</b> φ = (n<sub>max</sub>/n<sub>min</sub>)^(1/(z−1)) = (1600/100)^(1/8) = 16^(1/8) = <b>1.41</b> (≈ √2; a standard step value).</p>
+        <p class="step"><b>Step 2 — the 9 speeds</b> (multiply by 1.41 each step), rounded to the standard R20 series:</p>
+        <p class="step">100 → 141 → 200 → 283 → 400 → 566 → 800 → 1131 → 1600 rpm<br>≈ standard: <b>100, 140, 200, 280, 400, 560, 800, 1120, 1600 rpm</b>.</p>
+        <p class="step"><b>Step 3 — structural formula 9 = 3(1) × 3(3).</b> Two gear stages in series: stage I has 3 ratios with characteristic x₁ = 1; stage II has 3 ratios with characteristic x₂ = 3. Total speeds = 3 × 3 = 9. The characteristic = number of speeds a stage "spans" before the next stage shifts.</p>
+        <p class="step"><b>Step 4 — the three diagrams.</b>
+        <br>• <b>Structural (kinematic skeleton) diagram</b>: shows the shafts and the number of gear pairs (transmissions) per stage — here 3 + 3 — i.e. the <i>layout</i> of the gearbox.
+        <br>• <b>Ray diagram (structural-net)</b>: each speed plotted on a log scale; rays connect input to output shafts, the slope of a ray = a transmission ratio. It checks that ratios stay within limits (1/4 ≤ i ≤ 2) and that steps are evenly spaced by φ.
+        <br>• <b>Speed diagram</b>: the final spindle-speed chart — the 9 output speeds spaced by equal log-intervals (= GP), confirming uniform % change.</p>
+        <p class="answer"><b>Answer:</b> φ = 1.41; speeds 100,140,200,280,400,560,800,1120,1600 rpm; structural formula 9 = 3(1)×3(3); the structural diagram fixes the layout, the ray diagram fixes/validates the ratios, the speed diagram shows the equally-log-spaced output speeds.</p>
+        <svg class="fig" viewBox="0 0 560 200" width="560" height="200" aria-label="ray diagram sketch">
+          <text x="280" y="18" text-anchor="middle" font-family="Georgia,serif" font-size="13" fill="#1a1a1a">Speed (ray) diagram — 9 speeds, φ=1.41 on log scale</text>
+          <line x1="40" y1="170" x2="520" y2="170" stroke="#888" stroke-width="1"/>
+          <!-- 9 equally spaced ticks = equal log interval -->
+          <g font-family="JetBrains Mono,monospace" font-size="9" fill="#444" text-anchor="middle">
+          <line x1="60" y1="166" x2="60" y2="174" stroke="#888"/><text x="60" y="188">100</text>
+          <line x1="117" y1="166" x2="117" y2="174" stroke="#888"/><text x="117" y="188">140</text>
+          <line x1="174" y1="166" x2="174" y2="174" stroke="#888"/><text x="174" y="188">200</text>
+          <line x1="231" y1="166" x2="231" y2="174" stroke="#888"/><text x="231" y="188">280</text>
+          <line x1="288" y1="166" x2="288" y2="174" stroke="#888"/><text x="288" y="188">400</text>
+          <line x1="345" y1="166" x2="345" y2="174" stroke="#888"/><text x="345" y="188">560</text>
+          <line x1="402" y1="166" x2="402" y2="174" stroke="#888"/><text x="402" y="188">800</text>
+          <line x1="459" y1="166" x2="459" y2="174" stroke="#888"/><text x="459" y="188">1120</text>
+          <line x1="516" y1="166" x2="516" y2="174" stroke="#888"/><text x="516" y="188">1600</text>
+          </g>
+          <!-- rays from input shaft (top) -->
+          <g stroke="#b91c1c" stroke-width="1.3" opacity="0.8">
+            <line x1="60" y1="40" x2="60" y2="166"/>
+            <line x1="60" y1="40" x2="174" y2="166"/>
+            <line x1="60" y1="40" x2="288" y2="166"/>
+          </g>
+          <circle cx="60" cy="40" r="4" fill="#1e3a8a"/>
+          <text x="70" y="44" font-family="Georgia,serif" font-size="10" fill="#1e3a8a">input shaft · equal log step = φ</text>
+        </svg>
+      </div>
+    </div>
+  </article>
+
+  <article class="prob">
+    <h3>Worked — number of teeth for a gear pair in the gearbox <span class="tag clo">CLO2</span></h3>
+    <p class="statement"><b>Given:</b> A gear pair must give ratio i = 1/φ = 1/1.41 = 0.71 (one downward step). The two meshing gears on adjacent shafts have a fixed centre distance → sum of teeth Z₁+Z₂ = constant = 84 (typical).</p>
+    <p class="ask"><b>Find:</b> the tooth numbers Z₁ (driver) and Z₂ (driven).</p>
+    <div class="soln-wrap"><span class="soln-toggle">Show solution ▸</span>
+      <div class="soln">
+        <p class="step"><b>Step 1.</b> i = Z₁/Z₂ = 0.71 and Z₁+Z₂ = 84.</p>
+        <p class="step"><b>Step 2.</b> Z₁ = 0.71·Z₂ → 0.71Z₂ + Z₂ = 84 → 1.71Z₂ = 84 → Z₂ = 49.1 ≈ 49; Z₁ = 84−49 = 35.</p>
+        <p class="step"><b>Check.</b> 35/49 = 0.714 ≈ 1/φ ✓ (keep within 1/4 ≤ i ≤ 2).</p>
+        <p class="answer"><b>Answer:</b> Z₁ = 35, Z₂ = 49 (sum 84, ratio ≈ 1/1.41).</p>
+        <p class="tip"><b>Exam tip:</b> all gears sharing a shaft pair must keep the <b>same module</b>, so Z₁+Z₂ = const fixes the centre distance. Solve the 2-equation system; round to whole teeth and re-check the ratio limit.</p>
+      </div>
+    </div>
+  </article>
+</section>
+
+<!-- ===================== CH3 ===================== -->
+<section class="tab" id="ch3">
+  <h2>Chapter 3 — Design of Machine Tool Structures (CLO4)</h2>
+  <p class="small">Beds, columns, bases/tables. Core: torsion of open/closed thin sections, bending rigidity, stiffeners, stiffness. <b>Prob 3.12 = exam Q6.</b></p>
+  <div class="bar"><button class="btn" data-reveal="ch3">Reveal all solutions</button><button class="btn" data-hide="ch3">Hide all</button></div>
+
+  <div class="callout">
+    <b>The two torsion section facts that win marks:</b> Open thin section I<sub>t</sub> = β·⅓Σbt³, τ<sub>max</sub> = M·t<sub>max</sub>/I<sub>t</sub>, θ = M·L/(G·I<sub>t</sub>). Closed thin section τ = M/(2A₀δ), M<sub>lim</sub> = 2τA₀δ. β<sub>I-section</sub> = 1.20, β<sub>channel</sub> = 1.12.
+  </div>
+
+  <svg class="fig" viewBox="0 0 320 240" width="320" height="240" aria-label="I-section Prob 3.12">
+    <text x="160" y="16" text-anchor="middle" font-family="Georgia,serif" font-size="12">Prob 3.12 / Exam Q6 — I-section (mm)</text>
+    <g fill="#e6e3dc" stroke="#1a1a1a" stroke-width="1.2">
+      <rect x="90" y="40" width="140" height="34"/>
+      <rect x="145" y="74" width="30" height="92"/>
+      <rect x="90" y="166" width="140" height="34"/>
+    </g>
+    <g font-family="JetBrains Mono,monospace" font-size="10" fill="#b91c1c">
+      <text x="235" y="60">flange 80×20</text>
+      <text x="182" y="124">web 10</text>
+      <text x="235" y="186">flange 80×20</text>
+      <text x="36" y="124">140 tall</text>
+    </g>
+    <line x1="78" y1="40" x2="78" y2="200" stroke="#b91c1c" stroke-width="1"/>
+    <text x="160" y="224" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="8" fill="#444">I_t=55.2 cm⁴ · τ=3623 kgf/cm² · θ=12.97°</text>
+  </svg>
+
+  <div id="ch3-body">
+<article class="prob" id="p3-1">
+  <h3>Prob 3.1 <span class="tag clo">CLO4</span></h3>
+  <p class="statement"><b>Given:</b> Solid rectangular structure, height <i>h</i>, width <i>b</i>, length <i>l</i>, simply supported, loaded as Fig 3.32 (central load P + symmetric UDLs q₁, q₂). Permissible stress [σ], permissible deflection [δ], modulus E.</p>
+  <p class="ask"><b>Find:</b> Derive the optimum ratio l²/h.</p>
+  <div class="soln-wrap"><span class="soln-toggle">Show solution ▸</span><div class="soln">
+    <p class="step"><b>Step 1 — strength volume.</b> M<sub>max</sub> = Pl/4, z<sub>max</sub> = h/2, I = bh³/12. σ<sub>max</sub> = (Pl/4)(h/2)/(bh³/12) = (3/2)·Pl/(bh²). Set σ<sub>max</sub> = [σ], metal volume V<sub>σ</sub> = b·h·l: <b>V<sub>σ</sub> = (3/2)·(P/[σ])·(l²/h)</b>.</p>
+    <p class="step"><b>Step 2 — stiffness volume.</b> δ = Pl³/(48EI). Set δ = [δ]: <b>V<sub>δ</sub> = (P/(4E[δ]))·(l²/h)²</b>.</p>
+    <p class="step"><b>Step 3 — optimum.</b> Both criteria need the same metal: V<sub>σ</sub> = V<sub>δ</sub> → (3/2)(P/[σ])(l²/h) = (P/(4E[δ]))(l²/h)².</p>
+    <p class="step"><b>Step 4 — simplify.</b> Cancel P and one (l²/h): (3/2)/[σ] = (1/(4E[δ]))·(l²/h).</p>
+    <p class="answer"><b>Answer:</b> (l²/h)<sub>opt</sub> = 6E[δ]/[σ]. If l²/h &lt; opt → design for strength; if &gt; opt (the usual machine-tool case) → design for stiffness.</p>
+  </div>
+  <p class="tip"><b>Exam tip:</b> derivation hinges on equating V<sub>σ</sub> and V<sub>δ</sub>; memorise (l²/h)<sub>opt</sub> = 6E[δ]/[σ].</p></div>
+</article>
+
+<article class="prob" id="p3-2">
+  <h3>Prob 3.2 <span class="tag exam">★ LIKELY</span> <span class="tag clo">CLO4</span></h3>
+  <p class="statement"><b>Given:</b> Vertical milling machine. Carbide cutters: D = 50–250 mm, Z = 8–14. HSS: D = 80–250 mm, Z = 10–26. Cutting speed v = 30 m/min (HSS–MS) to 500 m/min (carbide–Al). Tooth excitation f<sub>e</sub> = n·Z/60, n = 1000v/(πD).</p>
+  <p class="ask"><b>Find:</b> excitation (tooth) frequency range to be avoided.</p>
+  <div class="soln-wrap"><span class="soln-toggle">Show solution ▸</span><div class="soln">
+    <p class="step"><b>Lowest f<sub>e</sub>:</b> largest D, lowest v, fewest Z. n = 1000×30/(π×250) = 38.2 rpm; f<sub>e,min</sub> = 38.2×8/60 ≈ <b>5.1 Hz</b>.</p>
+    <p class="step"><b>Highest f<sub>e</sub>:</b> smallest D, highest v, most Z. HSS D80,v500,Z26: n = 1989 rpm; f<sub>e</sub> = 1989×26/60 ≈ <b>862 Hz</b>.</p>
+    <p class="step"><b>Separation rule:</b> natural freq should be ≥ 2.5× the highest or ≤ lowest/2.5 → would need &lt;2 Hz or &gt;2155 Hz, both impractical.</p>
+    <p class="answer"><b>Answer:</b> forcing frequency sweeps ≈ 5 Hz → 862 Hz; this whole band must be avoided. Since design alone can't clear it, fit a tunable damper on the spindle/arbor.</p>
+  </div>
+  <p class="tip"><b>Exam tip:</b> use f = nZ/60 with n = 1000v/(πD) at both extremes; answer = the band 5–862 Hz + "add a damper".</p></div>
+</article>
+
+<article class="prob" id="p3-3">
+  <h3>Prob 3.3 <span class="tag clo">CLO4</span></h3>
+  <p class="statement"><b>Given:</b> Bed under torsion vs bed under bending. Compare closed box vs open (I/channel) section.</p>
+  <p class="ask"><b>Find:</b> prove why torsion beds are closed-box and bending beds can be open I-sections.</p>
+  <div class="soln-wrap"><span class="soln-toggle">Show solution ▸</span><div class="soln">
+    <p class="step"><b>Torsion, closed:</b> I<sub>t</sub> = 4A₀²/(∮ds/δ), A₀ = enclosed area → huge I<sub>t</sub>.</p>
+    <p class="step"><b>Torsion, open:</b> I<sub>t</sub> = β·⅓Σbt³ — no enclosed area, only thin strips cubed in small thickness → I<sub>t,open</sub> ≪ I<sub>t,closed</sub> (Table 3.3: box ~16× stiffer in torsion).</p>
+    <p class="step"><b>Bending:</b> I = Σ(I + Ad²) — material far from neutral axis dominates; an open I places flanges at the extreme fibres just as well as a box (deflection nearly equal).</p>
+    <p class="answer"><b>Answer:</b> torsion → I<sub>t</sub> ∝ A₀² so use closed box; bending → I ∝ Ad² (flange distance) independent of closure, so an open I-section does it with less metal.</p>
+  </div>
+  <p class="tip"><b>Exam tip:</b> one-line proof = torsion needs A₀² (closed), bending needs flange distance (open OK).</p></div>
+</article>
+
+<article class="prob" id="p3-4">
+  <h3>Prob 3.4 <span class="tag clo">CLO4</span></h3>
+  <p class="statement"><b>Given:</b> Channel welded to a box section (Fig 3.33), forming a compound open section; channel wall δ, added member walls 2δ. β<sub>channel</sub> = 1.12. (Same method as worked Example 3.1.)</p>
+  <p class="ask"><b>Find:</b> factor by which torsional stiffness improves and shear stress changes.</p>
+  <div class="soln-wrap"><span class="soln-toggle">Show solution ▸</span><div class="soln">
+    <p class="step"><b>Channel alone:</b> I<sub>t</sub> = 1.12·⅓·δ³·(2b + a).</p>
+    <p class="step"><b>Compound:</b> I<sub>t</sub> = 1.12·⅓·δ³·(3b + 8a) (added member thickness 2δ → (2δ)³ = 8δ³).</p>
+    <p class="step"><b>Stiffness factor:</b> φ ratio = I<sub>t,comp</sub>/I<sub>t,chan</sub> = (3b + 8a)/(2b + a).</p>
+    <p class="step"><b>Shear stress:</b> τ = M·δ<sub>max</sub>/I<sub>t</sub>; channel δ<sub>max</sub>=δ, compound δ<sub>max</sub>=2δ → ratio = 2(2b+a)/(3b+8a) (&lt;1 → stress drops).</p>
+    <p class="answer"><b>Answer:</b> torsional stiffness improves by (3b+8a)/(2b+a); shear stress changes by 2(2b+a)/(3b+8a). Plug the figure's b, a (=h) for numbers.</p>
+  </div>
+  <p class="tip"><b>Exam tip:</b> identical algebra to Example 3.1 — write I<sub>t</sub> for both, stiffness = I<sub>t</sub> ratio, stress carries the extra δ<sub>max</sub>=2δ.</p></div>
+</article>
+
+<article class="prob" id="p3-5">
+  <h3>Prob 3.5 <span class="tag clo">CLO4</span></h3>
+  <p class="statement"><b>Given:</b> Lathe bed L=200 cm, B=50 cm, wall height 100 cm; two vertical walls δ=5 cm; stiffeners 2.5 cm. CI, E=1.2×10⁶ kgf/cm².</p>
+  <p class="ask"><b>Find:</b> reduced bending rigidity EI<sub>br</sub> for perpendicular vs diagonal stiffeners.</p>
+  <div class="soln-wrap"><span class="soln-toggle">Show solution ▸</span><div class="soln">
+    <p class="step"><b>Wall:</b> I<sub>w,min</sub> = 100×5³/12 = 1041.7 cm⁴; A<sub>w</sub> = 500 cm².</p>
+    <p class="step"><b>Perpendicular (Eq 3.41):</b> ψ = 1041.7/(500×50²)=8.3×10⁻⁴, ν = 200/(50×2)=2.0, η₁=1.0075, s₁=8/η₁=7.94 → EI<sub>br</sub> ≈ 7.94×1.2×10⁶×1041.7 ≈ <b>0.99×10¹⁰ kgf·cm²</b>.</p>
+    <p class="step"><b>Diagonal (Eq 3.42):</b> μ = 500/(100×2.5)=2.0, α=45°, s₂ = sinα·cos²α/[12(μ+sin³α)] = 0.0125 → EI<sub>br</sub> ≈ 0.0125×1.2×10⁶×200²×500 ≈ <b>3.0×10¹¹ kgf·cm²</b>.</p>
+    <p class="answer"><b>Answer:</b> perp ≈ 0.99×10¹⁰, diagonal ≈ 3.0×10¹¹ kgf·cm² → diagonal ≈ <b>30× stiffer</b>.</p>
+  </div>
+  <p class="tip"><b>Exam tip:</b> Eq 3.41 (s₁, perpendicular) vs Eq 3.42 (s₂, diagonal); state assumed n and α. Headline: diagonal ≈ 30×.</p></div>
+</article>
+
+<article class="prob" id="p3-6">
+  <h3>Prob 3.6 <span class="tag clo">CLO4</span></h3>
+  <p class="statement"><b>Given:</b> CI box column, outer 30×30 cm, wall 3 cm, h=200 cm; loads 100/100 kgf vertical + 200 kgf horizontal (Fig 3.34). E=1.2×10⁶ kgf/cm².</p>
+  <p class="ask"><b>Find:</b> maximum deflection; effect of a 10×30 cm aperture.</p>
+  <div class="soln-wrap"><span class="soln-toggle">Show solution ▸</span><div class="soln">
+    <p class="step"><b>Section:</b> I = (30⁴−24⁴)/12 = 39 852 cm⁴; A = 324 cm².</p>
+    <p class="step"><b>Lateral (cantilever, 200 kgf):</b> δ = Ph³/(3EI) = 200×200³/(3×1.2×10⁶×39 852) = <b>0.0112 cm ≈ 112 µm</b> (governs).</p>
+    <p class="step"><b>Axial (200 kgf):</b> δ = Ph/(EA) ≈ 1.0 µm (negligible).</p>
+    <p class="step"><b>Aperture:</b> a hole in the loaded (bending) wall cuts local I; Table 3.4 → stiffness ~85% → deflection rises ~15–18%.</p>
+    <p class="answer"><b>Answer:</b> δ<sub>max</sub> ≈ 112 µm (lateral); aperture raises it ~15–18%.</p>
+  </div>
+  <p class="tip"><b>Exam tip:</b> I = (b⁴−(b−2t)⁴)/12; lateral Ph³/3EI dominates; aperture → Table 3.4 reduction.</p></div>
+</article>
+
+<article class="prob" id="p3-7">
+  <h3>Prob 3.7 <span class="tag clo">CLO4</span></h3>
+  <p class="statement"><b>Given:</b> Mild-steel box, loaded wall 400×300 mm, P = 200 kgf at mid-wall, hole φ20 mm strengthened by rib + boss φ30 (height 3δ). Permissible deflection 25 µm. E = 2.1×10⁶ kgf/cm².</p>
+  <p class="ask"><b>Find:</b> required wall thickness δ.</p>
+  <div class="soln-wrap"><span class="soln-toggle">Show solution ▸</span><div class="soln">
+    <p class="step"><b>Model:</b> loaded wall = plate carrying P; central deflection δ<sub>c</sub> = α·P·a²/(E·t³). Boss + rib restore the hole region → design as solid.</p>
+    <p class="step"><b>Set limit:</b> δ<sub>c</sub> ≤ 0.0025 cm, P=200, a=40 cm, b=30 cm (a/b=1.33), α≈0.0611.</p>
+    <p class="step"><b>Solve:</b> t³ = 0.0611×200×40²/(2.1×10⁶×0.0025) = 3.72 → t ≈ 1.55 cm.</p>
+    <p class="answer"><b>Answer:</b> δ ≈ 1.5 cm (≈15 mm); boss height 3δ ≈ 45 mm + rib keeps the φ20 hole within 25 µm.</p>
+  </div>
+  <p class="tip"><b>Exam tip:</b> treat as a plate δ ∝ Pa²/Et³, set δ=25 µm, solve t; explain the boss/rib closes the hole-stiffness gap.</p></div>
+</article>
+
+<article class="prob" id="p3-8">
+  <h3>Prob 3.8 <span class="tag clo">CLO4</span></h3>
+  <p class="statement"><b>Given:</b> Hollow rectangular steel base, H=20 cm, B=100 cm, wall 2.5 cm, loaded per Fig 3.36 (q₁=20, q₂=15 kgf/cm; spans 40/50/25 cm). E=2.1×10⁶ kgf/cm².</p>
+  <p class="ask"><b>Find:</b> maximum angle of slope.</p>
+  <div class="soln-wrap"><span class="soln-toggle">Show solution ▸</span><div class="soln">
+    <p class="step"><b>Section:</b> I = [100×20³ − 95×15³]/12 = 39 948 cm⁴; EI = 8.39×10¹⁰ kgf·cm².</p>
+    <p class="step"><b>Reactions:</b> from ΣM, ΣF on the Fig 3.36 spans (loads → 800 kgf etc.).</p>
+    <p class="step"><b>Slope (moment-area):</b> θ = (1/EI)∫M dx; max slope at a support = A<sub>M</sub>/EI.</p>
+    <p class="answer"><b>Answer:</b> with EI = 8.39×10¹⁰, θ<sub>max</sub> ≈ 10⁻⁴ rad — well inside the ~0.5°/m machine-tool limit. (Insert exact Fig 3.36 reactions for the final number.)</p>
+  </div>
+  <p class="tip"><b>Exam tip:</b> I = [BH³−(B−2t)(H−2t)³]/12, then θ = ∫M dx/EI by moment-area; max slope at a support.</p></div>
+</article>
+
+<article class="prob" id="p3-9">
+  <h3>Prob 3.9 <span class="tag clo">CLO4</span></h3>
+  <p class="statement"><b>Given:</b> Hollow rectangular table L=200 cm, B=60 cm, H=9 cm; horizontal walls 1.5 cm joined by 1.0 cm vertical stiffeners at 40 cm. E=2.1×10⁶ kgf/cm².</p>
+  <p class="ask"><b>Find:</b> reduced (bending) stiffness.</p>
+  <div class="soln-wrap"><span class="soln-toggle">Show solution ▸</span><div class="soln">
+    <p class="step"><b>Wall:</b> A<sub>w</sub> = 60×1.5 = 90 cm²; I<sub>w,min</sub> = 60×1.5³/12 = 16.9 cm⁴.</p>
+    <p class="step"><b>Stiffeners:</b> spacing 40 over 200 → n = 4 internal (5 panels).</p>
+    <p class="step"><b>Eq 3.41:</b> ψ = 16.9/(90×60²) = 5.2×10⁻⁵, ν = 200/(60×5) = 0.667, η = 1.0042, s₁ ≈ 31.9.</p>
+    <p class="answer"><b>Answer:</b> EI<sub>br</sub> ≈ 31.9 × 2.1×10⁶ × 16.9 ≈ <b>1.13×10⁹ kgf·cm²</b> (close-packed perpendicular stiffeners recover most of the solid-box rigidity).</p>
+  </div>
+  <p class="tip"><b>Exam tip:</b> "reduced stiffness" = Eq 3.41; count n from spacing first, then read s₁.</p></div>
+</article>
+
+<article class="prob" id="p3-10">
+  <h3>Prob 3.10 <span class="tag clo">CLO4</span></h3>
+  <p class="statement"><b>Given:</b> Steel structure studied via Perspex model, scale 1:10 (λ=10). Model bending natural freq f<sub>m</sub>=150 Hz. ρ<sub>Perspex</sub>=1.2, ρ<sub>steel</sub>=7.8 g/cm³. E<sub>steel</sub>=2.1×10⁶, E<sub>Perspex</sub>≈0.03×10⁶ kgf/cm².</p>
+  <p class="ask"><b>Find:</b> natural frequency of the steel structure.</p>
+  <div class="soln-wrap"><span class="soln-toggle">Show solution ▸</span><div class="soln">
+    <p class="step"><b>Scaling (Eq 3.88):</b> f<sub>s</sub>/f<sub>m</sub> = (1/λ)·√[(E<sub>s</sub>ρ<sub>m</sub>)/(E<sub>m</sub>ρ<sub>s</sub>)].</p>
+    <p class="step"><b>Ratios:</b> E<sub>s</sub>/E<sub>m</sub> = 70; ρ<sub>m</sub>/ρ<sub>s</sub> = 0.1538; product = 10.77; √ = 3.28.</p>
+    <p class="step"><b>Substitute:</b> f<sub>s</sub> = 150 × (1/10) × 3.28.</p>
+    <p class="answer"><b>Answer:</b> f<sub>steel</sub> ≈ <b>49 Hz</b>.</p>
+  </div>
+  <p class="tip"><b>Exam tip:</b> Eq 3.88 — 1/λ outside the root; quote E<sub>Perspex</sub> ≈ 0.03×10⁶ kgf/cm².</p></div>
+</article>
+
+<article class="prob" id="p3-11">
+  <h3>Prob 3.11 <span class="tag clo">CLO4</span></h3>
+  <p class="statement"><b>Given:</b> Closed box (Fig 3.37): outer 100×60 mm, uniform wall 10 mm → a=10, b=6 cm. Permissible shear τ = 1000 kgf/cm².</p>
+  <p class="ask"><b>Find:</b> limiting torque M<sub>t</sub>.</p>
+  <div class="soln-wrap"><span class="soln-toggle">Show solution ▸</span><div class="soln">
+    <p class="step"><b>Closed-section shear:</b> τ = M<sub>t</sub>/(2A₀δ), A₀ = mid-line area = (a−δ)(b−δ).</p>
+    <p class="step"><b>A₀</b> = (10−1)(6−1) = 9×5 = 45 cm².</p>
+    <p class="step"><b>Solve:</b> M<sub>t,lim</sub> = τ·2·A₀·δ = 1000×2×45×1.</p>
+    <p class="answer"><b>Answer:</b> M<sub>t,lim</sub> = <b>90 000 kgf·cm = 900 kgf·m</b>.</p>
+  </div>
+  <p class="tip"><b>Exam tip:</b> closed → A₀ at wall mid-line (subtract one δ per outer dim), M<sub>t</sub> = 2τA₀δ.</p></div>
+</article>
+
+<article class="prob" id="p3-12">
+  <h3>Prob 3.12 <span class="tag exam">★ ON LAST EXAM (Q6)</span> <span class="tag clo">CLO4</span></h3>
+  <p class="statement"><b>Given:</b> I-section (Fig 3.38): height 140 mm, flange 80 wide × 20 thick, web 10 thick. M<sub>t</sub> = 1000 kgf·m = 100 000 kgf·cm. L = 100 cm. G = 8×10⁵ kgf/cm². β<sub>I</sub> = 1.20.</p>
+  <p class="ask"><b>Find:</b> max shear stress τ<sub>max</sub> and angle of twist θ over 100 cm.</p>
+  <div class="soln-wrap"><span class="soln-toggle">Show solution ▸</span><div class="soln">
+    <p class="step"><b>Step 1 — thin rectangles (cm).</b> 2 flanges: b=8, t=2 each. Web clear height = 140−2×20 = 100 mm = 10 cm, t=1 cm.</p>
+    <p class="step"><b>Step 2 — I<sub>t</sub> (Eq 3.31).</b> I<sub>t</sub> = β·⅓·Σbt³ = 1.20×⅓×[2×(8×2³) + (10×1³)] = 1.20×⅓×[128+10] = 1.20×46.0 = <b>55.2 cm⁴</b>.</p>
+    <p class="step"><b>Step 3 — τ<sub>max</sub> (Eq 3.30).</b> δ<sub>max</sub> = thickest = flange = 2 cm. τ<sub>max</sub> = M<sub>t</sub>·δ<sub>max</sub>/I<sub>t</sub> = 100 000×2/55.2 = <b>3623 kgf/cm²</b>.</p>
+    <p class="step"><b>Step 4 — θ (Eq 3.38).</b> θ = M<sub>t</sub>·L/(G·I<sub>t</sub>) = (100 000×100)/(8×10⁵×55.2) = 0.2264 rad.</p>
+    <p class="step"><b>Step 5 — degrees.</b> θ = 0.2264 × 57.296 = 12.97°.</p>
+    <p class="answer"><b>Answer:</b> I<sub>t</sub> = 55.2 cm⁴ · τ<sub>max</sub> = <b>3623 kgf/cm²</b> · θ = <b>0.2264 rad ≈ 12.97°</b>.</p>
+  </div>
+  <p class="tip"><b>Exam tip — the two traps:</b> don't forget β = 1.20 (gives 55.2, not 46.0); use the FLANGE thickness (2 cm) as δ<sub>max</sub>. Web clear height = 140−2(20) = 100 mm. Keep cm + kgf·cm throughout.</p></div>
+</article>
+  </div>
+</section>
+
+<!-- ===================== CH4 ===================== -->
+<section class="tab" id="ch4">
+  <h2>Chapter 4 — Design of Guideways &amp; Power Screws (CLO3)</h2>
+  <p class="small">Functions/requirements of guideways, slideway sizing, hydrostatic/hydrodynamic bearings, lead &amp; ball screws.</p>
+  <div class="bar"><button class="btn" data-reveal="ch4">Reveal all solutions</button><button class="btn" data-hide="ch4">Hide all</button></div>
+
+  <div class="callout">
+    <b>Guideway requirements (2-mark / Q7c answer):</b> (1) high <b>stiffness/rigidity</b>, (2) low <b>friction</b> &amp; good <b>wear resistance</b>, (3) <b>accuracy</b> of travel (geometric), (4) good <b>damping</b>, (5) easy clearance adjustment &amp; protection from chips. <b>Cutting force components:</b> P<sub>z</sub> tangential, P<sub>y</sub> radial, P<sub>x</sub> axial.
+  </div>
+
+  <div id="ch4-body">
+<article class="prob" id="p4-1">
+  <h3>Prob 4.1 — Saddle lift-off from face A <span class="tag clo">CLO3</span></h3>
+  <p class="statement"><b>Given:</b> Parting on a lathe with V + flat slideways (Fig 4.10). μ = 0.5, V half-angle α = 50°, h/b = 0.5; resultant cutting force R at 40° to vertical; parting → P<sub>x</sub> = 0.</p>
+  <p class="ask"><b>Find:</b> d/b ratio at which the saddle just lifts off face A.</p>
+  <div class="soln-wrap"><span class="soln-toggle">Show solution ▸</span><div class="soln">
+    <p class="step"><b>Resolve R:</b> P<sub>z</sub> = R cos40° = 0.766R; P<sub>y</sub> = R sin40° = 0.643R; P<sub>y</sub>/P<sub>z</sub> = tan40° = 0.839.</p>
+    <p class="step"><b>Reaction A (Eq 4.11):</b> lift-off when A → 0 → [P<sub>z</sub>(d+b)/2b]cosα = P<sub>y</sub> sinα.</p>
+    <p class="step"><b>Rearrange:</b> (d+b)/2b = (P<sub>y</sub>/P<sub>z</sub>)·tanα = tan40°·tan50° = 0.839×1.192 = 1.000.</p>
+    <p class="step"><b>Solve:</b> (d+b)/2b = 1 → d = b.</p>
+    <p class="answer"><b>Answer:</b> d/b = 1.0 (saddle lifts when V-offset = way spacing). Including the P<sub>y</sub>·h/b term lowers it to d/b ≈ 0.16. μ does not enter the lift-off condition.</p>
+  </div>
+  <p class="tip"><b>Exam tip:</b> clean form (d+b)/2b = tanθ·tanα; here the tangents are reciprocals → product 1 → d/b = 1.</p></div>
+</article>
+
+<article class="prob" id="p4-2">
+  <h3>Prob 4.2 — Slideway width (two flat CI ways) <span class="tag clo">CLO3</span></h3>
+  <p class="statement"><b>Given:</b> Turn 100 mm dia; P<sub>z</sub>=300, P<sub>y</sub>=130, P<sub>x</sub>=120 kgf; carriage G=150 kgf, length 30 cm; two equal flat ways; [p<sub>max</sub>]=25 kgf/cm² (CI). Assume b=30, h=20 cm, y<sub>p</sub>=15 cm, f=0.1, [p<sub>av</sub>]=12.5 kgf/cm².</p>
+  <p class="ask"><b>Find:</b> required slideway width.</p>
+  <div class="soln-wrap"><span class="soln-toggle">Show solution ▸</span><div class="soln">
+    <p class="step"><b>Reactions (Eqs 4.18–4.20):</b> B = P<sub>y</sub> = 130; C = (P<sub>z</sub>y<sub>p</sub>−P<sub>y</sub>h)/b + G/2 = (4500−2600)/30 + 75 = 138.3; A = P<sub>z</sub>+G/2−(...) = 375−63.3 = 311.7 kgf.</p>
+    <p class="step"><b>Worst face:</b> A = 311.7 kgf governs.</p>
+    <p class="step"><b>Width (Eq 4.22):</b> c' = A/([p<sub>av</sub>]·L) = 311.7/(12.5×30) = 0.83 cm.</p>
+    <p class="step"><b>Pulling force check (Eq 4.21):</b> Q = P<sub>x</sub> + f(P<sub>z</sub>+P<sub>y</sub>+G) = 120 + 0.1×580 = 178 kgf.</p>
+    <p class="answer"><b>Answer:</b> width ≈ 0.83 cm → round up to ≈ 1 cm; pressure well below 25 kgf/cm² limit.</p>
+  </div>
+  <p class="tip"><b>Exam tip:</b> equilibrium Eqs 4.18–4.20 → largest reaction A → c' = A/([p<sub>av</sub>]L). State assumed b, h, y<sub>p</sub>, f.</p></div>
+</article>
+
+<article class="prob" id="p4-3">
+  <h3>Prob 4.3 — Best slideway combination (least radial deflection) <span class="tag clo">CLO3</span></h3>
+  <p class="statement"><b>Given:</b> flat–flat, flat–V, V–V combinations. Contact deflection δ = k·p<sub>av</sub>.</p>
+  <p class="ask"><b>Find:</b> which gives least radial deflection of the cutting edge? Prove it.</p>
+  <div class="soln-wrap"><span class="soln-toggle">Show solution ▸</span><div class="soln">
+    <p class="step"><b>Model (Eq 4.36):</b> δ<sub>F</sub> = δ<sub>B</sub> + (δ<sub>A</sub>−δ<sub>C</sub>)·h/b, with δ ∝ p<sub>av</sub>.</p>
+    <p class="step"><b>flat–flat:</b> radial P<sub>y</sub> reacted by the narrow vertical face B (small area) → large δ<sub>B</sub> → worst.</p>
+    <p class="step"><b>V-way:</b> radial load shared on both inclined faces → effective width d = m cos²α + n cos²β → lower pressure; apex self-centres.</p>
+    <p class="answer"><b>Answer:</b> V–V least, flat–V intermediate, flat–flat worst. Replacing flat width by V width (cos²α factor) raises area, lowers p<sub>av</sub>, so δ ∝ p<sub>av</sub> drops in that order; V–V also self-aligns.</p>
+  </div>
+  <p class="tip"><b>Exam tip:</b> anchor on δ = k·p<sub>av</sub> + Eq 4.36, then argue area (V splits load over two faces). That earns the "proof" marks.</p></div>
+</article>
+
+<article class="prob" id="p4-4">
+  <h3>Prob 4.4 — Hydrodynamic slideway: width &amp; slider length <span class="tag clo">CLO3</span></h3>
+  <p class="statement"><b>Given:</b> W = 700 kgf; v = 2 m/min = 0.0333 m/s; oil ν = 20 cSt, ρ = 0.9 g/cm³; [p<sub>max</sub>] = 2 kgf/cm²; h<sub>min</sub> = 0.02 mm; six composite sliders of equal width.</p>
+  <p class="ask"><b>Find:</b> slideway width, length, length of each slider.</p>
+  <div class="soln-wrap"><span class="soln-toggle">Show solution ▸</span><div class="soln">
+    <p class="step"><b>Viscosity:</b> μ = νρ = 0.018 Pa·s = 1.835×10⁻³ kgf·s/m².</p>
+    <p class="step"><b>Area:</b> A = W/[p<sub>max</sub>] = 700/2 = 350 cm².</p>
+    <p class="step"><b>Width (Eq 4.43):</b> per slider 116.7 kgf; b₀³ = Q·h<sub>min</sub>²/(0.133μv) → b₀ ≈ 17.9 cm.</p>
+    <p class="step"><b>Lengths:</b> total length = 350/17.9 = 19.6 cm; each slider = 19.6/6 ≈ 3.3 cm.</p>
+    <p class="answer"><b>Answer:</b> width ≈ 17.9 cm; total length ≈ 19.6 cm; each of six sliders ≈ 3.3 cm.</p>
+  </div>
+  <p class="tip"><b>Exam tip:</b> (1) area = W/[p<sub>max</sub>], (2) width from Q = 0.133μv·b₀³/h<sub>min</sub>², (3) length = area/width ÷6. Convert νρ → μ then ÷9.81 for kgf·s/m².</p></div>
+</article>
+
+<article class="prob" id="p4-5">
+  <h3>Prob 4.5 — Derivation: capillary-fed hydrostatic pad capacity <span class="tag clo">CLO3</span></h3>
+  <p class="statement"><b>Given:</b> rectangular pad B×L, pocket b×l, gap h, fed via capillary (p<sub>p</sub>), pocket pressure p₀.</p>
+  <p class="ask"><b>Find:</b> derive load capacity P<sub>c</sub>.</p>
+  <div class="soln-wrap"><span class="soln-toggle">Show solution ▸</span><div class="soln">
+    <p class="step"><b>Pad load:</b> P = p₀·A·C<sub>L</sub>.</p>
+    <p class="step"><b>Pocket flow:</b> Q = p₀h³/(μC<sub>F</sub>). <b>Capillary flow:</b> Q = (p<sub>p</sub>−p₀)/(μc<sub>rc</sub>).</p>
+    <p class="step"><b>Continuity (μ cancels):</b> p₀h³/C<sub>F</sub> = (p<sub>p</sub>−p₀)/c<sub>rc</sub> → p₀ = p<sub>p</sub>·C<sub>F</sub>/(C<sub>F</sub> + c<sub>rc</sub>h³).</p>
+    <p class="answer"><b>Answer:</b> P<sub>c</sub> = p<sub>p</sub>·A·C<sub>L</sub>·C<sub>F</sub>/(C<sub>F</sub> + c<sub>rc</sub>h³). Stiffness max at p₀/p<sub>p</sub> = 2/3 → K<sub>c,max</sub> = −P<sub>c</sub>/h.</p>
+  </div>
+  <p class="tip"><b>Exam tip:</b> "equate pocket flow to restrictor flow, μ cancels, solve p₀, substitute back." Optimum p₀/p<sub>p</sub> = 2/3 is a classic follow-up.</p></div>
+</article>
+
+<article class="prob" id="p4-6">
+  <h3>Prob 4.6 — Capillary-compensated pad: viscosity &amp; capillary size <span class="tag clo">CLO3</span></h3>
+  <p class="statement"><b>Given:</b> pad 50×80 mm² (B=5, L=8 cm), pocket 10×60 mm² (b=1, l=6 cm), load P=50 kgf, v=500 cm/min, h=0.01 mm, p<sub>p</sub>=40 kgf/cm², capillary l/d=20.</p>
+  <p class="ask"><b>Find:</b> lubricant viscosity; capillary length &amp; diameter.</p>
+  <div class="soln-wrap"><span class="soln-toggle">Show solution ▸</span><div class="soln">
+    <p class="step"><b>C<sub>L</sub>:</b> (1/240)(80+30+12+8) = 0.542; A<sub>eff</sub> = 0.542×40 = 21.7 cm².</p>
+    <p class="step"><b>p₀:</b> P/(A·C<sub>L</sub>) = 50/21.7 = 2.31 kgf/cm²; restrictor drop = 37.7 kgf/cm².</p>
+    <p class="step"><b>C<sub>F</sub>:</b> 0.5×10⁻⁹·(0.04·0.02)/(0.06·0.02+0.01·0.04) = 2.5×10⁻¹⁰.</p>
+    <p class="step"><b>Capillary:</b> c<sub>rc</sub> = (C<sub>F</sub>/h³)(p<sub>p</sub>−p₀)/p₀, with c<sub>rc</sub> = 128l<sub>c</sub>/(πd<sub>c</sub>⁴) and l<sub>c</sub>=20d<sub>c</sub> → solve d<sub>c</sub>, then l<sub>c</sub>=20d<sub>c</sub>. Viscosity from Eq 4.62.</p>
+    <p class="answer"><b>Answer:</b> p₀ = 2.31 kgf/cm², C<sub>L</sub> = 0.542, A<sub>eff</sub> = 21.7 cm²; capillary sized via c<sub>rc</sub> with l/d=20; μ from Eq 4.62. (Eq 4.47 carries a unit constant 0.5×10⁻⁹ — show the chain + intermediates, those are graded.)</p>
+  </div>
+  <p class="tip"><b>Exam tip:</b> start with C<sub>L</sub> and p₀ = P/(A·C<sub>L</sub>) (unambiguous, most marks), then the continuity + l/d=20 substitution.</p></div>
+</article>
+
+<article class="prob" id="p4-7">
+  <h3>Prob 4.7 — Orifice-compensated pad: load capacity <span class="tag clo">CLO3</span></h3>
+  <p class="statement"><b>Given:</b> same pad as 4.6 fed via orifice d=0.5 mm, C₀=0.8; μ=15 cP; p<sub>p</sub>=80 kgf/cm²; h<sub>min</sub>=0.01 mm.</p>
+  <p class="ask"><b>Find:</b> load capacity.</p>
+  <div class="soln-wrap"><span class="soln-toggle">Show solution ▸</span><div class="soln">
+    <p class="step"><b>Coeffs:</b> C<sub>L</sub>=0.542, A=40 cm², C<sub>F</sub>=2.5×10⁻¹⁰; μ=15 cP = 1.53×10⁻³ kgf·s/m²; orifice area = 1.96×10⁻⁷ m².</p>
+    <p class="step"><b>Orifice flow ∝ √Δp:</b> Q₀ = C₀A₀√(2(p<sub>p</sub>−p₀)/ρ) = pocket flow p₀h³/(μC<sub>F</sub>) → quadratic for p₀.</p>
+    <p class="step"><b>Small h → high pocket resistance → p₀ → p<sub>p</sub>.</b></p>
+    <p class="answer"><b>Answer:</b> P₀ = p₀·A·C<sub>L</sub>; with p₀ ≈ p<sub>p</sub> = 80, upper bound P ≈ 80×40×0.542 ≈ 1733 kgf.</p>
+  </div>
+  <p class="tip"><b>Exam tip:</b> orifice flow ∝ √Δp (vs capillary ∝ Δp). Equate flows → solve quadratic for p₀ → P = p₀AC<sub>L</sub>. Convert cP→kgf·s/m² (÷9810).</p></div>
+</article>
+
+<article class="prob" id="p4-8">
+  <h3>Prob 4.8 — Pulling force: conventional vs ball-recirculating <span class="tag clo">CLO3</span></h3>
+  <p class="statement"><b>Given:</b> P<sub>z</sub>=300, P<sub>y</sub>=130, P<sub>x</sub>=120 kgf; carriage W<sub>t</sub>=150 kgf; sliding f=0.15; rolling f<sub>r</sub>=0.001 cm; ball dia 10 mm.</p>
+  <p class="ask"><b>Find:</b> pulling force for conventional and ball-recirculating ways.</p>
+  <div class="soln-wrap"><span class="soln-toggle">Show solution ▸</span><div class="soln">
+    <p class="step"><b>Conventional (Eq 4.21):</b> Q = P<sub>x</sub> + f(P<sub>z</sub>+P<sub>y</sub>+W<sub>t</sub>) = 120 + 0.15×580 = 207 kgf.</p>
+    <p class="step"><b>Ball way:</b> r=0.5 cm, k=1.4 → r<sub>eq</sub>=0.357 cm; n=4 faces, F<sub>c</sub>=0.5; N=P<sub>z</sub>+W<sub>t</sub>=450.</p>
+    <p class="step"><b>Friction (Eq 4.70):</b> F = nF<sub>c</sub> + (f<sub>r</sub>/r<sub>eq</sub>)N = 2.0 + 1.26 = 3.26 kgf.</p>
+    <p class="step"><b>Pull (Eq 4.71):</b> Q = F + P<sub>x</sub> = 3.26 + 120 = 123.3 kgf.</p>
+    <p class="answer"><b>Answer:</b> conventional Q = 207 kgf; ball ways Q ≈ 123 kgf (~40% lower). P<sub>x</sub> dominates the ball figure.</p>
+  </div>
+  <p class="tip"><b>Exam tip:</b> conventional uses sliding f on summed normals; ball uses rolling f<sub>r</sub>/r<sub>eq</sub> + small nF<sub>c</sub>. Saving comes entirely from the friction term (P<sub>x</sub> irreducible).</p></div>
+</article>
+
+<article class="prob" id="p4-9">
+  <h3>Prob 4.9 — Lead screw: pressure, shear stress, pitch error <span class="tag clo">CLO3</span></h3>
+  <p class="statement"><b>Given:</b> structural-steel lead screw, OD=70, pitch t=10, effective dia d=65 mm, nut L=100 mm, single-start acme; P<sub>z</sub>=150, P<sub>y</sub>=50, P<sub>x</sub>=45 kgf; μ=0.2; carriage G=50 kgf; E=2.1×10⁶ kgf/cm².</p>
+  <p class="ask"><b>Find:</b> average pressure, max shear stress, pitch error.</p>
+  <div class="soln-wrap"><span class="soln-toggle">Show solution ▸</span><div class="soln">
+    <p class="step"><b>Axial force:</b> Q = P<sub>x</sub> + f(P<sub>z</sub>+P<sub>y</sub>+G) = 45 + 0.2×250 = 95 kgf.</p>
+    <p class="step"><b>p<sub>av</sub>:</b> 2Q/(πdL) = 190/(π×6.5×10) = 0.93 kgf/cm² (≪ 120 limit → safe).</p>
+    <p class="step"><b>Torque:</b> λ=2.80°, α=14.5°, d<sub>m</sub>=6.0 cm → M<sub>t</sub> = (Qd/2)(cosα·tanλ+μ)/(cosα−μtanλ) ≈ 79.7 kgf·cm.</p>
+    <p class="step"><b>Stresses:</b> σ = 4Q/(πd<sub>m</sub>²) = 3.36; τ = 16M<sub>t</sub>/(πd<sub>m</sub>³) = 1.88; τ<sub>max</sub> = ½√(σ²+4τ²) = 2.52 kgf/cm².</p>
+    <p class="step"><b>Pitch error:</b> A<sub>m</sub>=28.27 cm²; Δt = Qt/(EA<sub>m</sub>) = 95×1/(2.1×10⁶×28.27) = 1.6×10⁻⁶ cm.</p>
+    <p class="answer"><b>Answer:</b> p<sub>av</sub> = 0.93 kgf/cm², τ<sub>max</sub> = 2.52 kgf/cm², Δt ≈ 1.6×10⁻⁶ cm (0.016 µm). Screw is accuracy-governed, not strength-governed.</p>
+  </div>
+  <p class="tip"><b>Exam tip:</b> Q → p<sub>av</sub>=2Q/πdL → M<sub>t</sub> (need λ, α=14.5°) → σ,τ,τ<sub>max</sub> on d<sub>m</sub>=OD−t → Δt=Qt/EA<sub>m</sub>.</p></div>
+</article>
+
+<article class="prob" id="p4-10">
+  <h3>Prob 4.10 — Recirculating ball screw: ball load &amp; pulling forces <span class="tag clo">CLO3</span></h3>
+  <p class="statement"><b>Given:</b> ball dia d<sub>b</sub>=10 mm=1 cm, total balls Z<sub>t</sub>=120, steel; n=40 rpm; service life T=10 000 h.</p>
+  <p class="ask"><b>Find:</b> load per ball; max pulling force static &amp; dynamic.</p>
+  <div class="soln-wrap"><span class="soln-toggle">Show solution ▸</span><div class="soln">
+    <p class="step"><b>Per ball (Eq 4.102):</b> P ≤ 200d<sub>b</sub>² = 200 kgf.</p>
+    <p class="step"><b>Loaded balls:</b> Z<sub>r</sub> = 0.7Z<sub>t</sub> = 84.</p>
+    <p class="step"><b>Static (Eq 4.104):</b> Q = 100·Z<sub>r</sub>·d<sub>b</sub>² = 100×84×1 = 8400 kgf.</p>
+    <p class="step"><b>Cyclic coeff:</b> f = Z<sub>t</sub>/2 = 60; k = 0.9(60·T·n·f/10⁷)^⅓ = 0.9(144)^⅓ = 4.72.</p>
+    <p class="step"><b>Dynamic (Eq 4.106):</b> Q<sub>CL</sub> = Q/k = 8400/4.72 = 1781 kgf.</p>
+    <p class="answer"><b>Answer:</b> per ball 200 kgf; static pull 8400 kgf; dynamic pull ≈ 1781 kgf (fatigue → ~21% of static).</p>
+  </div>
+  <p class="tip"><b>Exam tip:</b> P=200d<sub>b</sub>² → Q<sub>static</sub>=100Z<sub>r</sub>d<sub>b</sub>² (Z<sub>r</sub>=0.7Z<sub>t</sub>) → Q<sub>dyn</sub>=Q/k, k=0.9(60Tnf/10⁷)^⅓, f=Z<sub>t</sub>/2. Watch the cube root.</p></div>
+</article>
+  </div>
+</section>
+
+<!-- ===================== CH5 ===================== -->
+<section class="tab" id="ch5">
+  <h2>Chapter 5 — Design of Spindles &amp; Spindle Supports (CLO4)</h2>
+  <p class="small">Compliance, optimum bearing span, hollow-spindle sizing, bearing selection, run-out.</p>
+  <div class="bar"><button class="btn" data-reveal="ch5">Reveal all solutions</button><button class="btn" data-hide="ch5">Hide all</button></div>
+
+  <div class="callout">
+    <b>Compliance master formula:</b> C = e<sub>saddle</sub> + e<sub>headstock</sub>(1−x/L)² + e<sub>tailstock</sub>(x/L)², where x is measured <b>from the headstock</b>. <b>Nose deflection / run-out:</b> y = δ<sub>B</sub>(1+c/l) + δ<sub>A</sub>(c/l) — front bearing dominates (cantilever amplification 1+c/l). Optimum bearing span λ = l/c ≈ 3–5 (≥2.5).
+  </div>
+
+  <div id="ch5-body">
+<article class="prob" id="p5-1">
+  <h3>Prob 5.1 <span class="tag clo">CLO4</span></h3>
+  <p class="statement"><b>Given:</b> Workpiece between centres, L=750 mm, dia 100 mm. Radial P<sub>y</sub>=150 kgf, tool 200 mm from tailstock. Stiffness saddle 3000, headstock 4000, tailstock 2500 kgf/mm.</p>
+  <p class="ask"><b>Find:</b> machine-tool compliance &amp; cutting-point displacement.</p>
+  <div class="soln-wrap"><span class="soln-toggle">Show solution ▸</span><div class="soln">
+    <p class="step"><b>Position:</b> x = 750−200 = 550 mm from headstock; x/L = 0.733.</p>
+    <p class="step"><b>Eq 5.16:</b> C = 1/3000 + (1/4000)(0.267)² + (1/2500)(0.733)².</p>
+    <p class="step"><b>Terms:</b> 3.333×10⁻⁴ + 1.78×10⁻⁵ + 2.151×10⁻⁴ = 5.662×10⁻⁴ mm/kgf = 0.566 µm/kgf.</p>
+    <p class="step"><b>Displacement:</b> y = 0.566×150 = 84.9 µm.</p>
+    <p class="answer"><b>Answer:</b> C ≈ 0.566 µm/kgf; displacement ≈ 85 µm.</p>
+  </div>
+  <p class="tip"><b>Exam tip:</b> x is from the headstock; "200 from tailstock" → x = L−200. Tailstock term dominates here (tool near it).</p></div>
+</article>
+
+<article class="prob" id="p5-2">
+  <h3>Prob 5.2 <span class="tag clo">CLO4</span></h3>
+  <p class="statement"><b>Given:</b> Between centres, L=500 mm, dia 80 mm. P<sub>z</sub>=150, P<sub>y</sub>=80 kgf, tool 200 mm from headstock. Headstock 35 000 kgf/cm = 3500 kgf/mm, tailstock 15 000 kgf/cm = 1500 kgf/mm.</p>
+  <p class="ask"><b>Find:</b> deflection at the cutting point.</p>
+  <div class="soln-wrap"><span class="soln-toggle">Show solution ▸</span><div class="soln">
+    <p class="step"><b>Position:</b> x/L = 0.4; only radial P<sub>y</sub>=80 bends the work.</p>
+    <p class="step"><b>Support (Eq 5.8):</b> y = (P<sub>y</sub>/K<sub>A</sub>K<sub>B</sub>)[K<sub>B</sub>(0.6)²+K<sub>A</sub>(0.4)²] = 16.8 µm.</p>
+    <p class="step"><b>Workpiece bending:</b> I = πd⁴/64 = 2.01×10⁶ mm⁴; y<sub>wp</sub> = P<sub>y</sub>a²b²/(3EIL) = 4.5 µm.</p>
+    <p class="answer"><b>Answer:</b> support 16.8 µm; with workpiece bending total ≈ 21.3 µm.</p>
+  </div>
+  <p class="tip"><b>Exam tip:</b> convert kgf/cm → kgf/mm (÷10) first. P<sub>z</sub> is a distractor; only P<sub>y</sub> drives diameter error.</p></div>
+</article>
+
+<article class="prob" id="p5-3">
+  <h3>Prob 5.3 <span class="tag clo">CLO4</span></h3>
+  <p class="statement"><b>Given:</b> Solid steel spindle (Fig 5.5a), torque 40 kgf·m through gear m=3 mm, z=80; a/b=2; front &amp; rear bearing compliances 0.1 &amp; 0.15 µm/kgf; nose force P₁=150 kgf.</p>
+  <p class="ask"><b>Find:</b> optimum λ=l/c and nose deflection/compliance.</p>
+  <div class="soln-wrap"><span class="soln-toggle">Show solution ▸</span><div class="soln">
+    <p class="step"><b>Gear force:</b> D = m·z = 240 mm, r = 12 cm; P₂ = T/r = 4000/12 = 333.3 kgf.</p>
+    <p class="step"><b>Stiffness ratio:</b> K<sub>B</sub>=10, K<sub>A</sub>=6.67 kgf/µm → α = 1.5 → λ<sub>opt</sub> ≈ 3 (Fig 5.9; check λ≥2.5).</p>
+    <p class="step"><b>Geometry:</b> c=1, l=3, a=2, b=1. Reactions R<sub>B</sub> = (333.3×2+150×4)/3 = 422.2; R<sub>A</sub> = (333.3−150)/3 = 61.1 kgf.</p>
+    <p class="step"><b>Support displacements:</b> δ<sub>B</sub> = 42.2 µm, δ<sub>A</sub> = 9.17 µm.</p>
+    <p class="step"><b>Nose (Eq 5.21):</b> y₂ = δ<sub>B</sub>(1+c/l)+δ<sub>A</sub>(c/l) = 42.2×1.333 + 9.17×0.333 = 59.4 µm.</p>
+    <p class="answer"><b>Answer:</b> λ<sub>opt</sub> ≈ 3; nose deflection y₂ ≈ 59 µm (compliance ≈ 0.40 µm/kgf w.r.t. P₁). Bending term needs spindle EI (not given).</p>
+  </div>
+  <p class="tip"><b>Exam tip:</b> front bearing dominates (factor 1+c/l). Quote λ<sub>opt</sub> from Fig 5.9, always check λ≥2.5.</p></div>
+</article>
+
+<article class="prob" id="p5-4">
+  <h3>Prob 5.4 <span class="tag clo">CLO4</span></h3>
+  <p class="statement"><b>Given:</b> Hollow lathe spindle, d<sub>o</sub>/d<sub>i</sub>=2 (α=0.5). Power 4.5 kW at 700 rpm. P₂=215, T₂=78 kgf; P₁=210, T₁=60 kgf; span 170, overhang 80 mm (Fig 5.33).</p>
+  <p class="ask"><b>Find:</b> outer &amp; inner diameters.</p>
+  <div class="soln-wrap"><span class="soln-toggle">Show solution ▸</span><div class="soln">
+    <p class="step"><b>Torque:</b> M<sub>t</sub> = 974·P/n = 974×4.5/700 = 6.26 kgf·m = 626 kgf·cm.</p>
+    <p class="step"><b>Bending at front bearing:</b> M<sub>h</sub>=P₁·c=16 800, M<sub>v</sub>=T₁·c=4800 kgf·mm → M<sub>b</sub>=√(16800²+4800²)=17 470 kgf·mm ≈ 1747 kgf·cm.</p>
+    <p class="step"><b>Eq 5.38:</b> with σ₋₁=2500 kgf/cm², n=1.5, a≈2.6, b≈2.0 → d<sub>o</sub>³ ≈ 30.2 cm³ → d<sub>o</sub> ≈ 31 mm, d<sub>i</sub> ≈ 16 mm (strength minimum).</p>
+    <p class="answer"><b>Answer:</b> strength → d<sub>o</sub>≈31, d<sub>i</sub>≈16 mm; stiffness-governed practical selection (Table 5.3) d<sub>o</sub>=70 mm, d<sub>i</sub>=35 mm.</p>
+  </div>
+  <p class="tip"><b>Exam tip:</b> front bearing carries the biggest moment (P₁·c cantilever). Combine load planes vectorially, M<sub>t</sub>=974P/n, plug Eq 5.38 with α=0.5; state σ₋₁, a, b.</p></div>
+</article>
+
+<article class="prob" id="p5-5">
+  <h3>Prob 5.5 <span class="tag clo">CLO4</span></h3>
+  <p class="statement"><b>Given:</b> Precision lathe spindle, journal d=80 mm, n up to 2500 rpm, max bearing load 30 kgf, l/d=1 (l=80 mm).</p>
+  <p class="ask"><b>Find:</b> a suitable sleeve-bearing material.</p>
+  <div class="soln-wrap"><span class="soln-toggle">Show solution ▸</span><div class="soln">
+    <p class="step"><b>Pressure:</b> p = P/(dl) = 30/(8×8) = 0.469 kgf/cm².</p>
+    <p class="step"><b>Speed:</b> v = πdn/60 = π×0.08×2500/60 = 10.47 m/s.</p>
+    <p class="step"><b>pv:</b> 0.469×10.47 ≈ 4.9 — high speed, low pressure.</p>
+    <p class="step"><b>Table 5.8:</b> at v≈10 m/s → tin bronze / white metal; precision → tin bronze. [p]=150, [pv]=150 ≫ actual → safe.</p>
+    <p class="answer"><b>Answer:</b> tin bronze sleeve (≈ Cu 89.5%, Sn 10%); well within [p],[pv] limits.</p>
+  </div>
+  <p class="tip"><b>Exam tip:</b> compute p and v; v dictates the Table-5.8 row. High v + low p → tin bronze/white metal; verify [p],[pv].</p></div>
+</article>
+
+<article class="prob" id="p5-6">
+  <h3>Prob 5.6 <span class="tag clo">CLO4</span></h3>
+  <p class="statement"><b>Given:</b> Full hydrodynamic journal bearing, Cu–Pb, d=60 mm, P=150 kgf, n=3000 rpm, h<sub>cr</sub>=10 µm, need h<sub>min</sub>/h<sub>cr</sub>&gt;1.1.</p>
+  <p class="ask"><b>Find:</b> design parameters.</p>
+  <div class="soln-wrap"><span class="soln-toggle">Show solution ▸</span><div class="soln">
+    <p class="step"><b>l/d=1</b> (l=60 mm); ψ=0.001 → c=ψd/2=30 µm.</p>
+    <p class="step"><b>Pressure:</b> p = 150/36 = 4.17 kgf/cm².</p>
+    <p class="step"><b>Viscosity (Eq 5.47):</b> ω=314 rad/s, S₀=1.0 → μ ≥ pψ²/(ωS₀) = 1.33×10⁻⁴ kgf·s/m² ≈ 1.3 cP.</p>
+    <p class="step"><b>Film:</b> ε ≈ 0.53 → h<sub>min</sub> = c(1−ε) = 14.2 µm; ratio 1.42 &gt; 1.1 ✓.</p>
+    <p class="answer"><b>Answer:</b> l/d=1, ψ=0.001 (c=30 µm), oil μ≈1.3 cP, ε≈0.53, h<sub>min</sub>≈14 µm. Acceptable.</p>
+  </div>
+  <p class="tip"><b>Exam tip:</b> ψ→c=ψd/2 → S₀ → μ (Eq 5.47) → ε → h<sub>min</sub>=c(1−ε). Lightly loaded high-speed → thin oil is correct.</p></div>
+</article>
+
+<article class="prob" id="p5-7">
+  <h3>Prob 5.7 <span class="tag clo">CLO4</span></h3>
+  <p class="statement"><b>Given:</b> Babbit hydrodynamic bearing, d=80 mm, n=2000 rpm, p ≤ 8 kgf/cm². Check heating: max 70 °C, ambient 40 °C.</p>
+  <p class="ask"><b>Find:</b> load capacity &amp; thermal equilibrium.</p>
+  <div class="soln-wrap"><span class="soln-toggle">Show solution ▸</span><div class="soln">
+    <p class="step"><b>Capacity:</b> l/d=1 (l=80 mm); P = p·l·d = 8×8×8 = 512 kgf.</p>
+    <p class="step"><b>Speeds:</b> v = 8.38 m/s; ω = 209 rad/s.</p>
+    <p class="step"><b>Friction:</b> ψ=0.0005, S₀≈1.7, μ≈5.6×10⁻⁵; f = (π/ψ)(μω/p)+0.55ψ ≈ 1.2×10⁻³.</p>
+    <p class="step"><b>Heat:</b> W ≈ 43 kcal/h; k = 6+10√v = 34.9; A = 20·d·l = 0.128 m².</p>
+    <p class="step"><b>Equilibrium:</b> t<sub>b</sub> = 40 + 43/(34.9×0.128) ≈ 50 °C.</p>
+    <p class="answer"><b>Answer:</b> load ≈ 512 kgf; t<sub>b</sub> ≈ 47–50 °C &lt; 70 °C → no forced cooling.</p>
+  </div>
+  <p class="tip"><b>Exam tip:</b> use free-surface area A = 20·d·l (NOT πdl). Heat balance W = W₁ at t<sub>b</sub>; if t<sub>b</sub>&gt;[t<sub>b</sub>] add forced circulation.</p></div>
+</article>
+
+<article class="prob" id="p5-8">
+  <h3>Prob 5.8 <span class="tag clo">CLO4</span></h3>
+  <p class="statement"><b>Given:</b> Multiple-wedge hydrodynamic bearing, grinding, d=60 mm, n=3000 rpm. ν=6 cSt, ρ=0.86 g/cm³, op temp 85 °C, ε=0.7.</p>
+  <p class="ask"><b>Find:</b> unloaded capacity P₀, load at ε=0.7, flow rate.</p>
+  <div class="soln-wrap"><span class="soln-toggle">Show solution ▸</span><div class="soln">
+    <p class="step"><b>Viscosity:</b> μ = νρ = 5.16 cP.</p>
+    <p class="step"><b>Geometry:</b> l=0.75d=4.5 cm, B=0.7l=3.15 cm, B/l=0.7, c=7.5 µm.</p>
+    <p class="step"><b>C<sub>L2</sub>:</b> 1.25/(1+0.49) = 0.839.</p>
+    <p class="step"><b>Unloaded (Eq 5.62):</b> P₀ ≈ 155 kgf.</p>
+    <p class="step"><b>At ε=0.7 (Eq 5.63):</b> P = 155[1/0.65² − 1/1.7²] = 155(2.367−0.346) ≈ 313 kgf.</p>
+    <p class="answer"><b>Answer:</b> P₀ ≈ 155 kgf; load at ε=0.7 ≈ 313 kgf; flow Q from heat balance Eq 5.64 (force-fed). </p>
+  </div>
+  <p class="tip"><b>Exam tip:</b> μ[cP]=ν[cSt]·ρ. P₀ = wedge-balancing force; external load via Eq 5.63. Multiple-wedge keeps the journal concentric (precision grinding).</p></div>
+</article>
+
+<article class="prob" id="p5-9">
+  <h3>Prob 5.9 <span class="tag clo">CLO4</span></h3>
+  <p class="statement"><b>Given:</b> Cylindrical-pad hydrostatic bearing, r/R=0.7 (Fig 5.24). W=200 kgf, n=1000 rpm, p<sub>p</sub>=20 kgf/cm², gap h=0.005 cm, μ=4×10⁻⁷ kgf·s/cm², C<sub>d</sub>=0.6.</p>
+  <p class="ask"><b>Find:</b> required restrictor opening.</p>
+  <div class="soln-wrap"><span class="soln-toggle">Show solution ▸</span><div class="soln">
+    <p class="step"><b>Coeffs (r/R=0.7):</b> C<sub>L</sub>≈0.5, 1/C<sub>F</sub>′≈2.0.</p>
+    <p class="step"><b>Pocket pressure:</b> p<sub>p</sub>=2p₀ → p₀=10 kgf/cm².</p>
+    <p class="step"><b>Pad area:</b> A = W/(C<sub>L</sub>p₀) = 200/(0.5×10) = 40 cm².</p>
+    <p class="step"><b>Pad flow:</b> Q = p₀h³(1/C<sub>F</sub>′)/μ = 10×(0.005)³×2.0/(4×10⁻⁷) = 6.25 cm³/s.</p>
+    <p class="step"><b>Orifice:</b> Q = C<sub>d</sub>a₀√(2Δp/ρ), Δp=10 kgf/cm² → a₀ ≈ 2.18×10⁻⁷ m² → d₀ ≈ 0.53 mm.</p>
+    <p class="answer"><b>Answer:</b> p₀=10 kgf/cm², A=40 cm², Q=6.25 cm³/s; restrictor opening ≈ 0.53 mm dia.</p>
+  </div>
+  <p class="tip"><b>Exam tip:</b> start p<sub>p</sub>=2p₀, read C<sub>L</sub>, 1/C<sub>F</sub>′ at r/R; restrictor flow = pad flow at Δp = p<sub>p</sub>−p₀.</p></div>
+</article>
+
+<article class="prob" id="p5-10">
+  <h3>Prob 5.10 <span class="tag clo">CLO4</span></h3>
+  <p class="statement"><b>Given:</b> Aerodynamic bearing, P=15 kgf, l/d=0.8, air supply 4 kgf/cm², radial gap 0.01 mm, air μ=0.02 cP.</p>
+  <p class="ask"><b>Find:</b> length l and diameter d.</p>
+  <div class="soln-wrap"><span class="soln-toggle">Show solution ▸</span><div class="soln">
+    <p class="step"><b>Load (Eq 5.76):</b> P = 0.5·p<sub>a</sub>·l·d·K₁·K₂.</p>
+    <p class="step"><b>Coeffs:</b> K₁≈3.5 (Fig 5.29), K₂≈0.55 for l/d=0.8 (Fig 5.30).</p>
+    <p class="step"><b>l=0.8d:</b> 15 = 0.5×4×10⁴×0.8d×d×3.5×0.55 → d² = 4.87×10⁻⁴ m².</p>
+    <p class="step"><b>Solve:</b> d ≈ 22 mm; l = 0.8d ≈ 17.7 mm.</p>
+    <p class="answer"><b>Answer:</b> d ≈ 22 mm, l ≈ 17.7 mm (K₁≈3.5, K₂≈0.55).</p>
+  </div>
+  <p class="tip"><b>Exam tip:</b> aerodynamic load depends on speed via K₁ (Sommerfeld). State the K₁, K₂ you read; no heat check needed for air.</p></div>
+</article>
+
+<article class="prob" id="p5-11">
+  <h3>Prob 5.11 <span class="tag clo">CLO4</span></h3>
+  <p class="statement"><b>Given:</b> CI bar Ø75×500 mm → Ø73 (nominal 1 mm), turning at tailstock end, s=0.23 mm/rev. Compliances headstock 0.25, saddle 0.25, tailstock 0.30 µm/kgf. P<sub>y</sub> = 88·t⁰·⁹·s⁰·⁷⁵ kgf.</p>
+  <p class="ask"><b>Find:</b> true depth of cut.</p>
+  <div class="soln-wrap"><span class="soln-toggle">Show solution ▸</span><div class="soln">
+    <p class="step"><b>Compliance at tailstock (x/L=1):</b> C = e<sub>saddle</sub> + e<sub>tailstock</sub> = 0.25+0.30 = 0.55 µm/kgf.</p>
+    <p class="step"><b>Nominal depth:</b> t<sub>nom</sub> = (75−73)/2 = 1.0 mm.</p>
+    <p class="step"><b>Iterate:</b> t = t<sub>nom</sub> − C·P<sub>y</sub>/1000, P<sub>y</sub> = 88·t⁰·⁹·0.23⁰·⁷⁵ → converges P<sub>y</sub> ≈ 28.8 kgf, y = 0.55×28.8 = 15.8 µm.</p>
+    <p class="answer"><b>Answer:</b> true depth ≈ 1.0 − 0.016 = <b>0.984 mm</b> (~16 µm spring-back).</p>
+  </div>
+  <p class="tip"><b>Exam tip:</b> at the tailstock end the headstock term vanishes (x/L=1). True depth = set depth − radial deflection; iterate since P<sub>y</sub> depends on t.</p></div>
+</article>
+
+<article class="prob" id="p5-12">
+  <h3>Prob 5.12 <span class="tag clo">CLO4</span></h3>
+  <p class="statement"><b>Given:</b> Spindle on two anti-friction bearings l=20 cm apart; radial clearances 4 µm (rear) &amp; 6 µm (front); nose overhang c=8 cm from the 6-µm bearing.</p>
+  <p class="ask"><b>Find:</b> radial run-out of the spindle nose.</p>
+  <div class="soln-wrap"><span class="soln-toggle">Show solution ▸</span><div class="soln">
+    <p class="step"><b>Supports:</b> front δ<sub>B</sub>=6 µm, rear δ<sub>A</sub>=4 µm; worst case = opposite directions.</p>
+    <p class="step"><b>Project (Eq 5.21 form):</b> run-out = δ<sub>B</sub>(1+c/l) + δ<sub>A</sub>(c/l).</p>
+    <p class="step"><b>Substitute:</b> c/l = 0.4 → 6(1.4) + 4(0.4) = 8.4 + 1.6 = 10.0 µm.</p>
+    <p class="answer"><b>Answer:</b> max radial run-out = <b>10 µm</b>.</p>
+  </div>
+  <p class="tip"><b>Exam tip:</b> front clearance dominates (1+c/l amplification); take clearances opposite for worst case.</p></div>
+</article>
+  </div>
+</section>
+
+<!-- ===================== FORMULA VAULT ===================== -->
+<section class="tab" id="formula">
+  <h2>📐 Formula Vault</h2>
+  <p class="small">Everything you substitute into. Convert to <b>cm + kgf</b> first.</p>
+
+  <h3>CLO1 · Drives</h3>
+  <span class="fblock">Cutting speed    V = πDN/1000      (D mm, N rpm, V m/min)
+Spindle speed    N = 1000V/(πD)</span>
+
+  <h3>CLO2 · Speed regulation</h3>
+  <span class="fblock">Common ratio     φ = (n_max/n_min)^(1/(z−1))
+Speed step i     nᵢ = n_min · φ^(i−1)
+Gear pair        i = Z₁/Z₂,  Z₁+Z₂ = const,  1/4 ≤ i ≤ 2</span>
+
+  <h3>CLO4 · Structures (Ch3)</h3>
+  <span class="fblock">Open thin section   I_t = β·(1/3)Σ b·t³      (β_I=1.20, β_channel=1.12)
+                    τ_max = M_t·t_max / I_t  (t_max = thickest element)
+                    θ = M_t·L / (G·I_t)
+Closed thin section τ = M_t/(2 A₀ δ),   M_lim = 2 τ A₀ δ
+                    A₀ = mid-line enclosed area
+Bending             σ = M·c/I,   δ = PL³/48EI (central),  I = bh³/12
+Box section         I = (b⁴ − (b−2t)⁴)/12
+Optimum             (l²/h)_opt = 6E[δ]/[σ]
+Stiffness           k = F/δ
+Model scaling       f_struct/f_model = (1/λ)·√(E_s·ρ_m / E_m·ρ_s)</span>
+
+  <h3>CLO3 · Guideways &amp; screws (Ch4)</h3>
+  <span class="fblock">Pulling (slide)     Q = P_x + f(P_z + P_y + G)
+Slideway width      c' = A_reaction / ([p_av]·L)
+Lead screw          p_av = 2Q/(π d L),   Δt(pitch) = Q t/(E A_m)
+Ball screw          P_ball = 200 d_b²
+                    Q_static = 100·Z_r·d_b²   (Z_r = 0.7 Z_t)
+                    Q_dyn = Q_static/k,  k = 0.9(60 T n f /10⁷)^(1/3),  f = Z_t/2
+Hydrostatic pad     P = p₀·A·C_L,   optimum p₀/p_p = 2/3</span>
+
+  <h3>CLO4 · Spindles (Ch5)</h3>
+  <span class="fblock">Compliance     C = e_saddle + e_hs(1−x/L)² + e_ts(x/L)²   (x from headstock)
+Nose defl/runout  y = δ_B(1+c/l) + δ_A(c/l)   (front bearing dominates)
+Optimum span   λ = l/c ≈ 3–5  (≥ 2.5)
+Torque         M_t = 974·P/n   (P kW, n rpm → kgf·m)
+Journal brg    p = P/(l·d),  v = πdn/60,  h_min = c(1−ε),  c = ψd/2
+Heat balance   free surface A = 20·d·l (NOT πdl)</span>
+</section>
+
+<!-- ===================== RECALL ===================== -->
+<section class="tab" id="recall">
+  <h2>🧠 Recall Drills</h2>
+  <p class="small">Click a card to flip. Run 3× until automatic — these are the fill-in-the-blank / 2-mark freebies.</p>
+  <div class="bar"><button class="btn" id="flipAll">Flip all</button><button class="btn" id="unflipAll">Reset</button></div>
+  <div class="cards" id="cards"></div>
+</section>
+
+<!-- ===================== LAST PAPER ===================== -->
+<section class="tab" id="paper">
+  <h2>📄 Last Paper — May 2026 (MIE 3223), mapped + answered</h2>
+  <p class="small">Manipal Dubai · 1 hour · 30 marks · "Assume suitable data and state assumptions."</p>
+
+  <h3>Part A — fill blanks / short (5 marks)</h3>
+  <table>
+    <tr><th>#</th><th>Question</th><th>Answer</th><th>CLO</th></tr>
+    <tr><td>1</td><td>Lathe shaft production — primary cutting motion is rotation of the ___</td><td><b>workpiece</b></td><td>1</td></tr>
+    <tr><td>2</td><td>Drive using one motor per machine tool, independent operation</td><td><b>individual (separate) drive</b></td><td>1</td></tr>
+    <tr><td>3</td><td>Stepped gearbox: speeds arranged in ___ progression for uniform % change</td><td><b>geometric</b></td><td>2</td></tr>
+    <tr><td>4 (2M)</td><td>Two requirements of guideways for accurate CNC slide travel</td><td><b>high stiffness; low friction &amp; wear</b> (also: accuracy, damping)</td><td>3</td></tr>
+  </table>
+
+  <h3>Part B — long (25 marks)</h3>
+  <div class="callout blue"><b>Q5 (8M, CLO2)</b> — 9-speed GP gearbox, 100→1600 rpm, 9=3×3. → φ=1.41; speeds 100…1600; structural/ray/speed diagrams. <b>Full solution: CLO2 tab.</b></div>
+  <div class="callout red"><b>Q6 (8M, CLO4)</b> — I-section torsion, M<sub>t</sub>=1000 kgf-m, G=8×10⁵. ★ <b>= Mehta Prob 3.12 verbatim.</b> → I<sub>t</sub>=55.2 cm⁴, τ<sub>max</sub>=3623 kgf/cm², θ=12.97°. <b>Full solution: Ch3 → Prob 3.12.</b></div>
+  <div class="callout"><b>Q7 (9M, CLO1/3/4)</b> — CNC turning-centre design case:
+    <ul>
+      <li><b>(a)</b> working motions &amp; kinematic chains → speed chain (motor→gearbox→spindle→work) + feed chain (spindle→feed box→carriage). See CLO1.</li>
+      <li><b>(b)</b> requirements of MT structures → stiffness, strength, dimensional stability, damping, low thermal distortion.</li>
+      <li><b>(c)</b> guideways need stiffness (accuracy under load), low friction (smooth slow feed, no stick-slip), wear resistance (retain accuracy), damping (suppress chatter).</li>
+      <li><b>(d)</b> stiffness: <b>k = F/δ = 5000 N / 0.005 mm = 1 000 000 N/mm = 10⁶ N/mm (= 1000 N/µm).</b></li>
+    </ul>
+  </div>
+</section>
+
+</div>
+
+<script>
+// tabs
+const tabs = document.getElementById('tabs');
+tabs.addEventListener('click', e=>{
+  const b = e.target.closest('button'); if(!b) return;
+  document.querySelectorAll('nav.tabs button').forEach(x=>x.classList.remove('active'));
+  document.querySelectorAll('section.tab').forEach(x=>x.classList.remove('active'));
+  b.classList.add('active');
+  document.getElementById(b.dataset.t).classList.add('active');
+  window.scrollTo({top:0,behavior:'instant'});
+});
+
+// solution reveal toggles
+document.querySelectorAll('.soln-toggle').forEach(t=>{
+  t.addEventListener('click',()=>{
+    const s = t.parentElement.querySelector('.soln');
+    s.classList.toggle('show');
+    t.textContent = s.classList.contains('show') ? 'Hide solution ▾' : 'Show solution ▸';
+  });
+});
+// reveal/hide all per chapter
+document.querySelectorAll('[data-reveal]').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('#'+btn.dataset.reveal+'-body .soln').forEach(s=>s.classList.add('show'));
+    document.querySelectorAll('#'+btn.dataset.reveal+'-body .soln-toggle').forEach(t=>t.textContent='Hide solution ▾');
+  });
+});
+document.querySelectorAll('[data-hide]').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('#'+btn.dataset.hide+'-body .soln').forEach(s=>s.classList.remove('show'));
+    document.querySelectorAll('#'+btn.dataset.hide+'-body .soln-toggle').forEach(t=>t.textContent='Show solution ▸');
+  });
+});
+
+// recall cards
+const recall = [
+  ["Lathe (shaft) — primary cutting motion?","Rotation of the workpiece."],
+  ["Drive: one motor per machine, independent?","Individual (separate) drive."],
+  ["Stepped gearbox speeds arranged in?","Geometric progression (constant % step)."],
+  ["Why GP for spindle speeds?","Keeps max cutting-speed loss constant across the range."],
+  ["Common ratio φ formula?","φ = (n_max/n_min)^(1/(z−1))."],
+  ["Cutting speed formula?","V = πDN/1000 (m/min)."],
+  ["Two key guideway requirements?","High stiffness; low friction & wear (also accuracy, damping)."],
+  ["Three cutting-force components?","P_z tangential, P_y radial, P_x axial."],
+  ["Why torsion beds are closed box?","I_t ∝ A₀² (enclosed area) → huge torsional rigidity."],
+  ["Why bending beds can be open I?","Bending I ∝ flange distance (Ad²), independent of closure."],
+  ["I_t of an open thin section?","I_t = β·(1/3)Σ b·t³."],
+  ["β for I-section / channel?","I-section 1.20; channel 1.12."],
+  ["δ_max used in I-section τ_max?","The thickest element (flange thickness)."],
+  ["Closed-section limiting torque?","M_lim = 2·τ·A₀·δ (A₀ at wall mid-line)."],
+  ["Stiffness from force & deflection?","k = F/δ (e.g. 5000 N / 0.005 mm = 10⁶ N/mm)."],
+  ["Machine-tool compliance formula?","C = e_saddle + e_hs(1−x/L)² + e_ts(x/L)², x from headstock."],
+  ["Spindle nose deflection / run-out?","y = δ_B(1+c/l) + δ_A(c/l) — front bearing dominates."],
+  ["Optimum bearing span λ = l/c?","≈ 3–5 (must be ≥ 2.5)."],
+  ["Pulling force, conventional slideway?","Q = P_x + f(P_z + P_y + G)."],
+  ["Ball-screw load per ball?","P = 200·d_b² (d_b in cm, kgf)."],
+  ["Hydrostatic pad optimum pressure ratio?","p₀/p_p = 2/3 (max stiffness)."],
+  ["V-slideway advantage over flat?","Self-centring; load split on two faces → less deflection."],
+  ["Spindle torque from power?","M_t = 974·P/n (P kW, n rpm → kgf·m)."],
+  ["Journal-bearing min film thickness?","h_min = c(1−ε), c = ψd/2."]
+];
+const cw = document.getElementById('cards');
+recall.forEach(([q,a])=>{
+  const d=document.createElement('div'); d.className='card';
+  d.innerHTML='<div class="q">'+q+'</div><div class="hint">click to reveal</div><div class="a">'+a+'</div>';
+  d.addEventListener('click',()=>d.classList.toggle('flip'));
+  cw.appendChild(d);
+});
+document.getElementById('flipAll').addEventListener('click',()=>document.querySelectorAll('.card').forEach(c=>c.classList.add('flip')));
+document.getElementById('unflipAll').addEventListener('click',()=>document.querySelectorAll('.card').forEach(c=>c.classList.remove('flip')));
+</script>
+</body>
+</html>
