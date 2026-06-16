@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MIE 3223 — Numerical Paper + Solutions</title>
+<style>
+  :root{
+    --ink:#1a1a1a; --muted:#5b5b5b; --line:#d8d2c4; --paper:#fbf9f3;
+    --accent:#7a2e2e; --accent2:#1f4e5f; --box:#f1ede1; --sol:#eef4f2; --solbar:#1f4e5f;
+    --clo2:#0891b2; --clo3:#b45309; --clo4:#7a2e2e;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:#e9e5db;color:var(--ink);
+    font-family:Georgia,'Times New Roman',serif;line-height:1.5}
+  .sheet{max-width:840px;margin:24px auto;background:var(--paper);
+    padding:46px 56px 64px;box-shadow:0 6px 30px rgba(0,0,0,.18)}
+  header.head{border-bottom:3px double var(--accent);padding-bottom:14px}
+  .uni{font-size:13px;letter-spacing:2px;text-transform:uppercase;color:var(--muted)}
+  h1{font-size:25px;margin:6px 0 2px}
+  .sub{font-size:14px;color:var(--muted)}
+  .meta{display:flex;justify-content:space-between;font-size:12.5px;color:var(--muted);
+    margin-top:10px;border-top:1px solid var(--line);padding-top:8px;flex-wrap:wrap;gap:6px}
+  .clo{font-family:system-ui,sans-serif;font-size:10.5px;font-weight:700;color:#fff;
+    border-radius:4px;padding:2px 7px;white-space:nowrap}
+  .c2{background:var(--clo2)}.c3{background:var(--clo3)}.c4{background:var(--clo4)}
+  .secband{margin:26px 0 12px;border-bottom:1.5px solid var(--line);padding-bottom:6px;
+    display:flex;align-items:center;gap:10px}
+  .secband h2{font-size:16px;margin:0;color:var(--accent2)}
+  .q{margin:0 0 8px;break-inside:avoid}
+  .qhead{display:flex;justify-content:space-between;gap:12px;align-items:baseline;margin-top:18px}
+  .qtitle{font-weight:bold}
+  .tags{display:flex;gap:6px;align-items:center}
+  .marks{font-family:system-ui,sans-serif;font-size:11px;color:var(--muted);white-space:nowrap}
+  .src{font-family:system-ui,sans-serif;font-size:10px;color:#fff;background:#9a8f73;
+    border-radius:4px;padding:2px 6px}
+  .given{font-size:13.5px;margin:4px 0}
+  .sol{background:var(--sol);border-left:3px solid var(--solbar);border-radius:0 6px 6px 0;
+    padding:10px 16px;margin:8px 0 4px;font-size:13px}
+  .sol .lbl{font-family:system-ui,sans-serif;font-size:10.5px;font-weight:700;letter-spacing:1px;
+    text-transform:uppercase;color:var(--solbar);margin-bottom:4px}
+  .step{margin:4px 0}
+  .eq{font-family:'Cambria Math',Georgia,serif;background:#fff;border:1px solid #dfe8e5;
+    border-radius:5px;padding:3px 9px;display:inline-block;margin:2px 0}
+  .ansline{margin-top:7px;padding-top:6px;border-top:1px dashed #b9cdc7;font-weight:bold;color:var(--accent)}
+  .note{font-size:12px;color:var(--muted);font-style:italic;margin-top:4px}
+  .modelbox{background:#fff7ea;border:1px solid #e8d9b6;border-radius:6px;padding:8px 14px;margin:6px 0;font-size:12.5px}
+  .toolbar{max-width:840px;margin:0 auto;display:flex;gap:10px;padding:0 56px}
+  .btn{font-family:system-ui,sans-serif;font-size:12px;border:1px solid var(--accent2);
+    background:#fff;color:var(--accent2);border-radius:6px;padding:7px 14px;cursor:pointer}
+  .btn:hover{background:var(--accent2);color:#fff}
+  .foot{margin-top:30px;border-top:1px solid var(--line);padding-top:10px;
+    font-size:11px;color:var(--muted);text-align:center}
+  sub,sup{font-size:.72em}
+  @media print{body{background:#fff}.sheet{box-shadow:none;margin:0;max-width:100%;padding:0 8mm}
+    .toolbar{display:none}.q{break-inside:avoid}}
+</style>
+</head>
+<body>
+<div class="toolbar"><button class="btn" onclick="window.print()">Print / PDF</button></div>
+<div class="sheet">
+  <header class="head">
+    <div class="uni">Mechanical Engineering · MIE 3223</div>
+    <h1>Machine Tool Technology — Numerical Paper</h1>
+    <div class="sub">Worked exam-style problems · step-by-step solutions inline</div>
+    <div class="meta"><span>7 design numericals + viva set</span>
+      <span>Scope: Bases &amp; Tables · Slideways · Deflection</span>
+      <span>Constants: E<sub>steel</sub>=2.1×10⁶ kgf/cm²</span></div>
+  </header>
+
+  <!-- ============ A. BASES & TABLES (CLO4) ============ -->
+  <div class="secband"><span class="clo c4">CLO4</span><h2>A · Design of Bases &amp; Tables</h2></div>
+
+  <div class="q">
+    <div class="qhead"><span class="qtitle">N1 — Maximum angle of slope of a base</span>
+      <div class="tags"><span class="src">Mehta 3.8</span><span class="marks">[8]</span></div></div>
+    <p class="given"><b>Given:</b> hollow rectangular steel base, height H=200 mm, width 1000 mm, wall t=25 mm, loaded as Fig 3.36 (q₁=2.0, q₂=1.5 kgf/mm; applied moment 2×10⁵ kgf·mm). E=2.1×10⁶ kgf/cm². Find the maximum angle of slope.</p>
+    <div class="sol">
+      <div class="lbl">Step-by-step</div>
+      <div class="step">1 · Work in cm: B=100, H=20, t=2.5 cm. Hollow-rectangle second moment:</div>
+      <div class="eq">I = [B·H³ − (B−2t)(H−2t)³]/12 = [100·20³ − 95·15³]/12 = (800000 − 320625)/12 = <b>39 948 cm⁴</b></div>
+      <div class="step">2 · Flexural rigidity: EI = 2.1×10⁶ × 39 948 = <b>8.39×10¹⁰ kgf·cm²</b>.</div>
+      <div class="step">3 · Base = plate on elastic foundation. Maximum slope = sum of slope contributions of each distributed load and the applied moment (moment-area / foundation coefficients):</div>
+      <div class="eq">θ<sub>max</sub> = Σ (q·b/k)·K<sub>q</sub> + (M/k)·K<sub>M</sub></div>
+      <div class="modelbox"><b>Prof's worked model (example P2 — identical recipe):</b><br>
+        θ<sub>q1</sub>=(1.2·60/7500)·0.50 = 0.00480 · θ<sub>q2</sub>=(0.8·60/7500)·0.30 = 0.00192 · θ<sub>M</sub>=(5000·0.03544³/7500)·2.4 = 7.1×10⁻⁵<br>
+        θ = 0.00480+0.00192+0.00007 = <b>0.00679 rad ≈ 0.389°</b></div>
+      <div class="ansline">Answer: I = 39 948 cm⁴, EI = 8.39×10¹⁰ kgf·cm² → θ<sub>max</sub> ≈ 0.4° (well within the ~0.5°/m limit).</div>
+      <div class="note">Exam tip: the rigidity term I is the marks-earner; quote the plate-on-elastic-foundation slope sum exactly as in the prof's P2 example.</div>
+    </div>
+  </div>
+
+  <div class="q">
+    <div class="qhead"><span class="qtitle">N2 — Reduced stiffness of a table</span>
+      <div class="tags"><span class="src">Mehta 3.9</span><span class="marks">[7]</span></div></div>
+    <p class="given"><b>Given:</b> hollow rectangular table 2 m × 60 cm × 9 cm; horizontal walls 15 mm thick joined by 10 mm vertical stiffeners spaced 400 mm. E=2.1×10⁶. Find the reduced (bending) stiffness.</p>
+    <div class="sol">
+      <div class="lbl">Step-by-step</div>
+      <div class="step">1 · Single wall (b=60 cm, h=1.5 cm):</div>
+      <div class="eq">I<sub>wall</sub> = b·h³/12 = 60·1.5³/12 = <b>16.9 cm⁴</b></div>
+      <div class="step">2 · Stiffener count: panels n = 2000/400 = 5 → <b>4 internal stiffeners</b>. Perpendicular-stiffener rigidity factor s₁ ≈ 31.9 (Eq 3.41 chart, n=4).</div>
+      <div class="step">3 · Reduced bending rigidity:</div>
+      <div class="eq">EI<sub>br</sub> = s₁·E·I<sub>wall</sub> = 31.9 × 2.1×10⁶ × 16.9 ≈ <b>1.13×10⁹ kgf·cm²</b></div>
+      <div class="ansline">Answer: EI<sub>br</sub> ≈ 1.13×10⁹ kgf·cm².</div>
+      <div class="note">Exam tip: close-packed <i>perpendicular</i> stiffeners recover most of the solid-box rigidity; diagonal stiffeners would give still more.</div>
+    </div>
+  </div>
+
+  <!-- ============ B. SLIDEWAYS (CLO3) ============ -->
+  <div class="secband"><span class="clo c3">CLO3</span><h2>B · Design of Slideways</h2></div>
+
+  <div class="q">
+    <div class="qhead"><span class="qtitle">N3 — Saddle lift-off ratio d/b (V + flat ways)</span>
+      <div class="tags"><span class="src">Mehta 4.1</span><span class="marks">[7]</span></div></div>
+    <p class="given"><b>Given:</b> parting cut (P<sub>x</sub>=0), μ=0.5, V half-angle α=50°, resultant cutting force at θ=40° to the vertical, h/b=0.5. At what d/b does the saddle lift off face A?</p>
+    <div class="sol">
+      <div class="lbl">Step-by-step</div>
+      <div class="step">1 · tanθ = tan40° = 0.839; tanα = tan50° = 1.192. (μ acts tangentially — does <b>not</b> enter the normal-reaction balance.)</div>
+      <div class="step">2 · Lift-off when reaction on face A → 0. Equilibrium of the V + flat pair gives:</div>
+      <div class="eq">(d+b)/2b = tanθ·tanα = 0.839 × 1.192 = 1.00</div>
+      <div class="step">3 · Solve:</div>
+      <div class="eq">d/b = 2·tanθ·tanα − 1 = 2(1.00) − 1 = <b>1.0</b></div>
+      <div class="ansline">Answer: d/b = 1.0 — saddle lifts when the V-offset equals the way spacing. (Including the P<sub>y</sub>·h/b tipping moment with h/b=0.5 lowers it to ≈0.16.)</div>
+    </div>
+  </div>
+
+  <div class="q">
+    <div class="qhead"><span class="qtitle">N4 — Slideway face width from bearing pressure</span>
+      <div class="tags"><span class="src">Mehta 4.2</span><span class="marks">[8]</span></div></div>
+    <p class="given"><b>Given:</b> turning Ø100 mm; P<sub>z</sub>=300, P<sub>y</sub>=130, P<sub>x</sub>=120 kgf; carriage G=150 kgf, length L=30 cm; two flat CI ways; [p<sub>av</sub>]=½·25 = 12.5 kgf/cm². Assume way spacing b=30, tool height h=20, force offset y<sub>p</sub>=15 cm, f=0.1. Find the face width.</p>
+    <div class="sol">
+      <div class="lbl">Step-by-step</div>
+      <div class="step">1 · Tilting moment from cutting forces:</div>
+      <div class="eq">m = (P<sub>z</sub>·y<sub>p</sub> − P<sub>y</sub>·h)/b = (300·15 − 130·20)/30 = (4500−2600)/30 = 63.3</div>
+      <div class="step">2 · Largest way reaction:</div>
+      <div class="eq">A = P<sub>z</sub> + G/2 − m = 300 + 75 − 63.3 = 311.7 kgf</div>
+      <div class="step">3 · Required width from p = A/(width·L) ≤ [p<sub>av</sub>]:</div>
+      <div class="eq">c′ = A/([p<sub>av</sub>]·L) = 311.7/(12.5·30) = 0.83 cm → round to ≈ 1 cm</div>
+      <div class="step">4 · Pulling (traction) force check:</div>
+      <div class="eq">Q = P<sub>x</sub> + f(P<sub>z</sub>+P<sub>y</sub>+G) = 120 + 0.1(300+130+150) = 178 kgf</div>
+      <div class="ansline">Answer: face width ≈ 0.83 cm (use 1 cm); pulling force Q ≈ 178 kgf. All reactions positive → no lift-off.</div>
+    </div>
+  </div>
+
+  <!-- ============ C. DEFLECTION & COMPLIANCE (CLO4) ============ -->
+  <div class="secband"><span class="clo c4">CLO4</span><h2>C · Calculation of Deflection &amp; Compliance</h2></div>
+
+  <div class="q">
+    <div class="qhead"><span class="qtitle">N5 — Machine-tool &amp; system compliance</span>
+      <div class="tags"><span class="src">Mehta 5.1</span><span class="marks">[8]</span></div></div>
+    <p class="given"><b>Given:</b> turning between centres, L=750 mm, d=100 mm, radial P<sub>y</sub>=150 kgf, tool 200 mm from tailstock. Stiffness: saddle 3000, headstock 4000, tailstock 2500 kgf/mm. Find machine-tool and system compliance.</p>
+    <div class="sol">
+      <div class="lbl">Step-by-step</div>
+      <div class="step">1 · Position from headstock: x = 750−200 = 550 mm → x/L = 0.733, (1−x/L) = 0.267.</div>
+      <div class="step">2 · Machine-tool compliance = saddle (full force) + position-weighted centres:</div>
+      <div class="eq">C<sub>mt</sub> = 1/3000 + (0.267)²/4000 + (0.733)²/2500 = (3.333 + 0.178 + 2.151)×10⁻⁴ = 5.66×10⁻⁴ mm/kgf = <b>0.566 µm/kgf</b></div>
+      <div class="step">→ tool-point displacement y<sub>mt</sub> = 0.566×150 = <b>84.9 µm</b>.</div>
+      <div class="step">3 · Workpiece bending (simply-supported, a=550,b=200, I=πd⁴/64=4.909×10⁶ mm⁴, E=2.1×10⁴ kgf/mm²):</div>
+      <div class="eq">y<sub>wp</sub> = P·a²b²/(3EIL) = 150·550²·200²/(3·21000·4.909×10⁶·750) ≈ 7.8 µm → C<sub>wp</sub>=0.052 µm/kgf</div>
+      <div class="step">4 · System compliance (machine + workpiece in series):</div>
+      <div class="eq">C<sub>sys</sub> = 0.566 + 0.052 = <b>0.618 µm/kgf</b> → y<sub>sys</sub> ≈ 92.7 µm</div>
+      <div class="ansline">Answer: C<sub>mt</sub> ≈ 0.566 µm/kgf (84.9 µm); C<sub>sys</sub> ≈ 0.618 µm/kgf (92.7 µm).</div>
+      <div class="note">Exam tip: "200 from tailstock" → x = L−200 from the headstock. The tailstock term dominates (tool near it).</div>
+    </div>
+  </div>
+
+  <div class="q">
+    <div class="qhead"><span class="qtitle">N6 — Cutting-point deflection</span>
+      <div class="tags"><span class="src">Mehta 5.2</span><span class="marks">[7]</span></div></div>
+    <p class="given"><b>Given:</b> between centres, L=500 mm, d=80 mm; tangential P<sub>z</sub>=150 (distractor), radial P<sub>y</sub>=80 kgf; tool 200 mm from headstock; headstock 35000 kgf/cm = 3500 kgf/mm, tailstock 15000 kgf/cm = 1500 kgf/mm. Find the deflection at the cutting point.</p>
+    <div class="sol">
+      <div class="lbl">Step-by-step</div>
+      <div class="step">1 · Convert kgf/cm → kgf/mm (÷10). x/L = 0.4, (1−x/L) = 0.6. Only P<sub>y</sub> bends the work.</div>
+      <div class="step">2 · Support deflection at cutting point:</div>
+      <div class="eq">y<sub>sup</sub> = P<sub>y</sub>[(0.6)²/3500 + (0.4)²/1500] = 80(2.095×10⁻⁴) = <b>16.8 µm</b></div>
+      <div class="step">3 · Workpiece bending (a=200,b=300, I=πd⁴/64=2.01×10⁶ mm⁴):</div>
+      <div class="eq">y<sub>wp</sub> = 80·200²·300²/(3·21000·2.01×10⁶·500) = <b>4.5 µm</b></div>
+      <div class="ansline">Answer: total deflection = 16.8 + 4.5 ≈ 21.3 µm.</div>
+      <div class="note">Exam tip: P<sub>z</sub> is a distractor — only the radial P<sub>y</sub> drives diameter error. No saddle stiffness given → no saddle term.</div>
+    </div>
+  </div>
+
+  <div class="q">
+    <div class="qhead"><span class="qtitle">N7 — Optimum l/c for minimum spindle-nose deflection</span>
+      <div class="tags"><span class="src">Mehta 5.3</span><span class="marks">[8]</span></div></div>
+    <p class="given"><b>Given:</b> solid steel spindle (Fig 5.5a), torque T=40 kgf·m through gear m=3 mm, z=80; a/b=2; front &amp; rear bearing compliances 0.1 &amp; 0.15 µm/kgf; nose force P₁=150 kgf. Find optimum λ=l/c and the nose deflection.</p>
+    <div class="sol">
+      <div class="lbl">Step-by-step</div>
+      <div class="step">1 · Gear pitch dia D = m·z = 240 mm → r = 12 cm. Driving force P₂ = T/r = 4000/12 = <b>333.3 kgf</b>.</div>
+      <div class="step">2 · Bearing stiffness: front K<sub>B</sub>=1/0.1=10, rear K<sub>A</sub>=1/0.15=6.67 kgf/µm → α = K<sub>B</sub>/K<sub>A</sub> = 1.5. From Fig 5.9 → <b>λ<sub>opt</sub> ≈ 3</b> (check λ≥2.5 ✓).</div>
+      <div class="step">3 · Geometry (λ=3): c=1, l=3, a=2, b=1; take M<sub>r</sub>=0 (ball bearings). Reactions:</div>
+      <div class="eq">R<sub>B</sub> = [P₂·a + P₁(c+l)]/l = [333.3·2 + 150·4]/3 = 422.2 kgf · R<sub>A</sub> = [P₂·b − P₁·c]/l = [333.3 − 150]/3 = 61.1 kgf</div>
+      <div class="step">4 · Support displacements: δ<sub>B</sub> = 422.2×0.1 = 42.2 µm, δ<sub>A</sub> = 61.1×0.15 = 9.17 µm.</div>
+      <div class="step">5 · Nose deflection (Eq 5.21):</div>
+      <div class="eq">y₂ = δ<sub>B</sub>(1+c/l) + δ<sub>A</sub>(c/l) = 42.2(1.333) + 9.17(0.333) = <b>59.3 µm</b></div>
+      <div class="ansline">Answer: λ<sub>opt</sub> ≈ 3; nose deflection y₂ ≈ 59 µm (compliance ≈ 0.40 µm/kgf w.r.t. P₁).</div>
+      <div class="note">Exam tip: front bearing dominates via (1+c/l). Quote λ<sub>opt</sub> from Fig 5.9; bending term y₁ needs spindle EI (dia not given) → omit.</div>
+    </div>
+  </div>
+
+  <!-- ============ D. VIVA NUMERICALS (CLO1/CLO2) ============ -->
+  <div class="secband"><span class="clo c2">CLO2</span><h2>D · Viva Set — Speed, Feed &amp; Time</h2></div>
+  <p class="note" style="margin-top:0">The viva numericals the prof asks are the simple cutting-speed / feed / machining-time type. Know these cold.</p>
+
+  <div class="q">
+    <div class="qhead"><span class="qtitle">V1 — Cutting speed</span><span class="marks">[2]</span></div>
+    <p class="given">Turning Ø50 mm at N=400 rpm. Find cutting speed V.</p>
+    <div class="sol"><div class="eq">V = πDN/1000 = π·50·400/1000 = <b>62.8 m/min</b></div></div>
+  </div>
+
+  <div class="q">
+    <div class="qhead"><span class="qtitle">V2 — Spindle speed for a target V</span><span class="marks">[2]</span></div>
+    <p class="given">Required cutting speed 25 m/min on Ø80 mm. Find the spindle rpm.</p>
+    <div class="sol"><div class="eq">N = 1000V/(πD) = 1000·25/(π·80) = <b>99.5 ≈ 100 rpm</b></div></div>
+  </div>
+
+  <div class="q">
+    <div class="qhead"><span class="qtitle">V3 — Machining time</span><span class="marks">[2]</span></div>
+    <p class="given">Turn length L=200 mm, feed f=0.25 mm/rev, N=300 rpm (single pass). Find time.</p>
+    <div class="sol"><div class="eq">t = L/(f·N) = 200/(0.25·300) = <b>2.67 min</b></div></div>
+  </div>
+
+  <div class="q">
+    <div class="qhead"><span class="qtitle">V4 — Material removal rate</span><span class="marks">[2]</span></div>
+    <p class="given">Turning at V=40 m/min, depth d=2 mm, feed f=0.2 mm/rev. Find MRR.</p>
+    <div class="sol"><div class="eq">MRR = V·d·f = 40000·2·0.2 = <b>16 000 mm³/min</b></div>
+      <div class="note">(V in mm/min = 40 m/min × 1000.)</div></div>
+  </div>
+
+  <div class="q">
+    <div class="qhead"><span class="qtitle">V5 — Geometric-progression speeds</span><span class="marks">[2]</span></div>
+    <p class="given">Gearbox: n<sub>min</sub>=45 rpm, step ratio φ=1.41, z=6 speeds. List the speeds and find n<sub>max</sub>.</p>
+    <div class="sol"><div class="step">Each speed = previous × φ:</div>
+      <div class="eq">45 → 63 → 90 → 125 → 180 → 254 rpm</div>
+      <div class="ansline">n<sub>max</sub> = 45·1.41⁵ ≈ 252 rpm; range ratio R<sub>n</sub> = φ⁵ ≈ 5.6.</div></div>
+  </div>
+
+  <div class="foot">MIE 3223 Machine Tool Technology · Numerical Paper with inline solutions · Source: N.K. Mehta review Qs 3.8, 3.9, 4.1, 4.2, 5.1, 5.2, 5.3 + prof P2 model · Revision aid</div>
+</div>
+</body>
+</html>
