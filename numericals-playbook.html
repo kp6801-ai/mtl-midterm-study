@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MTL Numericals — How-to-Solve Playbook (ch 3·4·5)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#fafaf7; --paper:#fff; --ink:#1a1a1a; --muted:#6b6b6b;
+    --accent:#b91c1c; --accent2:#1e3a8a; --hl:#fff3a8; --rule:#e6e3dc;
+    --code-bg:#f4f1ea; --green:#14532d; --gold:#92580a; --gold-bg:#fdf6e3;
+    --hand:"Patrick Hand","Bradley Hand","Noteworthy","Marker Felt",cursive;
+    --ink-blue:#1d3a5f;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;background:var(--bg);color:var(--ink)}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.6;font-size:16px}
+  h1,h2,h3,h4{font-family:"Iowan Old Style","Palatino",Georgia,serif;font-weight:600;letter-spacing:-.01em}
+  h1{font-size:2.2rem;margin:0 0 .4rem}
+  h2{font-size:1.55rem;margin:2rem 0 .8rem;padding-bottom:.4rem;border-bottom:1px solid var(--rule)}
+  h3{font-size:1.18rem;margin:1.4rem 0 .5rem}
+  h4{font-size:.78rem;margin:.9rem 0 .25rem;color:var(--accent);text-transform:uppercase;letter-spacing:.08em}
+  p{margin:.5rem 0 .9rem}
+  code,.formula{font-family:"JetBrains Mono","SF Mono",Menlo,monospace;background:var(--code-bg);padding:.1rem .4rem;border-radius:3px;font-size:.95em}
+  /* handwritten formula note on ruled paper */
+  .fblock{display:block;white-space:pre-wrap;background:#fcfbf7;background-image:repeating-linear-gradient(#fcfbf7 0,#fcfbf7 33px,#dde6f1 33px,#dde6f1 34px);background-position:0 6px;padding:.55rem 1.1rem .35rem;margin:.7rem 0;border:1px solid #e3ddcd;border-left:4px solid var(--accent2);border-radius:6px;font-family:var(--hand);font-size:1.5rem;color:var(--ink-blue);line-height:34px;letter-spacing:.4px;overflow-x:auto}
+  .m{font-family:var(--hand);font-size:1.16em;color:var(--ink-blue);letter-spacing:.3px}
+  .fblock sub,.m sub,.soln sub{font-size:.6em;line-height:0}
+  .fblock sup,.m sup,.soln sup{font-size:.6em;line-height:0}
+  .frac{display:inline-flex;flex-direction:column;text-align:center;vertical-align:-0.55em;margin:0 .15em;line-height:1.0}
+  .frac>span:first-child{border-bottom:2px solid currentColor;padding:0 .25em}
+  .frac>span:last-child{padding:0 .25em}
+  /* worked examples = scribbled working */
+  .soln .step,.soln .ans{font-family:var(--hand);font-size:1.2rem;color:var(--ink-blue);line-height:1.55;letter-spacing:.3px}
+  .soln .step b{color:#7a1414;font-weight:400}
+  .soln .ans{color:#6a4400}
+  mark{background:var(--hl);padding:0 .2rem}
+  table{border-collapse:collapse;width:100%;margin:1rem 0;background:var(--paper);font-size:.92rem}
+  th,td{border:1px solid var(--rule);padding:.5rem .7rem;text-align:left;vertical-align:top}
+  th{background:#f0ede4;font-weight:600;font-family:"Iowan Old Style",serif}
+  ul,ol{padding-left:1.3rem}li{margin:.3rem 0}
+  ol.recipe{counter-reset:s;list-style:none;padding-left:0}
+  ol.recipe li{counter-increment:s;position:relative;padding:.25rem 0 .25rem 2.1rem;margin:.2rem 0}
+  ol.recipe li::before{content:counter(s);position:absolute;left:0;top:.2rem;width:1.5rem;height:1.5rem;background:var(--accent2);color:#fff;border-radius:50%;font-family:"JetBrains Mono",monospace;font-size:.8rem;font-weight:700;display:flex;align-items:center;justify-content:center}
+  .container{max-width:920px;margin:0 auto;padding:0 1.2rem 4rem}
+  header.site{background:var(--paper);border-bottom:1px solid var(--rule);padding:1.3rem 1.2rem .4rem;position:sticky;top:0;z-index:50}
+  header.site .inner{max-width:920px;margin:0 auto}
+  .brand{font-family:"Iowan Old Style",serif;font-size:1.3rem;font-weight:600}
+  .brand .accent{color:var(--accent)}
+  .sub{color:var(--muted);font-size:.84rem;margin-bottom:.6rem}
+  nav.tabs{display:flex;flex-wrap:wrap;gap:.2rem;border-bottom:1px solid var(--rule);margin-top:.4rem}
+  nav.tabs button{background:none;border:none;padding:.55rem .85rem;cursor:pointer;font-size:.92rem;font-family:inherit;color:var(--muted);border-bottom:2px solid transparent;margin-bottom:-1px;transition:.15s}
+  nav.tabs button:hover{color:var(--ink)}
+  nav.tabs button.active{color:var(--accent);border-bottom-color:var(--accent);font-weight:600}
+  section.tab{display:none;padding:1.3rem 0}
+  section.tab.active{display:block}
+  /* archetype card */
+  article.arch{border:1px solid var(--rule);border-radius:10px;background:var(--paper);padding:1rem 1.3rem 1.2rem;margin:1.4rem 0;box-shadow:0 1px 2px rgba(0,0,0,.03)}
+  article.arch>h3{margin-top:.3rem;display:flex;align-items:center;gap:.5rem}
+  .num{background:var(--accent);color:#fff;font-family:"JetBrains Mono",monospace;font-size:.85rem;font-weight:700;border-radius:6px;padding:.1rem .5rem;flex:none}
+  .freq{font-size:.66rem;font-weight:700;letter-spacing:.04em;padding:.12rem .45rem;border-radius:10px;margin-left:auto}
+  .freq.hi{background:var(--accent);color:#fff}
+  .freq.md{background:#e0a800;color:#3a2c00}
+  .freq.lo{background:#e6e3dc;color:#555}
+  .callout{background:var(--gold-bg);border:1px solid #ece0bd;border-left:4px solid var(--gold);border-radius:6px;padding:.6rem .9rem;margin:.5rem 0}
+  .callout.blue{background:#eef2fb;border-color:#cdd8f0;border-left-color:var(--accent2)}
+  .callout.red{background:#fdecec;border-color:#f3caca;border-left-color:var(--accent)}
+  .callout p{margin:.2rem 0}
+  .soln-toggle{cursor:pointer;user-select:none;font-weight:600;color:var(--accent);font-size:.88rem;display:inline-block;padding:.3rem .65rem;border:1px solid var(--rule);border-radius:5px;background:#f8f6f0;margin-top:.5rem}
+  .soln-toggle:hover{background:#f0ede4}
+  .soln{display:none;margin-top:.6rem;padding:.6rem .9rem;background:#fbfaf6;border:1px dashed var(--rule);border-radius:6px}
+  .soln.show{display:block}
+  .step{margin:.3rem 0;font-size:.95rem}
+  .ans{background:var(--gold-bg);border-left:3px solid var(--gold);padding:.4rem .7rem;border-radius:4px;margin:.5rem 0 .2rem;font-size:.95rem}
+  .bar{display:flex;gap:.5rem;align-items:center;margin:.4rem 0 1rem;flex-wrap:wrap}
+  .btn{font-family:inherit;font-size:.82rem;padding:.4rem .7rem;border:1px solid var(--rule);border-radius:6px;background:var(--paper);cursor:pointer;color:var(--ink)}
+  .btn:hover{background:#f0ede4}
+  .lead{font-size:1.05rem;color:#333}
+  .small{font-size:.85rem;color:var(--muted)}
+  .big{background:#fff8f8;border:1px solid #f0cfcf;border-radius:10px;padding:1rem 1.2rem;margin:1.2rem 0}
+</style>
+</head>
+<body>
+<header class="site">
+  <div class="inner">
+    <div class="brand"><span class="accent">MTL</span> · Numericals How-to-Solve Playbook</div>
+    <div class="sub">MIE 3223 · Machine Tool Technology · ch 3·4·5 · learn the <b>method</b>, not the answer — the values change, the recipe doesn't</div>
+    <nav class="tabs" id="tabs">
+      <button data-t="mind" class="active">🧠 Mindset</button>
+      <button data-t="ch3">Ch3 · Structures</button>
+      <button data-t="ch4">Ch4 · Guideways</button>
+      <button data-t="ch5">Ch5 · Spindles</button>
+      <button data-t="flow">🧭 Which type is this?</button>
+    </nav>
+  </div>
+</header>
+
+<div class="container">
+
+<!-- ===================== MINDSET ===================== -->
+<section class="tab active" id="mind">
+  <h1>How to attack any numerical</h1>
+  <p class="lead">Every ch 3/4/5 numerical is the same four-move game. Internalise the moves and a problem you've never seen becomes a problem you've already solved.</p>
+
+  <div class="big">
+    <h3 style="margin-top:0">The 4 moves — every single time</h3>
+    <ol class="recipe">
+      <li><b>Convert to cm + kgf first.</b> Before any formula. mm→cm (÷10), kgf·m→kgf·cm (×100), kgf/cm vs kgf/mm (×10). Mixed units is the #1 mark-killer in this paper.</li>
+      <li><b>Draw it &amp; label.</b> Sketch the section or free-body, mark every dimension and force you'll use. The picture chooses the formula for you.</li>
+      <li><b>Name the type out loud.</b> "This is a closed-section torsion." "This is a carriage-equilibrium slideway." The name pulls the formula — see the chapter tabs.</li>
+      <li><b>Substitute, then box with units.</b> Numbers in, one line each, final answer boxed with units. State any "assume suitable data" you used — it's allowed and earns method marks.</li>
+    </ol>
+  </div>
+
+  <h3>Unit conversions you will need</h3>
+  <span class="fblock">1 kgf·m   = 100 kgf·cm          (torque/moment)
+1 m       = 100 cm,  1 mm = 0.1 cm
+kgf/cm    → kgf/mm : ÷10        (stiffness)
+1 µm      = 10⁻⁴ cm = 10⁻³ mm   (deflection, run-out)
+E<sub>steel</sub>   = 2.1×10⁶ kgf/cm²,  E<sub>CI</sub> = 1.0–1.2×10⁶ kgf/cm²
+G<sub>steel</sub>   = 8×10⁵ kgf/cm²
+[p<sub>av</sub>]    ≈ ½ [p<sub>max</sub>]           (bearing pressure)</span>
+
+  <div class="callout blue"><h4 style="margin-top:0">The mindset that separates a pass from a blank</h4>
+  <p>You are <b>never</b> asked to invent anything. Each problem maps to one of ~14 recipes on the next three tabs. Your job in the exam is <b>diagnosis</b>, not creativity: read the question, spot the trigger words, jump to the recipe, run it. If you've drilled the recipes, the only thing that can go wrong is arithmetic or units — so go slow on those two.</p></div>
+
+  <div class="callout"><h4 style="margin-top:0">When you're stuck</h4>
+  <p>If you can't see the type: write down <b>what's given</b> and <b>what's asked</b> in symbols. "Given M<sub>t</sub>, section dims, G, L → asked τ and θ" instantly says <i>torsion recipe</i>. The given/asked pair almost always names the recipe. If a value is missing, <b>assume the standard one and say so</b> — the prof explicitly allows it.</p></div>
+
+  <div class="callout red"><h4 style="margin-top:0">Universal traps (cost marks on every type)</h4>
+  <p>Mixed units (mm with cm). • Forgetting to halve [p<sub>max</sub>] for [p<sub>av</sub>]. • kgf/cm vs kgf/mm for stiffness. • Reporting radians when degrees asked (×57.296). • Not stating assumptions. • Skipping the free-body sketch and guessing a reaction's direction.</p></div>
+</section>
+
+<!-- ===================== CH3 ===================== -->
+<section class="tab" id="ch3">
+  <h2>Ch3 · Structures — the 5 recipes</h2>
+  <div class="bar"><button class="btn" data-reveal="ch3">Show all examples</button><button class="btn" data-hide="ch3">Hide all</button></div>
+  <div id="ch3-body">
+
+  <article class="arch">
+    <h3><span class="num">3·A</span> Torsion of a thin section (open vs closed) <span class="freq hi">most-tested</span></h3>
+    <div class="callout blue"><h4>Recognise it</h4><p>A <b>twisting moment / torque M<sub>t</sub></b> on a beam cross-section (I, channel, box, angle), asks for <b>max shear stress τ</b> and/or <b>angle of twist θ</b>. The picture is a cross-section, not a loaded beam.</p></div>
+    <h4>Decide first: open or closed?</h4>
+    <p><b>Open</b> = you could "unroll" it into thin strips (I, channel, L, T). <b>Closed</b> = a continuous tube enclosing area (box, hollow rectangle). This one decision changes everything.</p>
+    <span class="fblock">OPEN:   I<sub>t</sub> = β·(1/3)·Σ b·t³        β: rect 1.0, channel 1.12, I 1.20
+        τ<sub>max</sub> = M<sub>t</sub> · t<sub>max</sub> / I<sub>t</sub>      (t<sub>max</sub> = THICKEST element)
+        θ = M<sub>t</sub> · L / (G · I<sub>t</sub>)
+CLOSED: I<sub>t</sub> = 4·A₀² / (∮ ds/δ)        A₀ = area at wall MID-LINE
+        τ = M<sub>t</sub> / (2·A₀·δ)            M<sub>lim</sub> = 2·τ·A₀·δ
+        θ = M<sub>t</sub> · L / (G · I<sub>t</sub>)</span>
+    <div class="callout"><h4>Mindset / first move</h4><p>Draw the section, split it into rectangles (b × t), and <b>circle the thickest one</b> — that thickness is t<sub>max</sub>. Convert mm→cm and M<sub>t</sub> to kgf·cm before plugging. Closed beats open ~8–30× in stiffness — if asked "which is better in torsion", it's always closed.</p></div>
+    <h4>Step recipe (open)</h4>
+    <ol class="recipe">
+      <li>List each thin rectangle as (b, t) in cm. For an I: 2 flanges + 1 web (web height = total − 2×flange thickness).</li>
+      <li>I<sub>t</sub> = β·(1/3)·Σ b·t³. Don't forget β (1.20 for I).</li>
+      <li>τ<sub>max</sub> = M<sub>t</sub>·t<sub>max</sub>/I<sub>t</sub>, with t<sub>max</sub> = thickest element (usually the flange).</li>
+      <li>θ = M<sub>t</sub>·L/(G·I<sub>t</sub>); convert to degrees ×57.296 if asked.</li>
+    </ol>
+    <div class="callout red"><h4>Traps</h4><p>Forgetting β (gives 46 instead of 55.2). • Using web thickness as t<sub>max</sub> instead of the flange. • Web height = full height − 2×flange thickness, not the full height. • For closed sections, A₀ is at the wall <b>mid-line</b> (subtract one wall thickness per outer dimension).</p></div>
+    <span class="soln-toggle">Show worked example ▸</span>
+    <div class="soln">
+      <p class="step"><b>I-section, M<sub>t</sub> = 1000 kgf·m, G = 8×10⁵, L = 100 cm; 140 tall, flange 80×20, web 10 (mm).</b></p>
+      <p class="step">cm: flanges 8×2 (×2), web 10×1 (height 140−40=100 mm=10 cm). M<sub>t</sub> = 100 000 kgf·cm.</p>
+      <p class="step">I<sub>t</sub> = 1.20·(1/3)·[2·(8·2³)+(10·1³)] = 1.20·(1/3)·[128+10] = 1.20·46 = 55.2 cm⁴.</p>
+      <p class="step">τ<sub>max</sub> = 100 000·2/55.2 = 3623 kgf/cm² (t<sub>max</sub> = flange = 2 cm).</p>
+      <p class="step">θ = 100 000·100/(8×10⁵·55.2) = 0.2264 rad = 12.97°.</p>
+      <p class="ans"><b>τ<sub>max</sub> ≈ 3623 kgf/cm², θ ≈ 12.97°.</b> Now re-do it as a closed box of the same outer size and watch I<sub>t</sub> jump — that's the exercise that beats the class.</p>
+    </div>
+  </article>
+
+  <article class="arch">
+    <h3><span class="num">3·B</span> Bending deflection &amp; reduced rigidity (beds, stiffeners) <span class="freq md">common</span></h3>
+    <div class="callout blue"><h4>Recognise it</h4><p>A <b>bed/base/table with walls and stiffeners</b>, asks for <b>deflection</b> or <b>reduced bending rigidity EI<sub>br</sub></b>, often comparing <b>perpendicular vs diagonal</b> stiffeners.</p></div>
+    <span class="fblock">Bending stress  σ = M·c/I,   I = bh³/12
+Central deflection  δ = P·L³/(48·E·I)
+Reduced rigidity  EI<sub>br</sub> = s · E · I<sub>wall</sub>      (s from Mehta Eq 3.41 perp / 3.42 diag)
+Stiffness k = F/δ</span>
+    <div class="callout"><h4>Mindset / first move</h4><p>Find the wall's own I first (I<sub>wall</sub> = b·h³/12 of one wall), then apply the stiffener factor s. The headline you must remember: <b>diagonal stiffeners ≈ 30× stiffer than perpendicular</b> for the same metal — so if asked "which is better", diagonal wins for both bending and torsion.</p></div>
+    <h4>Step recipe</h4>
+    <ol class="recipe">
+      <li>Compute the single-wall I = b·h³/12 (cm).</li>
+      <li>Count stiffeners n from spacing over length.</li>
+      <li>Apply s₁ (perpendicular, Eq 3.41) or s₂ (diagonal, Eq 3.42) — state the assumed factor.</li>
+      <li>EI<sub>br</sub> = s·E·I; compare the two, report the ratio.</li>
+    </ol>
+    <div class="callout red"><h4>Traps</h4><p>Using the whole box I instead of the single wall. • Mixing the perpendicular factor with the diagonal one. • Forgetting to convert E to kgf/cm².</p></div>
+    <span class="soln-toggle">Show worked example ▸</span>
+    <div class="soln">
+      <p class="step"><b>Lathe bed, walls 5 cm, height 100 cm:</b> I<sub>wall</sub> = 100·5³/12 = 1042 cm⁴.</p>
+      <p class="step">Perpendicular: EI<sub>br</sub> ≈ 0.99×10¹⁰; Diagonal: EI<sub>br</sub> ≈ 3.0×10¹¹ kgf·cm².</p>
+      <p class="ans"><b>Diagonal ≈ 30× stiffer.</b> The number to quote even if you can't recall the exact s factors.</p>
+    </div>
+  </article>
+
+  <article class="arch">
+    <h3><span class="num">3·C</span> Required stiffness k = F/δ <span class="freq hi">free marks</span></h3>
+    <div class="callout blue"><h4>Recognise it</h4><p>Gives a <b>cutting force</b> and an <b>allowable deflection</b>, asks for <b>required structural stiffness</b>. (This was Q7(d) on the last paper.)</p></div>
+    <span class="fblock">k = F / δ        (watch units: N/mm, or kgf/µm)</span>
+    <div class="callout"><h4>Mindset / first move</h4><p>This is the easiest mark on the paper — it's a one-liner. The only risk is units: keep F and δ consistent.</p></div>
+    <div class="callout red"><h4>Traps</h4><p>δ in mm vs µm. 0.005 mm = 5 µm. Answer 10⁶ N/mm = 1000 N/µm — same number, label it right.</p></div>
+    <span class="soln-toggle">Show worked example ▸</span>
+    <div class="soln">
+      <p class="step">F = 5000 N, δ = 0.005 mm → k = 5000/0.005 = 1 000 000 N/mm.</p>
+      <p class="ans"><b>k = 10⁶ N/mm = 1000 N/µm.</b></p>
+    </div>
+  </article>
+
+  <article class="arch">
+    <h3><span class="num">3·D</span> Box column / base deflection <span class="freq md">common</span></h3>
+    <div class="callout blue"><h4>Recognise it</h4><p>A <b>hollow box column or base</b> with given outer size + wall thickness, loaded laterally and/or axially, asks for <b>max deflection</b> or <b>angle of slope</b>.</p></div>
+    <span class="fblock">Box section I = (b⁴ − (b−2t)⁴)/12     (square) ;  general [BH³−(B−2t)(H−2t)³]/12
+Lateral (cantilever)  δ = P·h³/(3·E·I)     ← usually governs
+Axial  δ = P·h/(E·A)                        ← usually tiny
+Slope (moment-area)  θ = ∫M dx /(E·I)</span>
+    <div class="callout"><h4>Mindset / first move</h4><p>Get the hollow I first, then compare lateral vs axial deflection — <b>lateral almost always governs</b>, so compute that one carefully and dismiss axial as negligible in one line.</p></div>
+    <div class="callout red"><h4>Traps</h4><p>Subtracting 2t from both dimensions for the hole. • Treating a lateral load as axial. • Aperture/hole → cut local I, deflection rises ~15% (Table 3.4).</p></div>
+    <span class="soln-toggle">Show worked example ▸</span>
+    <div class="soln">
+      <p class="step">CI box 30×30 cm, wall 3 cm, h = 200 cm, lateral 200 kgf, E = 1.2×10⁶.</p>
+      <p class="step">I = (30⁴−24⁴)/12 = 39 852 cm⁴; δ = 200·200³/(3·1.2×10⁶·39 852) ≈ 0.0112 cm ≈ 112 µm.</p>
+      <p class="ans"><b>δ<sub>max</sub> ≈ 112 µm (lateral governs);</b> axial ≈ 1 µm, negligible.</p>
+    </div>
+  </article>
+
+  <article class="arch">
+    <h3><span class="num">3·E</span> Natural frequency / Perspex model scaling <span class="freq lo">rare</span></h3>
+    <div class="callout blue"><h4>Recognise it</h4><p>A <b>scale model</b> (Perspex) with a measured frequency, asks for the <b>real structure's frequency</b> — or a frequency-to-avoid range.</p></div>
+    <span class="fblock">f<sub>struct</sub>/f<sub>model</sub> = (1/λ)·√(E<sub>s</sub>·ρ_m / E<sub>m</sub>·ρ_s)     (λ = scale)
+Frequency to avoid  f = n·Z/60,  n = 1000V/(πD)        (excitation)</span>
+    <div class="callout"><h4>Mindset / first move</h4><p>Put 1/λ <b>outside</b> the root. Look up E<sub>Perspex</sub> ≈ 0.03×10⁶ kgf/cm². For "frequency to avoid", evaluate f at both extremes of D, V, Z.</p></div>
+    <div class="callout red"><h4>Traps</h4><p>Putting λ inside the root. • Wrong E for Perspex. • Forgetting it's a range (min and max), not one number.</p></div>
+    <span class="soln-toggle">Show worked example ▸</span>
+    <div class="soln">
+      <p class="step">λ=10, f<sub>model</sub>=150 Hz, E<sub>s</sub>/E<sub>m</sub>=70, ρ_m/ρ_s=0.154 → √(10.77)=3.28.</p>
+      <p class="step">f<sub>s</sub> = 150·(1/10)·3.28.</p>
+      <p class="ans"><b>f<sub>steel</sub> ≈ 49 Hz.</b></p>
+    </div>
+  </article>
+
+  </div>
+</section>
+
+<!-- ===================== CH4 ===================== -->
+<section class="tab" id="ch4">
+  <h2>Ch4 · Guideways &amp; Power Screws — the 5 recipes</h2>
+  <div class="bar"><button class="btn" data-reveal="ch4">Show all examples</button><button class="btn" data-hide="ch4">Hide all</button></div>
+  <div id="ch4-body">
+
+  <article class="arch">
+    <h3><span class="num">4·A</span> Slideway reactions &amp; face width <span class="freq hi">most-tested</span></h3>
+    <div class="callout blue"><h4>Recognise it</h4><p>Cutting-force components <b>P<sub>z</sub>, P<sub>y</sub>, P<sub>x</sub></b> + <b>carriage weight G</b>, asks for <b>slideway width</b> or whether the saddle <b>lifts off</b>.</p></div>
+    <span class="fblock">Reactions (two-flat way), b = way spacing, h = tool height, y<sub>p</sub> = force position:
+  B = P<sub>y</sub>
+  C = (P<sub>z</sub>·y<sub>p</sub> − P<sub>y</sub>·h)/b + G/2
+  A = P<sub>z</sub> + G/2 − (P<sub>z</sub>·y<sub>p</sub> − P<sub>y</sub>·h)/b
+Face width  c' = A<sub>reaction</sub> / ([p<sub>av</sub>]·L)
+Pulling force  Q = P<sub>x</sub> + f·(P<sub>z</sub> + P<sub>y</sub> + G)</span>
+    <div class="callout"><h4>Mindset / first move</h4><p>This is a <b>statics free-body</b>, not a special formula. Draw the carriage, sum forces and moments, get the three reactions, then size width on the <b>largest</b> reaction. Convention: P<sub>z</sub> tangential, P<sub>y</sub> radial, P<sub>x</sub> axial.</p></div>
+    <h4>Step recipe</h4>
+    <ol class="recipe">
+      <li>State assumed b, h, y<sub>p</sub>, f, [p<sub>av</sub>]=½[p<sub>max</sub>] (CI ≈ 25 → 12.5). Say you're assuming them.</li>
+      <li>Compute B, C, A from equilibrium.</li>
+      <li>Pick the largest reaction → c' = A/([p<sub>av</sub>]·L).</li>
+      <li>Check Q = P<sub>x</sub> + f(P<sub>z</sub>+P<sub>y</sub>+G). Check no reaction is negative (= lift-off → needs a closed way).</li>
+    </ol>
+    <div class="callout red"><h4>Traps</h4><p>A <b>negative reaction means lift-off/tipping</b> — don't ignore the sign. • Halve [p<sub>max</sub>] for [p<sub>av</sub>]. • Forgetting to state your assumed geometry (it's expected here).</p></div>
+    <span class="soln-toggle">Show worked example ▸</span>
+    <div class="soln">
+      <p class="step">P<sub>z</sub>=300,P<sub>y</sub>=130,P<sub>x</sub>=120,G=150 kgf,L=30 cm; assume b=30,h=20,y<sub>p</sub>=15,f=0.1,[p<sub>av</sub>]=12.5.</p>
+      <p class="step">C=(300·15−130·20)/30+75=138.3; A=375−63.3=311.7 kgf (largest).</p>
+      <p class="step">c'=311.7/(12.5·30)=0.83 cm; Q=120+0.1·580=178 kgf.</p>
+      <p class="ans"><b>width ≈ 0.83 cm (round to 1 cm); Q ≈ 178 kgf.</b></p>
+    </div>
+  </article>
+
+  <article class="arch">
+    <h3><span class="num">4·B</span> Pulling force: conventional vs ball <span class="freq md">common</span></h3>
+    <div class="callout blue"><h4>Recognise it</h4><p>Same cutting components, asks to <b>compare the pull</b> for a sliding slideway vs a recirculating-ball way.</p></div>
+    <span class="fblock">Conventional  Q = P<sub>x</sub> + f·(P<sub>z</sub> + P<sub>y</sub> + G)      (sliding f ≈ 0.1–0.15)
+Ball way      Q = P<sub>x</sub> + n·F<sub>c</sub> + (f<sub>r</sub>/r<sub>eq</sub>)·N    (rolling f<sub>r</sub> ≈ 0.001 cm)
+              r<sub>eq</sub> = r/k (k≈1.4),  N = P<sub>z</sub> + G</span>
+    <div class="callout"><h4>Mindset / first move</h4><p>The whole point: rolling friction is tiny, so the ball way's pull collapses to almost just P<sub>x</sub>. Compute both, state the % saving. P<sub>x</sub> is irreducible — the saving is all in the friction term.</p></div>
+    <div class="callout red"><h4>Traps</h4><p>Using sliding f for the ball way. • Forgetting the small constant n·F<sub>c</sub> term. • Mixing cm/mm for the ball radius.</p></div>
+    <span class="soln-toggle">Show worked example ▸</span>
+    <div class="soln">
+      <p class="step">Conventional: Q=120+0.15·580=207 kgf.</p>
+      <p class="step">Ball: F=4·0.5+(0.001/0.357)·450=3.26; Q=3.26+120=123 kgf.</p>
+      <p class="ans"><b>207 vs 123 kgf → ~40% lower.</b></p>
+    </div>
+  </article>
+
+  <article class="arch">
+    <h3><span class="num">4·C</span> Lead screw: pressure, shear, pitch error <span class="freq md">common</span></h3>
+    <div class="callout blue"><h4>Recognise it</h4><p>An <b>Acme lead screw</b> with OD, pitch, effective dia, nut length + cutting components, asks for <b>average pressure, max shear stress, pitch error</b>.</p></div>
+    <span class="fblock">Axial pull  Q = P<sub>x</sub> + f·(P<sub>z</sub> + P<sub>y</sub> + G)
+p<sub>av</sub> = 2Q/(π·d·L)                         (d = effective dia, L = nut length)
+σ = 4Q/(π·d<sub>m</sub>²),  τ = 16M<sub>t</sub>/(π·d<sub>m</sub>³)      (d<sub>m</sub> = minor = OD − pitch)
+τ<sub>max</sub> = ½·√(σ² + 4τ²)
+Pitch error  Δt = Q·t/(E·A<sub>m</sub>),  A<sub>m</sub> = π·d<sub>m</sub>²/4</span>
+    <div class="callout"><h4>Mindset / first move</h4><p>Order matters: <b>Q first</b>, then p<sub>av</sub>, then torque (needs helix angle λ and α=14.5° for Acme), then stresses on the <b>minor</b> diameter, then pitch error last. Each result is usually tiny — the screw is accuracy-governed, not strength-governed.</p></div>
+    <div class="callout red"><h4>Traps</h4><p>Using effective dia for stresses (use minor d<sub>m</sub> = OD − pitch). • Forgetting α=14.5° for Acme. • p<sub>av</sub> uses effective dia and nut length.</p></div>
+    <span class="soln-toggle">Show worked example ▸</span>
+    <div class="soln">
+      <p class="step">OD=70,d=65,t=10,L=100 mm;P<sub>z</sub>=150,P<sub>y</sub>=50,P<sub>x</sub>=45,f=0.2,G=50.</p>
+      <p class="step">Q=45+0.2·250=95; p<sub>av</sub>=2·95/(π·6.5·10)=0.93 kgf/cm²; d<sub>m</sub>=6.0 cm.</p>
+      <p class="step">τ<sub>max</sub>=½√(σ²+4τ²)≈2.52 kgf/cm²; Δt=95·1/(2.1×10⁶·28.27)=1.6×10⁻⁶ cm.</p>
+      <p class="ans"><b>p<sub>av</sub>=0.93, τ<sub>max</sub>=2.52 kgf/cm², Δt≈0.016 µm</b> — all safe.</p>
+    </div>
+  </article>
+
+  <article class="arch">
+    <h3><span class="num">4·D</span> Hydrostatic pad: pressure, capacity, restrictor <span class="freq lo">harder</span></h3>
+    <div class="callout blue"><h4>Recognise it</h4><p>A <b>hydrostatic pad</b> (pad area, pocket area, pump pressure, capillary l/d), asks for <b>pocket pressure, load capacity</b> or <b>restrictor size</b>.</p></div>
+    <span class="fblock">Load  P = p₀·A·C<sub>L</sub>          C<sub>L</sub> = load coefficient ≈ 0.3–0.55
+p₀ = P/(A·C<sub>L</sub>)              (start here — always unambiguous)
+Optimum stiffness at  p₀/p<sub>p</sub> = 2/3
+Capillary  c<sub>rc</sub> = (C<sub>F</sub>/h³)·(p<sub>p</sub>−p₀)/p₀,  l<sub>c</sub> = 20·d<sub>c</sub></span>
+    <div class="callout"><h4>Mindset / first move</h4><p>Always begin with C<sub>L</sub> and p₀ = P/(A·C<sub>L</sub>) — those are the marks you can always get. The restrictor algebra is bonus; if time is short, write the formula chain and the p₀/p<sub>p</sub>=2/3 result and move on.</p></div>
+    <div class="callout red"><h4>Traps</h4><p>Over-investing time here — it's low-frequency, high-effort. • Mehta's flow coefficient carries an embedded unit constant; show the chain, don't chase a perfect number.</p></div>
+    <span class="soln-toggle">Show worked example ▸</span>
+    <div class="soln">
+      <p class="step">Pad 5×8, pocket 1×6 cm, P=50 kgf, p<sub>p</sub>=40: C<sub>L</sub>=0.542, A=40 cm².</p>
+      <p class="step">p₀=50/(40·0.542)=2.31 kgf/cm²; restrictor drops 37.7; size via c<sub>rc</sub> with l/d=20.</p>
+      <p class="ans"><b>p₀=2.31 kgf/cm², C<sub>L</sub>=0.542</b> — the graded quantities.</p>
+    </div>
+  </article>
+
+  <article class="arch">
+    <h3><span class="num">4·E</span> Recirculating ball screw load <span class="freq lo">rare</span></h3>
+    <div class="callout blue"><h4>Recognise it</h4><p>A <b>ball screw</b> (ball dia, total balls, rpm, service life), asks for <b>load per ball</b> and <b>static/dynamic pull</b>.</p></div>
+    <span class="fblock">Per ball  P = 200·d<sub>b</sub>²              (d<sub>b</sub> in cm)
+Static    Q = 100·Z<sub>r</sub>·d<sub>b</sub>²,  Z<sub>r</sub> = 0.7·Z<sub>t</sub>
+Dynamic   Q<sub>dyn</sub> = Q/k,  k = 0.9·(60·T·n·f/10⁷)^(1/3),  f = Z<sub>t</sub>/2</span>
+    <div class="callout"><h4>Mindset / first move</h4><p>Three formulas in a chain. Remember <b>Z<sub>r</sub> = 0.7 Z<sub>t</sub></b> (not all balls are loaded) and watch the <b>cube root</b> in k.</p></div>
+    <div class="callout red"><h4>Traps</h4><p>Using full Z<sub>t</sub> instead of 0.7 Z<sub>t</sub>. • Cube root forgotten. • d<sub>b</sub> in mm not cm.</p></div>
+    <span class="soln-toggle">Show worked example ▸</span>
+    <div class="soln">
+      <p class="step">d<sub>b</sub>=1 cm, Z<sub>t</sub>=120, n=40, T=10000 h: P=200; Z<sub>r</sub>=84; Q=100·84·1=8400 kgf.</p>
+      <p class="step">f=60, k=0.9·(144)^⅓=4.72; Q<sub>dyn</sub>=8400/4.72=1781 kgf.</p>
+      <p class="ans"><b>per ball 200, static 8400, dynamic ≈1781 kgf.</b></p>
+    </div>
+  </article>
+
+  </div>
+</section>
+
+<!-- ===================== CH5 ===================== -->
+<section class="tab" id="ch5">
+  <h2>Ch5 · Spindles — the 4 recipes</h2>
+  <div class="bar"><button class="btn" data-reveal="ch5">Show all examples</button><button class="btn" data-hide="ch5">Hide all</button></div>
+  <div id="ch5-body">
+
+  <article class="arch">
+    <h3><span class="num">5·A</span> Machine-tool compliance <span class="freq hi">most-tested</span></h3>
+    <div class="callout blue"><h4>Recognise it</h4><p>Work between centres, radial force at a position, given <b>stiffnesses of saddle / headstock / tailstock</b>, asks for <b>compliance</b> or <b>cutting-point displacement</b>.</p></div>
+    <span class="fblock">C = 1/K<sub>s</sub> + (1/K<sub>A</sub>)(1 − x/L)² + (1/K<sub>B</sub>)(x/L)²
+     (x measured FROM the headstock A;  K<sub>A</sub> headstock, K<sub>B</sub> tailstock)
+Displacement  y = C · P<sub>y</sub></span>
+    <div class="callout"><h4>Mindset / first move</h4><p>First fix <b>x/L</b> — and watch the wording: "200 mm from the tailstock" means x = L − 200. Compliances <b>add in series</b>. Then y = C·P<sub>y</sub>. Only the <b>radial</b> P<sub>y</sub> matters for diameter error; P<sub>z</sub> is a distractor.</p></div>
+    <h4>Step recipe</h4>
+    <ol class="recipe">
+      <li>Convert all stiffnesses to the same unit (kgf/cm→kgf/mm ÷10).</li>
+      <li>Find x from the headstock; compute x/L.</li>
+      <li>C = sum of the three terms.</li>
+      <li>y = C·P<sub>y</sub>. Box it in µm.</li>
+    </ol>
+    <div class="callout red"><h4>Traps</h4><p>Measuring x from the wrong end. • Using P<sub>z</sub> instead of P<sub>y</sub>. • Mixing kgf/cm with kgf/mm.</p></div>
+    <span class="soln-toggle">Show worked example ▸</span>
+    <div class="soln">
+      <p class="step">L=750,tool 200 from tailstock→x=550,x/L=0.733; K: 3000/4000/2500 kgf/mm; P<sub>y</sub>=150.</p>
+      <p class="step">C=1/3000+(1/4000)0.267²+(1/2500)0.733²=5.66×10⁻⁴ mm/kgf=0.566 µm/kgf.</p>
+      <p class="ans"><b>C≈0.566 µm/kgf; y=0.566·150≈85 µm.</b></p>
+    </div>
+  </article>
+
+  <article class="arch">
+    <h3><span class="num">5·B</span> Spindle nose deflection &amp; optimum span <span class="freq md">common</span></h3>
+    <div class="callout blue"><h4>Recognise it</h4><p>Spindle on two bearings + overhang, asks for <b>nose deflection</b> or <b>optimum bearing span λ</b>.</p></div>
+    <span class="fblock">Nose deflection  y = δ<sub>B</sub>(1 + c/l) + δ<sub>A</sub>(c/l)      (front bearing B dominates)
+δ = R/K at each bearing;  reactions from beam statics
+Optimum span  λ = l/c ≈ 3–5   (must be ≥ 2.5 for anti-friction)</span>
+    <div class="callout"><h4>Mindset / first move</h4><p>The <b>front bearing dominates</b> (the 1+c/l factor amplifies it). Get bearing reactions by statics, δ=R/K, then combine. For "optimum span" just quote λ≈3–5 and the reason: bending rises with span, support-compliance falls, so the sum has a minimum.</p></div>
+    <div class="callout red"><h4>Traps</h4><p>Swapping front/rear bearing. • Forgetting the 1+c/l amplification. • Reporting λ<2.5 (not allowed for ball bearings).</p></div>
+    <span class="soln-toggle">Show worked example ▸</span>
+    <div class="soln">
+      <p class="step">δ<sub>B</sub>=42.2 µm, δ<sub>A</sub>=9.17 µm, c=1,l=3: y=42.2·1.333+9.17·0.333.</p>
+      <p class="ans"><b>y≈59 µm; λ<sub>opt</sub>≈3.</b></p>
+    </div>
+  </article>
+
+  <article class="arch">
+    <h3><span class="num">5·C</span> Run-out from bearing clearance <span class="freq md">common</span></h3>
+    <div class="callout blue"><h4>Recognise it</h4><p>Two bearings with <b>radial clearances</b> + nose overhang, asks for <b>radial run-out of the nose</b>.</p></div>
+    <span class="fblock">Run-out  = δ<sub>B</sub>(1 + c/l) + δ<sub>A</sub>(c/l)       (same form as nose deflection)
+     δ<sub>B</sub> = front clearance, δ<sub>A</sub> = rear; worst case = opposite directions</span>
+    <div class="callout"><h4>Mindset / first move</h4><p>Identical formula to 5·B but the δ's are <b>clearances</b>, not load deflections. Take them in opposite senses for the worst case. Front clearance dominates.</p></div>
+    <div class="callout red"><h4>Traps</h4><p>Adding clearances same-sign (under-estimates). • Using rear as front.</p></div>
+    <span class="soln-toggle">Show worked example ▸</span>
+    <div class="soln">
+      <p class="step">l=20 cm, front δ<sub>B</sub>=6 µm, rear δ<sub>A</sub>=4 µm, c=8 cm → c/l=0.4.</p>
+      <p class="step">run-out = 6(1.4)+4(0.4)=8.4+1.6.</p>
+      <p class="ans"><b>= 10 µm.</b></p>
+    </div>
+  </article>
+
+  <article class="arch">
+    <h3><span class="num">5·D</span> Journal bearing: p, v, pv, film <span class="freq lo">harder</span></h3>
+    <div class="callout blue"><h4>Recognise it</h4><p>A <b>sleeve / journal bearing</b> (dia, load, rpm, l/d), asks to <b>select material</b> or <b>check p, v, pv</b> / film thickness.</p></div>
+    <span class="fblock">Pressure  p = P/(l·d)        Speed  v = π·d·n/60
+pv product  (check against [pv])
+Clearance  c = ψ·d/2,  film  h<sub>min</sub> = c(1 − ε)</span>
+    <div class="callout"><h4>Mindset / first move</h4><p>Compute p, then v, then pv — those three route you to the material table. High v + low p → tin bronze / white metal. Don't attempt the full hydrodynamic design unless explicitly asked.</p></div>
+    <div class="callout red"><h4>Traps</h4><p>Using πdl (cylinder area) for projected area — it's l·d. • For heat balance, free surface A = 20·d·l, not πdl. • Over-investing in the rare full-design version.</p></div>
+    <span class="soln-toggle">Show worked example ▸</span>
+    <div class="soln">
+      <p class="step">d=80 mm, P=30 kgf, n=2500, l/d=1: p=30/(8·8)=0.47 kgf/cm²; v=π·0.08·2500/60=10.5 m/s.</p>
+      <p class="ans"><b>pv≈4.9, high v low p → tin bronze;</b> within [p],[pv].</p>
+    </div>
+  </article>
+
+  </div>
+</section>
+
+<!-- ===================== DECISION FLOW ===================== -->
+<section class="tab" id="flow">
+  <h2>🧭 Which recipe is this? — read the question, match a row</h2>
+  <p class="small">In the exam, scan the question for these trigger words → jump to the recipe.</p>
+  <table>
+    <tr><th>If the question says…</th><th>It's…</th><th>Go to</th></tr>
+    <tr><td>twisting moment / torque on a section, max shear stress, angle of twist</td><td>Section torsion (open vs closed)</td><td><b>3·A</b></td></tr>
+    <tr><td>bed/table with stiffeners, reduced rigidity, perpendicular vs diagonal</td><td>Bending rigidity</td><td><b>3·B</b></td></tr>
+    <tr><td>cutting force + allowable deflection → required stiffness</td><td>k = F/δ</td><td><b>3·C</b></td></tr>
+    <tr><td>hollow box column/base, max deflection / angle of slope</td><td>Box deflection</td><td><b>3·D</b></td></tr>
+    <tr><td>Perspex model, scale, natural frequency / frequency to avoid</td><td>Model scaling</td><td><b>3·E</b></td></tr>
+    <tr><td>P<sub>z</sub>, P<sub>y</sub>, P<sub>x</sub> + carriage weight → slideway width / lift-off</td><td>Slideway reactions</td><td><b>4·A</b></td></tr>
+    <tr><td>pulling force, conventional vs ball/recirculating</td><td>Pulling force</td><td><b>4·B</b></td></tr>
+    <tr><td>Acme lead screw, average pressure, pitch error</td><td>Lead screw</td><td><b>4·C</b></td></tr>
+    <tr><td>hydrostatic pad, pocket pressure, capillary/restrictor</td><td>Hydrostatic pad</td><td><b>4·D</b></td></tr>
+    <tr><td>ball screw, balls, service life, static/dynamic load</td><td>Ball screw</td><td><b>4·E</b></td></tr>
+    <tr><td>between centres, saddle/headstock/tailstock stiffness → compliance</td><td>Compliance</td><td><b>5·A</b></td></tr>
+    <tr><td>spindle on two bearings + overhang, nose deflection, optimum span</td><td>Nose deflection / span</td><td><b>5·B</b></td></tr>
+    <tr><td>bearing radial clearances + overhang → run-out</td><td>Run-out</td><td><b>5·C</b></td></tr>
+    <tr><td>journal/sleeve bearing, select material, p / v / pv / film</td><td>Journal bearing</td><td><b>5·D</b></td></tr>
+  </table>
+
+  <div class="big">
+    <h3 style="margin-top:0">The exam-room sequence (tape this to your brain)</h3>
+    <ol class="recipe">
+      <li>Read the question twice. Underline given values and what's asked.</li>
+      <li>Match a row above → you now know the recipe.</li>
+      <li>Convert everything to cm + kgf. Draw the sketch.</li>
+      <li>Run the recipe line by line. Box the answer with units. State assumptions.</li>
+    </ol>
+    <p class="small">Full worked solutions for every actual textbook problem live in the main guide (index.html → CLO tabs). This playbook is the <i>method</i>; that's the <i>answer key</i>.</p>
+  </div>
+</section>
+
+</div>
+
+<script>
+const tabs=document.getElementById('tabs');
+tabs.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;
+  document.querySelectorAll('nav.tabs button').forEach(x=>x.classList.remove('active'));
+  document.querySelectorAll('section.tab').forEach(x=>x.classList.remove('active'));
+  b.classList.add('active');document.getElementById(b.dataset.t).classList.add('active');
+  window.scrollTo({top:0,behavior:'instant'});});
+document.querySelectorAll('.soln-toggle').forEach(t=>t.addEventListener('click',()=>{
+  const s=t.nextElementSibling;s.classList.toggle('show');
+  t.textContent=s.classList.contains('show')?'Hide worked example ▾':'Show worked example ▸';}));
+document.querySelectorAll('[data-reveal]').forEach(btn=>btn.addEventListener('click',()=>{
+  document.querySelectorAll('#'+btn.dataset.reveal+'-body .soln').forEach(s=>s.classList.add('show'));
+  document.querySelectorAll('#'+btn.dataset.reveal+'-body .soln-toggle').forEach(t=>t.textContent='Hide worked example ▾');}));
+document.querySelectorAll('[data-hide]').forEach(btn=>btn.addEventListener('click',()=>{
+  document.querySelectorAll('#'+btn.dataset.hide+'-body .soln').forEach(s=>s.classList.remove('show'));
+  document.querySelectorAll('#'+btn.dataset.hide+'-body .soln-toggle').forEach(t=>t.textContent='Show worked example ▸');}));
+</script>
+</body>
+</html>
