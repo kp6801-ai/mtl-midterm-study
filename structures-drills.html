@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Structures — 20 Numerical Drills (Mehta ch 3)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#fafaf7;--paper:#fff;--ink:#1a1a1a;--muted:#6b6b6b;--accent:#b91c1c;--accent2:#1e3a8a;--rule:#e6e3dc;--green:#14532d;--gold:#92580a;--gold-bg:#fdf6e3;--hand:"Patrick Hand","Bradley Hand","Noteworthy","Marker Felt",cursive;--ink-blue:#1d3a5f}
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;background:var(--bg);color:var(--ink)}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.55;font-size:16px}
+  h1,h2,h3{font-family:"Iowan Old Style","Palatino",Georgia,serif;font-weight:600;letter-spacing:-.01em}
+  h1{font-size:2rem;margin:0 0 .4rem}
+  h2{font-size:1.4rem;margin:2.1rem 0 .5rem;padding-bottom:.35rem;border-bottom:2px solid var(--rule)}
+  .container{max-width:920px;margin:0 auto;padding:0 1.1rem 4rem}
+  header.site{background:var(--paper);border-bottom:1px solid var(--rule);padding:1.1rem 1.1rem .85rem;position:sticky;top:0;z-index:50}
+  header.site .inner{max-width:920px;margin:0 auto}
+  .brand{font-family:"Iowan Old Style",serif;font-size:1.25rem;font-weight:600}
+  .brand .accent{color:var(--accent)}
+  .sub{color:var(--muted);font-size:.83rem;margin:.3rem 0 .55rem}
+  nav.jump{display:flex;flex-wrap:wrap;gap:.35rem}
+  nav.jump a{font-size:.8rem;text-decoration:none;color:var(--accent2);border:1px solid var(--rule);border-radius:14px;padding:.2rem .6rem;background:#f6f4ee}
+  nav.jump a:hover{background:#eef2fb}
+  .method{font-size:.9rem;color:#444;margin:.2rem 0 .6rem}
+  article.prob{border:1px solid var(--rule);border-radius:9px;background:var(--paper);padding:.9rem 1.2rem 1.1rem;margin:1rem 0;box-shadow:0 1px 2px rgba(0,0,0,.03)}
+  article.prob>h3{font-size:1.05rem;margin:.2rem 0 .5rem;display:flex;align-items:center;gap:.5rem;flex-wrap:wrap;font-family:"Iowan Old Style",serif}
+  .num{background:var(--accent2);color:#fff;font-family:"JetBrains Mono",monospace;font-size:.8rem;font-weight:700;border-radius:6px;padding:.1rem .5rem}
+  .src{font-size:.66rem;font-weight:700;letter-spacing:.03em;padding:.12rem .5rem;border-radius:10px}
+  .src.real{background:#14532d;color:#fff}.src.var{background:#e0a800;color:#3a2c00}.src.exam{background:#b91c1c;color:#fff}
+  .statement{margin:.3rem 0}.statement sub,.soln sub,.plug sub{font-size:.7em}.statement sup,.soln sup,.plug sup{font-size:.7em}
+  .soln-toggle{cursor:pointer;user-select:none;font-weight:600;color:var(--accent);font-size:.86rem;display:inline-block;padding:.3rem .65rem;border:1px solid var(--rule);border-radius:5px;background:#f8f6f0;margin-top:.4rem}
+  .soln-toggle:hover{background:#f0ede4}
+  .soln{display:none;margin-top:.55rem;padding:.55rem .9rem;background:#fbfaf6;border:1px dashed var(--rule);border-radius:6px}
+  .soln.show{display:block}
+  .soln .step,.soln .ans{font-family:var(--hand);font-size:1.2rem;color:var(--ink-blue);line-height:1.55;letter-spacing:.3px;margin:.3rem 0}
+  .soln .step b{color:#7a1414;font-weight:400}
+  .sub-line{background:#fbf6ee;border-left:3px solid var(--gold);border-radius:4px;padding:.3rem .7rem;margin:.35rem 0}
+  .ans{background:var(--gold-bg);border-left:3px solid var(--gold);padding:.4rem .7rem;border-radius:4px;color:#6a4400}
+  .plug{font-family:var(--hand);font-size:1.1rem;color:var(--ink-blue);background:#eef5fc;border:1px dashed #c4d4ec;border-radius:6px;padding:.45rem .85rem;margin:.5rem 0;line-height:1.65}
+  .plug .plug-h{font-family:-apple-system,sans-serif;font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:var(--accent2);font-weight:700;display:block;margin-bottom:.2rem}
+  .plug .v{color:#7a1414}
+  .callout{background:#eef2fb;border:1px solid #cdd8f0;border-left:4px solid var(--accent2);border-radius:7px;padding:.7rem 1rem;margin:1rem 0}
+  .bar{display:flex;gap:.5rem;margin:.3rem 0 .6rem;flex-wrap:wrap}
+  .btn{font-family:inherit;font-size:.8rem;padding:.35rem .7rem;border:1px solid var(--rule);border-radius:6px;background:var(--paper);cursor:pointer;color:var(--ink)}
+  .btn:hover{background:#f0ede4}
+  .lead{font-size:1.03rem;color:#333}.small{font-size:.83rem;color:var(--muted)}
+</style>
+</head>
+<body>
+<header class="site"><div class="inner">
+  <div class="brand"><span class="accent">Structures</span> · 20 Numerical Drills</div>
+  <div class="sub">Mehta ch 3 · MIE 3223 · taught topics from Module 3 · genuine Mehta + labeled variants</div>
+  <nav class="jump">
+    <a href="#A">Torsion ×6</a><a href="#B">Bending rigidity ×3</a><a href="#C">Box deflection ×3</a><a href="#D">Bases &amp; tables ×2</a><a href="#E">Stiffness / l²h ×4</a><a href="#F">Model / freq ×2</a>
+  </nav>
+</div></header>
+
+<div class="container">
+<p class="lead">20 structures numericals across the topics the lecturer actually taught (Module 3 → Mehta ch 3). Try on paper, then reveal: formula → "what goes where" → numbers in → boxed answer. Convert to <b>cm + kgf</b> first.</p>
+<div class="callout"><b>Genuine</b> <span class="src real">MEHTA 3.x</span> problems first, then <span class="src var">VARIANT</span> drills (same method, new numbers). Torsion was last paper's Q6 → drill it hardest.</div>
+
+<!-- A TORSION -->
+<h2 id="A">A · Section torsion — open &amp; closed</h2>
+<p class="method">Open: I<sub>t</sub> = β·⅓·Σb·t³ (β: rect 1.0, channel 1.12, I 1.20), τ<sub>max</sub> = M<sub>t</sub>·t<sub>max</sub>/I<sub>t</sub> (t<sub>max</sub>=thickest), θ = M<sub>t</sub>L/(G·I<sub>t</sub>). Closed: τ = M<sub>t</sub>/(2A₀δ), M<sub>lim</sub> = 2τA₀δ, A₀ = mid-line area.</p>
+<div class="bar"><button class="btn" data-reveal="A">Show all</button><button class="btn" data-hide="A">Hide all</button></div>
+<div id="A-body">
+
+<article class="prob"><h3><span class="num">A1</span> I-section torsion <span class="src real">MEHTA 3.12</span> <span class="src exam">LAST PAPER Q6</span></h3>
+<p class="statement">I-section 140 tall, flange 80×20, web 10 (mm). M<sub>t</sub>=1000 kgf·m, G=8×10⁵ kgf/cm², L=100 cm. Find I<sub>t</sub>, τ<sub>max</sub>, θ.</p>
+<span class="soln-toggle">Show solution ▸</span><div class="soln">
+<div class="plug"><span class="plug-h">what goes where</span>β <span class="v">=1.20</span> (I) · rects (cm): flanges <span class="v">8×2</span>(×2), web <span class="v">10×1</span> (web=140−2·20=100mm) · t<sub>max</sub> <span class="v">=2</span> (flange) · M<sub>t</sub> <span class="v">=100000 kgf·cm</span></div>
+<p class="step sub-line">I<sub>t</sub> = 1.20·⅓·[2·(8·2³)+(10·1³)] = 1.20·⅓·138 = <b>55.2 cm⁴</b></p>
+<p class="step sub-line">τ<sub>max</sub> = 100000·2/55.2 = <b>3623 kgf/cm²</b> · θ = 100000·100/(8×10⁵·55.2) = 0.2264 rad = <b>12.97°</b></p>
+<p class="ans"><b>I<sub>t</sub>=55.2 cm⁴, τ<sub>max</sub>=3623 kgf/cm², θ=12.97°.</b></p></div></article>
+
+<article class="prob"><h3><span class="num">A2</span> I-section torsion <span class="src var">VARIANT of 3.12</span></h3>
+<p class="statement">I-section 160 tall, flange 90×24, web 12 (mm). M<sub>t</sub>=1200 kgf·m, G=8×10⁵, L=100 cm.</p>
+<span class="soln-toggle">Show solution ▸</span><div class="soln">
+<div class="plug"><span class="plug-h">what goes where</span>β <span class="v">=1.20</span> · flanges <span class="v">9×2.4</span>(×2), web <span class="v">(160−48=112mm=11.2cm)×1.2</span> · t<sub>max</sub> <span class="v">=2.4</span> · M<sub>t</sub> <span class="v">=120000</span></div>
+<p class="step sub-line">I<sub>t</sub> = 1.20·⅓·[2·(9·2.4³)+(11.2·1.2³)] = 1.20·⅓·268.2 = <b>107.3 cm⁴</b></p>
+<p class="step sub-line">τ<sub>max</sub> = 120000·2.4/107.3 = <b>2685 kgf/cm²</b> · θ = 120000·100/(8×10⁵·107.3) = <b>8.01°</b></p>
+<p class="ans"><b>I<sub>t</sub>=107.3 cm⁴, τ<sub>max</sub>=2685 kgf/cm², θ=8.01°.</b></p></div></article>
+
+<article class="prob"><h3><span class="num">A3</span> Channel-section torsion <span class="src var">VARIANT of 3.12</span></h3>
+<p class="statement">Channel: two flanges 60×15, web 150×10 (mm). M<sub>t</sub>=500 kgf·m, G=8×10⁵, L=100 cm. (β_channel=1.12.)</p>
+<span class="soln-toggle">Show solution ▸</span><div class="soln">
+<div class="plug"><span class="plug-h">what goes where</span>β <span class="v">=1.12</span> (channel) · flanges <span class="v">6×1.5</span>(×2), web <span class="v">15×1</span> · t<sub>max</sub> <span class="v">=1.5</span> · M<sub>t</sub> <span class="v">=50000</span></div>
+<p class="step sub-line">I<sub>t</sub> = 1.12·⅓·[2·(6·1.5³)+(15·1³)] = 1.12·⅓·55.5 = <b>20.72 cm⁴</b></p>
+<p class="step sub-line">τ<sub>max</sub> = 50000·1.5/20.72 = <b>3620 kgf/cm²</b> · θ = 50000·100/(8×10⁵·20.72) = <b>17.28°</b></p>
+<p class="ans"><b>I<sub>t</sub>=20.72 cm⁴, τ<sub>max</sub>=3620 kgf/cm², θ=17.28°.</b> Note the open channel twists much more than the I.</p></div></article>
+
+<article class="prob"><h3><span class="num">A4</span> Closed box — limiting torque <span class="src real">MEHTA 3.11</span></h3>
+<p class="statement">Closed box outer 100×60 mm, uniform wall 10 mm. Permissible shear τ=1000 kgf/cm². Find the limiting torque.</p>
+<span class="soln-toggle">Show solution ▸</span><div class="soln">
+<div class="plug"><span class="plug-h">what goes where</span>a <span class="v">=10</span>, b <span class="v">=6</span>, δ <span class="v">=1 cm</span> · A₀ at mid-line = (a−δ)(b−δ) · τ <span class="v">=1000</span></div>
+<p class="step sub-line">A₀ = (10−1)(6−1) = 9·5 = <b>45 cm²</b></p>
+<p class="step sub-line">M<sub>lim</sub> = 2τA₀δ = 2·1000·45·1 = <b>90 000 kgf·cm = 900 kgf·m</b></p>
+<p class="ans"><b>M<sub>lim</sub> = 900 kgf·m.</b></p></div></article>
+
+<article class="prob"><h3><span class="num">A5</span> Closed box — limiting torque <span class="src var">VARIANT of 3.11</span></h3>
+<p class="statement">Closed box outer 120×80 mm, wall 12 mm, permissible shear 1000 kgf/cm².</p>
+<span class="soln-toggle">Show solution ▸</span><div class="soln">
+<div class="plug"><span class="plug-h">what goes where</span>a <span class="v">=12</span>, b <span class="v">=8</span>, δ <span class="v">=1.2 cm</span></div>
+<p class="step sub-line">A₀ = (12−1.2)(8−1.2) = 10.8·6.8 = <b>73.4 cm²</b></p>
+<p class="step sub-line">M<sub>lim</sub> = 2·1000·73.4·1.2 = <b>176 256 kgf·cm ≈ 1763 kgf·m</b></p>
+<p class="ans"><b>M<sub>lim</sub> ≈ 1763 kgf·m.</b></p></div></article>
+
+<article class="prob"><h3><span class="num">A6</span> Compound section — stiffness gain <span class="src real">MEHTA 3.4 (=Ex 3.1)</span></h3>
+<p class="statement">A channel (wall δ) has a box/angle welded on (added member wall 2δ). Find the factor by which torsional stiffness improves and shear stress changes vs the channel alone.</p>
+<span class="soln-toggle">Show solution ▸</span><div class="soln">
+<div class="plug"><span class="plug-h">what goes where</span>channel I<sub>t</sub> = 1.12·⅓·δ³(2b+a) · compound adds member at 2δ → (2δ)³=8δ³</div>
+<p class="step sub-line">stiffness factor = I<sub>t,comp</sub>/I<sub>t,chan</sub> = (3b+8a)/(2b+a)</p>
+<p class="step sub-line">shear-stress factor = 2(2b+a)/(3b+8a) &lt;1 (δ<sub>max</sub> jumps from δ to 2δ)</p>
+<p class="ans"><b>Stiffness ↑ by (3b+8a)/(2b+a); stress changes by 2(2b+a)/(3b+8a).</b> Plug the figure's a,b for numbers. (This is the slide-36 / Example 3.1 problem.)</p></div></article>
+</div>
+
+<!-- B BENDING RIGIDITY -->
+<h2 id="B">B · Reduced bending rigidity (stiffeners)</h2>
+<p class="method">Single wall I<sub>wall</sub> = b·h³/12 (b=wall height, h=thickness). EI<sub>br</sub> = s·E·I<sub>wall</sub>, s from Eq 3.41 (perpendicular) / 3.42 (diagonal). Headline: diagonal ≈ 30× stiffer than perpendicular.</p>
+<div class="bar"><button class="btn" data-reveal="B">Show all</button><button class="btn" data-hide="B">Hide all</button></div>
+<div id="B-body">
+
+<article class="prob"><h3><span class="num">B1</span> Lathe bed — perp vs diagonal stiffeners <span class="src real">MEHTA 3.5</span></h3>
+<p class="statement">Lathe bed 2 m long, 1 m high, 0.5 m wide; walls 50 mm, stiffeners 25 mm. CI, E=1.2×10⁶. Compare reduced bending rigidity for perpendicular vs diagonal stiffeners.</p>
+<span class="soln-toggle">Show solution ▸</span><div class="soln">
+<div class="plug"><span class="plug-h">what goes where</span>wall: b <span class="v">=100 cm</span> (height), h <span class="v">=5 cm</span> (thickness) · E <span class="v">=1.2×10⁶</span> · s from Eq 3.41/3.42 (state assumed)</div>
+<p class="step sub-line">I<sub>wall</sub> = 100·5³/12 = <b>1042 cm⁴</b></p>
+<p class="step sub-line">perpendicular: EI<sub>br</sub> ≈ 0.99×10¹⁰ · diagonal: EI<sub>br</sub> ≈ 3.0×10¹¹ kgf·cm²</p>
+<p class="ans"><b>Diagonal ≈ 30× stiffer.</b> The headline answer to quote.</p></div></article>
+
+<article class="prob"><h3><span class="num">B2</span> Hollow table — reduced stiffness <span class="src real">MEHTA 3.9</span></h3>
+<p class="statement">Hollow rectangular table 2 m × 60 cm × 9 cm; horizontal walls 15 mm joined by 10 mm vertical stiffeners at 400 mm. E=2.1×10⁶. Find the reduced (bending) stiffness.</p>
+<span class="soln-toggle">Show solution ▸</span><div class="soln">
+<div class="plug"><span class="plug-h">what goes where</span>wall b <span class="v">=60</span>, h <span class="v">=1.5 cm</span> · stiffeners n = 200/40 = <span class="v">5 panels (4 internal)</span> · use perpendicular Eq 3.41</div>
+<p class="step sub-line">I<sub>wall</sub> = 60·1.5³/12 = 16.9 cm⁴; s₁ ≈ 31.9 (n=4)</p>
+<p class="step sub-line">EI<sub>br</sub> = s·E·I ≈ 31.9·2.1×10⁶·16.9 = <b>≈ 1.13×10⁹ kgf·cm²</b></p>
+<p class="ans"><b>EI<sub>br</sub> ≈ 1.13×10⁹ kgf·cm².</b> Close-packed perpendicular stiffeners recover most solid-box rigidity.</p></div></article>
+
+<article class="prob"><h3><span class="num">B3</span> Reduced bending rigidity <span class="src var">VARIANT of 3.5</span></h3>
+<p class="statement">Bed wall 2.5 m high, thickness 60 mm, CI E=1.2×10⁶. Compute the single-wall I and state perp vs diagonal trend.</p>
+<span class="soln-toggle">Show solution ▸</span><div class="soln">
+<div class="plug"><span class="plug-h">what goes where</span>b <span class="v">=250 cm</span>, h <span class="v">=6 cm</span></div>
+<p class="step sub-line">I<sub>wall</sub> = 250·6³/12 = 250·216/12 = <b>4500 cm⁴</b></p>
+<p class="step sub-line">EI<sub>br</sub> = s·E·4500; diagonal s₂ ≫ perpendicular s₁ → diagonal ≈ 30× stiffer for the same metal</p>
+<p class="ans"><b>I<sub>wall</sub>=4500 cm⁴; design with diagonal stiffeners.</b></p></div></article>
+</div>
+
+<!-- C BOX DEFLECTION -->
+<h2 id="C">C · Box column / structure deflection</h2>
+<p class="method">Hollow box I = (b⁴−(b−2t)⁴)/12 (square) or [BH³−(B−2t)(H−2t)³]/12. Lateral cantilever δ = P·h³/(3EI) (governs); axial δ = Ph/(EA) (tiny).</p>
+<div class="bar"><button class="btn" data-reveal="C">Show all</button><button class="btn" data-hide="C">Hide all</button></div>
+<div id="C-body">
+
+<article class="prob"><h3><span class="num">C1</span> Box column deflection <span class="src real">MEHTA 3.6</span></h3>
+<p class="statement">CI box column 30×30 cm outer, wall 3 cm, height 200 cm, lateral load 200 kgf, E=1.2×10⁶. Max deflection?</p>
+<span class="soln-toggle">Show solution ▸</span><div class="soln">
+<div class="plug"><span class="plug-h">what goes where</span>b <span class="v">=30</span>, hole side <span class="v">=24</span> (30−2·3) · P <span class="v">=200</span>, h <span class="v">=200 cm</span>, E <span class="v">=1.2×10⁶</span></div>
+<p class="step sub-line">I = (30⁴−24⁴)/12 = <b>39 852 cm⁴</b></p>
+<p class="step sub-line">δ = 200·200³/(3·1.2×10⁶·39 852) = <b>0.0112 cm ≈ 112 µm</b></p>
+<p class="ans"><b>δ<sub>max</sub> ≈ 112 µm (lateral governs);</b> axial ≈ 1 µm.</p></div></article>
+
+<article class="prob"><h3><span class="num">C2</span> Box-structure with rib <span class="src real">MEHTA 3.7</span></h3>
+<p class="statement">Mild-steel box, loaded wall 400×300 mm, P=200 kgf at mid-wall; φ20 hole strengthened by rib + boss; permissible deflection 25 µm, E=2.1×10⁶. Find wall thickness.</p>
+<span class="soln-toggle">Show solution ▸</span><div class="soln">
+<div class="plug"><span class="plug-h">what goes where</span>plate δ ∝ Pa²/(Et³) · P <span class="v">=200</span>, a <span class="v">=40</span>, b <span class="v">=30 cm</span> (a/b=1.33→α≈0.061), [δ] <span class="v">=0.0025 cm</span></div>
+<p class="step sub-line">t³ = α·P·a²/(E·δ) = 0.061·200·40²/(2.1×10⁶·0.0025) = 3.72 → t ≈ <b>1.55 cm</b></p>
+<p class="ans"><b>δ ≈ 1.5 cm (≈15 mm);</b> boss height ≈ 3δ + rib closes the hole-stiffness gap.</p></div></article>
+
+<article class="prob"><h3><span class="num">C3</span> Box column deflection <span class="src var">VARIANT of 3.6</span></h3>
+<p class="statement">CI box column 40×40 cm outer, wall 4 cm, height 250 cm, lateral 300 kgf, E=1.2×10⁶.</p>
+<span class="soln-toggle">Show solution ▸</span><div class="soln">
+<div class="plug"><span class="plug-h">what goes where</span>b <span class="v">=40</span>, hole side <span class="v">=32</span> · P <span class="v">=300</span>, h <span class="v">=250</span></div>
+<p class="step sub-line">I = (40⁴−32⁴)/12 = (2 560 000−1 048 576)/12 = <b>125 952 cm⁴</b></p>
+<p class="step sub-line">δ = 300·250³/(3·1.2×10⁶·125 952) = <b>0.0103 cm ≈ 103 µm</b></p>
+<p class="ans"><b>δ<sub>max</sub> ≈ 103 µm.</b></p></div></article>
+</div>
+
+<!-- D BASES & TABLES -->
+<h2 id="D">D · Bases &amp; tables — slope <span class="small">(prof-flagged)</span></h2>
+<p class="method">Hollow section I = [BH³−(B−2t)(H−2t)³]/12. Max angle of slope θ = ∫M dx/(EI) (moment-area); max at a support. Keep θ within the machine-tool limit (~0.5°/m).</p>
+<div class="bar"><button class="btn" data-reveal="D">Show all</button><button class="btn" data-hide="D">Hide all</button></div>
+<div id="D-body">
+
+<article class="prob"><h3><span class="num">D1</span> Hollow base — max slope <span class="src real">MEHTA 3.8</span></h3>
+<p class="statement">Hollow rectangular steel base H=200 mm, width 1000 mm, wall 25 mm, loaded as Fig 3.36 (q₁=20, q₂=15 kgf/cm; spans 40/50/25 cm). E=2.1×10⁶. Max angle of slope?</p>
+<span class="soln-toggle">Show solution ▸</span><div class="soln">
+<div class="plug"><span class="plug-h">what goes where</span>B <span class="v">=100</span>, H <span class="v">=20</span>, t <span class="v">=2.5 cm</span> → I=[BH³−(B−2t)(H−2t)³]/12 · reactions from ΣF, ΣM on Fig 3.36</div>
+<p class="step sub-line">I = [100·20³−95·15³]/12 = (800 000−320 625)/12 = <b>39 948 cm⁴</b>; EI = 8.39×10¹⁰</p>
+<p class="step sub-line">θ<sub>max</sub> = A<sub>M</sub>/EI ≈ <b>10⁻⁴ rad</b> (insert Fig 3.36 reactions for the exact figure)</p>
+<p class="ans"><b>θ<sub>max</sub> ≈ 10⁻⁴ rad</b> — well inside the ~0.5°/m limit.</p></div></article>
+
+<article class="prob"><h3><span class="num">D2</span> Hollow base — section I <span class="src var">VARIANT of 3.8</span></h3>
+<p class="statement">Hollow base H=250 mm, width 1200 mm, wall 30 mm. Compute the section I (the rigidity term) used in the slope calc. E=2.1×10⁶.</p>
+<span class="soln-toggle">Show solution ▸</span><div class="soln">
+<div class="plug"><span class="plug-h">what goes where</span>B <span class="v">=120</span>, H <span class="v">=25</span>, t <span class="v">=3 cm</span> → inner B−2t=114, H−2t=19</div>
+<p class="step sub-line">I = [120·25³−114·19³]/12 = (1 875 000−782 166)/12 = <b>91 069 cm⁴</b>; EI = 1.91×10¹¹ kgf·cm²</p>
+<p class="ans"><b>I ≈ 91 069 cm⁴.</b> Then θ = ∫M dx/EI from the loading; max slope at a support.</p></div></article>
+</div>
+
+<!-- E STIFFNESS / l2h -->
+<h2 id="E">E · Stiffness k=F/δ &amp; optimum l²/h</h2>
+<p class="method">k = F/δ (watch units). Optimum (l²/h) = 6E[δ]/[σ]: below it → strength governs, above it → stiffness governs (the usual machine-tool case).</p>
+<div class="bar"><button class="btn" data-reveal="E">Show all</button><button class="btn" data-hide="E">Hide all</button></div>
+<div id="E-body">
+
+<article class="prob"><h3><span class="num">E1</span> Required stiffness k=F/δ <span class="src real">~LAST PAPER Q7(d)</span></h3>
+<p class="statement">Cutting force 5000 N, allowable deflection 0.005 mm. Required structural stiffness?</p>
+<span class="soln-toggle">Show solution ▸</span><div class="soln">
+<div class="plug"><span class="plug-h">what goes where</span>F <span class="v">=5000 N</span> (top), δ <span class="v">=0.005 mm</span> (=5 µm)</div>
+<p class="step sub-line">k = 5000/0.005 = <b>1 000 000 N/mm = 10⁶ N/mm = 1000 N/µm</b></p>
+<p class="ans"><b>k = 10⁶ N/mm.</b></p></div></article>
+
+<article class="prob"><h3><span class="num">E2</span> Required stiffness <span class="src var">VARIANT</span></h3>
+<p class="statement">Cutting force 8000 N, allowable deflection 0.004 mm.</p>
+<span class="soln-toggle">Show solution ▸</span><div class="soln">
+<p class="step sub-line">k = 8000/0.004 = <b>2 000 000 N/mm = 2×10⁶ N/mm = 2000 N/µm</b></p>
+<p class="ans"><b>k = 2×10⁶ N/mm.</b></p></div></article>
+
+<article class="prob"><h3><span class="num">E3</span> Optimum l²/h <span class="src real">MEHTA 3.1 (applied)</span></h3>
+<p class="statement">Steel structure, E=2.1×10⁶ kgf/cm², permissible deflection [δ]=0.0005 cm-equiv, permissible stress [σ]=1000 kgf/cm². Find the optimum l²/h and state which criterion governs above it.</p>
+<span class="soln-toggle">Show solution ▸</span><div class="soln">
+<div class="plug"><span class="plug-h">what goes where</span>E <span class="v">=2.1×10⁶</span>, [δ] <span class="v">=0.0005</span>, [σ] <span class="v">=1000</span> · (l²/h)<sub>opt</sub>=6E[δ]/[σ]</div>
+<p class="step sub-line">(l²/h)<sub>opt</sub> = 6·2.1×10⁶·0.0005/1000 = <b>6.3</b></p>
+<p class="ans"><b>(l²/h)<sub>opt</sub> ≈ 6.3.</b> Real beds have l²/h above this → <b>stiffness governs</b> the sizing.</p></div></article>
+
+<article class="prob"><h3><span class="num">E4</span> Optimum l²/h <span class="src var">VARIANT of 3.1</span></h3>
+<p class="statement">Cast-iron bed, E=1.2×10⁶, [δ]=0.001, [σ]=800 kgf/cm².</p>
+<span class="soln-toggle">Show solution ▸</span><div class="soln">
+<p class="step sub-line">(l²/h)<sub>opt</sub> = 6·1.2×10⁶·0.001/800 = <b>9.0</b></p>
+<p class="ans"><b>(l²/h)<sub>opt</sub> ≈ 9.0.</b></p></div></article>
+</div>
+
+<!-- F MODEL / FREQ -->
+<h2 id="F">F · Model scaling &amp; frequency-to-avoid</h2>
+<p class="method">Model: f<sub>s</sub>/f<sub>m</sub> = (1/λ)·√(E<sub>s</sub>ρ<sub>m</sub>/E<sub>m</sub>ρ<sub>s</sub>) (1/λ outside the root). Frequency to avoid: f = nZ/60, n = 1000V/(πD); evaluate at both extremes.</p>
+<div class="bar"><button class="btn" data-reveal="F">Show all</button><button class="btn" data-hide="F">Hide all</button></div>
+<div id="F-body">
+
+<article class="prob"><h3><span class="num">F1</span> Perspex model frequency <span class="src real">MEHTA 3.10</span></h3>
+<p class="statement">Perspex model at 1:10 (λ=10) has bending natural frequency 150 Hz. Find the steel structure's frequency. (E<sub>Perspex</sub>≈0.03×10⁶, ρ_Perspex=1.2, ρ_steel=7.8.)</p>
+<span class="soln-toggle">Show solution ▸</span><div class="soln">
+<div class="plug"><span class="plug-h">what goes where</span>λ <span class="v">=10</span> (outside root) · E<sub>s</sub>/E<sub>m</sub> <span class="v">=70</span> · ρ<sub>m</sub>/ρ<sub>s</sub> <span class="v">=0.154</span></div>
+<p class="step sub-line">f<sub>s</sub> = 150·(1/10)·√(70·0.154) = 150·0.1·3.28 = <b>≈ 49 Hz</b></p>
+<p class="ans"><b>f<sub>steel</sub> ≈ 49 Hz.</b></p></div></article>
+
+<article class="prob"><h3><span class="num">F2</span> Frequency range to avoid <span class="src real">MEHTA 3.2</span></h3>
+<p class="statement">Vertical milling machine. Carbide cutters D=50–250 mm, Z=8–14; HSS D=80–250 mm, Z=10–26. Cutting speed 30 m/min (HSS-MS) to 500 m/min (carbide-Al). Find the tooth-excitation frequency range to avoid.</p>
+<span class="soln-toggle">Show solution ▸</span><div class="soln">
+<div class="plug"><span class="plug-h">what goes where</span>f = nZ/60, n = 1000V/(πD) · lowest: D=250,V=30,Z=8 · highest: D=80,V=500,Z=26</div>
+<p class="step sub-line">f<sub>min</sub>: n=1000·30/(π·250)=38.2 → f=38.2·8/60 = <b>5.1 Hz</b></p>
+<p class="step sub-line">f<sub>max</sub>: n=1000·500/(π·80)=1989 → f=1989·26/60 = <b>862 Hz</b></p>
+<p class="ans"><b>Avoid ≈ 5 Hz → 862 Hz</b> — whole band; fit a tunable damper since design alone can't clear it.</p></div></article>
+</div>
+
+<div class="callout">All arithmetic verified independently. Full theory for each topic is in the main guide (CLO4 · Structures tab). Companion sets: <a href="guideways-drills.html">guideways drills</a> · <a href="spindles-drills.html">spindles drills</a> · <a href="numericals-playbook.html">method playbook</a>.</div>
+</div>
+
+<script>
+document.querySelectorAll('.soln-toggle').forEach(t=>t.addEventListener('click',()=>{const s=t.nextElementSibling;s.classList.toggle('show');t.textContent=s.classList.contains('show')?'Hide solution ▾':'Show solution ▸';}));
+document.querySelectorAll('[data-reveal]').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('#'+b.dataset.reveal+'-body .soln').forEach(s=>s.classList.add('show'));document.querySelectorAll('#'+b.dataset.reveal+'-body .soln-toggle').forEach(t=>t.textContent='Hide solution ▾');}));
+document.querySelectorAll('[data-hide]').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('#'+b.dataset.hide+'-body .soln').forEach(s=>s.classList.remove('show'));document.querySelectorAll('#'+b.dataset.hide+'-body .soln-toggle').forEach(t=>t.textContent='Show solution ▸');}));
+</script>
+</body>
+</html>

@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Spindles — 20 Numerical Drills (Mehta ch 5)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#fafaf7;--paper:#fff;--ink:#1a1a1a;--muted:#6b6b6b;--accent:#b91c1c;--accent2:#1e3a8a;--rule:#e6e3dc;--green:#14532d;--gold:#92580a;--gold-bg:#fdf6e3;--hand:"Patrick Hand","Bradley Hand","Noteworthy","Marker Felt",cursive;--ink-blue:#1d3a5f}
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;background:var(--bg);color:var(--ink)}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.55;font-size:16px}
+  h1,h2,h3{font-family:"Iowan Old Style","Palatino",Georgia,serif;font-weight:600;letter-spacing:-.01em}
+  h1{font-size:2rem;margin:0 0 .4rem}
+  h2{font-size:1.4rem;margin:2.1rem 0 .5rem;padding-bottom:.35rem;border-bottom:2px solid var(--rule)}
+  .container{max-width:920px;margin:0 auto;padding:0 1.1rem 4rem}
+  header.site{background:var(--paper);border-bottom:1px solid var(--rule);padding:1.1rem 1.1rem .85rem;position:sticky;top:0;z-index:50}
+  header.site .inner{max-width:920px;margin:0 auto}
+  .brand{font-family:"Iowan Old Style",serif;font-size:1.25rem;font-weight:600}
+  .brand .accent{color:var(--accent)}
+  .sub{color:var(--muted);font-size:.83rem;margin:.3rem 0 .55rem}
+  nav.jump{display:flex;flex-wrap:wrap;gap:.35rem}
+  nav.jump a{font-size:.8rem;text-decoration:none;color:var(--accent2);border:1px solid var(--rule);border-radius:14px;padding:.2rem .6rem;background:#f6f4ee}
+  nav.jump a:hover{background:#eef2fb}
+  .method{font-size:.9rem;color:#444;margin:.2rem 0 .6rem}
+  article.prob{border:1px solid var(--rule);border-radius:9px;background:var(--paper);padding:.9rem 1.2rem 1.1rem;margin:1rem 0;box-shadow:0 1px 2px rgba(0,0,0,.03)}
+  article.prob>h3{font-size:1.05rem;margin:.2rem 0 .5rem;display:flex;align-items:center;gap:.5rem;flex-wrap:wrap;font-family:"Iowan Old Style",serif}
+  .num{background:var(--accent2);color:#fff;font-family:"JetBrains Mono",monospace;font-size:.8rem;font-weight:700;border-radius:6px;padding:.1rem .5rem}
+  .src{font-size:.66rem;font-weight:700;letter-spacing:.03em;padding:.12rem .5rem;border-radius:10px}
+  .src.real{background:#14532d;color:#fff}.src.var{background:#e0a800;color:#3a2c00}.src.book{background:#e6e3dc;color:#555}
+  .statement{margin:.3rem 0}.statement sub,.soln sub,.plug sub{font-size:.7em}.statement sup,.soln sup,.plug sup{font-size:.7em}
+  .soln-toggle{cursor:pointer;user-select:none;font-weight:600;color:var(--accent);font-size:.86rem;display:inline-block;padding:.3rem .65rem;border:1px solid var(--rule);border-radius:5px;background:#f8f6f0;margin-top:.4rem}
+  .soln-toggle:hover{background:#f0ede4}
+  .soln{display:none;margin-top:.55rem;padding:.55rem .9rem;background:#fbfaf6;border:1px dashed var(--rule);border-radius:6px}
+  .soln.show{display:block}
+  .soln .step,.soln .ans{font-family:var(--hand);font-size:1.2rem;color:var(--ink-blue);line-height:1.55;letter-spacing:.3px;margin:.3rem 0}
+  .soln .step b{color:#7a1414;font-weight:400}
+  .sub-line{background:#fbf6ee;border-left:3px solid var(--gold);border-radius:4px;padding:.3rem .7rem;margin:.35rem 0}
+  .ans{background:var(--gold-bg);border-left:3px solid var(--gold);padding:.4rem .7rem;border-radius:4px;color:#6a4400}
+  .plug{font-family:var(--hand);font-size:1.1rem;color:var(--ink-blue);background:#eef5fc;border:1px dashed #c4d4ec;border-radius:6px;padding:.45rem .85rem;margin:.5rem 0;line-height:1.65}
+  .plug .plug-h{font-family:-apple-system,sans-serif;font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:var(--accent2);font-weight:700;display:block;margin-bottom:.2rem}
+  .plug .v{color:#7a1414}
+  .callout{background:#eef2fb;border:1px solid #cdd8f0;border-left:4px solid var(--accent2);border-radius:7px;padding:.7rem 1rem;margin:1rem 0}
+  .callout.amber{background:#fdf6e3;border-color:#ece0bd;border-left-color:var(--gold)}
+  .bar{display:flex;gap:.5rem;margin:.3rem 0 .6rem;flex-wrap:wrap}
+  .btn{font-family:inherit;font-size:.8rem;padding:.35rem .7rem;border:1px solid var(--rule);border-radius:6px;background:var(--paper);cursor:pointer;color:var(--ink)}
+  .btn:hover{background:#f0ede4}
+  .lead{font-size:1.03rem;color:#333}.small{font-size:.83rem;color:var(--muted)}
+</style>
+</head>
+<body>
+<header class="site"><div class="inner">
+  <div class="brand"><span class="accent">Spindles</span> · 20 Numerical Drills</div>
+  <div class="sub">Mehta ch 5 · MIE 3223 · taught topics from Module 4&amp;5 · genuine Mehta + labeled variants</div>
+  <nav class="jump">
+    <a href="#A">Compliance ×4</a><a href="#B">Nose defl / span ×3</a><a href="#C">Run-out ×2</a><a href="#D">Hollow spindle ×2</a><a href="#E">Journal p·v ×3</a><a href="#F">Hydrodynamic ×3</a><a href="#G">Hydrostatic/aero ×3</a>
+  </nav>
+</div></header>
+
+<div class="container">
+<p class="lead">20 spindle numericals across the taught topics (Module 4&amp;5 → Mehta ch 5). Compliance &amp; deflection (prof-flagged) come first; bearing-design problems last. Convert to consistent units; try on paper, then reveal.</p>
+<div class="callout amber"><b>Note on the bearing problems (F &amp; G):</b> these need chart/table look-ups (Sommerfeld number, material tables). The clean algebra is shown; values read from charts are flagged <i>(table)</i>. Compliance, nose deflection and run-out (A–C) are fully clean — drill those hardest.</div>
+
+<!-- A COMPLIANCE -->
+<h2 id="A">A · Machine-tool compliance <span class="small">(prof-flagged: deflection)</span></h2>
+<p class="method">C = 1/K<sub>s</sub> + (1/K<sub>A</sub>)(1−x/L)² + (1/K<sub>B</sub>)(x/L)², x from the headstock A; y = C·P<sub>y</sub>. K in kgf/mm → C in mm/kgf (×1000 = µm/kgf). Only radial P<sub>y</sub> bends the work.</p>
+<div class="bar"><button class="btn" data-reveal="A">Show all</button><button class="btn" data-hide="A">Hide all</button></div>
+<div id="A-body">
+
+<article class="prob"><h3><span class="num">A1</span> Compliance &amp; displacement <span class="src real">MEHTA 5.1</span></h3>
+<p class="statement">Between centres, L=750 mm; radial P<sub>y</sub>=150 kgf, tool 200 mm from tailstock. Stiffness saddle/headstock/tailstock = 3000/4000/2500 kgf/mm. Find compliance &amp; cutting-point displacement.</p>
+<span class="soln-toggle">Show solution ▸</span><div class="soln">
+<div class="plug"><span class="plug-h">what goes where</span>x = L−200 = <span class="v">550 mm</span> → x/L <span class="v">=0.733</span> · K<sub>s</sub> <span class="v">=3000</span>, K<sub>A</sub> <span class="v">=4000</span>, K<sub>B</sub> <span class="v">=2500</span> · P<sub>y</sub> <span class="v">=150</span></div>
+<p class="step sub-line">C = 1/3000 + (1/4000)(0.267)² + (1/2500)(0.733)² = <b>0.566 µm/kgf</b></p>
+<p class="step sub-line">y = 0.566·150 = <b>85 µm</b></p>
+<p class="ans"><b>C ≈ 0.566 µm/kgf; displacement ≈ 85 µm.</b></p></div></article>
+
+<article class="prob"><h3><span class="num">A2</span> Deflection at cutting point <span class="src real">MEHTA 5.2</span></h3>
+<p class="statement">Between centres, L=500 mm, dia 80 mm; P<sub>z</sub>=150, P<sub>y</sub>=80 kgf, tool 200 mm from headstock. Headstock 35 000 kgf/cm, tailstock 15 000 kgf/cm. Deflection at the cutting point.</p>
+<span class="soln-toggle">Show solution ▸</span><div class="soln">
+<div class="plug"><span class="plug-h">what goes where</span>x/L <span class="v">=0.4</span> · K→kgf/mm: headstock <span class="v">=3500</span>, tailstock <span class="v">=1500</span> · only P<sub>y</sub> <span class="v">=80</span> (P<sub>z</sub> distractor)</div>
+<p class="step sub-line">support: y = (P<sub>y</sub>/K<sub>A</sub>K<sub>B</sub>)[K<sub>B</sub>(0.6)²+K<sub>A</sub>(0.4)²] ≈ <b>16.8 µm</b></p>
+<p class="step sub-line">+ workpiece bending y<sub>wp</sub>=P<sub>y</sub>a²b²/(3EIL) ≈ 4.5 µm → total ≈ <b>21.3 µm</b></p>
+<p class="ans"><b>≈ 16.8 µm (supports); ~21 µm incl. workpiece bending.</b> Convert kgf/cm → kgf/mm (÷10) first.</p></div></article>
+
+<article class="prob"><h3><span class="num">A3</span> Compliance <span class="src var">VARIANT of 5.1</span></h3>
+<p class="statement">L=600 mm, P<sub>y</sub>=120 kgf, tool 240 mm from headstock. Saddle/headstock/tailstock = 3500/4000/2500 kgf/mm.</p>
+<span class="soln-toggle">Show solution ▸</span><div class="soln">
+<div class="plug"><span class="plug-h">what goes where</span>x/L = 240/600 = <span class="v">0.4</span> · K<sub>s</sub> <span class="v">=3500</span>, K<sub>A</sub> <span class="v">=4000</span>, K<sub>B</sub> <span class="v">=2500</span></div>
+<p class="step sub-line">C = 1/3500 + (1/4000)(0.6)² + (1/2500)(0.4)² = <b>0.44 µm/kgf</b></p>
+<p class="step sub-line">y = 0.44·120 = <b>52.8 µm</b></p>
+<p class="ans"><b>C ≈ 0.44 µm/kgf; y ≈ 52.8 µm.</b></p></div></article>
+
+<article class="prob"><h3><span class="num">A4</span> Compliance <span class="src var">VARIANT of 5.1</span></h3>
+<p class="statement">L=800 mm, P<sub>y</sub>=100 kgf, tool 320 mm from tailstock. Saddle/headstock/tailstock = 2500/3000/2000 kgf/mm.</p>
+<span class="soln-toggle">Show solution ▸</span><div class="soln">
+<div class="plug"><span class="plug-h">what goes where</span>x = 800−320 = 480 → x/L <span class="v">=0.6</span> · K<sub>s</sub> <span class="v">=2500</span>, K<sub>A</sub> <span class="v">=3000</span>, K<sub>B</sub> <span class="v">=2000</span></div>
+<p class="step sub-line">C = 1/2500 + (1/3000)(0.4)² + (1/2000)(0.6)² = <b>0.633 µm/kgf</b></p>
+<p class="step sub-line">y = 0.633·100 = <b>63.3 µm</b></p>
+<p class="ans"><b>C ≈ 0.633 µm/kgf; y ≈ 63.3 µm.</b></p></div></article>
+</div>
+
+<!-- B NOSE DEFLECTION -->
+<h2 id="B">B · Spindle-nose deflection &amp; optimum span</h2>
+<p class="method">Nose y = δ<sub>B</sub>(1+c/l) + δ<sub>A</sub>(c/l); front bearing B dominates (1+c/l amplification). δ=R/K from beam statics. Optimum span λ=l/c ≈ 3–5 (≥2.5 for anti-friction).</p>
+<div class="bar"><button class="btn" data-reveal="B">Show all</button><button class="btn" data-hide="B">Hide all</button></div>
+<div id="B-body">
+
+<article class="prob"><h3><span class="num">B1</span> Nose deflection &amp; optimum span <span class="src real">MEHTA 5.3</span></h3>
+<p class="statement">Spindle: front-bearing yield δ<sub>B</sub>=42.2 µm, rear δ<sub>A</sub>=9.17 µm; overhang c=1, span l=3. Find the nose deflection and state λ<sub>opt</sub>.</p>
+<span class="soln-toggle">Show solution ▸</span><div class="soln">
+<div class="plug"><span class="plug-h">what goes where</span>δ<sub>B</sub> <span class="v">=42.2</span> (front, ×(1+c/l)) · δ<sub>A</sub> <span class="v">=9.17</span> (rear, ×c/l) · c/l <span class="v">=0.333</span> → 1+c/l <span class="v">=1.333</span></div>
+<p class="step sub-line">y = 42.2·1.333 + 9.17·0.333 = 56.3 + 3.1 = <b>≈ 59 µm</b></p>
+<p class="ans"><b>y ≈ 59 µm; λ<sub>opt</sub>=l/c ≈ 3</b> (bending ↑, support-compliance ↓ → min sum).</p></div></article>
+
+<article class="prob"><h3><span class="num">B2</span> Nose deflection <span class="src var">VARIANT of 5.3</span></h3>
+<p class="statement">δ<sub>B</sub>=35 µm, δ<sub>A</sub>=8 µm, overhang c=1, span l=4.</p>
+<span class="soln-toggle">Show solution ▸</span><div class="soln">
+<div class="plug"><span class="plug-h">what goes where</span>c/l <span class="v">=0.25</span> → 1+c/l <span class="v">=1.25</span></div>
+<p class="step sub-line">y = 35·1.25 + 8·0.25 = 43.75 + 2.0 = <b>45.8 µm</b></p>
+<p class="ans"><b>y ≈ 45.8 µm</b> (λ=l/c=4, within 3–5).</p></div></article>
+
+<article class="prob"><h3><span class="num">B3</span> Nose deflection <span class="src var">VARIANT of 5.3</span></h3>
+<p class="statement">δ<sub>B</sub>=50 µm, δ<sub>A</sub>=12 µm, c=1.2, l=3.6.</p>
+<span class="soln-toggle">Show solution ▸</span><div class="soln">
+<div class="plug"><span class="plug-h">what goes where</span>c/l = 1.2/3.6 <span class="v">=0.333</span> → 1+c/l <span class="v">=1.333</span></div>
+<p class="step sub-line">y = 50·1.333 + 12·0.333 = 66.7 + 4.0 = <b>70.7 µm</b></p>
+<p class="ans"><b>y ≈ 70.7 µm</b> (λ=3). Front bearing dominates — stiffen it / shorten c.</p></div></article>
+</div>
+
+<!-- C RUN-OUT -->
+<h2 id="C">C · Run-out from bearing clearance</h2>
+<p class="method">Same form: run-out = δ<sub>B</sub>(1+c/l) + δ<sub>A</sub>(c/l), but δ's are radial <b>clearances</b>; take them opposite for the worst case. Front clearance dominates.</p>
+<div class="bar"><button class="btn" data-reveal="C">Show all</button><button class="btn" data-hide="C">Hide all</button></div>
+<div id="C-body">
+
+<article class="prob"><h3><span class="num">C1</span> Spindle-nose run-out <span class="src real">MEHTA 5.12</span></h3>
+<p class="statement">Two bearings 20 cm apart; radial clearances 4 µm (rear) &amp; 6 µm (front); nose overhang 8 cm from the 6-µm bearing. Find the radial run-out.</p>
+<span class="soln-toggle">Show solution ▸</span><div class="soln">
+<div class="plug"><span class="plug-h">what goes where</span>δ<sub>B</sub> <span class="v">=6</span> (front), δ<sub>A</sub> <span class="v">=4</span> (rear) · c/l = 8/20 <span class="v">=0.4</span> → 1+c/l <span class="v">=1.4</span></div>
+<p class="step sub-line">run-out = 6·1.4 + 4·0.4 = 8.4 + 1.6 = <b>10 µm</b></p>
+<p class="ans"><b>max run-out = 10 µm.</b></p></div></article>
+
+<article class="prob"><h3><span class="num">C2</span> Run-out <span class="src var">VARIANT of 5.12</span></h3>
+<p class="statement">Bearings 25 cm apart; clearances 8 µm (front), 5 µm (rear); overhang 10 cm.</p>
+<span class="soln-toggle">Show solution ▸</span><div class="soln">
+<div class="plug"><span class="plug-h">what goes where</span>δ<sub>B</sub> <span class="v">=8</span>, δ<sub>A</sub> <span class="v">=5</span>, c/l = 10/25 <span class="v">=0.4</span></div>
+<p class="step sub-line">run-out = 8·1.4 + 5·0.4 = 11.2 + 2.0 = <b>13.2 µm</b></p>
+<p class="ans"><b>max run-out = 13.2 µm.</b></p></div></article>
+</div>
+
+<!-- D HOLLOW SPINDLE -->
+<h2 id="D">D · Hollow spindle — combined bending + torsion</h2>
+<p class="method">Torque M<sub>t</sub> = 974·P/n (P kW, n rpm → kgf·m). Front bearing carries the biggest bending moment (P₁·c). Combine load planes vectorially, size d<sub>o</sub>, d<sub>i</sub> from Eq 5.38 (α=d<sub>i</sub>/d<sub>o</sub>).</p>
+<div class="bar"><button class="btn" data-reveal="D">Show all</button><button class="btn" data-hide="D">Hide all</button></div>
+<div id="D-body">
+
+<article class="prob"><h3><span class="num">D1</span> Hollow-spindle diameters <span class="src real">MEHTA 5.4</span></h3>
+<p class="statement">Hollow lathe spindle d<sub>o</sub>/d<sub>i</sub>=2. Power 4.5 kW at 700 rpm. P₂=215, T₂=78 kgf at gear; P₁=210, T₁=60 kgf at nose; span 170, overhang 80 mm. Find d<sub>o</sub>, d<sub>i</sub>.</p>
+<span class="soln-toggle">Show solution ▸</span><div class="soln">
+<div class="plug"><span class="plug-h">what goes where</span>M<sub>t</sub> = 974·P/n · α=d<sub>i</sub>/d<sub>o</sub> <span class="v">=0.5</span> · front-bearing moment from P₁·c, T₁·c · σ₋₁ <span class="v">≈2500</span>, n <span class="v">≈1.5</span> (table)</div>
+<p class="step sub-line">M<sub>t</sub> = 974·4.5/700 = <b>6.26 kgf·m</b> = 626 kgf·cm</p>
+<p class="step sub-line">M<sub>b</sub> at front = √((P₁c)²+(T₁c)²) = √(16800²+4800²) ≈ 1747 kgf·cm; Eq 5.38 → d<sub>o</sub>³≈30 cm³</p>
+<p class="ans"><b>strength: d<sub>o</sub>≈31, d<sub>i</sub>≈16 mm;</b> stiffness-governed practical pick (Table 5.3) d<sub>o</sub>=70, d<sub>i</sub>=35 mm.</p></div></article>
+
+<article class="prob"><h3><span class="num">D2</span> Spindle torque <span class="src var">VARIANT of 5.4</span></h3>
+<p class="statement">Hollow spindle, power 7.5 kW at 1000 rpm, d<sub>o</sub>/d<sub>i</sub>=2. Find the transmitted torque (the first step of the sizing).</p>
+<span class="soln-toggle">Show solution ▸</span><div class="soln">
+<div class="plug"><span class="plug-h">what goes where</span>P <span class="v">=7.5 kW</span>, n <span class="v">=1000 rpm</span> · M<sub>t</sub>=974P/n</div>
+<p class="step sub-line">M<sub>t</sub> = 974·7.5/1000 = <b>7.30 kgf·m = 730 kgf·cm</b></p>
+<p class="ans"><b>M<sub>t</sub> = 7.30 kgf·m.</b> Then combine with the front-bearing bending moment and apply Eq 5.38 with α=0.5.</p></div></article>
+</div>
+
+<!-- E JOURNAL -->
+<h2 id="E">E · Sleeve / journal bearing — p, v, pv</h2>
+<p class="method">Projected pressure p = P/(l·d) (NOT πdl). Surface speed v = πdn/60 (d in m). pv → material table (high v, low p → tin bronze / white metal).</p>
+<div class="bar"><button class="btn" data-reveal="E">Show all</button><button class="btn" data-hide="E">Hide all</button></div>
+<div id="E-body">
+
+<article class="prob"><h3><span class="num">E1</span> Sleeve-bearing material <span class="src real">MEHTA 5.5</span></h3>
+<p class="statement">Precision lathe spindle journal d=80 mm, n up to 2500 rpm, max bearing load 30 kgf, l/d=1. Select a sleeve material.</p>
+<span class="soln-toggle">Show solution ▸</span><div class="soln">
+<div class="plug"><span class="plug-h">what goes where</span>d <span class="v">=8 cm</span> (pressure), <span class="v">=0.08 m</span> (speed); l=d=8 cm · P <span class="v">=30</span> · n <span class="v">=2500</span></div>
+<p class="step sub-line">p = 30/(8·8) = <b>0.469 kgf/cm²</b> · v = π·0.08·2500/60 = <b>10.47 m/s</b> · pv = <b>4.9</b></p>
+<p class="ans"><b>high v, low p → tin bronze</b> (within [p],[pv]).</p></div></article>
+
+<article class="prob"><h3><span class="num">E2</span> Journal p, v, pv <span class="src var">VARIANT of 5.5</span></h3>
+<p class="statement">Journal d=100 mm, n=2000 rpm, load 50 kgf, l/d=1.</p>
+<span class="soln-toggle">Show solution ▸</span><div class="soln">
+<div class="plug"><span class="plug-h">what goes where</span>d <span class="v">=10 cm / 0.10 m</span>, l=10 cm · P <span class="v">=50</span></div>
+<p class="step sub-line">p = 50/(10·10) = <b>0.50 kgf/cm²</b> · v = π·0.10·2000/60 = <b>10.47 m/s</b> · pv = <b>5.24</b></p>
+<p class="ans"><b>p=0.50, v=10.47, pv=5.24 → tin bronze / white metal.</b></p></div></article>
+
+<article class="prob"><h3><span class="num">E3</span> Journal p, v, pv <span class="src var">VARIANT of 5.5</span></h3>
+<p class="statement">Journal d=70 mm, n=3000 rpm, load 40 kgf, l/d=1.</p>
+<span class="soln-toggle">Show solution ▸</span><div class="soln">
+<div class="plug"><span class="plug-h">what goes where</span>d <span class="v">=7 cm / 0.07 m</span>, l=7 cm · P <span class="v">=40</span></div>
+<p class="step sub-line">p = 40/(7·7) = <b>0.816 kgf/cm²</b> · v = π·0.07·3000/60 = <b>11.0 m/s</b> · pv = <b>8.97</b></p>
+<p class="ans"><b>p=0.82, v=11.0, pv=8.97 → tin bronze</b> (high-speed, light-load precision).</p></div></article>
+</div>
+
+<!-- F HYDRODYNAMIC -->
+<h2 id="F">F · Hydrodynamic journal bearing</h2>
+<p class="method">ψ→c=ψd/2 → Sommerfeld S₀ → viscosity μ (Eq 5.47) → ε → h<sub>min</sub>=c(1−ε). Chart-read values flagged <i>(table)</i>.</p>
+<div class="bar"><button class="btn" data-reveal="F">Show all</button><button class="btn" data-hide="F">Hide all</button></div>
+<div id="F-body">
+
+<article class="prob"><h3><span class="num">F1</span> Hydrodynamic bearing design <span class="src real">MEHTA 5.6</span></h3>
+<p class="statement">Cu–Pb journal bearing d=60 mm, P=150 kgf, n=3000 rpm, h<sub>cr</sub>=10 µm, need h<sub>min</sub>/h<sub>cr</sub>&gt;1.1. Find the design parameters.</p>
+<span class="soln-toggle">Show solution ▸</span><div class="soln">
+<div class="plug"><span class="plug-h">what goes where</span>l/d=1 (l=6 cm) · ψ <span class="v">=0.001 (table)</span> → c=ψd/2=30 µm · S₀ <span class="v">=1.0 (table)</span></div>
+<p class="step sub-line">p = 150/36 = 4.17 kgf/cm²; ω=314 rad/s; μ ≥ pψ²/(ωS₀) = <b>1.33×10⁻⁴ kgf·s/m² ≈ 1.3 cP</b></p>
+<p class="step sub-line">ε ≈ 0.53 (table) → h<sub>min</sub> = c(1−ε) = 30(0.47) = <b>14.2 µm</b>; ratio 1.42 &gt; 1.1 ✓</p>
+<p class="ans"><b>l/d=1, ψ=0.001 (c=30 µm), oil μ≈1.3 cP, ε≈0.53, h<sub>min</sub>≈14 µm.</b> Acceptable.</p></div></article>
+
+<article class="prob"><h3><span class="num">F2</span> Babbit bearing — capacity &amp; heat <span class="src real">MEHTA 5.7</span></h3>
+<p class="statement">Babbit journal d=80 mm, n=2000 rpm, p≤8 kgf/cm². Load capacity? Check heating (max 70 °C, ambient 40 °C).</p>
+<span class="soln-toggle">Show solution ▸</span><div class="soln">
+<div class="plug"><span class="plug-h">what goes where</span>l/d=1 (l=8 cm) · capacity P = p·l·d · free-surface area A = <span class="v">20·d·l</span> (not πdl)</div>
+<p class="step sub-line">P = 8·8·8 = <b>512 kgf</b>; v=8.38 m/s; friction f≈1.2×10⁻³ → heat W≈43 kcal/h</p>
+<p class="step sub-line">t<sub>b</sub> = 40 + W/(k·A) ≈ 40 + 43/(34.9·0.128) = <b>≈ 50 °C</b> &lt; 70 ✓</p>
+<p class="ans"><b>load ≈ 512 kgf; t<sub>b</sub> ≈ 50 °C → no forced cooling.</b></p></div></article>
+
+<article class="prob"><h3><span class="num">F3</span> Hydrodynamic capacity <span class="src var">VARIANT of 5.7</span></h3>
+<p class="statement">Babbit journal d=100 mm, l/d=1, permissible p=8 kgf/cm². Load capacity?</p>
+<span class="soln-toggle">Show solution ▸</span><div class="soln">
+<div class="plug"><span class="plug-h">what goes where</span>d=10 cm, l=10 cm · P = p·l·d</div>
+<p class="step sub-line">P = 8·10·10 = <b>800 kgf</b></p>
+<p class="ans"><b>capacity = 800 kgf.</b> (Heat check: A=20·d·l, same balance as F2.)</p></div></article>
+</div>
+
+<!-- G HYDROSTATIC / AERO -->
+<h2 id="G">G · Hydrostatic / aerodynamic / multiple-wedge <span class="small">(book-only — lower priority)</span></h2>
+<p class="method">Not in the lecture PPT — included for completeness. Hydrostatic: p<sub>p</sub>=2p₀ optimum, A=W/(C<sub>L</sub>p₀). Aerodynamic: P=0.5·p<sub>a</sub>·l·d·K₁·K₂. Multiple-wedge: unloaded P₀ + Eq 5.63.</p>
+<div class="bar"><button class="btn" data-reveal="G">Show all</button><button class="btn" data-hide="G">Hide all</button></div>
+<div id="G-body">
+
+<article class="prob"><h3><span class="num">G1</span> Cylindrical hydrostatic pad <span class="src book">MEHTA 5.9 · book only</span></h3>
+<p class="statement">Cylindrical-pad hydrostatic bearing r/R=0.7. W=200 kgf, n=1000 rpm, p<sub>p</sub>=20 kgf/cm², gap h=0.005 cm, μ=4×10⁻⁷. Required restrictor opening?</p>
+<span class="soln-toggle">Show solution ▸</span><div class="soln">
+<div class="plug"><span class="plug-h">what goes where</span>p<sub>p</sub>=2p₀ → p₀ <span class="v">=10</span> · C<sub>L</sub> <span class="v">≈0.5 (table, r/R=0.7)</span> · A=W/(C<sub>L</sub>p₀)</div>
+<p class="step sub-line">A = 200/(0.5·10) = 40 cm²; pad flow Q = p₀h³(1/C<sub>F</sub>′)/μ ≈ 6.25 cm³/s</p>
+<p class="step sub-line">orifice: Q = C<sub>d</sub>a₀√(2Δp/ρ), Δp=10 → a₀ → <b>d₀ ≈ 0.53 mm</b></p>
+<p class="ans"><b>p₀=10 kgf/cm², A=40 cm², restrictor ≈ 0.53 mm dia.</b></p></div></article>
+
+<article class="prob"><h3><span class="num">G2</span> Aerodynamic bearing size <span class="src book">MEHTA 5.10 · book only</span></h3>
+<p class="statement">Aerodynamic bearing, P=15 kgf, l/d=0.8, air supply 4 kgf/cm², radial gap 0.01 mm, air μ=0.02 cP. Find l and d.</p>
+<span class="soln-toggle">Show solution ▸</span><div class="soln">
+<div class="plug"><span class="plug-h">what goes where</span>P=0.5·p<sub>a</sub>·l·d·K₁·K₂ · K₁ <span class="v">≈3.5 (table)</span>, K₂ <span class="v">≈0.55 (l/d=0.8)</span> · l=0.8d</div>
+<p class="step sub-line">15 = 0.5·4×10⁴·0.8d·d·3.5·0.55 → d² = 4.87×10⁻⁴ m² → d ≈ <b>22 mm</b>; l ≈ <b>17.7 mm</b></p>
+<p class="ans"><b>d ≈ 22 mm, l ≈ 17.7 mm.</b></p></div></article>
+
+<article class="prob"><h3><span class="num">G3</span> Multiple-wedge bearing <span class="src book">MEHTA 5.8 · book only</span></h3>
+<p class="statement">Multiple-wedge bearing, grinding spindle d=60 mm, n=3000 rpm, ν=6 cSt, ρ=0.86, ε=0.7. Unloaded capacity and load at ε=0.7?</p>
+<span class="soln-toggle">Show solution ▸</span><div class="soln">
+<div class="plug"><span class="plug-h">what goes where</span>μ=νρ <span class="v">=5.16 cP</span> · l=0.75d=4.5 cm, B=0.7l · C<sub>L2</sub> <span class="v">≈0.84 (table)</span></div>
+<p class="step sub-line">unloaded P₀ ≈ 155 kgf; load at ε=0.7: P = 155[1/0.65²−1/1.7²] ≈ <b>313 kgf</b></p>
+<p class="ans"><b>P₀ ≈ 155 kgf; load at ε=0.7 ≈ 313 kgf.</b> Multiple-wedge keeps the journal concentric (precision grinding).</p></div></article>
+</div>
+
+<div class="callout">All clean arithmetic verified; chart/table values flagged <i>(table)</i>. Theory is in the main guide (CLO4 · Spindles tab). Companion sets: <a href="structures-drills.html">structures drills</a> · <a href="guideways-drills.html">guideways drills</a> · <a href="numericals-playbook.html">method playbook</a>.</div>
+</div>
+
+<script>
+document.querySelectorAll('.soln-toggle').forEach(t=>t.addEventListener('click',()=>{const s=t.nextElementSibling;s.classList.toggle('show');t.textContent=s.classList.contains('show')?'Hide solution ▾':'Show solution ▸';}));
+document.querySelectorAll('[data-reveal]').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('#'+b.dataset.reveal+'-body .soln').forEach(s=>s.classList.add('show'));document.querySelectorAll('#'+b.dataset.reveal+'-body .soln-toggle').forEach(t=>t.textContent='Hide solution ▾');}));
+document.querySelectorAll('[data-hide]').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('#'+b.dataset.hide+'-body .soln').forEach(s=>s.classList.remove('show'));document.querySelectorAll('#'+b.dataset.hide+'-body .soln-toggle').forEach(t=>t.textContent='Show solution ▸');}));
+</script>
+</body>
+</html>
