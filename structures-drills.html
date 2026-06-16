@@ -54,13 +54,50 @@
   <div class="brand"><span class="accent">Structures</span> · 20 Numerical Drills</div>
   <div class="sub">Mehta ch 3 · MIE 3223 · taught topics from Module 3 · genuine Mehta + labeled variants</div>
   <nav class="jump">
-    <a href="#A">Torsion ×6</a><a href="#B">Bending rigidity ×3</a><a href="#C">Box deflection ×3</a><a href="#D">Bases &amp; tables ×2</a><a href="#E">Stiffness / l²h ×4</a><a href="#F">Model / freq ×2</a>
+    <a href="#P">★ PPT examples ×2</a><a href="#A">Torsion ×6</a><a href="#B">Bending rigidity ×3</a><a href="#C">Box deflection ×3</a><a href="#D">Bases &amp; tables ×2</a><a href="#E">Stiffness / l²h ×4</a><a href="#F">Model / freq ×2</a>
   </nav>
 </div></header>
 
 <div class="container">
 <p class="lead">20 structures numericals across the topics the lecturer actually taught (Module 3 → Mehta ch 3). Try on paper, then reveal: formula → "what goes where" → numbers in → boxed answer. Convert to <b>cm + kgf</b> first.</p>
 <div class="callout"><b>Genuine</b> <span class="src real">MEHTA 3.x</span> problems first, then <span class="src var">VARIANT</span> drills (same method, new numbers). Torsion was last paper's Q6 → drill it hardest.</div>
+
+<!-- P PPT EXAMPLES -->
+<h2 id="P">★ P · The prof's own worked examples <span class="small">(straight from Module 3 slides)</span></h2>
+<p class="method">These two are transcribed <b>directly from the lecture PPT</b> (not the Mehta review set) — the foundation-on-elastic-support method with chart factors. High value: could appear near-verbatim. Units are as the prof used them.</p>
+<div class="bar"><button class="btn" data-reveal="P">Show all</button><button class="btn" data-hide="P">Hide all</button></div>
+<div id="P-body">
+
+<article class="prob"><h3><span class="num">P1</span> Lathe-bed strength check <span class="src var" style="background:#1e3a8a;color:#fff">FROM PPT · M3 s.59–65</span></h3>
+<p class="statement">Workpiece d=200 mm, L=1500 mm, tightening load K=5000 N. Cutting force P<sub>x</sub>=2500, P<sub>y</sub>=5000, P<sub>z</sub>=10000 N. Composite bed section: b₁=110, b₂=20, b₃=115, d₁=30, d₂=315, d₃=25 mm (+ A=365, B=145, C=275, D=235, E=370, F=140). Height of centres h=300 mm. Allowable bed stress 12 N/mm². <b>Check the bed strength.</b></p>
+<span class="soln-toggle">Show solution ▸</span><div class="soln">
+<div class="plug"><span class="plug-h">what goes where</span>section = bottom flange <span class="v">30×110</span> + web <span class="v">315×20</span> + top flange <span class="v">25×115</span> · vertical bending uses I<sub>yy</sub>, horizontal uses I<sub>zz</sub>, torsion uses I<sub>t</sub>=I<sub>yy</sub>+I<sub>zz</sub> · c = h + h<sub>fp</sub></div>
+<p class="step"><b>Centroid (z̄ = ΣA<sub>i</sub>z<sub>i</sub>/ΣA<sub>i</sub>):</b></p>
+<p class="step sub-line">z̄ = 181.05 mm → z₁=181.05, z₂=188.95, z<sub>max</sub>=188.95 mm; y<sub>max</sub>=185.0 mm</p>
+<p class="step"><b>Section properties:</b></p>
+<p class="step sub-line">I<sub>yy</sub>=4.665×10⁸, I<sub>zz</sub>=4.190×10⁸, I<sub>t</sub>=I<sub>yy</sub>+I<sub>zz</sub>=8.855×10⁸ mm⁴</p>
+<p class="step"><b>Vertical bending:</b> σ<sub>z,max</sub> = [(P<sub>z</sub>−G)L/4 + (P<sub>x</sub>+K)c]·z<sub>max</sub>/I<sub>yy</sub> = <b>2.58 N/mm²</b></p>
+<p class="step"><b>Horizontal bending:</b> σ<sub>y,max</sub> = (P<sub>y</sub>L/4)·y<sub>max</sub>/I<sub>zz</sub> = <b>0.21 N/mm²</b></p>
+<p class="step"><b>Torsion:</b> M<sub>T</sub>=(P<sub>z</sub>d/2 + P<sub>y</sub>h); τ<sub>max</sub>=M<sub>T</sub>·max(y<sub>max</sub>,z<sub>max</sub>)/I<sub>t</sub> = <b>0.53 N/mm²</b></p>
+<p class="step"><b>Principal stress:</b> σ<sub>p,max</sub> = (σ<sub>z</sub>+σ<sub>y</sub>)/2 + ½√[(σ<sub>z</sub>−σ<sub>y</sub>)²+4τ²]</p>
+<p class="step sub-line">σ<sub>p,max</sub> = 2.79 N/mm²</p>
+<p class="ans"><b>σ<sub>p,max</sub> = 2.79 N/mm² &lt; 12 N/mm² → bed is SAFE in strength.</b></p>
+</div></article>
+
+<article class="prob"><h3><span class="num">P2</span> Base / table — maximum slope <span class="src var" style="background:#1e3a8a;color:#fff">FROM PPT · M3 s.83–87</span></h3>
+<p class="statement">Base width b=60 cm, plate material E=1.1×10⁶ kgf/cm², plate thickness t=6 cm. Distributed loads q₁ᵐ=1.2, q₂ᵐ=0.8 kgf/cm². Applied bending moment M=5000 kgf·cm. Geometry a₁=50, b₁=30, a₂=85, b₂=40 cm. <b>Find the maximum slope.</b> (Plate on elastic foundation; read K<sub>M</sub>, K<sub>q</sub> from the charts.)</p>
+<span class="soln-toggle">Show solution ▸</span><div class="soln">
+<div class="plug"><span class="plug-h">what goes where</span>foundation k=125b · I=bt³/12 · m=(k/4EI)^¼ · φ=a·m, B=b·m feed the chart → K<sub>M</sub>, K<sub>q1</sub>, K<sub>q2</sub></div>
+<p class="step"><b>Step 1 — k &amp; I:</b> k = 125b = 125·60 = 7500 kgf/cm²; I = bt³/12 = 60·6³/12 = <b>1080 cm⁴</b></p>
+<p class="step"><b>Step 2 — m:</b> m = (k/4EI)^¼ = (7500/(4·1.1×10⁶·1080))^¼ = <b>0.03544 cm⁻¹</b></p>
+<p class="step"><b>Step 3 — φ, B:</b> φ₁=a₁m=1.77≈2, B₁=b₁m=1.06≈1.1; φ₂=a₂m=3.01≈3, B₂=b₂m=1.42≈1.4</p>
+<p class="step"><b>Step 4 — chart factors:</b> K<sub>M</sub>≈2.4, K<sub>q1</sub>≈0.50, K<sub>q2</sub>≈0.30</p>
+<p class="step"><b>Step 5 — slope components:</b></p>
+<p class="step sub-line">θ<sub>q1</sub>=(q₁ᵐb/k)K<sub>q1</sub>=(1.2·60/7500)·0.50=0.00480 rad · θ<sub>q2</sub>=(0.8·60/7500)·0.30=0.00192 rad · θ<sub>M</sub>=(Mm³/k)K<sub>M</sub>=7.12×10⁻⁵ rad</p>
+<p class="step"><b>Step 6 — total:</b> θ = 0.00480 + 0.00192 + 0.0000712 = 0.00679 rad</p>
+<p class="ans"><b>θ ≈ 0.00679 rad ≈ 0.389°.</b></p>
+</div></article>
+</div>
 
 <!-- A TORSION -->
 <h2 id="A">A · Section torsion — open &amp; closed</h2>
