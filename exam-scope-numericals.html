@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Exam-Scope Numericals — the only 4 topics (MIE 3223)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#fafaf7;--paper:#fff;--ink:#1a1a1a;--muted:#6b6b6b;--accent:#b91c1c;--accent2:#1e3a8a;--rule:#e6e3dc;--green:#14532d;--gold:#92580a;--gold-bg:#fdf6e3;--hand:"Patrick Hand","Bradley Hand","Noteworthy","Marker Felt",cursive;--ink-blue:#1d3a5f}
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;background:var(--bg);color:var(--ink)}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.55;font-size:16px}
+  h1,h2,h3{font-family:"Iowan Old Style","Palatino",Georgia,serif;font-weight:600;letter-spacing:-.01em}
+  h1{font-size:1.95rem;margin:0 0 .3rem}
+  h2{font-size:1.4rem;margin:2.1rem 0 .5rem;padding-bottom:.35rem;border-bottom:2px solid var(--rule)}
+  .container{max-width:920px;margin:0 auto;padding:0 1.1rem 4rem}
+  header.site{background:var(--paper);border-bottom:1px solid var(--rule);padding:1.1rem 1.1rem .85rem;position:sticky;top:0;z-index:50}
+  header.site .inner{max-width:920px;margin:0 auto}
+  .brand{font-family:"Iowan Old Style",serif;font-size:1.25rem;font-weight:600}
+  .brand .accent{color:var(--accent)}
+  .sub{color:var(--muted);font-size:.83rem;margin:.3rem 0 .55rem}
+  nav.jump{display:flex;flex-wrap:wrap;gap:.35rem}
+  nav.jump a{font-size:.82rem;text-decoration:none;color:var(--accent2);border:1px solid var(--rule);border-radius:14px;padding:.2rem .65rem;background:#f6f4ee}
+  nav.jump a:hover{background:#eef2fb}
+  .method{font-size:.9rem;color:#444;margin:.2rem 0 .6rem}
+  article.prob{border:1px solid var(--rule);border-radius:9px;background:var(--paper);padding:.9rem 1.2rem 1.1rem;margin:1rem 0;box-shadow:0 1px 2px rgba(0,0,0,.03)}
+  article.prob>h3{font-size:1.05rem;margin:.2rem 0 .5rem;display:flex;align-items:center;gap:.5rem;flex-wrap:wrap;font-family:"Iowan Old Style",serif}
+  .num{background:var(--accent2);color:#fff;font-family:"JetBrains Mono",monospace;font-size:.8rem;font-weight:700;border-radius:6px;padding:.1rem .5rem}
+  .src{font-size:.66rem;font-weight:700;letter-spacing:.03em;padding:.12rem .5rem;border-radius:10px}
+  .src.real{background:#14532d;color:#fff}.src.ppt{background:#1e3a8a;color:#fff}.src.exam{background:#b91c1c;color:#fff}
+  .statement{margin:.3rem 0}.statement sub,.soln sub,.plug sub{font-size:.7em}.statement sup,.soln sup,.plug sup{font-size:.7em}
+  .soln-toggle{cursor:pointer;user-select:none;font-weight:600;color:var(--accent);font-size:.86rem;display:inline-block;padding:.3rem .65rem;border:1px solid var(--rule);border-radius:5px;background:#f8f6f0;margin-top:.4rem}
+  .soln-toggle:hover{background:#f0ede4}
+  .soln{display:none;margin-top:.55rem;padding:.55rem .9rem;background:#fbfaf6;border:1px dashed var(--rule);border-radius:6px}
+  .soln.show{display:block}
+  .soln .step,.soln .ans{font-family:var(--hand);font-size:1.2rem;color:var(--ink-blue);line-height:1.55;letter-spacing:.3px;margin:.3rem 0}
+  .soln .step b{color:#7a1414;font-weight:400}
+  .sub-line{background:#fbf6ee;border-left:3px solid var(--gold);border-radius:4px;padding:.3rem .7rem;margin:.35rem 0}
+  .ans{background:var(--gold-bg);border-left:3px solid var(--gold);padding:.4rem .7rem;border-radius:4px;color:#6a4400}
+  .plug{font-family:var(--hand);font-size:1.1rem;color:var(--ink-blue);background:#eef5fc;border:1px dashed #c4d4ec;border-radius:6px;padding:.45rem .85rem;margin:.5rem 0;line-height:1.65}
+  .plug .plug-h{font-family:-apple-system,sans-serif;font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:var(--accent2);font-weight:700;display:block;margin-bottom:.2rem}
+  .plug .v{color:#7a1414}
+  .callout{background:#eef2fb;border:1px solid #cdd8f0;border-left:4px solid var(--accent2);border-radius:7px;padding:.7rem 1rem;margin:1rem 0}
+  .callout.red{background:#fdecec;border-color:#f3caca;border-left-color:var(--accent)}
+  .bar{display:flex;gap:.5rem;margin:.3rem 0 .6rem;flex-wrap:wrap}
+  .btn{font-family:inherit;font-size:.8rem;padding:.35rem .7rem;border:1px solid var(--rule);border-radius:6px;background:var(--paper);cursor:pointer;color:var(--ink)}
+  .btn:hover{background:#f0ede4}
+  .lead{font-size:1.04rem;color:#333}.small{font-size:.83rem;color:var(--muted)}
+</style>
+</head>
+<body>
+<header class="site"><div class="inner">
+  <div class="brand"><span class="accent">Exam-Scope Numericals</span> · the only 4 topics</div>
+  <div class="sub">MIE 3223 · what the prof actually tests numerically · textbook + PPT, all solved</div>
+  <nav class="jump">
+    <a href="#cs">1 · Cutting speed &amp; feed</a><a href="#bt">2 · Bases &amp; tables</a><a href="#sw">3 · Slideways</a><a href="#def">4 · Deflection &amp; assoc.</a>
+  </nav>
+</div></header>
+
+<div class="container">
+<p class="lead">Per the prof: the numericals come from <b>only four topics</b> — cutting speed/feed (simple), design of bases &amp; tables, design of slideways, and calculation of deflection (+ associated). This page collects <b>every relevant question</b> from the Mehta book and the PPTs for those four, fully solved. Convert to consistent units, try on paper, then reveal.</p>
+<div class="callout red"><b>This is the whole numerical scope.</b> Tags: <span class="src real">MEHTA</span> textbook · <span class="src ppt">PPT</span> lecture slides · <span class="src exam">LAST PAPER</span> appeared May-2026.</div>
+
+<!-- ===== 1 CUTTING SPEED & FEED ===== -->
+<h2 id="cs">1 · Cutting speed &amp; feed (machining time)</h2>
+<p class="method">Core: cutting speed V = πDN/1000 (D mm, N rpm, V m/min) → N = 1000V/(πD). Machining time <b>T = L/(N·s)</b>, where L = length of tool travel = job length + approach D₁ + over-travel D₂ + a tool-geometry term, and s = feed per rev. These are the prof's "simple feed/cutting-speed" questions = Mehta Examples 1.1–1.6.</p>
+<div class="bar"><button class="btn" data-reveal="cs">Show all</button><button class="btn" data-hide="cs">Hide all</button></div>
+<div id="cs-body">
+
+<article class="prob"><h3><span class="num">CS1</span> Turning — machining time <span class="src real">MEHTA Ex 1.1</span></h3>
+<p class="statement">Turn a shaft Ø70 → Ø64 mm over length 200 mm at n=600 rpm, s=0.4 mm/rev, principal cutting-edge angle φ=45°. Find the machining time.</p>
+<span class="soln-toggle">Show solution ▸</span><div class="soln">
+<div class="plug"><span class="plug-h">what goes where</span>depth t=(70−64)/2 <span class="v">=3 mm</span> · job <span class="v">200</span> · tool-geometry term t·cotφ <span class="v">=3·cot45=3</span> · approach+overtravel D₁+D₂ <span class="v">=2+2</span> · n <span class="v">=600</span>, s <span class="v">=0.4</span></div>
+<p class="step"><b>L = job + t·cotφ + D₁ + D₂</b>:</p>
+<p class="step sub-line">L = 200 + 3·cot45° + 2 + 2 = 200 + 3 + 4 = <b>207 mm</b></p>
+<p class="step"><b>T = L/(n·s)</b>:</p>
+<p class="step sub-line">T = 207/(600·0.4) = 207/240 = <b>0.8625 min</b></p>
+<p class="ans"><b>T ≈ 0.86 min.</b></p>
+</div></article>
+
+<article class="prob"><h3><span class="num">CS2</span> Pipe ring cut-off <span class="src real">MEHTA Ex 1.2</span></h3>
+<p class="statement">Cut a ring from a pipe, OD D=100 mm, ID d=84 mm, at 250 rpm, feed 0.14 mm/rev. Machining time?</p>
+<span class="soln-toggle">Show solution ▸</span><div class="soln">
+<div class="plug"><span class="plug-h">what goes where</span>parting depth = (D−d)/2 <span class="v">=(100−84)/2=8</span> · D₁+D₂ <span class="v">=2+2</span> · n <span class="v">=250</span>, s <span class="v">=0.14</span></div>
+<p class="step sub-line">L = (D−d)/2 + D₁ + D₂ = 8 + 2 + 2 = <b>12 mm</b></p>
+<p class="step sub-line">T = L/(n·s) = 12/(250·0.14) = 12/35 = <b>0.342 min</b></p>
+<p class="ans"><b>T ≈ 0.34 min.</b></p>
+</div></article>
+
+<article class="prob"><h3><span class="num">CS3</span> Drilling — machining time <span class="src real">MEHTA Ex 1.3</span></h3>
+<p class="statement">Drill a Ø30 through-hole in a 30 mm plate at cutting speed 30 m/min, feed 0.1 mm/tooth. Machining time?</p>
+<span class="soln-toggle">Show solution ▸</span><div class="soln">
+<div class="plug"><span class="plug-h">what goes where</span>point term (d/2)cotφ, φ=60° <span class="v">=(30/2)cot60=8.66</span> · D₁+D₂ <span class="v">=2+2</span> · drill has 2 teeth → s<sub>rev</sub>=2×0.1 <span class="v">=0.2 mm/rev</span></div>
+<p class="step sub-line">L = 30 + 2 + 2 + (30/2)cot60° = 34 + 8.66 = <b>42.66 mm</b></p>
+<p class="step sub-line">N = 1000V/(πd) = 1000·30/(π·30) = <b>318.3 rpm</b> · s<sub>m</sub> = N·s<sub>rev</sub> = 318.3·0.2 = 63.66 mm/min</p>
+<p class="step sub-line">T = L/s<sub>m</sub> = 42.66/63.66 = <b>0.67 min</b></p>
+<p class="ans"><b>T ≈ 0.67 min.</b> (Drill = 2 cutting teeth → feed/rev = 2 × feed/tooth.)</p>
+</div></article>
+
+<article class="prob"><h3><span class="num">CS4</span> Plain milling — machining time <span class="src real">MEHTA Ex 1.4</span></h3>
+<p class="statement">Mill a 200 mm job with a plain cutter D=40 mm, z=10 teeth, cutting speed 30 m/min, feed 0.08 mm/tooth, depth of cut t=4 mm. Machining time?</p>
+<span class="soln-toggle">Show solution ▸</span><div class="soln">
+<div class="plug"><span class="plug-h">what goes where</span>approach term √[t(D−t)] <span class="v">=√(4·36)=12</span> · D₁+D₂ <span class="v">=4</span> · feed/min s<sub>m</sub>=s<sub>z</sub>·z·N</div>
+<p class="step sub-line">L = 200 + √[t(D−t)] + D₁ + D₂ = 200 + 12 + 4 = <b>216 mm</b></p>
+<p class="step sub-line">N = 1000·30/(π·40) = 238.7 rpm · s<sub>m</sub> = 0.08·10·238.7 = 191.0 mm/min</p>
+<p class="step sub-line">T = 216/191 = <b>1.13 min</b></p>
+<p class="ans"><b>T ≈ 1.13 min.</b></p>
+</div></article>
+
+<article class="prob"><h3><span class="num">CS5</span> Shaping — machining time <span class="src real">MEHTA Ex 1.5</span></h3>
+<p class="statement">Shape a 100 mm wide × 200 mm long surface, feed/stroke 0.3 mm, cutting speed 20 m/min, return:cutting time ratio 1 : 1.25. Time to machine?</p>
+<span class="soln-toggle">Show solution ▸</span><div class="soln">
+<div class="plug"><span class="plug-h">what goes where</span>stroke length L=1.2×job <span class="v">=1.2·200=240 mm</span> · K=1.25 · width to cover B+B₁+B₂ <span class="v">=100+2+2</span> · feed/stroke <span class="v">=0.3</span></div>
+<p class="step sub-line">strokes/min n = 1000·V·K/[L(K+1)] = 1000·20·1.25/(240·2.25) = <b>46.3 → round to 50 strokes/min</b></p>
+<p class="step sub-line">T = (B+B₁+B₂)/(s·n) = (100+2+2)/(0.3·50) = 104/15 = <b>6.93 min</b></p>
+<p class="ans"><b>T ≈ 6.93 min.</b> (Feed acts across the width; n from the quick-return ratio.)</p>
+</div></article>
+
+<article class="prob"><h3><span class="num">CS6</span> Cylindrical grinding — time <span class="src real">MEHTA Ex 1.6</span></h3>
+<p class="statement">External-traverse grind a Ø40, 210 mm long step; wheel Ø600, width 63 mm. Grinding time formula &amp; method.</p>
+<span class="soln-toggle">Show solution ▸</span><div class="soln">
+<div class="plug"><span class="plug-h">what goes where</span>T = L·h·K / (n<sub>wp</sub>·k·B·t) · L=workpiece length, h=allowance, B=wheel width, t=radial feed/stroke (0.01–0.025), k=0.7–0.85 (D≥20)</div>
+<p class="step"><b>Grinding time:</b> T = (L·h·K)/(n<sub>wp</sub>·k·B·t)</p>
+<p class="step sub-line">longitudinal feed s<sub>l</sub> = k·B per work-rev; radial feed t given at each stroke end; sum strokes over total allowance h.</p>
+<p class="ans"><b>Plug the wheel/work data into T = L·h·K/(n<sub>wp</sub>·k·B·t).</b> (Grinding is the heaviest of the six; for the exam the turning/drilling/milling ones (CS1–CS4) are the likely ones.)</p>
+</div></article>
+
+<article class="prob"><h3><span class="num">CS7</span> Cutting speed ↔ rpm (quickie) <span class="src real">V=πDN/1000</span></h3>
+<p class="statement">Turn Ø100 mm at recommended V=40 m/min. Find N; if nearest available speed is 125 rpm, the actual V.</p>
+<span class="soln-toggle">Show solution ▸</span><div class="soln">
+<p class="step sub-line">N = 1000V/(πD) = 1000·40/(π·100) = <b>127 rpm</b> → pick 125 rpm</p>
+<p class="step sub-line">actual V = πDN/1000 = π·100·125/1000 = <b>39.3 m/min</b></p>
+<p class="ans"><b>N ≈ 127 → 125 rpm; V ≈ 39.3 m/min.</b></p>
+</div></article>
+</div>
+
+<!-- ===== 2 BASES & TABLES ===== -->
+<h2 id="bt">2 · Design of bases &amp; tables</h2>
+<p class="method">Hollow section I = [BH³−(B−2t)(H−2t)³]/12. Base/table on elastic foundation: k=125b, m=(k/4EI)^¼; slope θ summed from load + moment terms with chart factors K. Table "reduced stiffness" via the stiffener factor.</p>
+<div class="bar"><button class="btn" data-reveal="bt">Show all</button><button class="btn" data-hide="bt">Hide all</button></div>
+<div id="bt-body">
+
+<article class="prob"><h3><span class="num">BT1</span> Base — maximum slope <span class="src ppt">PPT M3 example</span></h3>
+<p class="statement">Base width b=60 cm, E=1.1×10⁶ kgf/cm², plate t=6 cm; distributed loads q₁=1.2, q₂=0.8 kgf/cm², moment M=5000 kgf·cm; geometry a₁=50, b₁=30, a₂=85, b₂=40 cm. Maximum slope?</p>
+<span class="soln-toggle">Show solution ▸</span><div class="soln">
+<div class="plug"><span class="plug-h">what goes where</span>k=125b · I=bt³/12 · m=(k/4EI)^¼ · φ=a·m, B=b·m → chart K<sub>M</sub>,K<sub>q1</sub>,K<sub>q2</sub></div>
+<p class="step sub-line">k = 125·60 = 7500 kgf/cm²; I = 60·6³/12 = <b>1080 cm⁴</b>; m = (7500/(4·1.1×10⁶·1080))^¼ = <b>0.03544 cm⁻¹</b></p>
+<p class="step sub-line">φ₁=50m=1.77≈2, B₁=30m≈1.1; φ₂=85m=3.01≈3, B₂=40m≈1.4 → K<sub>M</sub>≈2.4, K<sub>q1</sub>≈0.50, K<sub>q2</sub>≈0.30</p>
+<p class="step sub-line">θ<sub>q1</sub>=(1.2·60/7500)·0.50=0.00480; θ<sub>q2</sub>=(0.8·60/7500)·0.30=0.00192; θ<sub>M</sub>=(5000·0.03544³/7500)·2.4=7.1×10⁻⁵</p>
+<p class="ans"><b>θ = 0.00480+0.00192+0.00007 = 0.00679 rad ≈ 0.389°.</b></p>
+</div></article>
+
+<article class="prob"><h3><span class="num">BT2</span> Hollow base — max slope <span class="src real">MEHTA 3.8</span></h3>
+<p class="statement">Hollow rectangular steel base H=200 mm, width 1000 mm, wall 25 mm; loaded per Fig 3.36 (q₁=2.0, q₂=1.5 kgf/mm; applied moment 2×10⁵ kgf·mm; spans 400/250/500/1500 mm). E=2.1×10⁶. Maximum angle of slope?</p>
+<span class="soln-toggle">Show solution ▸</span><div class="soln">
+<div class="plug"><span class="plug-h">what goes where</span>B=100, H=20, t=2.5 cm → I=[BH³−(B−2t)(H−2t)³]/12 · θ = ∫M dx/(EI), max at a support</div>
+<p class="step sub-line">I = [100·20³ − 95·15³]/12 = (800000−320625)/12 = <b>39 948 cm⁴</b>; EI = 8.39×10¹⁰ kgf·cm²</p>
+<p class="step sub-line">θ<sub>max</sub> = A<sub>M</sub>/EI (moment-area from the Fig-3.36 reactions) ≈ <b>~10⁻⁴ rad</b></p>
+<p class="ans"><b>θ<sub>max</sub> ~ 10⁻⁴ rad</b> — well within the ~0.5°/m machine-tool limit. (Same elastic-foundation method as BT1.)</p>
+</div></article>
+
+<article class="prob"><h3><span class="num">BT3</span> Hollow table — reduced stiffness <span class="src real">MEHTA 3.9</span></h3>
+<p class="statement">Hollow rectangular table 2 m × 60 cm × 9 cm; horizontal walls 15 mm joined by 10 mm vertical stiffeners at 400 mm. E=2.1×10⁶. Reduced (bending) stiffness?</p>
+<span class="soln-toggle">Show solution ▸</span><div class="soln">
+<div class="plug"><span class="plug-h">what goes where</span>wall I=b·h³/12 (b=60, h=1.5) · stiffeners n=200/40=5 panels (4 internal) · factor s₁ (Eq 3.41)</div>
+<p class="step sub-line">I<sub>wall</sub> = 60·1.5³/12 = 16.9 cm⁴; s₁ ≈ 31.9</p>
+<p class="step sub-line">EI<sub>br</sub> = s·E·I = 31.9·2.1×10⁶·16.9 = <b>≈ 1.13×10⁹ kgf·cm²</b></p>
+<p class="ans"><b>EI<sub>br</sub> ≈ 1.13×10⁹ kgf·cm².</b></p>
+</div></article>
+</div>
+
+<!-- ===== 3 SLIDEWAYS ===== -->
+<h2 id="sw">3 · Design of slideways</h2>
+<p class="method">Free-body of the carriage → normal reactions on the faces. Two-flat: B=P<sub>y</sub>, C=(P<sub>z</sub>y<sub>p</sub>−P<sub>y</sub>h)/b + G/2, A=P<sub>z</sub>+G/2−(P<sub>z</sub>y<sub>p</sub>−P<sub>y</sub>h)/b. Width c′ = A/([p<sub>av</sub>]·L), [p<sub>av</sub>]=½[p<sub>max</sub>]. V+flat: A,B on the V-faces (cosα/sinα), C on the flat. Lift-off when a reaction → 0.</p>
+<div class="bar"><button class="btn" data-reveal="sw">Show all</button><button class="btn" data-hide="sw">Hide all</button></div>
+<div id="sw-body">
+
+<article class="prob"><h3><span class="num">SW1</span> Slideway width (two-flat) <span class="src real">MEHTA 4.2</span></h3>
+<p class="statement">Turning Ø100; P<sub>z</sub>=300, P<sub>y</sub>=130, P<sub>x</sub>=120 kgf; carriage G=150 kgf, length 30 cm, two flat CI ways. Find the face width. (Assume b, h, y<sub>p</sub>, f, [p<sub>av</sub>].)</p>
+<span class="soln-toggle">Show solution ▸</span><div class="soln">
+<div class="plug"><span class="plug-h">what goes where</span>assume b=30, h=20, y<sub>p</sub>=15, f=0.1, [p<sub>av</sub>]=12.5 (=½·25 CI), L=30</div>
+<p class="step sub-line">m = (P<sub>z</sub>y<sub>p</sub>−P<sub>y</sub>h)/b = (300·15−130·20)/30 = 63.3</p>
+<p class="step sub-line">A = P<sub>z</sub>+G/2−m = 300+75−63.3 = <b>311.7 kgf</b> (largest)</p>
+<p class="step sub-line">c′ = A/([p<sub>av</sub>]·L) = 311.7/(12.5·30) = <b>0.83 cm</b> · Q = P<sub>x</sub>+f(P<sub>z</sub>+P<sub>y</sub>+G) = 120+58 = 178 kgf</p>
+<p class="ans"><b>width ≈ 0.83 cm (round to 1 cm); all reactions +ve → no lift-off.</b></p>
+</div></article>
+
+<article class="prob"><h3><span class="num">SW2</span> Saddle lift-off (V+flat) <span class="src real">MEHTA 4.1</span></h3>
+<p class="statement">Parting cut (P<sub>x</sub>=0), V half-angle α=50°, resultant force at 40° to the vertical, μ=0.5. At what d/b does the saddle lift off the V-face A?</p>
+<span class="soln-toggle">Show solution ▸</span><div class="soln">
+<div class="plug"><span class="plug-h">what goes where</span>lift-off ⇒ A→0 ⇒ (d+b)/2b = (P<sub>y</sub>/P<sub>z</sub>)·tanα = tanθ·tanα · θ=40° (tan=0.839), α=50° (tan=1.192) · μ doesn't enter</div>
+<p class="step sub-line">(d+b)/2b = 0.839·1.192 = 1.00 → d/b = 2(1.00)−1 = <b>1.0</b></p>
+<p class="ans"><b>d/b = 1.0</b> (saddle lifts when V-offset = way spacing). With the P<sub>y</sub>h/b term → d/b ≈ 0.16.</p>
+</div></article>
+
+<article class="prob"><h3><span class="num">SW3</span> Best slideway combination <span class="src real">MEHTA 4.3</span></h3>
+<p class="statement">flat–flat vs flat–V vs V–V: which gives the least radial deflection of the cutting edge? Prove it.</p>
+<span class="soln-toggle">Show solution ▸</span><div class="soln">
+<p class="step">Contact deflection δ = k·p<sub>av</sub>; tool-tip radial deflection δ<sub>F</sub> = δ<sub>B</sub> + (δ<sub>A</sub>−δ<sub>C</sub>)·h/b.</p>
+<p class="step">A V-way shares the radial load over two inclined faces (effective width d = m·cos²α + n·cos²β) → lower p<sub>av</sub> → lower δ; flat–flat reacts P<sub>y</sub> on one narrow face → largest δ.</p>
+<p class="ans"><b>V–V least, flat–V intermediate, flat–flat worst</b> (δ ∝ p<sub>av</sub>; V splits load over two faces + self-centres).</p>
+</div></article>
+
+<article class="prob"><h3><span class="num">SW4</span> Slideway reaction &amp; pressure formulas <span class="src ppt">PPT M3 (the prof's derivation)</span></h3>
+<p class="statement">Write the prof's closed-form reactions (V+flat) and the maximum-pressure expressions used to size a slideway.</p>
+<span class="soln-toggle">Show solution ▸</span><div class="soln">
+<p class="step"><b>V+flat reactions:</b> A = [P<sub>z</sub>(d+b)/2b + P<sub>y</sub>h/b]cosα − P<sub>y</sub>sinα + (G/2)cosα · B = [P<sub>z</sub>(d+b)/2b + P<sub>y</sub>h/b]sinα + P<sub>y</sub>cosα + (G/2)sinα · C = P<sub>z</sub>(b−d)/2b + G/2 − P<sub>y</sub>h/b</p>
+<p class="step"><b>Average pressure:</b> p<sub>A</sub> = A/(a′L), etc. <b>Max pressure (trapezoid, x<sub>A</sub>/L &lt; 1/6):</b> p<sub>max</sub> = p<sub>av</sub>(1 + 6x<sub>A</sub>/L). <b>Triangular (x<sub>A</sub>/L &gt; 1/6):</b> p<sub>max</sub> = (4/3)·p<sub>av</sub>/(1 − 2x<sub>A</sub>/L).</p>
+<p class="ans"><b>Use these to find reactions → average pressure → x<sub>A</sub> → p<sub>max</sub>, then check p<sub>max</sub> ≤ [p<sub>max</sub>].</b> Apply to numbers as in SW1/SW2.</p>
+</div></article>
+</div>
+
+<!-- ===== 4 DEFLECTION ===== -->
+<h2 id="def">4 · Calculation of deflection &amp; associated</h2>
+<p class="method">Box section I=(b⁴−(b−2t)⁴)/12; lateral cantilever δ=Ph³/(3EI). Angle of twist (open) θ=M<sub>t</sub>L/(G·I<sub>t</sub>), I<sub>t</sub>=β·⅓Σbt³. Machine-tool/spindle: compliance C=1/K<sub>s</sub>+(1/K<sub>A</sub>)(1−x/L)²+(1/K<sub>B</sub>)(x/L)²; nose/run-out y=δ<sub>B</sub>(1+c/l)+δ<sub>A</sub>(c/l).</p>
+<div class="bar"><button class="btn" data-reveal="def">Show all</button><button class="btn" data-hide="def">Hide all</button></div>
+<div id="def-body">
+
+<article class="prob"><h3><span class="num">D1</span> Box column deflection <span class="src real">MEHTA 3.6</span></h3>
+<p class="statement">CI box column 30×30 cm, wall 3 cm, height 200 cm, lateral load 200 kgf, E=1.2×10⁶. Max deflection?</p>
+<span class="soln-toggle">Show solution ▸</span><div class="soln">
+<div class="plug"><span class="plug-h">what goes where</span>b=30, hole side=24 · P=200, h=200, E=1.2×10⁶ · lateral cantilever governs</div>
+<p class="step sub-line">I = (30⁴−24⁴)/12 = <b>39 852 cm⁴</b> · δ = Ph³/(3EI) = 200·200³/(3·1.2×10⁶·39 852) = <b>≈ 112 µm</b></p>
+<p class="ans"><b>δ<sub>max</sub> ≈ 112 µm</b> (axial ≈ 1 µm, negligible).</p>
+</div></article>
+
+<article class="prob"><h3><span class="num">D2</span> Box structure + rib — wall thickness <span class="src real">MEHTA 3.7</span></h3>
+<p class="statement">Mild-steel box, loaded wall 400×300 mm, P=200 kgf mid-wall, φ20 hole + rib/boss, permissible deflection 25 µm, E=2.1×10⁶. Find wall thickness.</p>
+<span class="soln-toggle">Show solution ▸</span><div class="soln">
+<p class="step sub-line">plate δ ∝ Pa²/(Et³); t³ = α·P·a²/(E·δ) = 0.061·200·40²/(2.1×10⁶·0.0025) = 3.72 → <b>t ≈ 1.5 cm</b></p>
+<p class="ans"><b>t ≈ 1.5 cm</b>; boss height ≈ 3t + rib closes the hole-stiffness gap.</p>
+</div></article>
+
+<article class="prob"><h3><span class="num">D3</span> Reduced bending rigidity (perp vs diagonal) <span class="src real">MEHTA 3.5</span></h3>
+<p class="statement">Lathe bed 2 m × 1 m × 0.5 m; walls 50 mm, stiffeners 25 mm, CI E=1.2×10⁶. Compare perpendicular vs diagonal stiffeners.</p>
+<span class="soln-toggle">Show solution ▸</span><div class="soln">
+<p class="step sub-line">I<sub>wall</sub> = 100·5³/12 = 1042 cm⁴ · perpendicular EI<sub>br</sub> ≈ 0.99×10¹⁰ · diagonal ≈ 3.0×10¹¹ kgf·cm²</p>
+<p class="ans"><b>Diagonal ≈ 30× stiffer</b> for the same metal.</p>
+</div></article>
+
+<article class="prob"><h3><span class="num">D4</span> I-section — angle of twist <span class="src real">MEHTA 3.12</span> <span class="src exam">LAST PAPER Q6</span></h3>
+<p class="statement">I-section 140 tall, flange 80×20, web 10 (mm), M<sub>t</sub>=1000 kgf·m, G=8×10⁵, L=100 cm. Find I<sub>t</sub>, τ<sub>max</sub>, twist θ.</p>
+<span class="soln-toggle">Show solution ▸</span><div class="soln">
+<div class="plug"><span class="plug-h">what goes where</span>β=1.20 (I) · cm: flanges 8×2(×2), web 10×1 · t<sub>max</sub>=2 (flange) · M<sub>t</sub>=100000 kgf·cm</div>
+<p class="step sub-line">I<sub>t</sub> = 1.20·⅓·[2·(8·2³)+(10·1³)] = 1.20·46 = <b>55.2 cm⁴</b></p>
+<p class="step sub-line">τ<sub>max</sub> = M<sub>t</sub>·t<sub>max</sub>/I<sub>t</sub> = 100000·2/55.2 = <b>3623 kgf/cm²</b> · θ = M<sub>t</sub>L/(G·I<sub>t</sub>) = 0.2264 rad = <b>12.97°</b></p>
+<p class="ans"><b>I<sub>t</sub>=55.2 cm⁴, τ<sub>max</sub>=3623 kgf/cm², θ=12.97°.</b> (Angle of twist is the "deflection" here.)</p>
+</div></article>
+
+<article class="prob"><h3><span class="num">D5</span> Closed box — limiting torque <span class="src real">MEHTA 3.11</span></h3>
+<p class="statement">Closed box 100×60 mm, wall 10 mm, permissible shear 1000 kgf/cm². Limiting torque?</p>
+<span class="soln-toggle">Show solution ▸</span><div class="soln">
+<p class="step sub-line">A₀ = (10−1)(6−1) = 45 cm² · M<sub>lim</sub> = 2τA₀δ = 2·1000·45·1 = <b>90 000 kgf·cm = 900 kgf·m</b></p>
+<p class="ans"><b>M<sub>lim</sub> = 900 kgf·m.</b></p>
+</div></article>
+
+<article class="prob"><h3><span class="num">D6</span> Machine-tool compliance &amp; displacement <span class="src real">MEHTA 5.1</span></h3>
+<p class="statement">Between centres, L=750 mm, P<sub>y</sub>=150 kgf, tool 200 mm from tailstock; saddle/headstock/tailstock = 3000/4000/2500 kgf/mm. Compliance &amp; cutting-point displacement?</p>
+<span class="soln-toggle">Show solution ▸</span><div class="soln">
+<div class="plug"><span class="plug-h">what goes where</span>x = L−200 = 550 → x/L=0.733 · K<sub>s</sub>=3000, K<sub>A</sub>=4000, K<sub>B</sub>=2500 · P<sub>y</sub>=150</div>
+<p class="step sub-line">C = 1/3000 + (1/4000)(0.267)² + (1/2500)(0.733)² = <b>0.566 µm/kgf</b> · y = 0.566·150 = <b>85 µm</b></p>
+<p class="ans"><b>C ≈ 0.566 µm/kgf; displacement ≈ 85 µm.</b></p>
+</div></article>
+
+<article class="prob"><h3><span class="num">D7</span> Deflection between centres <span class="src real">MEHTA 5.2</span></h3>
+<p class="statement">Between centres L=500 mm, Ø80; P<sub>y</sub>=80 kgf, tool 200 mm from headstock; headstock 35 000, tailstock 15 000 kgf/cm. Cutting-point deflection?</p>
+<span class="soln-toggle">Show solution ▸</span><div class="soln">
+<div class="plug"><span class="plug-h">what goes where</span>x/L=0.4 · K→kgf/mm (÷10): 3500, 1500 · only P<sub>y</sub>=80 bends the work</div>
+<p class="step sub-line">support y = (P<sub>y</sub>/K<sub>A</sub>K<sub>B</sub>)[K<sub>B</sub>(0.6)²+K<sub>A</sub>(0.4)²] ≈ 16.8 µm; +workpiece bending ≈ 4.5 → <b>≈ 21 µm</b></p>
+<p class="ans"><b>≈ 17 µm (supports), ~21 µm with workpiece bending.</b></p>
+</div></article>
+
+<article class="prob"><h3><span class="num">D8</span> Spindle-nose deflection &amp; optimum span <span class="src real">MEHTA 5.3</span></h3>
+<p class="statement">Front-bearing yield δ<sub>B</sub>=42.2 µm, rear δ<sub>A</sub>=9.17 µm, overhang c=1, span l=3. Nose deflection &amp; λ<sub>opt</sub>?</p>
+<span class="soln-toggle">Show solution ▸</span><div class="soln">
+<p class="step sub-line">y = δ<sub>B</sub>(1+c/l)+δ<sub>A</sub>(c/l) = 42.2·1.333 + 9.17·0.333 = <b>≈ 59 µm</b> · λ<sub>opt</sub>=l/c ≈ 3</p>
+<p class="ans"><b>y ≈ 59 µm; λ<sub>opt</sub> ≈ 3</b> (front bearing dominates).</p>
+</div></article>
+
+<article class="prob"><h3><span class="num">D9</span> Spindle run-out from clearance <span class="src real">MEHTA 5.12</span></h3>
+<p class="statement">Bearings 20 cm apart; clearances 6 µm front, 4 µm rear; nose overhang 8 cm. Radial run-out?</p>
+<span class="soln-toggle">Show solution ▸</span><div class="soln">
+<p class="step sub-line">c/l = 8/20 = 0.4 → run-out = 6·1.4 + 4·0.4 = 8.4 + 1.6 = <b>10 µm</b></p>
+<p class="ans"><b>max run-out = 10 µm.</b></p>
+</div></article>
+
+<article class="prob"><h3><span class="num">D10</span> Lathe-bed deflection/stress check <span class="src ppt">PPT M3 example</span></h3>
+<p class="statement">Workpiece Ø200×1500, tightening K=5000 N, P<sub>x</sub>/P<sub>y</sub>/P<sub>z</sub>=2500/5000/10000 N, composite bed section (b₁=110, d₂=315 …), h=300 mm, allowable 12 N/mm². Check the bed.</p>
+<span class="soln-toggle">Show solution ▸</span><div class="soln">
+<p class="step sub-line">centroid z̄=181.05, z<sub>max</sub>=188.95 mm; I<sub>yy</sub>=4.67×10⁸, I<sub>zz</sub>=4.19×10⁸, I<sub>t</sub>=8.86×10⁸ mm⁴</p>
+<p class="step sub-line">σ<sub>z</sub>=[(P<sub>z</sub>−G)L/4+(P<sub>x</sub>+K)c]z<sub>max</sub>/I<sub>yy</sub>=2.58 · σ<sub>y</sub>=(P<sub>y</sub>L/4)y<sub>max</sub>/I<sub>zz</sub>=0.21 · τ=M<sub>T</sub>·max(y,z)/I<sub>t</sub>=0.53 N/mm²</p>
+<p class="step sub-line">σ<sub>p,max</sub> = (σ<sub>z</sub>+σ<sub>y</sub>)/2 + ½√[(σ<sub>z</sub>−σ<sub>y</sub>)²+4τ²] = <b>2.79 N/mm²</b></p>
+<p class="ans"><b>σ<sub>p,max</sub> = 2.79 &lt; 12 N/mm² → bed SAFE.</b> (The prof's signature structures problem.)</p>
+</div></article>
+</div>
+
+<div class="callout">That's the entire numerical scope — cutting speed/feed, bases &amp; tables, slideways, deflection. Deeper drills + theory: <a href="structures-drills.html">structures</a> · <a href="guideways-drills.html">guideways</a> · <a href="spindles-drills.html">spindles</a> · <a href="numericals-playbook.html">method playbook</a> · <a href="index.html">full guide</a>. All arithmetic independently verified.</div>
+</div>
+
+<script>
+document.querySelectorAll('.soln-toggle').forEach(t=>t.addEventListener('click',()=>{const s=t.nextElementSibling;s.classList.toggle('show');t.textContent=s.classList.contains('show')?'Hide solution ▾':'Show solution ▸';}));
+document.querySelectorAll('[data-reveal]').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('#'+b.dataset.reveal+'-body .soln').forEach(s=>s.classList.add('show'));document.querySelectorAll('#'+b.dataset.reveal+'-body .soln-toggle').forEach(t=>t.textContent='Hide solution ▾');}));
+document.querySelectorAll('[data-hide]').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('#'+b.dataset.hide+'-body .soln').forEach(s=>s.classList.remove('show'));document.querySelectorAll('#'+b.dataset.hide+'-body .soln-toggle').forEach(t=>t.textContent='Show solution ▸');}));
+</script>
+</body>
+</html>
