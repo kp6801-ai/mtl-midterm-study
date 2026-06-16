@@ -37,6 +37,11 @@
   .soln .step,.soln .ans{font-family:var(--hand);font-size:1.2rem;color:var(--ink-blue);line-height:1.55;letter-spacing:.3px}
   .soln .step b{color:#7a1414;font-weight:400}
   .soln .ans{color:#6a4400}
+  /* substitution map: what value plugs in for each symbol */
+  .plug{font-family:var(--hand);font-size:1.12rem;color:var(--ink-blue);background:#eef5fc;border:1px dashed #c4d4ec;border-radius:6px;padding:.5rem .85rem;margin:.55rem 0;line-height:1.7}
+  .plug .plug-h{font-family:-apple-system,BlinkMacSystemFont,sans-serif;font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--accent2);font-weight:700;display:block;margin-bottom:.25rem}
+  .plug .v{color:#7a1414}
+  .soln .sub-line{background:#fbf6ee;border-left:3px solid var(--gold);border-radius:4px;padding:.35rem .7rem;margin:.4rem 0}
   mark{background:var(--hl);padding:0 .2rem}
   table{border-collapse:collapse;width:100%;margin:1rem 0;background:var(--paper);font-size:.92rem}
   th,td{border:1px solid var(--rule);padding:.5rem .7rem;text-align:left;vertical-align:top}
@@ -162,12 +167,20 @@ CLOSED: I<sub>t</sub> = 4·A₀² / (∮ ds/δ)        A₀ = area at wall MID-L
     <div class="callout red"><h4>Traps</h4><p>Forgetting β (gives 46 instead of 55.2). • Using web thickness as t<sub>max</sub> instead of the flange. • Web height = full height − 2×flange thickness, not the full height. • For closed sections, A₀ is at the wall <b>mid-line</b> (subtract one wall thickness per outer dimension).</p></div>
     <span class="soln-toggle">Show worked example ▸</span>
     <div class="soln">
-      <p class="step"><b>I-section, M<sub>t</sub> = 1000 kgf·m, G = 8×10⁵, L = 100 cm; 140 tall, flange 80×20, web 10 (mm).</b></p>
-      <p class="step">cm: flanges 8×2 (×2), web 10×1 (height 140−40=100 mm=10 cm). M<sub>t</sub> = 100 000 kgf·cm.</p>
-      <p class="step">I<sub>t</sub> = 1.20·(1/3)·[2·(8·2³)+(10·1³)] = 1.20·(1/3)·[128+10] = 1.20·46 = 55.2 cm⁴.</p>
-      <p class="step">τ<sub>max</sub> = 100 000·2/55.2 = 3623 kgf/cm² (t<sub>max</sub> = flange = 2 cm).</p>
-      <p class="step">θ = 100 000·100/(8×10⁵·55.2) = 0.2264 rad = 12.97°.</p>
-      <p class="ans"><b>τ<sub>max</sub> ≈ 3623 kgf/cm², θ ≈ 12.97°.</b> Now re-do it as a closed box of the same outer size and watch I<sub>t</sub> jump — that's the exercise that beats the class.</p>
+      <p class="step"><b>I-section, M<sub>t</sub> = 1000 kgf·m, G = 8×10⁵ kgf/cm², L = 100 cm; 140 tall, flange 80×20, web 10 (mm).</b></p>
+      <div class="plug"><span class="plug-h">What goes where</span>
+β <span class="v">= 1.20</span> — it's an I-section (the β table)<br>
+rectangles (b, t in cm): two flanges <span class="v">8 × 2</span>, one web <span class="v">10 × 1</span> &nbsp;(web height = 140 − 2×20 = 100 mm = 10 cm)<br>
+t<sub>max</sub> <span class="v">= 2 cm</span> — thickest element = the flange<br>
+M<sub>t</sub> <span class="v">= 100 000 kgf·cm</span> — 1000 kgf·m × 100<br>
+G <span class="v">= 8×10⁵</span>, L <span class="v">= 100 cm</span> — given</p></div>
+      <p class="step"><b>I<sub>t</sub> = β·⅓·Σb·t³</b> → put β in front, sum (b·t³) over the 3 rectangles:</p>
+      <p class="step sub-line">I<sub>t</sub> = (1.20)·⅓·[ 2·(8·2³) + (10·1³) ] = 1.20·⅓·[128 + 10] = 1.20·46 = <b>55.2 cm⁴</b></p>
+      <p class="step"><b>τ<sub>max</sub> = M<sub>t</sub>·t<sub>max</sub>/I<sub>t</sub></b> → M<sub>t</sub> on top, t<sub>max</sub>=flange thickness, I<sub>t</sub> from above:</p>
+      <p class="step sub-line">τ<sub>max</sub> = (100 000)·(2) / (55.2) = <b>3623 kgf/cm²</b></p>
+      <p class="step"><b>θ = M<sub>t</sub>·L/(G·I<sub>t</sub>)</b> → M<sub>t</sub> and L on top, G·I<sub>t</sub> below:</p>
+      <p class="step sub-line">θ = (100 000)·(100) / (8×10⁵ · 55.2) = 0.2264 rad → ×57.296 = <b>12.97°</b></p>
+      <p class="ans"><b>τ<sub>max</sub> ≈ 3623 kgf/cm², θ ≈ 12.97°.</b> Re-do as a closed box of the same outer size and watch I<sub>t</sub> jump — the exercise that beats the class.</p>
     </div>
   </article>
 
@@ -189,8 +202,15 @@ Stiffness k = F/δ</span>
     <div class="callout red"><h4>Traps</h4><p>Using the whole box I instead of the single wall. • Mixing the perpendicular factor with the diagonal one. • Forgetting to convert E to kgf/cm².</p></div>
     <span class="soln-toggle">Show worked example ▸</span>
     <div class="soln">
-      <p class="step"><b>Lathe bed, walls 5 cm, height 100 cm:</b> I<sub>wall</sub> = 100·5³/12 = 1042 cm⁴.</p>
-      <p class="step">Perpendicular: EI<sub>br</sub> ≈ 0.99×10¹⁰; Diagonal: EI<sub>br</sub> ≈ 3.0×10¹¹ kgf·cm².</p>
+      <p class="step"><b>Lathe bed, vertical walls 5 cm thick, 100 cm high; E = 1.2×10⁶ kgf/cm² (CI).</b></p>
+      <div class="plug"><span class="plug-h">What goes where</span>
+single wall = a tall thin rectangle: b <span class="v">= 100 cm</span> (height), h <span class="v">= 5 cm</span> (thickness, the bending direction)<br>
+s = stiffener factor: <span class="v">perpendicular s₁</span> vs <span class="v">diagonal s₂</span> (Mehta Eq 3.41 / 3.42)<br>
+E <span class="v">= 1.2×10⁶</span> — cast iron</p></div>
+      <p class="step"><b>I<sub>wall</sub> = b·h³/12</b> → b = wall height, h = wall thickness (cube the thin dimension):</p>
+      <p class="step sub-line">I<sub>wall</sub> = (100)·(5)³/12 = 100·125/12 = <b>1042 cm⁴</b></p>
+      <p class="step"><b>EI<sub>br</sub> = s·E·I<sub>wall</sub></b> → multiply the wall rigidity by the stiffener factor s:</p>
+      <p class="step sub-line">Perpendicular: EI<sub>br</sub> ≈ 0.99×10¹⁰ &nbsp;|&nbsp; Diagonal: EI<sub>br</sub> ≈ 3.0×10¹¹ kgf·cm²</p>
       <p class="ans"><b>Diagonal ≈ 30× stiffer.</b> The number to quote even if you can't recall the exact s factors.</p>
     </div>
   </article>
@@ -203,7 +223,12 @@ Stiffness k = F/δ</span>
     <div class="callout red"><h4>Traps</h4><p>δ in mm vs µm. 0.005 mm = 5 µm. Answer 10⁶ N/mm = 1000 N/µm — same number, label it right.</p></div>
     <span class="soln-toggle">Show worked example ▸</span>
     <div class="soln">
-      <p class="step">F = 5000 N, δ = 0.005 mm → k = 5000/0.005 = 1 000 000 N/mm.</p>
+      <p class="step"><b>Cutting force 5000 N, allowable deflection 0.005 mm.</b></p>
+      <div class="plug"><span class="plug-h">What goes where</span>
+F <span class="v">= 5000 N</span> — the cutting force (numerator)<br>
+δ <span class="v">= 0.005 mm</span> — the allowable deflection (denominator) = 5 µm</p></div>
+      <p class="step"><b>k = F/δ</b> → force on top, deflection below:</p>
+      <p class="step sub-line">k = (5000) / (0.005) = <b>1 000 000 N/mm</b></p>
       <p class="ans"><b>k = 10⁶ N/mm = 1000 N/µm.</b></p>
     </div>
   </article>
@@ -219,9 +244,16 @@ Slope (moment-area)  θ = ∫M dx /(E·I)</span>
     <div class="callout red"><h4>Traps</h4><p>Subtracting 2t from both dimensions for the hole. • Treating a lateral load as axial. • Aperture/hole → cut local I, deflection rises ~15% (Table 3.4).</p></div>
     <span class="soln-toggle">Show worked example ▸</span>
     <div class="soln">
-      <p class="step">CI box 30×30 cm, wall 3 cm, h = 200 cm, lateral 200 kgf, E = 1.2×10⁶.</p>
-      <p class="step">I = (30⁴−24⁴)/12 = 39 852 cm⁴; δ = 200·200³/(3·1.2×10⁶·39 852) ≈ 0.0112 cm ≈ 112 µm.</p>
-      <p class="ans"><b>δ<sub>max</sub> ≈ 112 µm (lateral governs);</b> axial ≈ 1 µm, negligible.</p>
+      <p class="step"><b>CI box column 30×30 cm outer, wall 3 cm, height h = 200 cm, lateral load 200 kgf, E = 1.2×10⁶.</b></p>
+      <div class="plug"><span class="plug-h">What goes where</span>
+b <span class="v">= 30 cm</span> (outer), hole side = b − 2t = 30 − 2·3 = <span class="v">24 cm</span><br>
+P <span class="v">= 200 kgf</span> (lateral), h <span class="v">= 200 cm</span> (column height), E <span class="v">= 1.2×10⁶</span><br>
+use the <span class="v">cantilever</span> formula (lateral load) → it governs over axial</p></div>
+      <p class="step"><b>I = (b⁴ − (b−2t)⁴)/12</b> → outer⁴ minus hole⁴:</p>
+      <p class="step sub-line">I = (30⁴ − 24⁴)/12 = (810 000 − 331 776)/12 = <b>39 852 cm⁴</b></p>
+      <p class="step"><b>δ = P·h³/(3·E·I)</b> → load × height³ on top, 3·E·I below:</p>
+      <p class="step sub-line">δ = (200)·(200)³ / (3 · 1.2×10⁶ · 39 852) ≈ 0.0112 cm ≈ <b>112 µm</b></p>
+      <p class="ans"><b>δ<sub>max</sub> ≈ 112 µm (lateral governs);</b> axial δ = P·h/(E·A) ≈ 1 µm, negligible.</p>
     </div>
   </article>
 
@@ -234,8 +266,14 @@ Frequency to avoid  f = n·Z/60,  n = 1000V/(πD)        (excitation)</span>
     <div class="callout red"><h4>Traps</h4><p>Putting λ inside the root. • Wrong E for Perspex. • Forgetting it's a range (min and max), not one number.</p></div>
     <span class="soln-toggle">Show worked example ▸</span>
     <div class="soln">
-      <p class="step">λ=10, f<sub>model</sub>=150 Hz, E<sub>s</sub>/E<sub>m</sub>=70, ρ_m/ρ_s=0.154 → √(10.77)=3.28.</p>
-      <p class="step">f<sub>s</sub> = 150·(1/10)·3.28.</p>
+      <p class="step"><b>Perspex model, scale 1:10, model frequency 150 Hz → find the steel structure's frequency.</b></p>
+      <div class="plug"><span class="plug-h">What goes where</span>
+λ <span class="v">= 10</span> — the scale (goes outside the root, as 1/λ)<br>
+f<sub>model</sub> <span class="v">= 150 Hz</span> — the measured model frequency<br>
+E<sub>s</sub>/E<sub>m</sub> <span class="v">= 2.1×10⁶ / 0.03×10⁶ = 70</span> — steel ÷ Perspex<br>
+ρ<sub>m</sub>/ρ<sub>s</sub> <span class="v">= 1.2 / 7.8 = 0.154</span> — Perspex ÷ steel</p></div>
+      <p class="step"><b>f<sub>s</sub> = f<sub>model</sub>·(1/λ)·√(E<sub>s</sub>·ρ<sub>m</sub> / E<sub>m</sub>·ρ<sub>s</sub>)</b> → ratios inside the root, 1/λ outside:</p>
+      <p class="step sub-line">f<sub>s</sub> = (150)·(1/10)·√(70 × 0.154) = 150·0.1·√10.77 = 150·0.1·3.28 = <b>≈ 49 Hz</b></p>
       <p class="ans"><b>f<sub>steel</sub> ≈ 49 Hz.</b></p>
     </div>
   </article>
@@ -269,10 +307,18 @@ Pulling force  Q = P<sub>x</sub> + f·(P<sub>z</sub> + P<sub>y</sub> + G)</span>
     <div class="callout red"><h4>Traps</h4><p>A <b>negative reaction means lift-off/tipping</b> — don't ignore the sign. • Halve [p<sub>max</sub>] for [p<sub>av</sub>]. • Forgetting to state your assumed geometry (it's expected here).</p></div>
     <span class="soln-toggle">Show worked example ▸</span>
     <div class="soln">
-      <p class="step">P<sub>z</sub>=300,P<sub>y</sub>=130,P<sub>x</sub>=120,G=150 kgf,L=30 cm; assume b=30,h=20,y<sub>p</sub>=15,f=0.1,[p<sub>av</sub>]=12.5.</p>
-      <p class="step">C=(300·15−130·20)/30+75=138.3; A=375−63.3=311.7 kgf (largest).</p>
-      <p class="step">c'=311.7/(12.5·30)=0.83 cm; Q=120+0.1·580=178 kgf.</p>
-      <p class="ans"><b>width ≈ 0.83 cm (round to 1 cm); Q ≈ 178 kgf.</b></p>
+      <p class="step"><b>Turning: P<sub>z</sub>=300, P<sub>y</sub>=130, P<sub>x</sub>=120 kgf, carriage G=150 kgf, length L=30 cm.</b></p>
+      <div class="plug"><span class="plug-h">What goes where</span>
+P<sub>z</sub> <span class="v">= 300</span> (tangential), P<sub>y</sub> <span class="v">= 130</span> (radial), P<sub>x</sub> <span class="v">= 120</span> (axial), G <span class="v">= 150</span><br>
+assumed: b <span class="v">= 30</span> (way spacing), h <span class="v">= 20</span> (tool height), y<sub>p</sub> <span class="v">= 15</span> (force position), f <span class="v">= 0.1</span><br>
+[p<sub>av</sub>] <span class="v">= 12.5</span> kgf/cm² = ½ of CI [p<sub>max</sub>]=25, L <span class="v">= 30 cm</span></p></div>
+      <p class="step"><b>C = (P<sub>z</sub>·y<sub>p</sub> − P<sub>y</sub>·h)/b + G/2</b>:</p>
+      <p class="step sub-line">C = ((300)(15) − (130)(20))/(30) + 150/2 = (4500−2600)/30 + 75 = <b>138.3 kgf</b></p>
+      <p class="step"><b>A = P<sub>z</sub> + G/2 − (P<sub>z</sub>·y<sub>p</sub> − P<sub>y</sub>·h)/b</b> → the biggest reaction, sizes the width:</p>
+      <p class="step sub-line">A = 300 + 75 − (1900/30) = 375 − 63.3 = <b>311.7 kgf</b> (largest)</p>
+      <p class="step"><b>c' = A/([p<sub>av</sub>]·L)</b> and <b>Q = P<sub>x</sub> + f(P<sub>z</sub>+P<sub>y</sub>+G)</b>:</p>
+      <p class="step sub-line">c' = (311.7)/((12.5)(30)) = <b>0.83 cm</b> &nbsp;|&nbsp; Q = 120 + 0.1(300+130+150) = 120 + 58 = <b>178 kgf</b></p>
+      <p class="ans"><b>width ≈ 0.83 cm (round to 1 cm); Q ≈ 178 kgf.</b> All reactions positive → no lift-off.</p>
     </div>
   </article>
 
@@ -286,9 +332,16 @@ Ball way      Q = P<sub>x</sub> + n·F<sub>c</sub> + (f<sub>r</sub>/r<sub>eq</su
     <div class="callout red"><h4>Traps</h4><p>Using sliding f for the ball way. • Forgetting the small constant n·F<sub>c</sub> term. • Mixing cm/mm for the ball radius.</p></div>
     <span class="soln-toggle">Show worked example ▸</span>
     <div class="soln">
-      <p class="step">Conventional: Q=120+0.15·580=207 kgf.</p>
-      <p class="step">Ball: F=4·0.5+(0.001/0.357)·450=3.26; Q=3.26+120=123 kgf.</p>
-      <p class="ans"><b>207 vs 123 kgf → ~40% lower.</b></p>
+      <p class="step"><b>P<sub>z</sub>=300, P<sub>y</sub>=130, P<sub>x</sub>=120 kgf, carriage G=150 kgf; ball dia 10 mm.</b></p>
+      <div class="plug"><span class="plug-h">What goes where</span>
+P<sub>x</sub> <span class="v">= 120</span> (axial — irreducible, in both), sum (P<sub>z</sub>+P<sub>y</sub>+G) <span class="v">= 580</span><br>
+conventional f <span class="v">= 0.15</span> (sliding) · ball: f<sub>r</sub> <span class="v">= 0.001 cm</span> (rolling), r<sub>eq</sub> <span class="v">= 0.357</span>, n <span class="v">= 4</span> faces, F<sub>c</sub> <span class="v">= 0.5</span><br>
+N <span class="v">= P<sub>z</sub>+G = 450</span> (normal load on the balls)</p></div>
+      <p class="step"><b>Conventional: Q = P<sub>x</sub> + f(P<sub>z</sub>+P<sub>y</sub>+G)</b>:</p>
+      <p class="step sub-line">Q = 120 + (0.15)(580) = 120 + 87 = <b>207 kgf</b></p>
+      <p class="step"><b>Ball: Q = P<sub>x</sub> + n·F<sub>c</sub> + (f<sub>r</sub>/r<sub>eq</sub>)·N</b> → rolling term is tiny:</p>
+      <p class="step sub-line">Q = 120 + (4)(0.5) + (0.001/0.357)(450) = 120 + 2.0 + 1.26 = <b>123 kgf</b></p>
+      <p class="ans"><b>207 vs 123 kgf → ~40% lower.</b> The saving is all in the friction term; P<sub>x</sub> can't be reduced.</p>
     </div>
   </article>
 
@@ -304,10 +357,19 @@ Pitch error  Δt = Q·t/(E·A<sub>m</sub>),  A<sub>m</sub> = π·d<sub>m</sub>²
     <div class="callout red"><h4>Traps</h4><p>Using effective dia for stresses (use minor d<sub>m</sub> = OD − pitch). • Forgetting α=14.5° for Acme. • p<sub>av</sub> uses effective dia and nut length.</p></div>
     <span class="soln-toggle">Show worked example ▸</span>
     <div class="soln">
-      <p class="step">OD=70,d=65,t=10,L=100 mm;P<sub>z</sub>=150,P<sub>y</sub>=50,P<sub>x</sub>=45,f=0.2,G=50.</p>
-      <p class="step">Q=45+0.2·250=95; p<sub>av</sub>=2·95/(π·6.5·10)=0.93 kgf/cm²; d<sub>m</sub>=6.0 cm.</p>
-      <p class="step">τ<sub>max</sub>=½√(σ²+4τ²)≈2.52 kgf/cm²; Δt=95·1/(2.1×10⁶·28.27)=1.6×10⁻⁶ cm.</p>
-      <p class="ans"><b>p<sub>av</sub>=0.93, τ<sub>max</sub>=2.52 kgf/cm², Δt≈0.016 µm</b> — all safe.</p>
+      <p class="step"><b>Acme lead screw: OD=70, effective d=65, pitch t=10, nut L=100 (mm); P<sub>z</sub>=150, P<sub>y</sub>=50, P<sub>x</sub>=45 kgf, f=0.2, G=50.</b></p>
+      <div class="plug"><span class="plug-h">What goes where</span>
+Q built from: P<sub>x</sub> <span class="v">= 45</span>, f <span class="v">= 0.2</span>, sum (P<sub>z</sub>+P<sub>y</sub>+G) <span class="v">= 250</span><br>
+p<sub>av</sub> uses: d <span class="v">= 6.5 cm</span> (effective dia), L <span class="v">= 10 cm</span> (nut length)<br>
+stresses use: d<sub>m</sub> <span class="v">= OD − pitch = 7−1 = 6.0 cm</span> (minor dia), not the effective dia!<br>
+pitch error uses: t <span class="v">= 1 cm</span>, E <span class="v">= 2.1×10⁶</span>, A<sub>m</sub> <span class="v">= πd<sub>m</sub>²/4 = 28.27 cm²</span></p></div>
+      <p class="step"><b>Q = P<sub>x</sub> + f(P<sub>z</sub>+P<sub>y</sub>+G)</b>:</p>
+      <p class="step sub-line">Q = 45 + (0.2)(250) = <b>95 kgf</b></p>
+      <p class="step"><b>p<sub>av</sub> = 2Q/(π·d·L)</b> → effective dia &amp; nut length:</p>
+      <p class="step sub-line">p<sub>av</sub> = 2(95)/(π·6.5·10) = <b>0.93 kgf/cm²</b></p>
+      <p class="step"><b>τ<sub>max</sub> = ½√(σ²+4τ²)</b> with σ, τ on the minor dia d<sub>m</sub>=6.0; <b>Δt = Q·t/(E·A<sub>m</sub>)</b>:</p>
+      <p class="step sub-line">τ<sub>max</sub> ≈ <b>2.52 kgf/cm²</b> &nbsp;|&nbsp; Δt = (95)(1)/((2.1×10⁶)(28.27)) = 1.6×10⁻⁶ cm = <b>0.016 µm</b></p>
+      <p class="ans"><b>p<sub>av</sub>=0.93, τ<sub>max</sub>=2.52 kgf/cm², Δt≈0.016 µm</b> — all safe (screw is accuracy-governed).</p>
     </div>
   </article>
 
@@ -322,9 +384,15 @@ Capillary  c<sub>rc</sub> = (C<sub>F</sub>/h³)·(p<sub>p</sub>−p₀)/p₀,  l
     <div class="callout red"><h4>Traps</h4><p>Over-investing time here — it's low-frequency, high-effort. • Mehta's flow coefficient carries an embedded unit constant; show the chain, don't chase a perfect number.</p></div>
     <span class="soln-toggle">Show worked example ▸</span>
     <div class="soln">
-      <p class="step">Pad 5×8, pocket 1×6 cm, P=50 kgf, p<sub>p</sub>=40: C<sub>L</sub>=0.542, A=40 cm².</p>
-      <p class="step">p₀=50/(40·0.542)=2.31 kgf/cm²; restrictor drops 37.7; size via c<sub>rc</sub> with l/d=20.</p>
-      <p class="ans"><b>p₀=2.31 kgf/cm², C<sub>L</sub>=0.542</b> — the graded quantities.</p>
+      <p class="step"><b>Hydrostatic pad 5×8 cm, pocket 1×6 cm, load P=50 kgf, pump p<sub>p</sub>=40 kgf/cm², capillary l/d=20.</b></p>
+      <div class="plug"><span class="plug-h">What goes where</span>
+A <span class="v">= 5×8 = 40 cm²</span> (pad area), C<sub>L</sub> <span class="v">= 0.542</span> (load coeff from pad/pocket sizes)<br>
+P <span class="v">= 50 kgf</span> (the load to support) → goes on top to find p₀<br>
+p<sub>p</sub> <span class="v">= 40</span> (pump pressure) → restrictor must drop p<sub>p</sub> − p₀</p></div>
+      <p class="step"><b>p₀ = P/(A·C<sub>L</sub>)</b> → load ÷ (area × load-coeff). Always start here:</p>
+      <p class="step sub-line">p₀ = (50)/((40)(0.542)) = 50/21.7 = <b>2.31 kgf/cm²</b></p>
+      <p class="step">Restrictor drop = p<sub>p</sub> − p₀ = 40 − 2.31 = 37.7 kgf/cm²; size via c<sub>rc</sub> = (C<sub>F</sub>/h³)(p<sub>p</sub>−p₀)/p₀ with l<sub>c</sub>=20·d<sub>c</sub>.</p>
+      <p class="ans"><b>p₀=2.31 kgf/cm², C<sub>L</sub>=0.542</b> — the graded quantities. (Optimum stiffness if p₀/p<sub>p</sub>=2/3.)</p>
     </div>
   </article>
 
@@ -338,8 +406,17 @@ Dynamic   Q<sub>dyn</sub> = Q/k,  k = 0.9·(60·T·n·f/10⁷)^(1/3),  f = Z<sub
     <div class="callout red"><h4>Traps</h4><p>Using full Z<sub>t</sub> instead of 0.7 Z<sub>t</sub>. • Cube root forgotten. • d<sub>b</sub> in mm not cm.</p></div>
     <span class="soln-toggle">Show worked example ▸</span>
     <div class="soln">
-      <p class="step">d<sub>b</sub>=1 cm, Z<sub>t</sub>=120, n=40, T=10000 h: P=200; Z<sub>r</sub>=84; Q=100·84·1=8400 kgf.</p>
-      <p class="step">f=60, k=0.9·(144)^⅓=4.72; Q<sub>dyn</sub>=8400/4.72=1781 kgf.</p>
+      <p class="step"><b>Ball screw: ball dia d<sub>b</sub>=10 mm, total balls Z<sub>t</sub>=120, n=40 rpm, service life T=10000 h.</b></p>
+      <div class="plug"><span class="plug-h">What goes where</span>
+d<sub>b</sub> <span class="v">= 1 cm</span> — 10 mm → cm (must be cm, gets squared)<br>
+Z<sub>t</sub> <span class="v">= 120</span> total → loaded Z<sub>r</sub> <span class="v">= 0.7×120 = 84</span> (only 70% carry load)<br>
+f <span class="v">= Z<sub>t</sub>/2 = 60</span>, n <span class="v">= 40</span>, T <span class="v">= 10000</span> → feed the cube root in k</p></div>
+      <p class="step"><b>Per ball: P = 200·d<sub>b</sub>²</b>:</p>
+      <p class="step sub-line">P = 200·(1)² = <b>200 kgf</b></p>
+      <p class="step"><b>Static: Q = 100·Z<sub>r</sub>·d<sub>b</sub>²</b> (use Z<sub>r</sub>=0.7Z<sub>t</sub>, not Z<sub>t</sub>):</p>
+      <p class="step sub-line">Q = 100·(84)·(1)² = <b>8400 kgf</b></p>
+      <p class="step"><b>Dynamic: k = 0.9(60·T·n·f/10⁷)^⅓, Q<sub>dyn</sub> = Q/k</b>:</p>
+      <p class="step sub-line">k = 0.9·(60·10000·40·60/10⁷)^⅓ = 0.9·(144)^⅓ = 0.9·5.24 = 4.72 → Q<sub>dyn</sub> = 8400/4.72 = <b>1781 kgf</b></p>
       <p class="ans"><b>per ball 200, static 8400, dynamic ≈1781 kgf.</b></p>
     </div>
   </article>
@@ -370,9 +447,17 @@ Displacement  y = C · P<sub>y</sub></span>
     <div class="callout red"><h4>Traps</h4><p>Measuring x from the wrong end. • Using P<sub>z</sub> instead of P<sub>y</sub>. • Mixing kgf/cm with kgf/mm.</p></div>
     <span class="soln-toggle">Show worked example ▸</span>
     <div class="soln">
-      <p class="step">L=750,tool 200 from tailstock→x=550,x/L=0.733; K: 3000/4000/2500 kgf/mm; P<sub>y</sub>=150.</p>
-      <p class="step">C=1/3000+(1/4000)0.267²+(1/2500)0.733²=5.66×10⁻⁴ mm/kgf=0.566 µm/kgf.</p>
-      <p class="ans"><b>C≈0.566 µm/kgf; y=0.566·150≈85 µm.</b></p>
+      <p class="step"><b>Between centres, L=750 mm; tool 200 mm from tailstock; K<sub>s</sub>=3000, K<sub>A</sub>=4000, K<sub>B</sub>=2500 kgf/mm; P<sub>y</sub>=150 kgf.</b></p>
+      <div class="plug"><span class="plug-h">What goes where</span>
+x <span class="v">= L − 200 = 550 mm</span> — "from tailstock" → measure from headstock! x/L <span class="v">= 0.733</span><br>
+K<sub>s</sub> <span class="v">= 3000</span> (saddle), K<sub>A</sub> <span class="v">= 4000</span> (headstock), K<sub>B</sub> <span class="v">= 2500</span> (tailstock) — all kgf/mm<br>
+(1−x/L) <span class="v">= 0.267</span> pairs with K<sub>A</sub>; (x/L) <span class="v">= 0.733</span> pairs with K<sub>B</sub><br>
+P<sub>y</sub> <span class="v">= 150</span> — radial only (P<sub>z</sub> would be a distractor)</p></div>
+      <p class="step"><b>C = 1/K<sub>s</sub> + (1/K<sub>A</sub>)(1−x/L)² + (1/K<sub>B</sub>)(x/L)²</b>:</p>
+      <p class="step sub-line">C = 1/3000 + (1/4000)(0.267)² + (1/2500)(0.733)² = 3.33×10⁻⁴ + 0.18×10⁻⁴ + 2.15×10⁻⁴ = <b>0.566 µm/kgf</b></p>
+      <p class="step"><b>y = C·P<sub>y</sub></b>:</p>
+      <p class="step sub-line">y = (0.566)(150) = <b>85 µm</b></p>
+      <p class="ans"><b>C ≈ 0.566 µm/kgf; displacement ≈ 85 µm.</b></p>
     </div>
   </article>
 
@@ -386,8 +471,14 @@ Optimum span  λ = l/c ≈ 3–5   (must be ≥ 2.5 for anti-friction)</span>
     <div class="callout red"><h4>Traps</h4><p>Swapping front/rear bearing. • Forgetting the 1+c/l amplification. • Reporting λ<2.5 (not allowed for ball bearings).</p></div>
     <span class="soln-toggle">Show worked example ▸</span>
     <div class="soln">
-      <p class="step">δ<sub>B</sub>=42.2 µm, δ<sub>A</sub>=9.17 µm, c=1,l=3: y=42.2·1.333+9.17·0.333.</p>
-      <p class="ans"><b>y≈59 µm; λ<sub>opt</sub>≈3.</b></p>
+      <p class="step"><b>Spindle: front-bearing yield δ<sub>B</sub>=42.2 µm, rear δ<sub>A</sub>=9.17 µm, overhang c=1, span l=3.</b></p>
+      <div class="plug"><span class="plug-h">What goes where</span>
+δ<sub>B</sub> <span class="v">= 42.2 µm</span> — FRONT bearing (gets the 1+c/l boost — it dominates)<br>
+δ<sub>A</sub> <span class="v">= 9.17 µm</span> — rear bearing (only the c/l term)<br>
+c/l <span class="v">= 1/3 = 0.333</span> → so (1+c/l) <span class="v">= 1.333</span></p></div>
+      <p class="step"><b>y = δ<sub>B</sub>(1+c/l) + δ<sub>A</sub>(c/l)</b> → front term amplified by 1+c/l:</p>
+      <p class="step sub-line">y = (42.2)(1.333) + (9.17)(0.333) = 56.3 + 3.1 = <b>≈ 59 µm</b></p>
+      <p class="ans"><b>y ≈ 59 µm; λ<sub>opt</sub> = l/c ≈ 3</b> (bending rises, support-compliance falls → sum minimises).</p>
     </div>
   </article>
 
@@ -400,9 +491,14 @@ Optimum span  λ = l/c ≈ 3–5   (must be ≥ 2.5 for anti-friction)</span>
     <div class="callout red"><h4>Traps</h4><p>Adding clearances same-sign (under-estimates). • Using rear as front.</p></div>
     <span class="soln-toggle">Show worked example ▸</span>
     <div class="soln">
-      <p class="step">l=20 cm, front δ<sub>B</sub>=6 µm, rear δ<sub>A</sub>=4 µm, c=8 cm → c/l=0.4.</p>
-      <p class="step">run-out = 6(1.4)+4(0.4)=8.4+1.6.</p>
-      <p class="ans"><b>= 10 µm.</b></p>
+      <p class="step"><b>Bearings l=20 cm apart; clearances 6 µm (front) &amp; 4 µm (rear); nose overhang c=8 cm.</b></p>
+      <div class="plug"><span class="plug-h">What goes where</span>
+δ<sub>B</sub> <span class="v">= 6 µm</span> — FRONT clearance (amplified by 1+c/l)<br>
+δ<sub>A</sub> <span class="v">= 4 µm</span> — rear clearance (only c/l)<br>
+c/l <span class="v">= 8/20 = 0.4</span> → (1+c/l) <span class="v">= 1.4</span>; take clearances <span class="v">opposite</span> for the worst case</p></div>
+      <p class="step"><b>run-out = δ<sub>B</sub>(1+c/l) + δ<sub>A</sub>(c/l)</b> (same form as nose deflection):</p>
+      <p class="step sub-line">= (6)(1.4) + (4)(0.4) = 8.4 + 1.6 = <b>10 µm</b></p>
+      <p class="ans"><b>max radial run-out = 10 µm.</b></p>
     </div>
   </article>
 
@@ -416,8 +512,16 @@ Clearance  c = ψ·d/2,  film  h<sub>min</sub> = c(1 − ε)</span>
     <div class="callout red"><h4>Traps</h4><p>Using πdl (cylinder area) for projected area — it's l·d. • For heat balance, free surface A = 20·d·l, not πdl. • Over-investing in the rare full-design version.</p></div>
     <span class="soln-toggle">Show worked example ▸</span>
     <div class="soln">
-      <p class="step">d=80 mm, P=30 kgf, n=2500, l/d=1: p=30/(8·8)=0.47 kgf/cm²; v=π·0.08·2500/60=10.5 m/s.</p>
-      <p class="ans"><b>pv≈4.9, high v low p → tin bronze;</b> within [p],[pv].</p>
+      <p class="step"><b>Journal bearing: d=80 mm, load P=30 kgf, n=2500 rpm, l/d=1.</b></p>
+      <div class="plug"><span class="plug-h">What goes where</span>
+d <span class="v">= 8 cm</span> (for pressure), <span class="v">= 0.08 m</span> (for surface speed); l <span class="v">= d = 8 cm</span> (l/d=1)<br>
+P <span class="v">= 30 kgf</span> → projected area = l·d = <span class="v">8×8 = 64 cm²</span> (NOT πdl)<br>
+n <span class="v">= 2500 rpm</span> → goes in v = πdn/60</p></div>
+      <p class="step"><b>p = P/(l·d)</b> → load ÷ projected area:</p>
+      <p class="step sub-line">p = (30)/((8)(8)) = <b>0.47 kgf/cm²</b></p>
+      <p class="step"><b>v = π·d·n/60</b> → d in metres:</p>
+      <p class="step sub-line">v = π·(0.08)·(2500)/60 = <b>10.5 m/s</b> → pv = 0.47×10.5 ≈ <b>4.9</b></p>
+      <p class="ans"><b>pv ≈ 4.9; high v, low p → tin bronze;</b> within [p], [pv].</p>
     </div>
   </article>
 
