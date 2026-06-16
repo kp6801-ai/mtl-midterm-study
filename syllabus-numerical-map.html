@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PPT ↔ Mehta — Numerical Topic Map (ch 3·4·5)</title>
+<style>
+  :root{--bg:#fafaf7;--paper:#fff;--ink:#1a1a1a;--muted:#6b6b6b;--accent:#b91c1c;--accent2:#1e3a8a;--rule:#e6e3dc;--green:#14532d;--gold:#92580a;--gold-bg:#fdf6e3}
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;background:var(--bg);color:var(--ink)}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.55;font-size:15.5px}
+  h1,h2,h3{font-family:"Iowan Old Style","Palatino",Georgia,serif;font-weight:600;letter-spacing:-.01em}
+  h1{font-size:2rem;margin:0 0 .3rem}
+  h2{font-size:1.4rem;margin:2rem 0 .5rem;padding-bottom:.35rem;border-bottom:2px solid var(--rule)}
+  .container{max-width:1040px;margin:0 auto;padding:0 1.1rem 4rem}
+  header.site{background:var(--paper);border-bottom:1px solid var(--rule);padding:1.1rem 1.1rem .9rem;position:sticky;top:0;z-index:50}
+  header.site .inner{max-width:1040px;margin:0 auto}
+  .brand{font-family:"Iowan Old Style",serif;font-size:1.25rem;font-weight:600}
+  .brand .accent{color:var(--accent)}
+  .sub{color:var(--muted);font-size:.83rem;margin:.3rem 0 .55rem}
+  nav.jump{display:flex;flex-wrap:wrap;gap:.35rem}
+  nav.jump a{font-size:.8rem;text-decoration:none;color:var(--accent2);border:1px solid var(--rule);border-radius:14px;padding:.2rem .6rem;background:#f6f4ee}
+  nav.jump a:hover{background:#eef2fb}
+  table{border-collapse:collapse;width:100%;margin:.8rem 0 1.4rem;background:var(--paper);font-size:.86rem}
+  th,td{border:1px solid var(--rule);padding:.45rem .6rem;text-align:left;vertical-align:top}
+  th{background:#f0ede4;font-weight:600;font-family:"Iowan Old Style",serif;position:sticky;top:0}
+  td.topic{font-weight:600;color:#222}
+  .mono{font-family:"JetBrains Mono",Menlo,monospace;font-size:.82em;color:var(--accent2)}
+  .pill{display:inline-block;font-size:.68rem;font-weight:700;padding:.08rem .42rem;border-radius:9px;white-space:nowrap}
+  .y{background:#14532d;color:#fff}
+  .n{background:#e6e3dc;color:#555}
+  .hot{background:var(--accent);color:#fff}
+  .callout{background:var(--gold-bg);border:1px solid #ece0bd;border-left:4px solid var(--gold);border-radius:7px;padding:.8rem 1rem;margin:1rem 0}
+  .callout.red{background:#fdecec;border-color:#f3caca;border-left-color:var(--accent)}
+  .callout.blue{background:#eef2fb;border-color:#cdd8f0;border-left-color:var(--accent2)}
+  .callout h3{margin:.1rem 0 .4rem;font-size:1.05rem}
+  .lead{font-size:1.03rem;color:#333}
+  .small{font-size:.83rem;color:var(--muted)}
+  .legend{font-size:.8rem;color:var(--muted);margin:.3rem 0 0}
+  a.solve{color:var(--accent2);text-decoration:none;border-bottom:1px dotted var(--accent2)}
+</style>
+</head>
+<body>
+<header class="site">
+  <div class="inner">
+    <div class="brand"><span class="accent">PPT ↔ Mehta</span> · Numerical Topic Map</div>
+    <div class="sub">MIE 3223 · which topics carry numericals (the 40%), mapped from Dr. Vyshak's slides to the Mehta book · ch 3·4·5</div>
+    <nav class="jump">
+      <a href="#how">How to read</a><a href="#ch3">Ch3 Structures</a><a href="#ch4">Ch4 Guideways</a><a href="#ch5">Ch5 Spindles</a><a href="#skip">Not in PPT</a>
+    </nav>
+  </div>
+</header>
+
+<div class="container">
+
+<p class="lead">Numericals = 40% of the paper, drawn from <b>ch 3 (structures), 4 (guideways), 5 (spindles)</b>. This maps every numerical-bearing topic: where it sits in the lecture PPT, where it lives in Mehta, the type of numerical, and whether it appeared on the last paper.</p>
+
+<div class="callout red"><h3>Three things that decide where you spend time</h3>
+<p><b>1. Power screws are NOT in the PPT.</b> Module 3's slides run structures → guideways and stop at slideway contact-compliance (slide 153). <b>Lead-screw (Mehta 4.9) and ball-screw (4.10)</b> numericals — and the hydrostatic-pad (4.6/4.7) and slider-bearing (4.4) problems — were <b>not lectured</b>. They're textbook-only → low exam priority. The guideway numericals the prof actually taught are <b>slideway forces, pressure distribution, and slideway stiffness</b>.</p>
+<p><b>2. Speed-gearbox (ch 2) is numerical too.</b> Even though "numericals = ch 3/4/5", Module 2 has solved GP / ray-diagram problems and the last paper's Q5 was exactly that. Don't drop it.</p>
+<p><b>3. The prof's own flags</b> (viva/intel): <b>design of bases &amp; tables, design of slideways, calculation of deflection</b> — all in ch 3/4, all in the tables below.</p></div>
+
+<h2 id="how">How to read the tables</h2>
+<p class="legend"><span class="pill hot">ON LAST PAPER</span> appeared in May-2026 · <span class="pill y">TAUGHT</span> worked example shown in the PPT · <span class="pill n">book only</span> in Mehta but not lectured (lower priority). "Solved in" links to where the worked solution lives.</p>
+
+<!-- ============ CH3 ============ -->
+<h2 id="ch3">Ch 3 · Structures &nbsp;<span class="small">(PPT Module 3, slides 5–105 → Mehta ch 3)</span></h2>
+<table>
+<tr><th>Topic</th><th>PPT (slides)</th><th>Mehta §/Prob</th><th>Numerical type</th><th>Status</th><th>Solved in</th></tr>
+<tr><td class="topic">Strength vs stiffness — optimum l²/h</td><td class="mono">M3 · 26–39</td><td class="mono">3.6 · Rev 3.1</td><td>derive/size optimum l²/h = 6E[δ]/[σ]; design for strength then stiffness</td><td><span class="pill y">TAUGHT</span></td><td><a class="solve" href="numericals-playbook.html#ch3">playbook 3·C</a></td></tr>
+<tr><td class="topic">Torsion of a section — open vs closed (channel+angle compound)</td><td class="mono">M3 · 17–18, 36–39</td><td class="mono">3.5 · Ex 3.1 · Prob 3.4, 3.11, 3.12</td><td>I<sub>t</sub>=β·⅓Σbt³ (open) / 4A₀²/∮ (closed); τ<sub>max</sub>, θ</td><td><span class="pill hot">ON LAST PAPER</span> <span class="pill y">TAUGHT</span></td><td><a class="solve" href="index.html">guide Ch3 (3.12)</a></td></tr>
+<tr><td class="topic">Reduced bending rigidity — perpendicular vs diagonal stiffeners</td><td class="mono">M3 · 43–49</td><td class="mono">3.6 · Prob 3.5, 3.9</td><td>EI<sub>br</sub> = s·E·I<sub>wall</sub>; compare perp vs diagonal (~30×)</td><td><span class="pill y">TAUGHT</span></td><td><a class="solve" href="index.html">guide Ch3 (3.5/3.9)</a></td></tr>
+<tr><td class="topic">Lathe-bed design — reactions at centres &amp; bending stresses</td><td class="mono">M3 · 50–65</td><td class="mono">3.7 (Design of Beds)</td><td>support reactions; σ bending (vertical &amp; horizontal); section properties</td><td><span class="pill y">TAUGHT</span></td><td>PPT worked example</td></tr>
+<tr><td class="topic">Columns — shear deformation &amp; torsional twist</td><td class="mono">M3 · 66–71</td><td class="mono">3.8</td><td>twist angle θ, guideway displacement, box vs section</td><td><span class="pill y">TAUGHT</span></td><td>guide Ch3 (3.6)</td></tr>
+<tr><td class="topic">Bases &amp; tables — reduced stiffness / max slope <span class="small">(prof-flagged)</span></td><td class="mono">M3 · 72–87</td><td class="mono">3.9 · Prob 3.8, 3.9</td><td>max angle of slope; reduced (bending) stiffness of hollow table</td><td><span class="pill hot">PROF-FLAGGED</span> <span class="pill y">TAUGHT</span></td><td><a class="solve" href="index.html">guide Ch3 (3.8/3.9)</a></td></tr>
+<tr><td class="topic">Cross-rails / arms / saddles</td><td class="mono">M3 · 88–96</td><td class="mono">3.10, 3.11</td><td>stiffness criteria, key ratios (light numerical)</td><td><span class="pill y">TAUGHT</span></td><td>theory-led</td></tr>
+<tr><td class="topic">Ram — deflection &amp; twist angle</td><td class="mono">M3 · 97–105</td><td class="mono">3.12</td><td>tool-point deflection + twist of an overhung ram</td><td><span class="pill y">TAUGHT</span></td><td>guide Ch3 (method)</td></tr>
+</table>
+
+<!-- ============ CH4 ============ -->
+<h2 id="ch4">Ch 4 · Guideways &nbsp;<span class="small">(PPT Module 3, slides 106–153 → Mehta ch 4)</span></h2>
+<table>
+<tr><th>Topic</th><th>PPT (slides)</th><th>Mehta §/Prob</th><th>Numerical type</th><th>Status</th><th>Solved in</th></tr>
+<tr><td class="topic">Functions / requirements / classification</td><td class="mono">M3 · 106–126</td><td class="mono">4.1, 4.2</td><td>theory (2-mark requirements) — no numerical</td><td><span class="pill n">theory</span></td><td>guide Ch4 theory</td></tr>
+<tr><td class="topic">Slideway forces — V + flat combination (lift-off)</td><td class="mono">M3 · 128–131</td><td class="mono">4.3 · Prob 4.1</td><td>face reactions; saddle lift-off d/b condition</td><td><span class="pill y">TAUGHT</span></td><td><a class="solve" href="guideways-drills.html#B">drills B</a></td></tr>
+<tr><td class="topic">Slideway forces — two-flat combination (face width) <span class="small">(prof-flagged)</span></td><td class="mono">M3 · 132–136</td><td class="mono">4.3 · Prob 4.2</td><td>reactions B/C/A → face width c′ = A/([p<sub>av</sub>]L)</td><td><span class="pill hot">PROF-FLAGGED</span> <span class="pill y">TAUGHT</span></td><td><a class="solve" href="guideways-drills.html#A">drills A</a></td></tr>
+<tr><td class="topic">Pressure distribution &amp; permissible pressure</td><td class="mono">M3 · 137–147</td><td class="mono">4.3</td><td>p<sub>max</sub>, p<sub>av</sub> (=½p<sub>max</sub>), pressure-based sizing</td><td><span class="pill y">TAUGHT</span></td><td><a class="solve" href="guideways-drills.html#A">drills A</a></td></tr>
+<tr><td class="topic">Slideway design for stiffness / contact compliance</td><td class="mono">M3 · 148–153</td><td class="mono">4.3 · Prob 4.3</td><td>contact deflection δ ∝ p<sub>av</sub>; best combination (flat-flat/flat-V/V-V)</td><td><span class="pill y">TAUGHT</span></td><td>guide Ch4 (4.3)</td></tr>
+<tr><td class="topic">Pulling force — conventional vs ball ways</td><td class="mono">— not in PPT</td><td class="mono">Prob 4.8</td><td>Q = P<sub>x</sub>+f(P<sub>z</sub>+P<sub>y</sub>+G) vs rolling</td><td><span class="pill n">book only</span></td><td><a class="solve" href="guideways-drills.html#C">drills C</a></td></tr>
+<tr><td class="topic">Hydrostatic pad — pressure / capacity / restrictor</td><td class="mono">— not in PPT</td><td class="mono">Prob 4.6, 4.7</td><td>p₀=P/(A·C<sub>L</sub>), capacity, p₀/p<sub>p</sub>=⅔</td><td><span class="pill n">book only</span></td><td><a class="solve" href="guideways-drills.html#E">drills E</a></td></tr>
+<tr><td class="topic">Composite slider bearing — length</td><td class="mono">— not in PPT</td><td class="mono">Prob 4.4</td><td>area=W/[p<sub>max</sub>]; hydrodynamic width</td><td><span class="pill n">book only</span></td><td><a class="solve" href="guideways-drills.html#F">drills F</a></td></tr>
+<tr><td class="topic">Lead screw — pressure, shear, pitch error</td><td class="mono">— not in PPT</td><td class="mono">Prob 4.9</td><td>p<sub>av</sub>, τ<sub>max</sub>, Δt (Acme)</td><td><span class="pill n">book only</span></td><td><a class="solve" href="guideways-drills.html#D">drills D</a></td></tr>
+<tr><td class="topic">Recirculating ball screw — load</td><td class="mono">— not in PPT</td><td class="mono">Prob 4.10</td><td>P=200d<sub>b</sub>²; static/dynamic pull</td><td><span class="pill n">book only</span></td><td><a class="solve" href="guideways-drills.html#G">drills G</a></td></tr>
+</table>
+
+<!-- ============ CH5 ============ -->
+<h2 id="ch5">Ch 5 · Spindles &nbsp;<span class="small">(PPT Module 4&amp;5 → Mehta ch 5)</span></h2>
+<table>
+<tr><th>Topic</th><th>PPT (slides)</th><th>Mehta §/Prob</th><th>Numerical type</th><th>Status</th><th>Solved in</th></tr>
+<tr><td class="topic">Machine-tool compliance — deflection of centres, max/min displacement <span class="small">(prof-flagged: deflection)</span></td><td class="mono">M4&amp;5 · 12–19</td><td class="mono">5.3 · Prob 5.1, 5.2, 5.11</td><td>C = 1/K<sub>s</sub>+(1/K<sub>A</sub>)(1−x/L)²+(1/K<sub>B</sub>)(x/L)²; cutting-point displacement</td><td><span class="pill hot">PROF-FLAGGED</span> <span class="pill y">TAUGHT</span></td><td><a class="solve" href="index.html">guide Ch5 (5.1/5.2)</a></td></tr>
+<tr><td class="topic">Spindle bending deflection (y₁)</td><td class="mono">M4&amp;5 · 20–25</td><td class="mono">5.4</td><td>beam-on-supports bending of the spindle axis</td><td><span class="pill y">TAUGHT</span></td><td>guide Ch5 (5.3)</td></tr>
+<tr><td class="topic">Support-compliance deflection (y₂) + optimum bearing spacing</td><td class="mono">M4&amp;5 · 26–35</td><td class="mono">5.4 · Prob 5.3</td><td>δ=R/K; nose y=δ<sub>B</sub>(1+c/l)+δ<sub>A</sub>(c/l); λ<sub>opt</sub>≈3–5</td><td><span class="pill y">TAUGHT</span></td><td><a class="solve" href="numericals-playbook.html#ch5">playbook 5·B</a></td></tr>
+<tr><td class="topic">Tapered-joint compliance (y₃)</td><td class="mono">M4&amp;5 · 36–43</td><td class="mono">5.4</td><td>contact compliance of the nose taper joint</td><td><span class="pill y">TAUGHT</span></td><td>guide Ch5 (method)</td></tr>
+<tr><td class="topic">Permissible deflection + axial/torsional stiffness + strength check</td><td class="mono">M4&amp;5 · 44–47</td><td class="mono">5.4</td><td>y ≤ [y]; fatigue n ≥ 1.3–1.5 check</td><td><span class="pill y">TAUGHT</span></td><td>guide Ch5 theory</td></tr>
+<tr><td class="topic">Hollow spindle — combined bending + torsion sizing</td><td class="mono">M4&amp;5 · 48–51</td><td class="mono">5.4 · Prob 5.4</td><td>d<sub>o</sub>, d<sub>i</sub> from M<sub>b</sub>, M<sub>t</sub>=974P/n</td><td><span class="pill y">TAUGHT</span></td><td>guide Ch5 (5.4)</td></tr>
+<tr><td class="topic">Sleeve / journal bearing — p, pv, material select</td><td class="mono">M4&amp;5 · 69–82</td><td class="mono">5.6 · Prob 5.5</td><td>p=P/(l·d), v=πdn/60, pv check</td><td><span class="pill y">TAUGHT</span></td><td><a class="solve" href="numericals-playbook.html#ch5">playbook 5·D</a></td></tr>
+<tr><td class="topic">Hydrodynamic bearing — Sommerfeld, load capacity, eccentricity</td><td class="mono">M4&amp;5 · 83–91</td><td class="mono">5.6 · Prob 5.6, 5.7</td><td>S₀, load capacity, ε, h<sub>min</sub>=c(1−ε)</td><td><span class="pill y">TAUGHT</span></td><td>guide Ch5 (5.6/5.7)</td></tr>
+<tr><td class="topic">Run-out from bearing clearance</td><td class="mono">— light in PPT</td><td class="mono">Prob 5.12</td><td>y=δ<sub>B</sub>(1+c/l)+δ<sub>A</sub>(c/l) with clearances</td><td><span class="pill n">book only</span></td><td>guide Ch5 (5.12)</td></tr>
+<tr><td class="topic">Hydrostatic / aerodynamic spindle bearing</td><td class="mono">— not in PPT</td><td class="mono">Prob 5.9, 5.10</td><td>restrictor / air-film capacity</td><td><span class="pill n">book only</span></td><td>guide Ch5 (5.9/5.10)</td></tr>
+</table>
+
+<!-- ============ SKIP ============ -->
+<h2 id="skip">Bottom line — what to drill vs skip</h2>
+<div class="callout blue"><h3>Drill hard (taught + prof-flagged + on the paper)</h3>
+<p>Section <b>torsion</b> (ch3, was Q6) · <b>bases &amp; tables</b> deflection/slope (ch3) · <b>slideway forces &amp; face width</b> (ch4) · <b>machine-tool compliance / spindle deflection</b> (ch5) · plus the <b>GP speed gearbox</b> (ch2, was Q5). Reduced bending rigidity and lathe-bed stresses (ch3) are taught and fair game.</p></div>
+<div class="callout"><h3>Lower priority (in Mehta, not in the PPT)</h3>
+<p>Power screws — <b>lead screw (4.9)</b> and <b>ball screw (4.10)</b>; <b>hydrostatic pad (4.6/4.7)</b> and <b>slider bearing (4.4)</b>; <b>pulling-force conv-vs-ball (4.8)</b>; hydrostatic/aerodynamic spindle bearings (5.9/5.10). Know the method (they're in the drills/guide) but don't sink your hours here — the lecturer didn't cover them.</p></div>
+<p class="small">Sources: lecture PPTs (Intro/M1, M2, M3, M4&amp;5, M6 — Dr. Vyshak Sureshkumar) cross-mapped to N. K. Mehta, <i>Machine Tool Design &amp; Numerical Control</i> (3e), and the May-2026 MIE 3223 paper. PPT slide ranges from the decks on file.</p>
+
+</div>
+</body>
+</html>
