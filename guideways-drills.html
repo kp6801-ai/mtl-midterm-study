@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guideways — 20 Numerical Drills (Mehta ch 4)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#fafaf7; --paper:#fff; --ink:#1a1a1a; --muted:#6b6b6b;
+    --accent:#b91c1c; --accent2:#1e3a8a; --hl:#fff3a8; --rule:#e6e3dc;
+    --green:#14532d; --gold:#92580a; --gold-bg:#fdf6e3;
+    --hand:"Patrick Hand","Bradley Hand","Noteworthy","Marker Felt",cursive;
+    --ink-blue:#1d3a5f;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;background:var(--bg);color:var(--ink)}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.6;font-size:16px}
+  h1,h2,h3,h4{font-family:"Iowan Old Style","Palatino",Georgia,serif;font-weight:600;letter-spacing:-.01em}
+  h1{font-size:2.1rem;margin:0 0 .4rem}
+  h2{font-size:1.45rem;margin:2.2rem 0 .6rem;padding-bottom:.4rem;border-bottom:2px solid var(--rule)}
+  h4{font-size:.78rem;margin:.9rem 0 .25rem;color:var(--accent);text-transform:uppercase;letter-spacing:.08em}
+  p{margin:.5rem 0 .9rem}
+  .container{max-width:920px;margin:0 auto;padding:0 1.2rem 4rem}
+  header.site{background:var(--paper);border-bottom:1px solid var(--rule);padding:1.2rem 1.2rem .9rem;position:sticky;top:0;z-index:50}
+  header.site .inner{max-width:920px;margin:0 auto}
+  .brand{font-family:"Iowan Old Style",serif;font-size:1.25rem;font-weight:600}
+  .brand .accent{color:var(--accent)}
+  .sub{color:var(--muted);font-size:.84rem;margin:.3rem 0 .6rem}
+  nav.jump{display:flex;flex-wrap:wrap;gap:.35rem}
+  nav.jump a{font-size:.8rem;text-decoration:none;color:var(--accent2);border:1px solid var(--rule);border-radius:14px;padding:.2rem .6rem;background:#f6f4ee}
+  nav.jump a:hover{background:#eef2fb}
+  .fblock{display:block;white-space:pre-wrap;background:#fcfbf7;background-image:repeating-linear-gradient(#fcfbf7 0,#fcfbf7 33px,#dde6f1 33px,#dde6f1 34px);background-position:0 6px;padding:.5rem 1.1rem .3rem;margin:.6rem 0;border:1px solid #e3ddcd;border-left:4px solid var(--accent2);border-radius:6px;font-family:var(--hand);font-size:1.42rem;color:var(--ink-blue);line-height:34px;letter-spacing:.4px;overflow-x:auto}
+  .fblock sub,.m sub,.soln sub,.plug sub{font-size:.6em;line-height:0}
+  .fblock sup,.m sup,.soln sup,.plug sup{font-size:.6em;line-height:0}
+  article.prob{border:1px solid var(--rule);border-radius:9px;background:var(--paper);padding:.9rem 1.2rem 1.1rem;margin:1rem 0;box-shadow:0 1px 2px rgba(0,0,0,.03)}
+  article.prob>h3{font-size:1.05rem;margin:.2rem 0 .5rem;display:flex;align-items:center;gap:.5rem;flex-wrap:wrap}
+  .num{background:var(--accent2);color:#fff;font-family:"JetBrains Mono",monospace;font-size:.8rem;font-weight:700;border-radius:6px;padding:.1rem .5rem;flex:none}
+  .src{font-size:.66rem;font-weight:700;letter-spacing:.03em;padding:.12rem .5rem;border-radius:10px}
+  .src.real{background:#14532d;color:#fff}
+  .src.var{background:#e0a800;color:#3a2c00}
+  .statement{margin:.3rem 0}
+  .soln-toggle{cursor:pointer;user-select:none;font-weight:600;color:var(--accent);font-size:.86rem;display:inline-block;padding:.3rem .65rem;border:1px solid var(--rule);border-radius:5px;background:#f8f6f0;margin-top:.4rem}
+  .soln-toggle:hover{background:#f0ede4}
+  .soln{display:none;margin-top:.55rem;padding:.55rem .9rem;background:#fbfaf6;border:1px dashed var(--rule);border-radius:6px}
+  .soln.show{display:block}
+  .soln .step,.soln .ans{font-family:var(--hand);font-size:1.2rem;color:var(--ink-blue);line-height:1.55;letter-spacing:.3px;margin:.3rem 0}
+  .soln .step b{color:#7a1414;font-weight:400}
+  .sub-line{background:#fbf6ee;border-left:3px solid var(--gold);border-radius:4px;padding:.3rem .7rem;margin:.35rem 0}
+  .ans{background:var(--gold-bg);border-left:3px solid var(--gold);padding:.4rem .7rem;border-radius:4px;color:#6a4400}
+  .plug{font-family:var(--hand);font-size:1.1rem;color:var(--ink-blue);background:#eef5fc;border:1px dashed #c4d4ec;border-radius:6px;padding:.45rem .85rem;margin:.5rem 0;line-height:1.65}
+  .plug .plug-h{font-family:-apple-system,sans-serif;font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:var(--accent2);font-weight:700;display:block;margin-bottom:.2rem}
+  .plug .v{color:#7a1414}
+  .callout{background:var(--gold-bg);border:1px solid #ece0bd;border-left:4px solid var(--gold);border-radius:6px;padding:.7rem 1rem;margin:1rem 0}
+  .callout.blue{background:#eef2fb;border-color:#cdd8f0;border-left-color:var(--accent2)}
+  .method{font-size:.9rem;color:#444;margin:.2rem 0 .6rem}
+  .bar{display:flex;gap:.5rem;margin:.3rem 0 .6rem;flex-wrap:wrap}
+  .btn{font-family:inherit;font-size:.8rem;padding:.35rem .7rem;border:1px solid var(--rule);border-radius:6px;background:var(--paper);cursor:pointer;color:var(--ink)}
+  .btn:hover{background:#f0ede4}
+  .small{font-size:.85rem;color:var(--muted)}
+  .lead{font-size:1.04rem;color:#333}
+</style>
+</head>
+<body>
+<header class="site">
+  <div class="inner">
+    <div class="brand"><span class="accent">Guideways</span> · 20 Numerical Drills</div>
+    <div class="sub">Mehta ch 4 (Design of Guideways &amp; Power Screws) · MIE 3223 · drill each type till it's automatic</div>
+    <nav class="jump">
+      <a href="#A">Slideway width ×4</a>
+      <a href="#B">Lift-off ×2</a>
+      <a href="#C">Pulling force ×3</a>
+      <a href="#D">Lead screw ×3</a>
+      <a href="#E">Hydrostatic pad ×3</a>
+      <a href="#F">Slider bearing ×2</a>
+      <a href="#G">Ball screw ×3</a>
+    </nav>
+  </div>
+</header>
+
+<div class="container">
+
+<p class="lead">20 guideways numericals to build proficiency — every one rooted in Mehta ch 4.</p>
+<div class="callout blue"><b>How this set is sourced.</b> Mehta ch 4 has only ~8 genuine numerical review questions. Each is here in full <span class="src real">MEHTA 4.x</span>, then drilled with <span class="src var">VARIANT</span> problems — <b>identical method &amp; formulae, different numbers</b> — so you practise each archetype several times. Tags tell you which is which.</div>
+<div class="callout"><b>Use it right:</b> read the problem, try it on paper, <i>then</i> hit "Show solution". Every solution shows the formula → a "what goes where" map → the numbers slotted in → boxed answer. Convert to <b>cm + kgf</b> first, always.</div>
+
+<!-- ===== GROUP A ===== -->
+<h2 id="A">A · Slideway reactions &amp; face width</h2>
+<p class="method">Free-body of the carriage → three face reactions → size the width on the largest one. Reactions: B = P<sub>y</sub>; C = (P<sub>z</sub>y<sub>p</sub> − P<sub>y</sub>h)/b + G/2; A = P<sub>z</sub> + G/2 − (P<sub>z</sub>y<sub>p</sub> − P<sub>y</sub>h)/b. Width c′ = A/([p<sub>av</sub>]·L). Pull Q = P<sub>x</sub> + f(P<sub>z</sub>+P<sub>y</sub>+G).</p>
+<div class="bar"><button class="btn" data-reveal="A">Show all</button><button class="btn" data-hide="A">Hide all</button></div>
+<div id="A-body">
+
+<article class="prob"><h3><span class="num">A1</span> Slideway width <span class="src real">MEHTA 4.2</span></h3>
+<p class="statement">Turning, P<sub>z</sub>=300, P<sub>y</sub>=130, P<sub>x</sub>=120 kgf; carriage G=150 kgf, length L=30 cm. Two flat CI ways. Find the face width. (Assume way spacing b, tool height h, force position y<sub>p</sub>, f, [p<sub>av</sub>].)</p>
+<span class="soln-toggle">Show solution ▸</span><div class="soln">
+<div class="plug"><span class="plug-h">What goes where</span>
+P<sub>z</sub> <span class="v">=300</span>, P<sub>y</sub> <span class="v">=130</span>, P<sub>x</sub> <span class="v">=120</span>, G <span class="v">=150</span> · assume b <span class="v">=30</span>, h <span class="v">=20</span>, y<sub>p</sub> <span class="v">=15</span>, f <span class="v">=0.1</span>, [p<sub>av</sub>] <span class="v">=12.5</span> (=½·25 CI), L <span class="v">=30</span></div>
+<p class="step"><b>moment term m = (P<sub>z</sub>y<sub>p</sub> − P<sub>y</sub>h)/b</b>:</p>
+<p class="step sub-line">m = (300·15 − 130·20)/30 = (4500−2600)/30 = 63.3</p>
+<p class="step"><b>A = P<sub>z</sub> + G/2 − m</b> (largest reaction):</p>
+<p class="step sub-line">A = 300 + 75 − 63.3 = 311.7 kgf</p>
+<p class="step"><b>c′ = A/([p<sub>av</sub>]·L)</b> · <b>Q = P<sub>x</sub> + f(P<sub>z</sub>+P<sub>y</sub>+G)</b>:</p>
+<p class="step sub-line">c′ = 311.7/(12.5·30) = <b>0.83 cm</b> &nbsp;|&nbsp; Q = 120 + 0.1·580 = <b>178 kgf</b></p>
+<p class="ans"><b>width ≈ 0.83 cm (round to 1 cm); Q ≈ 178 kgf.</b> All reactions +ve → no lift-off.</p>
+</div></article>
+
+<article class="prob"><h3><span class="num">A2</span> Slideway width <span class="src var">VARIANT of 4.2</span></h3>
+<p class="statement">P<sub>z</sub>=400, P<sub>y</sub>=160, P<sub>x</sub>=150 kgf; G=200 kgf, L=40 cm. Assume b=40, h=25, y<sub>p</sub>=20, f=0.1, [p<sub>av</sub>]=12.5.</p>
+<span class="soln-toggle">Show solution ▸</span><div class="soln">
+<div class="plug"><span class="plug-h">What goes where</span>
+P<sub>z</sub> <span class="v">=400</span>, P<sub>y</sub> <span class="v">=160</span>, P<sub>x</sub> <span class="v">=150</span>, G <span class="v">=200</span>, b <span class="v">=40</span>, h <span class="v">=25</span>, y<sub>p</sub> <span class="v">=20</span>, f <span class="v">=0.1</span>, [p<sub>av</sub>] <span class="v">=12.5</span>, L <span class="v">=40</span></div>
+<p class="step sub-line">m = (400·20 − 160·25)/40 = (8000−4000)/40 = 100</p>
+<p class="step sub-line">A = 400 + 100 − 100 = 400 kgf</p>
+<p class="step sub-line">c′ = 400/(12.5·40) = <b>0.80 cm</b> &nbsp;|&nbsp; Q = 150 + 0.1·760 = <b>226 kgf</b></p>
+<p class="ans"><b>width ≈ 0.80 cm; Q ≈ 226 kgf.</b></p>
+</div></article>
+
+<article class="prob"><h3><span class="num">A3</span> Slideway width <span class="src var">VARIANT of 4.2</span></h3>
+<p class="statement">P<sub>z</sub>=250, P<sub>y</sub>=100, P<sub>x</sub>=90 kgf; G=120 kgf, L=25 cm. Assume b=25, h=15, y<sub>p</sub>=12.5, f=0.12, [p<sub>av</sub>]=12.5.</p>
+<span class="soln-toggle">Show solution ▸</span><div class="soln">
+<div class="plug"><span class="plug-h">What goes where</span>
+P<sub>z</sub> <span class="v">=250</span>, P<sub>y</sub> <span class="v">=100</span>, P<sub>x</sub> <span class="v">=90</span>, G <span class="v">=120</span>, b <span class="v">=25</span>, h <span class="v">=15</span>, y<sub>p</sub> <span class="v">=12.5</span>, f <span class="v">=0.12</span>, L <span class="v">=25</span></div>
+<p class="step sub-line">m = (250·12.5 − 100·15)/25 = (3125−1500)/25 = 65</p>
+<p class="step sub-line">A = 250 + 60 − 65 = 245 kgf</p>
+<p class="step sub-line">c′ = 245/(12.5·25) = <b>0.78 cm</b> &nbsp;|&nbsp; Q = 90 + 0.12·470 = <b>146.4 kgf</b></p>
+<p class="ans"><b>width ≈ 0.78 cm; Q ≈ 146 kgf.</b></p>
+</div></article>
+
+<article class="prob"><h3><span class="num">A4</span> Slideway width <span class="src var">VARIANT of 4.2</span></h3>
+<p class="statement">P<sub>z</sub>=500, P<sub>y</sub>=200, P<sub>x</sub>=180 kgf; G=250 kgf, L=50 cm. Assume b=50, h=30, y<sub>p</sub>=25, f=0.1, [p<sub>av</sub>]=12.5.</p>
+<span class="soln-toggle">Show solution ▸</span><div class="soln">
+<div class="plug"><span class="plug-h">What goes where</span>
+P<sub>z</sub> <span class="v">=500</span>, P<sub>y</sub> <span class="v">=200</span>, P<sub>x</sub> <span class="v">=180</span>, G <span class="v">=250</span>, b <span class="v">=50</span>, h <span class="v">=30</span>, y<sub>p</sub> <span class="v">=25</span>, f <span class="v">=0.1</span>, L <span class="v">=50</span></div>
+<p class="step sub-line">m = (500·25 − 200·30)/50 = (12500−6000)/50 = 130</p>
+<p class="step sub-line">A = 500 + 125 − 130 = 495 kgf</p>
+<p class="step sub-line">c′ = 495/(12.5·50) = <b>0.79 cm</b> &nbsp;|&nbsp; Q = 180 + 0.1·950 = <b>275 kgf</b></p>
+<p class="ans"><b>width ≈ 0.79 cm; Q ≈ 275 kgf.</b></p>
+</div></article>
+</div>
+
+<!-- ===== GROUP B ===== -->
+<h2 id="B">B · Saddle lift-off (V + flat ways)</h2>
+<p class="method">Saddle lifts off the V-face A when reaction A → 0. Condition: (d+b)/2b = (P<sub>y</sub>/P<sub>z</sub>)·tanα = tanθ·tanα, where θ = angle of the resultant to the vertical, α = V half-angle. So d/b = 2·tanθ·tanα − 1.</p>
+<div class="bar"><button class="btn" data-reveal="B">Show all</button><button class="btn" data-hide="B">Hide all</button></div>
+<div id="B-body">
+
+<article class="prob"><h3><span class="num">B1</span> Lift-off ratio <span class="src real">MEHTA 4.1</span></h3>
+<p class="statement">Parting cut (P<sub>x</sub>=0). μ=0.5, V half-angle α=50°, resultant cutting force at 40° to the vertical. At what d/b does the saddle lift off face A?</p>
+<span class="soln-toggle">Show solution ▸</span><div class="soln">
+<div class="plug"><span class="plug-h">What goes where</span>
+θ <span class="v">= 40°</span> (resultant to vertical) → tanθ <span class="v">= 0.839</span><br>
+α <span class="v">= 50°</span> (V half-angle) → tanα <span class="v">= 1.192</span><br>
+μ does NOT enter (friction acts tangentially, not on the normal reaction)</div>
+<p class="step"><b>(d+b)/2b = tanθ·tanα</b>:</p>
+<p class="step sub-line">= 0.839 × 1.192 = 1.00 → d/b = 2(1.00) − 1 = <b>1.0</b></p>
+<p class="ans"><b>d/b = 1.0</b> — saddle lifts when the V-offset equals the way spacing. (Including the P<sub>y</sub>·h/b moment with h/b=0.5 lowers it to ≈0.16.)</p>
+</div></article>
+
+<article class="prob"><h3><span class="num">B2</span> Lift-off ratio <span class="src var">VARIANT of 4.1</span></h3>
+<p class="statement">Resultant at 35° to the vertical, V half-angle α=45°. Find the lift-off d/b.</p>
+<span class="soln-toggle">Show solution ▸</span><div class="soln">
+<div class="plug"><span class="plug-h">What goes where</span>
+θ <span class="v">= 35°</span> → tanθ <span class="v">= 0.700</span> · α <span class="v">= 45°</span> → tanα <span class="v">= 1.000</span></div>
+<p class="step sub-line">(d+b)/2b = 0.700 × 1.000 = 0.700 → d/b = 2(0.700) − 1 = <b>0.40</b></p>
+<p class="ans"><b>d/b = 0.40.</b></p>
+</div></article>
+</div>
+
+<!-- ===== GROUP C ===== -->
+<h2 id="C">C · Pulling force — conventional vs ball ways</h2>
+<p class="method">Conventional (sliding): Q = P<sub>x</sub> + f(P<sub>z</sub>+P<sub>y</sub>+W). Ball (rolling): Q = P<sub>x</sub> + n·F<sub>c</sub> + (f<sub>r</sub>/r<sub>eq</sub>)·N, with N = P<sub>z</sub>+W, f<sub>r</sub>=0.001 cm, r<sub>eq</sub>=0.357, n=4, F<sub>c</sub>=0.5. The saving is all in the friction term; P<sub>x</sub> is irreducible.</p>
+<div class="bar"><button class="btn" data-reveal="C">Show all</button><button class="btn" data-hide="C">Hide all</button></div>
+<div id="C-body">
+
+<article class="prob"><h3><span class="num">C1</span> Conventional vs ball <span class="src real">MEHTA 4.8</span></h3>
+<p class="statement">P<sub>z</sub>=300, P<sub>y</sub>=130, P<sub>x</sub>=120 kgf; carriage W=150 kgf; sliding f=0.15; ball dia 10 mm. Find the pull for each way.</p>
+<span class="soln-toggle">Show solution ▸</span><div class="soln">
+<div class="plug"><span class="plug-h">What goes where</span>
+P<sub>x</sub> <span class="v">=120</span> (in both), sum(P<sub>z</sub>+P<sub>y</sub>+W) <span class="v">=580</span> · f <span class="v">=0.15</span><br>
+ball: N=P<sub>z</sub>+W <span class="v">=450</span>, n <span class="v">=4</span>, F<sub>c</sub> <span class="v">=0.5</span>, f<sub>r</sub>/r<sub>eq</sub> <span class="v">=0.001/0.357</span></div>
+<p class="step sub-line">Conv: Q = 120 + 0.15·580 = <b>207 kgf</b></p>
+<p class="step sub-line">Ball: F = 4·0.5 + (0.001/0.357)·450 = 2.0 + 1.26 = 3.26 → Q = 120 + 3.26 = <b>123 kgf</b></p>
+<p class="ans"><b>207 vs 123 kgf → ~40% lower.</b></p>
+</div></article>
+
+<article class="prob"><h3><span class="num">C2</span> Conventional vs ball <span class="src var">VARIANT of 4.8</span></h3>
+<p class="statement">P<sub>z</sub>=400, P<sub>y</sub>=150, P<sub>x</sub>=160 kgf; W=200 kgf; sliding f=0.15; ball dia 10 mm.</p>
+<span class="soln-toggle">Show solution ▸</span><div class="soln">
+<div class="plug"><span class="plug-h">What goes where</span>
+sum(P<sub>z</sub>+P<sub>y</sub>+W) <span class="v">=750</span> · N=P<sub>z</sub>+W <span class="v">=600</span> · f <span class="v">=0.15</span></div>
+<p class="step sub-line">Conv: Q = 160 + 0.15·750 = <b>272.5 kgf</b></p>
+<p class="step sub-line">Ball: F = 2.0 + (0.001/0.357)·600 = 2.0 + 1.68 = 3.68 → Q = 160 + 3.68 = <b>163.7 kgf</b></p>
+<p class="ans"><b>272.5 vs 164 kgf → ~40% lower.</b></p>
+</div></article>
+
+<article class="prob"><h3><span class="num">C3</span> Conventional vs ball <span class="src var">VARIANT of 4.8</span></h3>
+<p class="statement">P<sub>z</sub>=250, P<sub>y</sub>=110, P<sub>x</sub>=100 kgf; W=120 kgf; sliding f=0.12; ball dia 10 mm.</p>
+<span class="soln-toggle">Show solution ▸</span><div class="soln">
+<div class="plug"><span class="plug-h">What goes where</span>
+sum(P<sub>z</sub>+P<sub>y</sub>+W) <span class="v">=480</span> · N=P<sub>z</sub>+W <span class="v">=370</span> · f <span class="v">=0.12</span></div>
+<p class="step sub-line">Conv: Q = 100 + 0.12·480 = <b>157.6 kgf</b></p>
+<p class="step sub-line">Ball: F = 2.0 + (0.001/0.357)·370 = 2.0 + 1.04 = 3.04 → Q = 100 + 3.04 = <b>103 kgf</b></p>
+<p class="ans"><b>157.6 vs 103 kgf → ~35% lower.</b></p>
+</div></article>
+</div>
+
+<!-- ===== GROUP D ===== -->
+<h2 id="D">D · Lead screw — pressure, shear stress, pitch error</h2>
+<p class="method">Order: Q = P<sub>x</sub>+f(P<sub>z</sub>+P<sub>y</sub>+G) → p<sub>av</sub> = 2Q/(πdL) (d=effective, L=nut) → torque M<sub>t</sub>=(Qd/2)tan(λ+φ′), λ=tan⁻¹(t/πd), φ′=tan⁻¹(μ/cosα), α=14.5° → σ=4Q/(πd<sub>m</sub>²), τ=16M<sub>t</sub>/(πd<sub>m</sub>³) on minor d<sub>m</sub>=OD−t → τ<sub>max</sub>=½√(σ²+4τ²) → pitch error Δt=Qt/(EA<sub>m</sub>).</p>
+<div class="bar"><button class="btn" data-reveal="D">Show all</button><button class="btn" data-hide="D">Hide all</button></div>
+<div id="D-body">
+
+<article class="prob"><h3><span class="num">D1</span> Lead screw <span class="src real">MEHTA 4.9</span></h3>
+<p class="statement">Acme screw: OD=70, effective d=65, pitch t=10, nut L=100 (mm); P<sub>z</sub>=150, P<sub>y</sub>=50, P<sub>x</sub>=45 kgf, μ=0.2, G=50 kgf, E=2.1×10⁶. Find p<sub>av</sub>, τ<sub>max</sub>, pitch error.</p>
+<span class="soln-toggle">Show solution ▸</span><div class="soln">
+<div class="plug"><span class="plug-h">What goes where</span>
+Q: P<sub>x</sub> <span class="v">=45</span>, μ <span class="v">=0.2</span>, sum(P<sub>z</sub>+P<sub>y</sub>+G) <span class="v">=250</span> · p<sub>av</sub>: d <span class="v">=6.5 cm</span>, L <span class="v">=10 cm</span><br>
+stresses on minor d<sub>m</sub> <span class="v">=OD−t=7−1=6.0 cm</span> (not the effective dia!) · A<sub>m</sub> <span class="v">=πd<sub>m</sub>²/4=28.27</span>, t <span class="v">=1 cm</span></div>
+<p class="step sub-line">Q = 45 + 0.2·250 = <b>95 kgf</b></p>
+<p class="step sub-line">p<sub>av</sub> = 2·95/(π·6.5·10) = <b>0.93 kgf/cm²</b></p>
+<p class="step sub-line">M<sub>t</sub> ≈ 79.7 kgf·cm → σ=4·95/(π·6²)=3.36, τ=16·79.7/(π·6³)=1.88 → τ<sub>max</sub>=½√(3.36²+4·1.88²) = <b>2.52 kgf/cm²</b></p>
+<p class="step sub-line">Δt = 95·1/(2.1×10⁶·28.27) = <b>1.6×10⁻⁶ cm</b> (0.016 µm)</p>
+<p class="ans"><b>p<sub>av</sub>=0.93, τ<sub>max</sub>=2.52 kgf/cm², Δt≈0.016 µm</b> — all far within limits.</p>
+</div></article>
+
+<article class="prob"><h3><span class="num">D2</span> Lead screw <span class="src var">VARIANT of 4.9</span></h3>
+<p class="statement">OD=80, effective d=74, pitch t=12, nut L=120 (mm); P<sub>z</sub>=200, P<sub>y</sub>=70, P<sub>x</sub>=60 kgf, μ=0.2, G=60 kgf.</p>
+<span class="soln-toggle">Show solution ▸</span><div class="soln">
+<div class="plug"><span class="plug-h">What goes where</span>
+sum(P<sub>z</sub>+P<sub>y</sub>+G) <span class="v">=330</span> · d <span class="v">=7.4 cm</span>, L <span class="v">=12 cm</span> · d<sub>m</sub> <span class="v">=8−1.2=6.8 cm</span>, A<sub>m</sub> <span class="v">=36.3 cm²</span>, t <span class="v">=1.2 cm</span></div>
+<p class="step sub-line">Q = 60 + 0.2·330 = <b>126 kgf</b></p>
+<p class="step sub-line">p<sub>av</sub> = 2·126/(π·7.4·12) = <b>0.90 kgf/cm²</b></p>
+<p class="step sub-line">M<sub>t</sub> ≈ 121.7 → σ=3.47, τ=1.97 → τ<sub>max</sub> = <b>2.63 kgf/cm²</b></p>
+<p class="step sub-line">Δt = 126·1.2/(2.1×10⁶·36.3) = <b>1.98×10⁻⁶ cm</b></p>
+<p class="ans"><b>p<sub>av</sub>=0.90, τ<sub>max</sub>=2.63 kgf/cm², Δt≈0.020 µm.</b></p>
+</div></article>
+
+<article class="prob"><h3><span class="num">D3</span> Lead screw <span class="src var">VARIANT of 4.9</span></h3>
+<p class="statement">OD=60, effective d=56, pitch t=8, nut L=80 (mm); P<sub>z</sub>=120, P<sub>y</sub>=40, P<sub>x</sub>=35 kgf, μ=0.15, G=40 kgf.</p>
+<span class="soln-toggle">Show solution ▸</span><div class="soln">
+<div class="plug"><span class="plug-h">What goes where</span>
+sum(P<sub>z</sub>+P<sub>y</sub>+G) <span class="v">=200</span> · d <span class="v">=5.6 cm</span>, L <span class="v">=8 cm</span> · d<sub>m</sub> <span class="v">=6−0.8=5.2 cm</span>, A<sub>m</sub> <span class="v">=21.24 cm²</span>, t <span class="v">=0.8 cm</span></div>
+<p class="step sub-line">Q = 35 + 0.15·200 = <b>65 kgf</b></p>
+<p class="step sub-line">p<sub>av</sub> = 2·65/(π·5.6·8) = <b>0.92 kgf/cm²</b></p>
+<p class="step sub-line">M<sub>t</sub> ≈ 36.7 → σ=3.06, τ=1.33 → τ<sub>max</sub> = <b>2.03 kgf/cm²</b></p>
+<p class="step sub-line">Δt = 65·0.8/(2.1×10⁶·21.24) = <b>1.17×10⁻⁶ cm</b></p>
+<p class="ans"><b>p<sub>av</sub>=0.92, τ<sub>max</sub>=2.03 kgf/cm², Δt≈0.012 µm.</b></p>
+</div></article>
+</div>
+
+<!-- ===== GROUP E ===== -->
+<h2 id="E">E · Hydrostatic pad — pressure &amp; capacity</h2>
+<p class="method">Always start: pocket pressure p₀ = P/(A·C<sub>L</sub>), A = pad area, C<sub>L</sub> = load coefficient (≈0.3–0.55). Capillary must drop p<sub>p</sub> − p₀. Capacity (orifice/upper bound) P = p₀·A·C<sub>L</sub> with p₀ → p<sub>p</sub>. Max stiffness at p₀/p<sub>p</sub> = 2/3.</p>
+<div class="bar"><button class="btn" data-reveal="E">Show all</button><button class="btn" data-hide="E">Hide all</button></div>
+<div id="E-body">
+
+<article class="prob"><h3><span class="num">E1</span> Pocket pressure <span class="src real">MEHTA 4.6</span></h3>
+<p class="statement">Pad 50×80 mm, pocket 10×60 mm, load P=50 kgf, pump p<sub>p</sub>=40 kgf/cm², capillary l/d=20. Find pocket pressure (C<sub>L</sub>=0.542).</p>
+<span class="soln-toggle">Show solution ▸</span><div class="soln">
+<div class="plug"><span class="plug-h">What goes where</span>
+A <span class="v">=5×8=40 cm²</span>, C<sub>L</sub> <span class="v">=0.542</span> · P <span class="v">=50</span> (on top) · p<sub>p</sub> <span class="v">=40</span></div>
+<p class="step sub-line">p₀ = P/(A·C<sub>L</sub>) = 50/(40·0.542) = 50/21.7 = <b>2.31 kgf/cm²</b></p>
+<p class="step sub-line">restrictor drop = p<sub>p</sub> − p₀ = 40 − 2.31 = 37.7 kgf/cm²; size via c<sub>rc</sub> with l<sub>c</sub>=20·d<sub>c</sub></p>
+<p class="ans"><b>p₀ = 2.31 kgf/cm², C<sub>L</sub> = 0.542</b> — the graded quantities.</p>
+</div></article>
+
+<article class="prob"><h3><span class="num">E2</span> Load capacity (orifice) <span class="src real">MEHTA 4.7</span></h3>
+<p class="statement">Same pad (A=40 cm², C<sub>L</sub>=0.542) fed by an orifice, pump p<sub>p</sub>=80 kgf/cm², minimum film 0.01 mm. Find the load capacity.</p>
+<span class="soln-toggle">Show solution ▸</span><div class="soln">
+<div class="plug"><span class="plug-h">What goes where</span>
+A <span class="v">=40 cm²</span>, C<sub>L</sub> <span class="v">=0.542</span> · small film → pocket highly restrictive → p₀ → p<sub>p</sub> <span class="v">=80</span></div>
+<p class="step sub-line">P = p₀·A·C<sub>L</sub>, with p₀≈p<sub>p</sub>=80 → P = 80·40·0.542 = <b>1734 kgf</b> (upper bound)</p>
+<p class="ans"><b>Capacity ≈ 1734 kgf</b> — the 0.01 mm film makes p₀ sit close to p<sub>p</sub>.</p>
+</div></article>
+
+<article class="prob"><h3><span class="num">E3</span> Pocket pressure <span class="src var">VARIANT of 4.6</span></h3>
+<p class="statement">Pad 60×100 mm, pocket 15×70 mm, load P=80 kgf, pump p<sub>p</sub>=50 kgf/cm². Assume C<sub>L</sub>=0.50. Find p₀.</p>
+<span class="soln-toggle">Show solution ▸</span><div class="soln">
+<div class="plug"><span class="plug-h">What goes where</span>
+A <span class="v">=6×10=60 cm²</span>, C<sub>L</sub> <span class="v">=0.50</span> · P <span class="v">=80</span> · p<sub>p</sub> <span class="v">=50</span></div>
+<p class="step sub-line">p₀ = 80/(60·0.50) = 80/30 = <b>2.67 kgf/cm²</b></p>
+<p class="step sub-line">restrictor drop = 50 − 2.67 = 47.3 kgf/cm²</p>
+<p class="ans"><b>p₀ = 2.67 kgf/cm².</b> (Check p₀/p<sub>p</sub>=0.053 ≪ 2/3 → low pump utilisation, as in real low-load pads.)</p>
+</div></article>
+</div>
+
+<!-- ===== GROUP F ===== -->
+<h2 id="F">F · Composite (hydrodynamic) slider bearing — length</h2>
+<p class="method">Two steps: (1) total bearing area from the pressure limit A = W/[p<sub>max</sub>]; (2) width b₀ from the lifting equation Q = 0.133·μ·v·b₀³/h<sub>min</sub>² (convert ν·ρ → μ, ÷9.81 for kgf·s/m²). Then total length = A/b₀, and each of n sliders = total length ÷ n.</p>
+<div class="bar"><button class="btn" data-reveal="F">Show all</button><button class="btn" data-hide="F">Hide all</button></div>
+<div id="F-body">
+
+<article class="prob"><h3><span class="num">F1</span> Slider length <span class="src real">MEHTA 4.4</span></h3>
+<p class="statement">Load W=700 kgf, sliding v=2 m/min, oil ν=20 cSt, ρ=0.9 g/cm³, [p<sub>max</sub>]=2 kgf/cm², minimum film h<sub>min</sub>=0.02 mm, six composite sliders of equal width. Find width &amp; length of each.</p>
+<span class="soln-toggle">Show solution ▸</span><div class="soln">
+<div class="plug"><span class="plug-h">What goes where</span>
+W <span class="v">=700</span>, [p<sub>max</sub>] <span class="v">=2</span> → area · per slider load <span class="v">=700/6=116.7</span> · μ=ν·ρ <span class="v">=1.835×10⁻³ kgf·s/m²</span>, v <span class="v">=0.0333 m/s</span>, h<sub>min</sub> <span class="v">=2×10⁻⁵ m</span></div>
+<p class="step sub-line">A = W/[p<sub>max</sub>] = 700/2 = <b>350 cm²</b></p>
+<p class="step sub-line">b₀³ = Q·h<sub>min</sub>²/(0.133·μ·v) → b₀ ≈ <b>17.9 cm</b> (width)</p>
+<p class="step sub-line">total length = A/b₀ = 350/17.9 = 19.6 cm → each = 19.6/6 ≈ <b>3.3 cm</b></p>
+<p class="ans"><b>width ≈ 17.9 cm; each of 6 sliders ≈ 3.3 cm long.</b> (Pressure limit sets the area; the hydrodynamic equation sets the width.)</p>
+</div></article>
+
+<article class="prob"><h3><span class="num">F2</span> Slider length <span class="src var">VARIANT of 4.4</span></h3>
+<p class="statement">Load W=900 kgf, [p<sub>max</sub>]=2.5 kgf/cm², eight equal sliders, same oil (ν=20 cSt, ρ=0.9), v=2.5 m/min, h<sub>min</sub>=0.02 mm.</p>
+<span class="soln-toggle">Show solution ▸</span><div class="soln">
+<div class="plug"><span class="plug-h">What goes where</span>
+W <span class="v">=900</span>, [p<sub>max</sub>] <span class="v">=2.5</span> → area · per slider <span class="v">=900/8=112.5</span> · μ same, v <span class="v">=0.0417 m/s</span></div>
+<p class="step sub-line">A = W/[p<sub>max</sub>] = 900/2.5 = <b>360 cm²</b></p>
+<p class="step sub-line">b₀³ = Q·h<sub>min</sub>²/(0.133·μ·v) with Q=112.5 → b₀ ≈ <b>16.4 cm</b></p>
+<p class="step sub-line">total length = 360/16.4 = 22.0 cm → each = 22.0/8 ≈ <b>2.7 cm</b></p>
+<p class="ans"><b>area 360 cm²; width ≈ 16.4 cm; each of 8 sliders ≈ 2.7 cm.</b> (Same two-step method; width from the lifting equation.)</p>
+</div></article>
+</div>
+
+<!-- ===== GROUP G ===== -->
+<h2 id="G">G · Recirculating ball screw — load capacity</h2>
+<p class="method">Chain of three: per ball P = 200·d<sub>b</sub>² (d<sub>b</sub> in cm) → static pull Q = 100·Z<sub>r</sub>·d<sub>b</sub>², Z<sub>r</sub>=0.7·Z<sub>t</sub> (only 70% loaded) → dynamic Q<sub>dyn</sub>=Q/k, k=0.9·(60·T·n·f/10⁷)^⅓, f=Z<sub>t</sub>/2. Watch the cube root and Z<sub>r</sub>.</p>
+<div class="bar"><button class="btn" data-reveal="G">Show all</button><button class="btn" data-hide="G">Hide all</button></div>
+<div id="G-body">
+
+<article class="prob"><h3><span class="num">G1</span> Ball-screw load <span class="src real">MEHTA 4.10</span></h3>
+<p class="statement">Ball dia d<sub>b</sub>=10 mm, total balls Z<sub>t</sub>=120, screw n=40 rpm, service life T=10000 h. Find load per ball and the static &amp; dynamic pull.</p>
+<span class="soln-toggle">Show solution ▸</span><div class="soln">
+<div class="plug"><span class="plug-h">What goes where</span>
+d<sub>b</sub> <span class="v">=1 cm</span> (mm→cm!) · Z<sub>t</sub> <span class="v">=120</span> → Z<sub>r</sub>=0.7·120 <span class="v">=84</span> · f=Z<sub>t</sub>/2 <span class="v">=60</span>, n <span class="v">=40</span>, T <span class="v">=10000</span></div>
+<p class="step sub-line">per ball P = 200·1² = <b>200 kgf</b></p>
+<p class="step sub-line">static Q = 100·84·1² = <b>8400 kgf</b></p>
+<p class="step sub-line">k = 0.9·(60·10000·40·60/10⁷)^⅓ = 0.9·(144)^⅓ = 4.72 → Q<sub>dyn</sub> = 8400/4.72 = <b>1781 kgf</b></p>
+<p class="ans"><b>per ball 200, static 8400, dynamic ≈1781 kgf.</b></p>
+</div></article>
+
+<article class="prob"><h3><span class="num">G2</span> Ball-screw load <span class="src var">VARIANT of 4.10</span></h3>
+<p class="statement">d<sub>b</sub>=8 mm, Z<sub>t</sub>=100, n=50 rpm, T=8000 h.</p>
+<span class="soln-toggle">Show solution ▸</span><div class="soln">
+<div class="plug"><span class="plug-h">What goes where</span>
+d<sub>b</sub> <span class="v">=0.8 cm</span> · Z<sub>r</sub>=0.7·100 <span class="v">=70</span> · f <span class="v">=50</span>, n <span class="v">=50</span>, T <span class="v">=8000</span></div>
+<p class="step sub-line">per ball P = 200·0.8² = 200·0.64 = <b>128 kgf</b></p>
+<p class="step sub-line">static Q = 100·70·0.64 = <b>4480 kgf</b></p>
+<p class="step sub-line">k = 0.9·(60·8000·50·50/10⁷)^⅓ = 0.9·(120)^⅓ = 4.44 → Q<sub>dyn</sub> = 4480/4.44 = <b>1009 kgf</b></p>
+<p class="ans"><b>per ball 128, static 4480, dynamic ≈1009 kgf.</b></p>
+</div></article>
+
+<article class="prob"><h3><span class="num">G3</span> Ball-screw load <span class="src var">VARIANT of 4.10</span></h3>
+<p class="statement">d<sub>b</sub>=12 mm, Z<sub>t</sub>=140, n=30 rpm, T=12000 h.</p>
+<span class="soln-toggle">Show solution ▸</span><div class="soln">
+<div class="plug"><span class="plug-h">What goes where</span>
+d<sub>b</sub> <span class="v">=1.2 cm</span> · Z<sub>r</sub>=0.7·140 <span class="v">=98</span> · f <span class="v">=70</span>, n <span class="v">=30</span>, T <span class="v">=12000</span></div>
+<p class="step sub-line">per ball P = 200·1.2² = 200·1.44 = <b>288 kgf</b></p>
+<p class="step sub-line">static Q = 100·98·1.44 = <b>14112 kgf</b></p>
+<p class="step sub-line">k = 0.9·(60·12000·30·70/10⁷)^⅓ = 0.9·(151.2)^⅓ = 4.79 → Q<sub>dyn</sub> = 14112/4.79 = <b>2943 kgf</b></p>
+<p class="ans"><b>per ball 288, static 14112, dynamic ≈2943 kgf.</b></p>
+</div></article>
+</div>
+
+<div class="callout"><b>Two non-numerical Mehta problems</b> round out ch 4: <b>4.3</b> (prove which slideway combination — flat–flat / flat–V / V–V — gives least radial deflection: V–V wins, δ ∝ p<sub>av</sub> and the V splits load over two faces) and <b>4.5</b> (derive the load-capacity of a capillary-fed hydrostatic pad: equate pocket flow to restrictor flow, μ cancels, solve p₀, sub back → P<sub>c</sub> = p<sub>p</sub>·A·C<sub>L</sub>·C<sub>F</sub>/(C<sub>F</sub>+c<sub>rc</sub>h³)). Know the method — they can't be "drilled" with numbers.</div>
+
+</div>
+
+<script>
+document.querySelectorAll('.soln-toggle').forEach(t=>t.addEventListener('click',()=>{
+  const s=t.nextElementSibling;s.classList.toggle('show');
+  t.textContent=s.classList.contains('show')?'Hide solution ▾':'Show solution ▸';}));
+document.querySelectorAll('[data-reveal]').forEach(b=>b.addEventListener('click',()=>{
+  document.querySelectorAll('#'+b.dataset.reveal+'-body .soln').forEach(s=>s.classList.add('show'));
+  document.querySelectorAll('#'+b.dataset.reveal+'-body .soln-toggle').forEach(t=>t.textContent='Hide solution ▾');}));
+document.querySelectorAll('[data-hide]').forEach(b=>b.addEventListener('click',()=>{
+  document.querySelectorAll('#'+b.dataset.hide+'-body .soln').forEach(s=>s.classList.remove('show'));
+  document.querySelectorAll('#'+b.dataset.hide+'-body .soln-toggle').forEach(t=>t.textContent='Show solution ▸');}));
+</script>
+</body>
+</html>
