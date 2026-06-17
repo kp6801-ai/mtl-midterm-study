@@ -8,12 +8,12 @@
   :root{
     --ink:#1a1a1a; --muted:#5b5b5b; --line:#d8d2c4; --paper:#fbf9f3;
     --accent:#7a2e2e; --accent2:#1f4e5f; --box:#f1ede1; --sol:#eef4f2; --solbar:#1f4e5f;
-    --clo2:#0891b2; --clo3:#b45309; --clo4:#7a2e2e; --why:#5d6f6a;
+    --clo2:#0891b2; --clo3:#b45309; --clo4:#7a2e2e; --why:#5d6f6a; --force:#a3262b;
   }
   *{box-sizing:border-box}
   body{margin:0;background:#e9e5db;color:var(--ink);
     font-family:Georgia,'Times New Roman',serif;line-height:1.55}
-  .sheet{max-width:860px;margin:24px auto;background:var(--paper);
+  .sheet{max-width:880px;margin:24px auto;background:var(--paper);
     padding:46px 56px 64px;box-shadow:0 6px 30px rgba(0,0,0,.18)}
   header.head{border-bottom:3px double var(--accent);padding-bottom:14px}
   .uni{font-size:13px;letter-spacing:2px;text-transform:uppercase;color:var(--muted)}
@@ -39,6 +39,23 @@
   .given b{color:var(--accent)}
   .approach{font-size:13px;font-style:italic;color:var(--why);margin:8px 2px 2px;
     padding-left:10px;border-left:2px solid #c9bfa6}
+  /* figures */
+  .fig{margin:12px 0;background:#fff;border:1px solid var(--line);border-radius:8px;padding:12px 12px 8px}
+  .fig svg.figsvg{width:100%;height:auto;max-width:580px;display:block;margin:0 auto}
+  .figcap{font-family:system-ui,sans-serif;font-size:11.5px;color:var(--muted);text-align:center;margin-top:6px}
+  .figcap b{color:var(--accent2)}
+  .howto{font-size:12.6px;background:#fbf7ee;border:1px dashed #d9cdae;border-radius:6px;
+    padding:9px 13px;margin:8px 0}
+  .howto .lbl{font-family:system-ui,sans-serif;font-size:10px;font-weight:700;letter-spacing:.6px;
+    text-transform:uppercase;color:#8a6d2f;display:block;margin-bottom:3px}
+  .howto ul{margin:3px 0;padding-left:18px}.howto li{margin:2px 0}
+  .refgrid{margin:14px 0}
+  .refcard{background:#fff;border:1px solid var(--line);border-radius:8px;padding:12px 14px;margin:12px 0}
+  .refcard h3{font-size:13.5px;margin:0 0 4px;color:var(--accent2)}
+  .eqbank{font-size:12.6px;margin-top:6px}
+  .eqbank .eqn{font-family:'Cambria Math',Georgia,serif;background:#f3f6f5;border:1px solid #e0e8e6;
+    border-radius:4px;padding:3px 9px;display:block;margin:3px 0}
+  /* solution */
   .sol{background:var(--sol);border-left:3px solid var(--solbar);border-radius:0 6px 6px 0;
     padding:12px 18px;margin:8px 0 4px;font-size:13.3px}
   .sol .lbl{font-family:system-ui,sans-serif;font-size:10.5px;font-weight:700;letter-spacing:1px;
@@ -51,34 +68,297 @@
     border-radius:3px;padding:1px 6px;margin-right:6px;vertical-align:middle}
   .eq{font-family:'Cambria Math',Georgia,serif;background:#fff;border:1px solid #dfe8e5;
     border-radius:5px;padding:5px 11px;display:block;margin:4px 0;overflow-x:auto}
-  .sub{font-size:13px;margin:2px 0}
   .ansline{margin-top:9px;padding:7px 11px;background:#fdeeee;border:1px solid #e8c9c9;
     border-radius:6px;font-weight:bold;color:var(--accent)}
   .pitfall{font-size:12.3px;color:#7a2e2e;margin-top:7px}
   .pitfall b{font-family:system-ui,sans-serif;font-size:10px;letter-spacing:.5px;text-transform:uppercase}
-  .modelbox{background:#fff7ea;border:1px solid #e8d9b6;border-radius:6px;padding:9px 14px;margin:6px 0;font-size:12.7px}
-  .toolbar{max-width:860px;margin:0 auto;display:flex;gap:10px;padding:0 56px}
+  .toolbar{max-width:880px;margin:0 auto;display:flex;gap:10px;padding:0 56px}
   .btn{font-family:system-ui,sans-serif;font-size:12px;border:1px solid var(--accent2);
     background:#fff;color:var(--accent2);border-radius:6px;padding:7px 14px;cursor:pointer}
   .btn:hover{background:var(--accent2);color:#fff}
   .foot{margin-top:30px;border-top:1px solid var(--line);padding-top:10px;
     font-size:11px;color:var(--muted);text-align:center}
   sub,sup{font-size:.72em}
+  /* svg internals */
+  svg text{font-family:Georgia,serif;fill:var(--ink)}
+  .dimL{stroke:var(--muted);stroke-width:1}
+  .dimT{font-size:12px;fill:var(--muted)}
+  .struct{stroke:var(--ink);stroke-width:1.6;fill:none}
+  .structf{stroke:var(--ink);stroke-width:1.4;fill:#f0ece2}
+  .force{stroke:var(--force);stroke-width:2}
+  .forceT{font-size:13px;fill:var(--force);font-weight:bold}
+  .lbl2{font-size:12.5px;fill:var(--ink)}
+  .hatch{stroke:var(--muted);stroke-width:1}
   @media print{body{background:#fff}.sheet{box-shadow:none;margin:0;max-width:100%;padding:0 8mm}
-    .toolbar{display:none}.q{break-inside:avoid}.sol{break-inside:avoid}}
+    .toolbar{display:none}.q{break-inside:avoid}.sol{break-inside:avoid}.fig{break-inside:avoid}}
 </style>
 </head>
 <body>
 <div class="toolbar"><button class="btn" onclick="window.print()">Print / PDF</button></div>
+
+<!-- ============ HIDDEN SVG SYMBOL DEFINITIONS ============ -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <marker id="ah" markerWidth="9" markerHeight="9" refX="6.5" refY="3" orient="auto">
+    <path d="M0,0 L7,3 L0,6 Z" fill="#a3262b"/></marker>
+  <marker id="ahd" markerWidth="8" markerHeight="8" refX="5.5" refY="2.6" orient="auto">
+    <path d="M0,0 L6,2.6 L0,5.2 Z" fill="#5b5b5b"/></marker>
+  <marker id="ahd2" markerWidth="8" markerHeight="8" refX="0.5" refY="2.6" orient="auto">
+    <path d="M6,0 L0,2.6 L6,5.2 Z" fill="#5b5b5b"/></marker>
+
+  <!-- ===== FIG 3.36 : base beam loading ===== -->
+  <symbol id="figBase" viewBox="0 0 600 290">
+    <title>Fig 3.36 — loaded base (Prob 3.8)</title>
+    <!-- beam -->
+    <line x1="60" y1="150" x2="540" y2="150" class="struct"/>
+    <!-- left UDL q1 -->
+    <line x1="60" y1="118" x2="200" y2="118" class="force"/>
+    <line x1="72" y1="118" x2="72" y2="150" class="force" marker-end="url(#ah)"/>
+    <line x1="104" y1="118" x2="104" y2="150" class="force" marker-end="url(#ah)"/>
+    <line x1="136" y1="118" x2="136" y2="150" class="force" marker-end="url(#ah)"/>
+    <line x1="168" y1="118" x2="168" y2="150" class="force" marker-end="url(#ah)"/>
+    <text x="130" y="108" text-anchor="middle" class="forceT">q₁ = 2.0 kgf/mm</text>
+    <!-- right UDL q2 -->
+    <line x1="380" y1="122" x2="540" y2="122" class="force"/>
+    <line x1="392" y1="122" x2="392" y2="150" class="force" marker-end="url(#ah)"/>
+    <line x1="430" y1="122" x2="430" y2="150" class="force" marker-end="url(#ah)"/>
+    <line x1="468" y1="122" x2="468" y2="150" class="force" marker-end="url(#ah)"/>
+    <line x1="506" y1="122" x2="506" y2="150" class="force" marker-end="url(#ah)"/>
+    <text x="460" y="112" text-anchor="middle" class="forceT">q₂ = 1.5 kgf/mm</text>
+    <!-- applied moment -->
+    <path d="M285,150 A22,22 0 1 1 305,138" fill="none" class="force" marker-end="url(#ah)"/>
+    <text x="295" y="186" text-anchor="middle" class="forceT">M = 2×10⁵ kgf·mm</text>
+    <!-- supports -->
+    <path d="M200,150 l-9,16 l18,0 z" class="structf"/>
+    <line x1="185" y1="166" x2="215" y2="166" class="hatch"/>
+    <path d="M380,150 l-9,16 l18,0 z" class="structf"/>
+    <line x1="365" y1="166" x2="395" y2="166" class="hatch"/>
+    <!-- dimensions -->
+    <line x1="60" y1="210" x2="200" y2="210" class="dimL" marker-start="url(#ahd2)" marker-end="url(#ahd)"/>
+    <text x="130" y="224" text-anchor="middle" class="dimT">400</text>
+    <line x1="200" y1="210" x2="380" y2="210" class="dimL" marker-start="url(#ahd2)" marker-end="url(#ahd)"/>
+    <text x="290" y="224" text-anchor="middle" class="dimT">250</text>
+    <line x1="380" y1="210" x2="540" y2="210" class="dimL" marker-start="url(#ahd2)" marker-end="url(#ahd)"/>
+    <text x="460" y="224" text-anchor="middle" class="dimT">500</text>
+    <line x1="60" y1="244" x2="540" y2="244" class="dimL" marker-start="url(#ahd2)" marker-end="url(#ahd)"/>
+    <text x="300" y="258" text-anchor="middle" class="dimT">overall 1500 (mm)</text>
+  </symbol>
+
+  <!-- ===== cross-section hollow box (for 3.8 / 3.9) ===== -->
+  <symbol id="figBox" viewBox="0 0 300 230">
+    <title>Hollow rectangular section</title>
+    <rect x="70" y="30" width="160" height="150" class="structf"/>
+    <rect x="92" y="52" width="116" height="106" fill="#fff" stroke="#1a1a1a" stroke-width="1.2"/>
+    <line x1="70" y1="200" x2="230" y2="200" class="dimL" marker-start="url(#ahd2)" marker-end="url(#ahd)"/>
+    <text x="150" y="214" text-anchor="middle" class="dimT">B (width)</text>
+    <line x1="46" y1="30" x2="46" y2="180" class="dimL" marker-start="url(#ahd2)" marker-end="url(#ahd)"/>
+    <text x="30" y="110" text-anchor="middle" class="dimT" transform="rotate(-90 30 110)">H</text>
+    <line x1="70" y1="41" x2="92" y2="41" class="dimL" marker-start="url(#ahd2)" marker-end="url(#ahd)"/>
+    <text x="118" y="46" class="dimT">t = wall</text>
+  </symbol>
+
+  <!-- ===== FIG 4.10 : V + flat slideways ===== -->
+  <symbol id="figVFlat" viewBox="0 0 600 320">
+    <title>Fig 4.10 — V + flat slideways (Prob 4.1)</title>
+    <!-- cutting zone -->
+    <circle cx="360" cy="70" r="26" class="struct"/>
+    <line x1="360" y1="70" x2="360" y2="210" stroke="#1a1a1a" stroke-width="1" stroke-dasharray="4 3"/>
+    <!-- forces -->
+    <line x1="360" y1="70" x2="360" y2="128" class="force" marker-end="url(#ah)"/>
+    <text x="372" y="118" class="forceT">P</text><text x="385" y="122" class="forceT" font-size="10">z</text>
+    <line x1="386" y1="70" x2="452" y2="70" class="force" marker-end="url(#ah)"/>
+    <text x="430" y="60" class="forceT">P</text><text x="443" y="64" class="forceT" font-size="10">y</text>
+    <!-- carriage -->
+    <rect x="150" y="200" width="300" height="40" class="structf"/>
+    <!-- left flat way + reaction C -->
+    <rect x="120" y="200" width="20" height="60" class="structf"/>
+    <line x1="120" y1="222" x2="150" y2="222" class="force" marker-end="url(#ah)"/>
+    <text x="120" y="216" class="forceT">C</text>
+    <!-- right V way -->
+    <path d="M410,240 l30,40 l30,-40 z" class="structf"/>
+    <line x1="425" y1="262" x2="408" y2="248" class="force" marker-end="url(#ah)"/>
+    <text x="392" y="250" class="forceT">A</text>
+    <line x1="455" y1="262" x2="472" y2="248" class="force" marker-end="url(#ah)"/>
+    <text x="476" y="250" class="forceT">B</text>
+    <text x="430" y="300" text-anchor="middle" class="lbl2">α (half-angle)</text>
+    <!-- weight -->
+    <line x1="285" y1="220" x2="285" y2="258" class="force" marker-end="url(#ah)"/>
+    <text x="292" y="252" class="forceT">G</text>
+    <!-- dims -->
+    <line x1="130" y1="285" x2="440" y2="285" class="dimL" marker-start="url(#ahd2)" marker-end="url(#ahd)"/>
+    <text x="285" y="299" text-anchor="middle" class="dimT">b  (way spacing)</text>
+    <line x1="440" y1="150" x2="360" y2="150" class="dimL" marker-start="url(#ahd2)" marker-end="url(#ahd)"/>
+    <text x="400" y="144" text-anchor="middle" class="dimT">d</text>
+    <line x1="505" y1="70" x2="505" y2="240" class="dimL" marker-start="url(#ahd2)" marker-end="url(#ahd)"/>
+    <text x="516" y="158" class="dimT">h</text>
+    <!-- axes -->
+    <line x1="40" y1="120" x2="40" y2="80" class="dimL" marker-end="url(#ahd)"/>
+    <line x1="40" y1="120" x2="80" y2="120" class="dimL" marker-end="url(#ahd)"/>
+    <text x="32" y="76" class="dimT">Z</text><text x="84" y="124" class="dimT">Y</text>
+  </symbol>
+
+  <!-- ===== FIG 4.11 : two flat slideways ===== -->
+  <symbol id="figTwoFlat" viewBox="0 0 600 310">
+    <title>Fig 4.11 — two flat slideways (Prob 4.2)</title>
+    <circle cx="300" cy="64" r="24" class="struct"/>
+    <line x1="300" y1="64" x2="300" y2="190" stroke="#1a1a1a" stroke-width="1" stroke-dasharray="4 3"/>
+    <line x1="300" y1="64" x2="300" y2="120" class="force" marker-end="url(#ah)"/>
+    <text x="308" y="112" class="forceT">P</text><text x="321" y="116" class="forceT" font-size="10">z</text>
+    <line x1="324" y1="64" x2="386" y2="64" class="force" marker-end="url(#ah)"/>
+    <text x="364" y="55" class="forceT">P</text><text x="377" y="59" class="forceT" font-size="10">y</text>
+    <line x1="300" y1="64" x2="262" y2="40" class="force" marker-end="url(#ah)"/>
+    <text x="232" y="40" class="forceT">P</text><text x="245" y="44" class="forceT" font-size="10">x</text>
+    <!-- carriage -->
+    <rect x="150" y="180" width="300" height="44" class="structf"/>
+    <!-- two flat ways -->
+    <rect x="150" y="224" width="90" height="16" class="structf"/>
+    <text x="195" y="236" text-anchor="middle" class="lbl2" font-size="11">way II</text>
+    <rect x="360" y="224" width="90" height="16" class="structf"/>
+    <text x="405" y="236" text-anchor="middle" class="lbl2" font-size="11">way I</text>
+    <!-- reactions -->
+    <line x1="405" y1="262" x2="405" y2="240" class="force" marker-end="url(#ah)"/>
+    <text x="412" y="258" class="forceT">A</text>
+    <line x1="195" y1="262" x2="195" y2="240" class="force" marker-end="url(#ah)"/>
+    <text x="172" y="258" class="forceT">C</text>
+    <line x1="470" y1="160" x2="450" y2="160" class="force" marker-end="url(#ah)"/>
+    <text x="474" y="164" class="forceT">B = P</text><text x="505" y="168" class="forceT" font-size="10">y</text>
+    <!-- weight, pulling -->
+    <line x1="300" y1="200" x2="300" y2="234" class="force" marker-end="url(#ah)"/>
+    <text x="307" y="228" class="forceT">G</text>
+    <line x1="150" y1="150" x2="110" y2="150" class="force" marker-end="url(#ah)"/>
+    <text x="92" y="154" class="forceT">Q</text>
+    <!-- dims -->
+    <line x1="195" y1="285" x2="405" y2="285" class="dimL" marker-start="url(#ahd2)" marker-end="url(#ahd)"/>
+    <text x="300" y="299" text-anchor="middle" class="dimT">b (way spacing)</text>
+    <line x1="300" y1="170" x2="360" y2="170" class="dimL" marker-start="url(#ahd2)" marker-end="url(#ahd)"/>
+    <text x="330" y="164" text-anchor="middle" class="dimT">y_p</text>
+    <line x1="525" y1="64" x2="525" y2="224" class="dimL" marker-start="url(#ahd2)" marker-end="url(#ahd)"/>
+    <text x="536" y="150" class="dimT">h</text>
+  </symbol>
+
+  <!-- ===== FIG 5.1 : turning between centres ===== -->
+  <symbol id="figCentres" viewBox="0 0 600 250">
+    <title>Fig 5.1 — turning between centres (Probs 5.1, 5.2)</title>
+    <!-- workpiece -->
+    <rect x="110" y="104" width="380" height="30" class="structf"/>
+    <!-- headstock A -->
+    <path d="M110,119 l-26,-14 l0,28 z" class="structf"/>
+    <rect x="60" y="95" width="24" height="48" class="structf"/>
+    <text x="72" y="170" text-anchor="middle" class="lbl2">A · K_A</text>
+    <text x="72" y="185" text-anchor="middle" class="dimT" font-size="11">(headstock)</text>
+    <!-- tailstock B -->
+    <path d="M490,119 l26,-14 l0,28 z" class="structf"/>
+    <rect x="516" y="95" width="24" height="48" class="structf"/>
+    <text x="528" y="170" text-anchor="middle" class="lbl2">B · K_B</text>
+    <text x="528" y="185" text-anchor="middle" class="dimT" font-size="11">(tailstock)</text>
+    <!-- cutting force -->
+    <line x1="360" y1="104" x2="360" y2="62" class="force" marker-start="url(#ah)"/>
+    <text x="368" y="70" class="forceT">P</text><text x="381" y="74" class="forceT" font-size="10">y</text>
+    <text x="360" y="98" text-anchor="middle" class="dimT" font-size="11">C</text>
+    <!-- deflected axis -->
+    <path d="M110,124 Q360,150 490,124" fill="none" stroke="#a3262b" stroke-width="1.3" stroke-dasharray="5 3"/>
+    <text x="360" y="150" text-anchor="middle" class="forceT" font-size="11">C′ (deflected)</text>
+    <!-- dims -->
+    <line x1="110" y1="210" x2="360" y2="210" class="dimL" marker-start="url(#ahd2)" marker-end="url(#ahd)"/>
+    <text x="235" y="224" text-anchor="middle" class="dimT">x (tool from A)</text>
+    <line x1="110" y1="234" x2="490" y2="234" class="dimL" marker-start="url(#ahd2)" marker-end="url(#ahd)"/>
+    <text x="300" y="248" text-anchor="middle" class="dimT">l (between centres)</text>
+  </symbol>
+
+  <!-- ===== FIG 5.5a : spindle ===== -->
+  <symbol id="figSpindle" viewBox="0 0 600 250">
+    <title>Fig 5.5a — spindle on two bearings (Prob 5.3)</title>
+    <!-- spindle shaft -->
+    <rect x="120" y="108" width="400" height="22" class="structf"/>
+    <!-- rear bearing -->
+    <path d="M170,130 l-10,16 l20,0 z" class="structf"/>
+    <line x1="152" y1="146" x2="188" y2="146" class="hatch"/>
+    <text x="170" y="172" text-anchor="middle" class="lbl2" font-size="12">rear · K_A</text>
+    <!-- front bearing -->
+    <path d="M380,130 l-10,16 l20,0 z" class="structf"/>
+    <line x1="362" y1="146" x2="398" y2="146" class="hatch"/>
+    <text x="380" y="172" text-anchor="middle" class="lbl2" font-size="12">front · K_B</text>
+    <!-- nose -->
+    <text x="520" y="100" text-anchor="middle" class="dimT" font-size="11">nose</text>
+    <!-- gear force P2 -->
+    <line x1="290" y1="70" x2="290" y2="106" class="force" marker-end="url(#ah)"/>
+    <text x="297" y="80" class="forceT">P</text><text x="310" y="84" class="forceT" font-size="10">2</text>
+    <text x="290" y="62" text-anchor="middle" class="dimT" font-size="10">(gear)</text>
+    <!-- nose force P1 -->
+    <line x1="518" y1="70" x2="518" y2="106" class="force" marker-end="url(#ah)"/>
+    <text x="525" y="80" class="forceT">P</text><text x="538" y="84" class="forceT" font-size="10">1</text>
+    <!-- dims -->
+    <line x1="170" y1="200" x2="290" y2="200" class="dimL" marker-start="url(#ahd2)" marker-end="url(#ahd)"/>
+    <text x="230" y="214" text-anchor="middle" class="dimT">a</text>
+    <line x1="290" y1="200" x2="380" y2="200" class="dimL" marker-start="url(#ahd2)" marker-end="url(#ahd)"/>
+    <text x="335" y="214" text-anchor="middle" class="dimT">b</text>
+    <line x1="170" y1="224" x2="380" y2="224" class="dimL" marker-start="url(#ahd2)" marker-end="url(#ahd)"/>
+    <text x="275" y="238" text-anchor="middle" class="dimT">l (span)</text>
+    <line x1="380" y1="200" x2="518" y2="200" class="dimL" marker-start="url(#ahd2)" marker-end="url(#ahd)"/>
+    <text x="449" y="214" text-anchor="middle" class="dimT">c (overhang)</text>
+  </symbol>
+</defs></svg>
+
 <div class="sheet">
   <header class="head">
     <div class="uni">Mechanical Engineering · MIE 3223</div>
     <h1>Machine Tool Technology — Numerical Paper</h1>
-    <div class="sub">Fully worked, formula-by-formula · every step, every substitution, every unit</div>
+    <div class="sub">Fully worked · with the figures you need (the exam won't give them)</div>
     <div class="meta"><span>7 design numericals + viva set</span>
       <span>Scope: Bases &amp; Tables · Slideways · Deflection</span>
       <span>E<sub>steel</sub>=2.1×10⁶ kgf/cm² = 2.1×10⁴ kgf/mm²</span></div>
   </header>
+
+  <!-- ============ FIGURES & FBD REFERENCE ============ -->
+  <div class="secband"><h2>★ Figures &amp; Free-Body Diagrams — exam reference</h2></div>
+  <p class="approach">The exam won't print these figures — you must <b>redraw the FBD yourself</b>. Memorise the geometry + the governing equilibrium equations below; each one reappears at its question with a "how to read it" note.</p>
+
+  <div class="refgrid">
+    <div class="refcard">
+      <h3>① Loaded base — Prob 3.8 (Fig 3.36)</h3>
+      <div class="fig"><svg class="figsvg" viewBox="0 0 600 290"><use href="#figBase"/></svg></div>
+      <div class="eqbank">Beam on elastic foundation. Hollow-box rigidity, then sum of load/moment slopes:
+        <span class="eqn">I = [B·H³ − (B−2t)(H−2t)³]/12 ;  θ = Σ(q·b/k)K_q + (M/k)K_M</span></div>
+    </div>
+
+    <div class="refcard">
+      <h3>② V + flat slideways — Prob 4.1 (Fig 4.10)</h3>
+      <div class="fig"><svg class="figsvg" viewBox="0 0 600 320"><use href="#figVFlat"/></svg></div>
+      <div class="eqbank">Three equilibrium equations → reactions A, B, C:
+        <span class="eqn">ΣY: A sinα − B sinβ + P_y = 0   (4.6)</span>
+        <span class="eqn">ΣZ: A cosα + B cosβ + C − P_z − G = 0   (4.7)</span>
+        <span class="eqn">ΣM_x: (A cosα + B cosβ)·b/2 − P_z·d/2 − P_y·h − C·b/2 = 0   (4.8)</span>
+        <span class="eqn">A = [P_z(d+b)/2b]cosα + P_y(h/b)cosα − P_y sinα + (G/2)cosα   (4.11)</span>
+        <span class="eqn">Lift-off off face A ⇒ set A = 0 and solve for d/b.</span></div>
+    </div>
+
+    <div class="refcard">
+      <h3>③ Two flat slideways — Prob 4.2 (Fig 4.11)</h3>
+      <div class="fig"><svg class="figsvg" viewBox="0 0 600 310"><use href="#figTwoFlat"/></svg></div>
+      <div class="eqbank">Four equilibrium equations → A, B, C, Q:
+        <span class="eqn">ΣY: B − P_y = 0 ⇒ B = P_y   (4.15, 4.18)</span>
+        <span class="eqn">ΣM_x: P_z·y_p + G·b/2 − C·b − P_y·h = 0 ⇒ C = (P_z y_p − P_y h)/b + G/2   (4.19)</span>
+        <span class="eqn">ΣZ: A + C − P_z − G = 0 ⇒ A = P_z + G/2 − (P_z y_p − P_y h)/b   (4.20)</span>
+        <span class="eqn">ΣX: Q = P_x + f(A + B + C) = P_x + f(P_z + P_y + G)   (4.14)</span>
+        <span class="eqn">Width from largest reaction A: c′ = A / ([p_av]·L)</span></div>
+    </div>
+
+    <div class="refcard">
+      <h3>④ Turning between centres — Probs 5.1, 5.2 (Fig 5.1)</h3>
+      <div class="fig"><svg class="figsvg" viewBox="0 0 600 250"><use href="#figCentres"/></svg></div>
+      <div class="eqbank">Compliance at the cutting point (x from headstock A):
+        <span class="eqn">C = 1/K_saddle + (1−x/l)²/K_A + (x/l)²/K_B   (Eq 5.9 + saddle)</span>
+        <span class="eqn">workpiece bending: y_wp = P·a²b² / (3EIl) ;  I = πd⁴/64</span></div>
+    </div>
+
+    <div class="refcard">
+      <h3>⑤ Spindle on two bearings — Prob 5.3 (Fig 5.5a)</h3>
+      <div class="fig"><svg class="figsvg" viewBox="0 0 600 250"><use href="#figSpindle"/></svg></div>
+      <div class="eqbank">Reactions, then nose deflection from support compliance:
+        <span class="eqn">R_B = [P₂·a + P₁(c+l)]/l ;  R_A = [P₂·b − P₁·c]/l   (5.24, 5.25)</span>
+        <span class="eqn">δ = R × (bearing compliance) ;  y₂ = δ_B(1+c/l) + δ_A(c/l)   (5.21)</span>
+        <span class="eqn">λ_opt = l/c from Fig 5.9 (use α = K_B/K_A); check λ ≥ 2.5</span></div>
+    </div>
+  </div>
 
   <!-- ============ A. BASES & TABLES ============ -->
   <div class="secband"><span class="clo c4">CLO4</span><h2>A · Design of Bases &amp; Tables</h2></div>
@@ -87,37 +367,34 @@
     <div class="qhead"><span class="qtitle">N1 — Maximum angle of slope of a base</span>
       <div class="tags"><span class="src">Mehta 3.8</span><span class="marks">[8]</span></div></div>
     <p class="given"><b>Given:</b> hollow rectangular steel base — height H=200 mm, width B=1000 mm, wall t=25 mm; loaded per Fig 3.36 (q₁=2.0, q₂=1.5 kgf/mm; applied moment M=2×10⁵ kgf·mm). E=2.1×10⁶ kgf/cm². <b>Find:</b> maximum angle of slope.</p>
-    <p class="approach">Idea: a machine base is a <b>beam on an elastic foundation</b>. The applied loads bend it; the <i>slope</i> of the bent axis tilts the workpiece/table and spoils accuracy, so it must stay within the permissible angle. Two things are needed — the section's bending rigidity EI, and the slope produced by the loads.</p>
+    <div class="fig">
+      <svg class="figsvg" viewBox="0 0 600 290"><use href="#figBase"/></svg>
+      <div class="figcap"><b>Fig 3.36</b> — base as a simply-supported beam under two UDLs + a moment</div>
+    </div>
+    <div class="howto"><span class="lbl">How to read / draw it</span>
+      <ul>
+        <li>Draw a beam on two supports. UDL <b>q₁=2.0</b> over the left 400 mm; UDL <b>q₂=1.5</b> over the right 500 mm; an applied moment <b>M=2×10⁵</b>; dimension chain 400 / 250 / 500 (total 1500 mm).</li>
+        <li>The base cross-section is a <b>hollow box</b> → its rigidity I uses the outer-minus-inner formula.</li>
+      </ul>
+    </div>
+    <p class="approach">Idea: a machine base is a <b>beam on an elastic foundation</b>. The loads bend it; the <i>slope</i> of the bent axis tilts the work and spoils accuracy. Need the section's rigidity EI and the slope the loads produce.</p>
     <div class="sol">
       <div class="lbl">Step-by-step</div>
-
-      <div class="stepn">Step 1 — Convert to consistent units (cm)</div>
-      <div class="why">Mehta works in cm + kgf. Convert: B=100 cm, H=20 cm, t=2.5 cm.</div>
-
-      <div class="stepn">Step 2 — Second moment of area of the hollow box</div>
-      <div class="why">Box = solid outer rectangle minus the inner hole. Bending stiffness depends on I about the horizontal neutral axis.</div>
+      <div class="stepn">Step 1 — Convert to cm</div>
+      <div class="why">Mehta works in cm + kgf: B=100, H=20, t=2.5 cm.</div>
+      <div class="stepn">Step 2 — Second moment of the hollow box</div>
       <span class="fname">Hollow-rectangle I</span>
-      <div class="eq">I = [B·H³ − (B−2t)(H−2t)³] / 12</div>
-      <div class="sub">Inner width = B−2t = 100−5 = 95 cm; inner height = H−2t = 20−5 = 15 cm.</div>
-      <div class="eq">I = [100·(20)³ − 95·(15)³]/12 = [100·8000 − 95·3375]/12 = (800 000 − 320 625)/12 = <b>39 948 cm⁴</b></div>
-
+      <div class="eq">I = [B·H³ − (B−2t)(H−2t)³]/12 = [100·20³ − 95·15³]/12 = (800 000 − 320 625)/12 = <b>39 948 cm⁴</b></div>
       <div class="stepn">Step 3 — Flexural rigidity</div>
-      <span class="fname">EI</span>
       <div class="eq">EI = 2.1×10⁶ × 39 948 = <b>8.39×10¹⁰ kgf·cm²</b></div>
-
-      <div class="stepn">Step 4 — Maximum slope (plate-on-elastic-foundation method)</div>
-      <div class="why">The total slope is the sum of the slope each load/moment produces, found from the foundation modulus k and influence coefficients K (read from Mehta's charts). General form:</div>
+      <div class="stepn">Step 4 — Maximum slope (plate-on-elastic-foundation)</div>
       <span class="fname">Slope sum</span>
-      <div class="eq">θ<sub>max</sub> = Σ (q·b / k)·K<sub>q</sub> + (M / k)·K<sub>M</sub></div>
-      <div class="modelbox"><b>Worked on the prof's model values (his P2 example — identical recipe):</b><br>
-        • Load 1: θ<sub>q1</sub> = (1.2·60/7500)·0.50 = <b>0.00480 rad</b><br>
-        • Load 2: θ<sub>q2</sub> = (0.8·60/7500)·0.30 = <b>0.00192 rad</b><br>
-        • Moment: θ<sub>M</sub> = (5000·0.03544³/7500)·2.4 = <b>7.1×10⁻⁵ rad</b><br>
-        • Sum: θ = 0.00480 + 0.00192 + 0.00007 = <b>0.00679 rad ≈ 0.389°</b></div>
-      <div class="sub">For 3.8 you substitute its own q₁=2.0, q₂=1.5 kgf/mm and M=2×10⁵ kgf·mm into the same three-term sum (foundation modulus k and coefficients K from Fig 3.36 reactions).</div>
-
-      <div class="ansline">Answer: I = 39 948 cm⁴, EI = 8.39×10¹⁰ kgf·cm² → θ<sub>max</sub> ≈ 0.4° — within the permissible ~0.5°/m, so the base is stiff enough.</div>
-      <div class="pitfall"><b>Watch:</b> the marks sit on (a) the hollow-section I, and (b) writing the three-term slope sum. Don't forget to subtract the inner hole, and keep q in kgf/cm (not kgf/mm) once you switch to cm.</div>
+      <div class="eq">θ<sub>max</sub> = Σ (q·b/k)·K<sub>q</sub> + (M/k)·K<sub>M</sub></div>
+      <div class="howto" style="background:#fff7ea;border-color:#e8d9b6"><span class="lbl" style="color:#8a6d2f">Worked model (prof's P2 — same recipe)</span>
+        θ<sub>q1</sub>=(1.2·60/7500)·0.50 = 0.00480 · θ<sub>q2</sub>=(0.8·60/7500)·0.30 = 0.00192 · θ<sub>M</sub>=(5000·0.03544³/7500)·2.4 = 7.1×10⁻⁵<br>
+        θ = 0.00480 + 0.00192 + 0.00007 = <b>0.00679 rad ≈ 0.389°</b></div>
+      <div class="ansline">Answer: I = 39 948 cm⁴, EI = 8.39×10¹⁰ kgf·cm² → θ<sub>max</sub> ≈ 0.4° (within the ~0.5°/m limit).</div>
+      <div class="pitfall"><b>Watch:</b> marks = the hollow-box I + the slope sum. Subtract the inner hole; keep q in kgf/cm after switching to cm.</div>
     </div>
   </div>
 
@@ -125,28 +402,26 @@
     <div class="qhead"><span class="qtitle">N2 — Reduced (bending) stiffness of a table</span>
       <div class="tags"><span class="src">Mehta 3.9</span><span class="marks">[7]</span></div></div>
     <p class="given"><b>Given:</b> hollow rectangular table 2 m × 60 cm × 9 cm; horizontal walls 15 mm thick, joined by 10 mm vertical stiffeners spaced 400 mm. E=2.1×10⁶ kgf/cm². <b>Find:</b> reduced (bending) stiffness.</p>
-    <p class="approach">Idea: a stiffened table top is far stiffer than a bare plate. "Reduced stiffness" = the effective EI of the wall <i>boosted</i> by a stiffening factor that depends on how many stiffeners (and whether perpendicular or diagonal).</p>
+    <div class="fig">
+      <svg class="figsvg" viewBox="0 0 300 230" style="max-width:300px"><use href="#figBox"/></svg>
+      <div class="figcap"><b>Section</b> — hollow box (B=60, H=9 cm), walls 15 mm, perpendicular stiffeners every 400 mm</div>
+    </div>
+    <p class="approach">Idea: a stiffened table is far stiffer than a bare plate. "Reduced stiffness" = the wall's EI boosted by a factor for the number/type of stiffeners.</p>
     <div class="sol">
       <div class="lbl">Step-by-step</div>
-
-      <div class="stepn">Step 1 — I of one horizontal wall (as a plate strip)</div>
-      <div class="why">Width b = 60 cm, thickness h = 1.5 cm. A flat strip in bending:</div>
+      <div class="stepn">Step 1 — I of one horizontal wall</div>
+      <div class="why">Width b=60 cm, thickness h=1.5 cm.</div>
       <span class="fname">Rectangle I</span>
-      <div class="eq">I<sub>wall</sub> = b·h³/12 = 60·(1.5)³/12 = 60·3.375/12 = <b>16.9 cm⁴</b></div>
-
-      <div class="stepn">Step 2 — Count the stiffener panels</div>
-      <div class="why">Table length 2 m = 2000 mm; stiffeners every 400 mm.</div>
-      <div class="eq">n<sub>panels</sub> = 2000 / 400 = 5  →  <b>4 internal stiffeners</b></div>
-
-      <div class="stepn">Step 3 — Stiffening coefficient</div>
-      <div class="why">From Mehta's perpendicular-stiffener relation (Eq 3.41 / chart) for 4 stiffeners, the rigidity multiplier s₁ ≈ 31.9.</div>
-
-      <div class="stepn">Step 4 — Reduced bending rigidity</div>
+      <div class="eq">I<sub>wall</sub> = b·h³/12 = 60·1.5³/12 = <b>16.9 cm⁴</b></div>
+      <div class="stepn">Step 2 — Stiffener panels</div>
+      <div class="eq">n = 2000/400 = 5 panels → <b>4 internal stiffeners</b></div>
+      <div class="stepn">Step 3 — Stiffening factor (perpendicular, Eq 3.41/chart)</div>
+      <div class="why">For 4 stiffeners, s₁ ≈ 31.9.</div>
+      <div class="stepn">Step 4 — Reduced rigidity</div>
       <span class="fname">EI(reduced)</span>
-      <div class="eq">EI<sub>br</sub> = s₁ · E · I<sub>wall</sub> = 31.9 × 2.1×10⁶ × 16.9 ≈ <b>1.13×10⁹ kgf·cm²</b></div>
-
+      <div class="eq">EI<sub>br</sub> = s₁·E·I<sub>wall</sub> = 31.9 × 2.1×10⁶ × 16.9 ≈ <b>1.13×10⁹ kgf·cm²</b></div>
       <div class="ansline">Answer: EI<sub>br</sub> ≈ 1.13×10⁹ kgf·cm².</div>
-      <div class="pitfall"><b>Concept to state:</b> closely-spaced <i>perpendicular</i> stiffeners recover most of the solid-box rigidity; <i>diagonal</i> stiffeners give even more (better for combined bending + torsion).</div>
+      <div class="pitfall"><b>Concept:</b> close-packed <i>perpendicular</i> stiffeners recover most solid-box rigidity; <i>diagonal</i> give even more.</div>
     </div>
   </div>
 
@@ -156,66 +431,70 @@
   <div class="q">
     <div class="qhead"><span class="qtitle">N3 — Saddle lift-off ratio d/b (V + flat ways)</span>
       <div class="tags"><span class="src">Mehta 4.1</span><span class="marks">[7]</span></div></div>
-    <p class="given"><b>Given:</b> parting cut (P<sub>x</sub>=0), μ=0.5, V half-angle α=50°, resultant cutting force R at θ=40° to the vertical, h/b=0.5. <b>Find:</b> the d/b ratio at which the saddle lifts off face A.</p>
-    <p class="approach">Idea: the saddle rides a front V-way and a back flat way. The tilted cutting resultant unloads one V-face; when its normal reaction reaches zero, the saddle lifts. Set that reaction = 0 in the equilibrium and solve for the geometry ratio d/b.</p>
+    <p class="given"><b>Given:</b> parting cut (P<sub>x</sub>=0), μ=0.5, V half-angle α=50°, resultant cutting force at θ=40° to the vertical, h/b=0.5, carriage weight neglected. <b>Find:</b> the d/b ratio at which the saddle lifts off face A.</p>
+    <div class="fig">
+      <svg class="figsvg" viewBox="0 0 600 320"><use href="#figVFlat"/></svg>
+      <div class="figcap"><b>Fig 4.10</b> — carriage on a flat way (left, reaction C) + a V-way (right, half-angle α, reactions A &amp; B)</div>
+    </div>
+    <div class="howto"><span class="lbl">How to read / draw it</span>
+      <ul>
+        <li>Cutting forces act at height <b>h</b>, offset <b>d</b> from the V centreline: <b>P<sub>z</sub></b> down, <b>P<sub>y</sub></b> horizontal.</li>
+        <li>The <b>V-way</b> (right) gives two normal reactions <b>A, B</b> on its faces (half-angle α); the <b>flat way</b> (left) gives horizontal reaction <b>C</b>. Way spacing = <b>b</b>.</li>
+        <li>Lift-off = the reaction on <b>face A → 0</b>.</li>
+      </ul>
+    </div>
+    <p class="approach">Idea: write the three equilibrium equations (ΣY, ΣZ, ΣM<sub>x</sub>), get reaction A (Eq 4.11), set A=0, solve for d/b.</p>
     <div class="sol">
       <div class="lbl">Step-by-step</div>
-
-      <div class="stepn">Step 1 — Resolve the cutting resultant</div>
-      <div class="why">R acts at θ=40° to the vertical → vertical component R·cosθ presses the ways down, horizontal R·sinθ tries to slide/tip the saddle.</div>
-      <div class="eq">tanθ = tan40° = 0.839 ; tanα = tan50° = 1.192</div>
-
-      <div class="stepn">Step 2 — Why friction μ drops out</div>
-      <div class="why">Sliding friction acts <i>along</i> the motion (tangential), perpendicular to the normal reactions that hold the saddle down. It does not appear in the vertical force / lift-off balance, so μ=0.5 is a distractor here.</div>
-
-      <div class="stepn">Step 3 — Lift-off condition</div>
-      <div class="why">Setting the normal reaction on face A to zero in the force + moment equilibrium of the V+flat pair gives:</div>
-      <span class="fname">Equilibrium</span>
-      <div class="eq">(d + b)/(2b) = tanθ · tanα = 0.839 × 1.192 = 1.00</div>
-
+      <div class="stepn">Step 1 — Reaction A from equilibrium (Eq 4.11)</div>
+      <span class="fname">Eq 4.11</span>
+      <div class="eq">A = [P<sub>z</sub>(d+b)/2b]·cosα + P<sub>y</sub>(h/b)·cosα − P<sub>y</sub>·sinα + (G/2)cosα</div>
+      <div class="stepn">Step 2 — Apply lift-off condition A = 0 (G ≈ 0)</div>
+      <div class="why">Divide through by cosα and rearrange:</div>
+      <div class="eq">(d+b)/2b = (P<sub>y</sub>/P<sub>z</sub>)·(tanα − h/b)</div>
+      <div class="stepn">Step 3 — Substitute the data</div>
+      <div class="why">Resultant at θ=40° to vertical → P<sub>y</sub>/P<sub>z</sub> = tanθ = tan40° = 0.839. tanα = tan50° = 1.192. h/b = 0.5.</div>
+      <div class="eq">(d+b)/2b = 0.839·(1.192 − 0.5) = 0.839·0.692 = 0.580</div>
       <div class="stepn">Step 4 — Solve for d/b</div>
-      <div class="eq">d/b = 2·tanθ·tanα − 1 = 2(1.00) − 1 = <b>1.0</b></div>
-
-      <div class="ansline">Answer: d/b = 1.0 — the saddle lifts when the cutting-force offset d equals the way spacing b.</div>
-      <div class="pitfall"><b>Refinement:</b> if you also include the P<sub>y</sub>·(h/b) overturning moment (h/b=0.5), the lift-off ratio drops to ≈ 0.16. State which model you used.</div>
+      <div class="eq">(d+b)/b = 1.161 → d/b = <b>0.16</b></div>
+      <div class="ansline">Answer: d/b ≈ 0.16 — the saddle lifts off face A once the cutting-force offset reaches ≈ 0.16 b.</div>
+      <div class="pitfall"><b>Watch:</b> use the full Eq 4.11 (it keeps the P<sub>y</sub>·h/b overturning term). μ does NOT enter — friction is tangential. If you crudely drop the h/b term you'd get d/b ≈ 1.0, which is wrong for this problem.</div>
     </div>
   </div>
 
   <div class="q">
     <div class="qhead"><span class="qtitle">N4 — Slideway face width from bearing pressure</span>
       <div class="tags"><span class="src">Mehta 4.2</span><span class="marks">[8]</span></div></div>
-    <p class="given"><b>Given:</b> turning Ø100 mm; P<sub>z</sub>=300, P<sub>y</sub>=130, P<sub>x</sub>=120 kgf; carriage G=150 kgf, length L=30 cm; two flat CI ways; max permissible pressure 25 kgf/cm². <b>Assume</b> (problem says "suitable values"): way spacing b=30 cm, cutting-point height h=20 cm, offset y<sub>p</sub>=15 cm, friction f=0.1. <b>Find:</b> the face width.</p>
-    <p class="approach">Idea: the carriage + cutting forces press on the two flat ways. The heaviest-loaded way must not exceed the allowable bearing pressure p = Reaction/(width·length). Find the largest reaction, then size the width. Use the <i>average</i> allowable = ½ of the max for cast iron.</p>
+    <p class="given"><b>Given:</b> turning Ø100 mm; P<sub>z</sub>=300, P<sub>y</sub>=130, P<sub>x</sub>=120 kgf; carriage G=150 kgf, length L=30 cm; two flat CI ways; max permissible pressure 25 kgf/cm². <b>Assume</b> ("suitable values"): b=30 cm, h=20 cm, y<sub>p</sub>=15 cm, f=0.1. <b>Find:</b> the face width.</p>
+    <div class="fig">
+      <svg class="figsvg" viewBox="0 0 600 310"><use href="#figTwoFlat"/></svg>
+      <div class="figcap"><b>Fig 4.11</b> — carriage on two flat ways (I, II); reactions A, C (vertical), B = P<sub>y</sub> (side); pulling force Q</div>
+    </div>
+    <div class="howto"><span class="lbl">How to read / draw it</span>
+      <ul>
+        <li>Carriage rides two horizontal flat ways spacing <b>b</b>. Cutting forces at height <b>h</b>, offset <b>y<sub>p</sub></b>: <b>P<sub>z</sub></b> down, <b>P<sub>y</sub></b> radial, <b>P<sub>x</sub></b> axial; weight <b>G</b>.</li>
+        <li>Reactions: <b>A</b> (heavier way, vertical), <b>C</b> (other way, vertical), <b>B = P<sub>y</sub></b> (side face); feed drive supplies pulling force <b>Q</b>.</li>
+      </ul>
+    </div>
+    <p class="approach">Idea: equilibrium → the largest way reaction A; size the width so its bearing pressure ≤ allowable (use ½·25 for CI average).</p>
     <div class="sol">
       <div class="lbl">Step-by-step</div>
-
       <div class="stepn">Step 1 — Allowable average pressure</div>
-      <div class="why">For CI ways take the working (average) pressure as half the maximum, as a safety margin.</div>
       <div class="eq">[p<sub>av</sub>] = ½ × 25 = 12.5 kgf/cm²</div>
-
-      <div class="stepn">Step 2 — Tilting moment from the cutting forces</div>
-      <div class="why">P<sub>z</sub> acting at offset y<sub>p</sub> tips the carriage one way; P<sub>y</sub> at height h tips it the other. Net moment per unit way-spacing:</div>
-      <span class="fname">Moment</span>
+      <div class="stepn">Step 2 — Tilting moment (from Eq 4.19)</div>
+      <span class="fname">Moment term</span>
       <div class="eq">m = (P<sub>z</sub>·y<sub>p</sub> − P<sub>y</sub>·h)/b = (300·15 − 130·20)/30 = (4500 − 2600)/30 = <b>63.3 kgf</b></div>
-
-      <div class="stepn">Step 3 — Largest way reaction</div>
-      <div class="why">Vertical load = cutting P<sub>z</sub> + half the carriage weight, redistributed by the tilting moment. The more heavily loaded way carries:</div>
-      <span class="fname">Reaction A</span>
+      <div class="stepn">Step 3 — Largest way reaction (Eq 4.20)</div>
+      <span class="fname">Eq 4.20</span>
       <div class="eq">A = P<sub>z</sub> + G/2 − m = 300 + 75 − 63.3 = <b>311.7 kgf</b></div>
-      <div class="sub">(All reactions come out positive → no lift-off, so the two-flat layout is valid.)</div>
-
-      <div class="stepn">Step 4 — Required face width</div>
-      <div class="why">From p = A/(width·L) ≤ [p<sub>av</sub>], solve for width:</div>
-      <span class="fname">Width</span>
-      <div class="eq">c′ = A / ([p<sub>av</sub>]·L) = 311.7 / (12.5 × 30) = <b>0.83 cm</b>  → round up to ≈ 1 cm</div>
-
-      <div class="stepn">Step 5 — Pulling (traction) force check</div>
-      <div class="why">The feed drive must overcome the feed force P<sub>x</sub> plus friction on every loaded surface:</div>
-      <span class="fname">Pulling force</span>
-      <div class="eq">Q = P<sub>x</sub> + f·(P<sub>z</sub> + P<sub>y</sub> + G) = 120 + 0.1·(300+130+150) = 120 + 58 = <b>178 kgf</b></div>
-
-      <div class="ansline">Answer: face width ≈ 0.83 cm (use 1 cm); pulling force Q ≈ 178 kgf.</div>
-      <div class="pitfall"><b>Watch:</b> this is an open design problem — Mehta says "assume suitable values for h, b, y<sub>p</sub>". Numbers shift with your assumptions; what is graded is the <i>method</i> (moment → max reaction → width from [p]).</div>
+      <div class="stepn">Step 4 — Required width</div>
+      <span class="fname">p = A/(width·L)</span>
+      <div class="eq">c′ = A/([p<sub>av</sub>]·L) = 311.7/(12.5×30) = <b>0.83 cm</b> → use ≈ 1 cm</div>
+      <div class="stepn">Step 5 — Pulling force (Eq 4.14)</div>
+      <span class="fname">Eq 4.14</span>
+      <div class="eq">Q = P<sub>x</sub> + f(P<sub>z</sub>+P<sub>y</sub>+G) = 120 + 0.1(300+130+150) = <b>178 kgf</b></div>
+      <div class="ansline">Answer: face width ≈ 0.83 cm (use 1 cm); pulling force Q ≈ 178 kgf. All reactions +ve → no lift-off.</div>
+      <div class="pitfall"><b>Watch:</b> open design problem — Mehta says "assume suitable values for h, b, y<sub>p</sub>." The graded part is the method (moment → A → width from [p]).</div>
     </div>
   </div>
 
@@ -225,42 +504,36 @@
   <div class="q">
     <div class="qhead"><span class="qtitle">N5 — Machine-tool &amp; system compliance</span>
       <div class="tags"><span class="src">Mehta 5.1</span><span class="marks">[8]</span></div></div>
-    <p class="given"><b>Given:</b> turning between centres, L=750 mm, d=100 mm, radial P<sub>y</sub>=150 kgf, tool 200 mm from the tailstock. Stiffness: saddle K<sub>s</sub>=3000, headstock K<sub>A</sub>=4000, tailstock K<sub>B</sub>=2500 kgf/mm. <b>Find:</b> machine-tool compliance and system compliance.</p>
-    <p class="approach">Idea: <b>Compliance = deflection per unit force = 1/stiffness.</b> Under the radial force the work (riding on two compliant centres) and the tool (on the compliant saddle) all shift. Their compliances combine to give the tool-point error. "Machine tool" = the machine parts; "system" = machine + the workpiece's own bending.</p>
+    <p class="given"><b>Given:</b> turning between centres, L=750 mm, d=100 mm, radial P<sub>y</sub>=150 kgf, tool 200 mm from the tailstock. Stiffness: saddle 3000, headstock K<sub>A</sub>=4000, tailstock K<sub>B</sub>=2500 kgf/mm. <b>Find:</b> machine-tool and system compliance.</p>
+    <div class="fig">
+      <svg class="figsvg" viewBox="0 0 600 250"><use href="#figCentres"/></svg>
+      <div class="figcap"><b>Fig 5.1</b> — work between centres A (headstock) and B (tailstock); P<sub>y</sub> at distance x from A</div>
+    </div>
+    <div class="howto"><span class="lbl">How to read / draw it</span>
+      <ul>
+        <li>Work on two compliant centres: <b>A</b> (headstock, K<sub>A</sub>), <b>B</b> (tailstock, K<sub>B</sub>). Tool at distance <b>x</b> from A; length <b>l</b>.</li>
+        <li><b>x is from the headstock</b> — "200 from tailstock" → x = l − 200 = 550 mm.</li>
+      </ul>
+    </div>
+    <p class="approach">Idea: Compliance = deflection/force = 1/stiffness. Combine the two centres + saddle (machine tool), then add the workpiece's own bending (system).</p>
     <div class="sol">
       <div class="lbl">Step-by-step</div>
-
-      <div class="stepn">Step 1 — Locate the tool</div>
-      <div class="why">x is measured from the headstock. "200 mm from the tailstock" → x = L − 200.</div>
-      <div class="eq">x = 750 − 200 = 550 mm → x/L = 0.733 ; (1 − x/L) = 0.267</div>
-
-      <div class="stepn">Step 2 — Compliance from the two centres at the cutting point</div>
-      <div class="why">Treat the work as a rigid bar on the two centres. Reactions split as R<sub>A</sub>=P<sub>y</sub>(1−x/L), R<sub>B</sub>=P<sub>y</sub>(x/L); each centre deflects R/K; interpolating to the cutting point gives the squared-weighting form (Mehta Eq 5.8/5.9).</div>
-      <span class="fname">Eq 5.9 (centres)</span>
-      <div class="eq">C<sub>centres</sub> = (1−x/L)²/K<sub>A</sub> + (x/L)²/K<sub>B</sub> = (0.267)²/4000 + (0.733)²/2500</div>
-      <div class="eq">= 0.178×10⁻⁴ + 2.151×10⁻⁴ = 2.329×10⁻⁴ mm/kgf</div>
-
-      <div class="stepn">Step 3 — Add the saddle (it carries the tool)</div>
-      <div class="why">The tool on the saddle feels the <i>full</i> radial force → its compliance adds directly, 1/K<sub>s</sub>.</div>
-      <span class="fname">Machine-tool compliance</span>
-      <div class="eq">C<sub>mt</sub> = 1/K<sub>s</sub> + C<sub>centres</sub> = 1/3000 + 2.329×10⁻⁴ = 3.333×10⁻⁴ + 2.329×10⁻⁴</div>
-      <div class="eq">C<sub>mt</sub> = 5.66×10⁻⁴ mm/kgf = <b>0.566 µm/kgf</b></div>
-      <div class="sub">Tool-point displacement: y<sub>mt</sub> = C<sub>mt</sub>·P<sub>y</sub> = 0.566 × 150 = <b>84.9 µm</b>.</div>
-
-      <div class="stepn">Step 4 — Workpiece's own bending (the "system" part)</div>
-      <div class="why">The bar also bends as a simply-supported beam with a point load at a=550, b=200 from the ends. Need its section and E in consistent units.</div>
-      <span class="fname">Circular I</span>
-      <div class="eq">I = πd⁴/64 = π(100)⁴/64 = 4.909×10⁶ mm⁴ ; E = 2.1×10⁶ kgf/cm² = 2.1×10⁴ kgf/mm²</div>
-      <span class="fname">Beam deflection at load</span>
-      <div class="eq">y<sub>wp</sub> = P·a²·b² / (3·E·I·L) = 150·(550)²·(200)² / (3·21000·4.909×10⁶·750)</div>
-      <div class="eq">= 1.815×10¹² / 2.319×10¹⁴ = 7.8×10⁻³ mm = <b>7.8 µm</b> → C<sub>wp</sub> = 7.8/150 = 0.052 µm/kgf</div>
-
-      <div class="stepn">Step 5 — System compliance (springs in series)</div>
-      <span class="fname">System compliance</span>
-      <div class="eq">C<sub>sys</sub> = C<sub>mt</sub> + C<sub>wp</sub> = 0.566 + 0.052 = <b>0.618 µm/kgf</b> → y<sub>sys</sub> = 0.618×150 ≈ 92.7 µm</div>
-
+      <div class="stepn">Step 1 — Position</div>
+      <div class="eq">x = 750 − 200 = 550 mm → x/l = 0.733 ; (1−x/l) = 0.267</div>
+      <div class="stepn">Step 2 — Centres' contribution (Eq 5.9)</div>
+      <span class="fname">Eq 5.9</span>
+      <div class="eq">C<sub>centres</sub> = (0.267)²/4000 + (0.733)²/2500 = (0.178 + 2.151)×10⁻⁴ = 2.329×10⁻⁴ mm/kgf</div>
+      <div class="stepn">Step 3 — Add saddle (tool sees full force)</div>
+      <span class="fname">Machine-tool C</span>
+      <div class="eq">C<sub>mt</sub> = 1/3000 + 2.329×10⁻⁴ = 5.66×10⁻⁴ mm/kgf = <b>0.566 µm/kgf</b> → y = 84.9 µm</div>
+      <div class="stepn">Step 4 — Workpiece bending (system part)</div>
+      <span class="fname">I + beam</span>
+      <div class="eq">I = πd⁴/64 = 4.909×10⁶ mm⁴ ; E = 2.1×10⁴ kgf/mm²</div>
+      <div class="eq">y<sub>wp</sub> = P·a²b²/(3EIl) = 150·550²·200²/(3·21000·4.909×10⁶·750) = 7.8 µm → 0.052 µm/kgf</div>
+      <div class="stepn">Step 5 — System compliance (series)</div>
+      <div class="eq">C<sub>sys</sub> = 0.566 + 0.052 = <b>0.618 µm/kgf</b> → y<sub>sys</sub> ≈ 92.7 µm</div>
       <div class="ansline">Answer: C<sub>mt</sub> ≈ 0.566 µm/kgf (84.9 µm); C<sub>sys</sub> ≈ 0.618 µm/kgf (92.7 µm).</div>
-      <div class="pitfall"><b>Watch:</b> (1) x is from the headstock — "200 from tailstock" → x=L−200. (2) The centre terms are <i>squared</i> (Eq 5.9), the saddle term is not. (3) Convert E to kgf/mm² (÷100) to match mm.</div>
+      <div class="pitfall"><b>Watch:</b> centre terms are <i>squared</i> (Eq 5.9); saddle term is not. Convert E to kgf/mm² (÷100).</div>
     </div>
   </div>
 
@@ -268,122 +541,98 @@
     <div class="qhead"><span class="qtitle">N6 — Deflection at the cutting point</span>
       <div class="tags"><span class="src">Mehta 5.2</span><span class="marks">[7]</span></div></div>
     <p class="given"><b>Given:</b> between centres, L=500 mm, d=80 mm; tangential P<sub>z</sub>=150 kgf, radial P<sub>y</sub>=80 kgf; tool 200 mm from the headstock; headstock 35 000 kgf/cm, tailstock 15 000 kgf/cm. <b>Find:</b> the deflection at the cutting point.</p>
-    <p class="approach">Same machine on two compliant centres, but no saddle stiffness is given — so just centre-compliance + workpiece bending. Only the <b>radial</b> P<sub>y</sub> moves the tool toward/away from the axis (diameter error); P<sub>z</sub> is a distractor.</p>
+    <div class="fig">
+      <svg class="figsvg" viewBox="0 0 600 250"><use href="#figCentres"/></svg>
+      <div class="figcap"><b>Fig 5.1</b> (same model) — here x = 200 mm from the headstock A</div>
+    </div>
+    <p class="approach">Same two-centre model, no saddle term given. Only the <b>radial P<sub>y</sub></b> causes diameter error; P<sub>z</sub> is a distractor.</p>
     <div class="sol">
       <div class="lbl">Step-by-step</div>
-
       <div class="stepn">Step 1 — Units &amp; position</div>
-      <div class="why">Convert kgf/cm → kgf/mm (÷10): K<sub>A</sub>=3500, K<sub>B</sub>=1500 kgf/mm.</div>
-      <div class="eq">x = 200 mm from headstock → x/L = 0.4 ; (1−x/L) = 0.6</div>
-
-      <div class="stepn">Step 2 — Deflection from the centres</div>
-      <span class="fname">Eq 5.9 (centres)</span>
-      <div class="eq">y<sub>sup</sub> = P<sub>y</sub>[(1−x/L)²/K<sub>A</sub> + (x/L)²/K<sub>B</sub>] = 80[(0.6)²/3500 + (0.4)²/1500]</div>
-      <div class="eq">= 80[1.029×10⁻⁴ + 1.067×10⁻⁴] = 80·2.095×10⁻⁴ = <b>16.8 µm</b></div>
-
+      <div class="why">kgf/cm → kgf/mm (÷10): K<sub>A</sub>=3500, K<sub>B</sub>=1500. x/l = 0.4, (1−x/l)=0.6.</div>
+      <div class="stepn">Step 2 — Centres (Eq 5.9)</div>
+      <div class="eq">y<sub>sup</sub> = 80[(0.6)²/3500 + (0.4)²/1500] = 80·2.095×10⁻⁴ = <b>16.8 µm</b></div>
       <div class="stepn">Step 3 — Workpiece bending</div>
-      <span class="fname">Circular I + beam</span>
-      <div class="eq">I = π(80)⁴/64 = 2.011×10⁶ mm⁴ ; a=200, b=300, E=2.1×10⁴ kgf/mm²</div>
-      <div class="eq">y<sub>wp</sub> = P<sub>y</sub>·a²·b²/(3EIL) = 80·200²·300²/(3·21000·2.011×10⁶·500) = <b>4.5 µm</b></div>
-
+      <div class="eq">I = π·80⁴/64 = 2.011×10⁶ mm⁴ ; y<sub>wp</sub> = 80·200²·300²/(3·21000·2.011×10⁶·500) = <b>4.5 µm</b></div>
       <div class="stepn">Step 4 — Total</div>
-      <div class="eq">y = y<sub>sup</sub> + y<sub>wp</sub> = 16.8 + 4.5 = <b>21.3 µm</b></div>
-
+      <div class="eq">y = 16.8 + 4.5 = <b>21.3 µm</b></div>
       <div class="ansline">Answer: deflection at the cutting point ≈ 21.3 µm.</div>
-      <div class="pitfall"><b>Watch:</b> ignore P<sub>z</sub> (tangential — drives the cutting, not the diameter error). No saddle stiffness given → no saddle term.</div>
+      <div class="pitfall"><b>Watch:</b> ignore P<sub>z</sub> (tangential). No saddle stiffness given → no saddle term.</div>
     </div>
   </div>
 
   <div class="q">
     <div class="qhead"><span class="qtitle">N7 — Optimum l/c for minimum spindle-nose deflection</span>
       <div class="tags"><span class="src">Mehta 5.3</span><span class="marks">[8]</span></div></div>
-    <p class="given"><b>Given:</b> solid steel spindle (Fig 5.5a), torque T=40 kgf·m through a gear of module m=3 mm, z=80 teeth; a/b=2; bearing compliances front 0.1 &amp; rear 0.15 µm/kgf; nose force P₁=150 kgf. <b>Find:</b> optimum λ=l/c and the nose deflection.</p>
-    <p class="approach">Idea: the spindle nose deflects from (i) shaft bending y₁ and (ii) compliance of the two bearings y₂. There is an optimum bearing span-to-overhang ratio λ=l/c that minimises the total. Read λ<sub>opt</sub> from the design chart (Fig 5.9) using the bearing-stiffness ratio, then compute the support deflection at that geometry.</p>
+    <p class="given"><b>Given:</b> solid steel spindle (Fig 5.5a), torque T=40 kgf·m through gear m=3 mm, z=80; a/b=2; bearing compliances front 0.1 &amp; rear 0.15 µm/kgf; nose force P₁=150 kgf. <b>Find:</b> optimum λ=l/c and the nose deflection.</p>
+    <div class="fig">
+      <svg class="figsvg" viewBox="0 0 600 250"><use href="#figSpindle"/></svg>
+      <div class="figcap"><b>Fig 5.5a</b> — spindle on rear + front bearings (span l); gear force P₂ within span; nose force P₁ at overhang c</div>
+    </div>
+    <div class="howto"><span class="lbl">How to read / draw it</span>
+      <ul>
+        <li>Two bearings: <b>rear K<sub>A</sub></b>, <b>front K<sub>B</sub></b>, span <b>l</b>; nose overhangs by <b>c</b>.</li>
+        <li>Gear driving force <b>P₂</b> inside the span (located by a, b with a/b=2); cutting force <b>P₁</b> at the nose tip.</li>
+        <li>Geometry at λ=3: take c=1, l=3 → a=2, b=1.</li>
+      </ul>
+    </div>
+    <p class="approach">Idea: find P₂ from torque, the bearing-stiffness ratio α → λ_opt from the chart, then reactions and nose deflection from support compliance.</p>
     <div class="sol">
       <div class="lbl">Step-by-step</div>
-
-      <div class="stepn">Step 1 — Gear (driving) force P₂</div>
-      <div class="why">Torque is transmitted by a tangential force at the gear pitch radius. Pitch dia D = m·z.</div>
-      <span class="fname">Gear force</span>
-      <div class="eq">D = m·z = 3·80 = 240 mm → r = 120 mm = 12 cm ; T = 40 kgf·m = 4000 kgf·cm</div>
-      <div class="eq">P₂ = T/r = 4000/12 = <b>333.3 kgf</b></div>
-
-      <div class="stepn">Step 2 — Bearing stiffness ratio α</div>
-      <div class="why">Stiffness = 1/compliance. Front K<sub>B</sub>=1/0.1=10, rear K<sub>A</sub>=1/0.15=6.67 kgf/µm.</div>
-      <div class="eq">α = K<sub>B</sub>/K<sub>A</sub> = 10/6.67 = 1.5</div>
-
-      <div class="stepn">Step 3 — Optimum span ratio from the chart</div>
-      <div class="why">From Mehta Fig 5.9 (α between 1 and 10), the minimum-deflection span ratio:</div>
-      <div class="eq">λ<sub>opt</sub> = l/c ≈ <b>3</b>  (check λ ≥ 2.5, the anti-friction-bearing minimum ✓)</div>
-
-      <div class="stepn">Step 4 — Set the geometry</div>
-      <div class="why">With λ=3 take c=1, l=3. The driving gear sits at a/b=2 along the span, a+b=l=3 → a=2, b=1. Ball bearings → reactive moment M<sub>r</sub>≈0.</div>
-
-      <div class="stepn">Step 5 — Bearing reactions</div>
+      <div class="stepn">Step 1 — Gear (driving) force</div>
+      <span class="fname">P₂ = T/r</span>
+      <div class="eq">D = m·z = 240 mm → r = 12 cm ; T = 4000 kgf·cm ; P₂ = 4000/12 = <b>333.3 kgf</b></div>
+      <div class="stepn">Step 2 — Bearing-stiffness ratio</div>
+      <div class="eq">K<sub>B</sub>=1/0.1=10, K<sub>A</sub>=1/0.15=6.67 kgf/µm → α = 1.5</div>
+      <div class="stepn">Step 3 — λ_opt from chart (Fig 5.9)</div>
+      <div class="eq">λ<sub>opt</sub> = l/c ≈ <b>3</b> (check λ ≥ 2.5 ✓)</div>
+      <div class="stepn">Step 4 — Reactions (Eq 5.24, 5.25; M_r=0)</div>
       <span class="fname">Eq 5.24 / 5.25</span>
-      <div class="eq">R<sub>B</sub> = [P₂·a + P₁(c+l)]/l = [333.3·2 + 150·(1+3)]/3 = (666.6 + 600)/3 = <b>422.2 kgf</b></div>
-      <div class="eq">R<sub>A</sub> = [P₂·b − P₁·c]/l = [333.3·1 − 150·1]/3 = 183.3/3 = <b>61.1 kgf</b></div>
-
-      <div class="stepn">Step 6 — Bearing displacements</div>
-      <div class="why">δ = reaction × bearing compliance.</div>
-      <div class="eq">δ<sub>B</sub> = 422.2 × 0.1 = 42.2 µm ; δ<sub>A</sub> = 61.1 × 0.15 = 9.17 µm</div>
-
-      <div class="stepn">Step 7 — Nose deflection due to support compliance</div>
-      <div class="why">Geometry projects the two bearing shifts out to the overhung nose:</div>
+      <div class="eq">R<sub>B</sub> = [P₂·a + P₁(c+l)]/l = [333.3·2 + 150·4]/3 = <b>422.2 kgf</b></div>
+      <div class="eq">R<sub>A</sub> = [P₂·b − P₁·c]/l = [333.3 − 150]/3 = <b>61.1 kgf</b></div>
+      <div class="stepn">Step 5 — Bearing displacements</div>
+      <div class="eq">δ<sub>B</sub> = 422.2×0.1 = 42.2 µm ; δ<sub>A</sub> = 61.1×0.15 = 9.17 µm</div>
+      <div class="stepn">Step 6 — Nose deflection (Eq 5.21)</div>
       <span class="fname">Eq 5.21</span>
-      <div class="eq">y₂ = δ<sub>B</sub>(1 + c/l) + δ<sub>A</sub>(c/l) = 42.2·(1+⅓) + 9.17·(⅓) = 56.3 + 3.06 = <b>59.3 µm</b></div>
-
-      <div class="ansline">Answer: λ<sub>opt</sub> ≈ 3; nose deflection y₂ ≈ 59 µm (compliance ≈ 59.3/150 = 0.40 µm/kgf w.r.t. P₁).</div>
-      <div class="pitfall"><b>Watch:</b> the front bearing dominates through the (1 + c/l) factor. The bending term y₁ (Eq 5.18) needs the spindle EI — diameter not given, so it is omitted and only y₂ is reported.</div>
+      <div class="eq">y₂ = δ<sub>B</sub>(1+c/l) + δ<sub>A</sub>(c/l) = 42.2·1.333 + 9.17·0.333 = <b>59.3 µm</b></div>
+      <div class="ansline">Answer: λ<sub>opt</sub> ≈ 3; nose deflection y₂ ≈ 59 µm (compliance ≈ 0.40 µm/kgf w.r.t. P₁).</div>
+      <div class="pitfall"><b>Watch:</b> front bearing dominates via (1+c/l). Bending term y₁ needs spindle EI (dia not given) → omitted.</div>
     </div>
   </div>
 
   <!-- ============ D. VIVA NUMERICALS ============ -->
   <div class="secband"><span class="clo c2">CLO2</span><h2>D · Viva Set — Speed, Feed &amp; Time</h2></div>
-  <p class="approach" style="margin-top:0">These are the quick mental sums the prof asks in viva. Know the formula, the symbol meanings, and the units.</p>
+  <p class="approach" style="margin-top:0">Quick mental sums — know the formula, the symbols, the units.</p>
 
-  <div class="q">
-    <div class="qhead"><span class="qtitle">V1 — Cutting speed</span><span class="marks">[2]</span></div>
-    <p class="given">Turning Ø50 mm at N=400 rpm. Find cutting speed V.</p>
+  <div class="q"><div class="qhead"><span class="qtitle">V1 — Cutting speed</span><span class="marks">[2]</span></div>
+    <p class="given">Turning Ø50 mm at N=400 rpm. Find V.</p>
     <div class="sol"><span class="fname">V = πDN/1000</span>
-      <div class="why">Cutting speed = peripheral speed of the work surface. D in mm, N in rpm → divide by 1000 for m/min.</div>
-      <div class="eq">V = π·50·400/1000 = <b>62.8 m/min</b></div></div>
-  </div>
+      <div class="why">Peripheral speed of the work surface; D in mm, ÷1000 for m/min.</div>
+      <div class="eq">V = π·50·400/1000 = <b>62.8 m/min</b></div></div></div>
 
-  <div class="q">
-    <div class="qhead"><span class="qtitle">V2 — Spindle speed for a target V</span><span class="marks">[2]</span></div>
-    <p class="given">Required cutting speed 25 m/min on Ø80 mm. Find the rpm.</p>
+  <div class="q"><div class="qhead"><span class="qtitle">V2 — Spindle speed for a target V</span><span class="marks">[2]</span></div>
+    <p class="given">V=25 m/min on Ø80 mm. Find rpm.</p>
     <div class="sol"><span class="fname">N = 1000V/(πD)</span>
-      <div class="why">Rearranged cutting-speed formula — pick the rpm that gives the recommended V at that diameter.</div>
-      <div class="eq">N = 1000·25/(π·80) = <b>99.5 ≈ 100 rpm</b></div></div>
-  </div>
+      <div class="eq">N = 1000·25/(π·80) = <b>99.5 ≈ 100 rpm</b></div></div></div>
 
-  <div class="q">
-    <div class="qhead"><span class="qtitle">V3 — Machining time</span><span class="marks">[2]</span></div>
-    <p class="given">Turn length L=200 mm, feed f=0.25 mm/rev, N=300 rpm, single pass. Find time.</p>
+  <div class="q"><div class="qhead"><span class="qtitle">V3 — Machining time</span><span class="marks">[2]</span></div>
+    <p class="given">L=200 mm, f=0.25 mm/rev, N=300 rpm, single pass.</p>
     <div class="sol"><span class="fname">t = L/(f·N)</span>
-      <div class="why">Tool advances f mm each revolution; f·N = mm/min. Time = length ÷ feed rate.</div>
-      <div class="eq">t = 200/(0.25·300) = 200/75 = <b>2.67 min</b></div></div>
-  </div>
+      <div class="why">f·N = mm/min; time = length ÷ feed rate.</div>
+      <div class="eq">t = 200/(0.25·300) = <b>2.67 min</b></div></div></div>
 
-  <div class="q">
-    <div class="qhead"><span class="qtitle">V4 — Material removal rate</span><span class="marks">[2]</span></div>
-    <p class="given">Turning at V=40 m/min, depth d=2 mm, feed f=0.2 mm/rev. Find MRR.</p>
+  <div class="q"><div class="qhead"><span class="qtitle">V4 — Material removal rate</span><span class="marks">[2]</span></div>
+    <p class="given">V=40 m/min, depth d=2 mm, feed f=0.2 mm/rev.</p>
     <div class="sol"><span class="fname">MRR = V·f·d</span>
-      <div class="why">Volume swept per minute = cutting speed × feed × depth. Put V in mm/min (×1000).</div>
-      <div class="eq">MRR = 40 000·0.2·2 = <b>16 000 mm³/min</b></div></div>
-  </div>
+      <div class="eq">MRR = 40 000·0.2·2 = <b>16 000 mm³/min</b></div></div></div>
 
-  <div class="q">
-    <div class="qhead"><span class="qtitle">V5 — Geometric-progression speeds</span><span class="marks">[2]</span></div>
-    <p class="given">Gearbox: n<sub>min</sub>=45 rpm, step ratio φ=1.41, z=6 speeds. List the speeds; find n<sub>max</sub> and the range ratio.</p>
+  <div class="q"><div class="qhead"><span class="qtitle">V5 — Geometric-progression speeds</span><span class="marks">[2]</span></div>
+    <p class="given">n<sub>min</sub>=45 rpm, φ=1.41, z=6 speeds.</p>
     <div class="sol"><span class="fname">nₖ₊₁ = nₖ·φ</span>
-      <div class="why">Speeds form a GP so % loss between steps is constant. Each = previous × φ.</div>
       <div class="eq">45 → 63 → 90 → 125 → 180 → 254 rpm</div>
-      <div class="eq">n<sub>max</sub> = 45·φ⁵ = 45·1.41⁵ ≈ <b>252 rpm</b> ; range ratio R<sub>n</sub> = φ⁵ ≈ 5.6</div></div>
-  </div>
+      <div class="eq">n<sub>max</sub> = 45·1.41⁵ ≈ <b>252 rpm</b> ; R<sub>n</sub> = φ⁵ ≈ 5.6</div></div></div>
 
-  <div class="foot">MIE 3223 Machine Tool Technology · Numerical Paper — fully worked · Source: N.K. Mehta review Qs 3.8, 3.9, 4.1, 4.2, 5.1, 5.2, 5.3 + prof P2 model · Revision aid</div>
+  <div class="foot">MIE 3223 Machine Tool Technology · Numerical Paper — fully worked, figures recreated from N.K. Mehta (Figs 3.36, 4.10, 4.11, 5.1, 5.5a) · Revision aid</div>
 </div>
 </body>
 </html>
