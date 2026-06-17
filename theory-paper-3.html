@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MIE 3223 — Theory Paper 3 · Compare</title>
+<style>
+  :root{
+    --ink:#1a1a1a; --muted:#5b5b5b; --line:#d8d2c4; --paper:#fbf9f3;
+    --accent:#7a2e2e; --accent2:#1f4e5f; --chip:#eee7d6; --box:#f4efe2;
+    --clo1:#2563eb; --clo2:#0891b2; --clo3:#b45309; --clo4:#7a2e2e; --clo5:#6d28d9;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:#e9e5db;color:var(--ink);
+    font-family:Georgia,'Times New Roman',serif;line-height:1.5;}
+  .sheet{max-width:820px;margin:24px auto;background:var(--paper);
+    padding:46px 56px 64px;box-shadow:0 6px 30px rgba(0,0,0,.18);}
+  header.head{border-bottom:3px double var(--accent);padding-bottom:14px;margin-bottom:6px}
+  .uni{font-size:13px;letter-spacing:2px;text-transform:uppercase;color:var(--muted)}
+  .pill{display:inline-block;font-family:system-ui,sans-serif;font-size:10.5px;font-weight:700;
+    letter-spacing:.5px;text-transform:uppercase;color:#fff;background:var(--accent2);
+    border-radius:4px;padding:2px 9px;margin-bottom:6px}
+  h1{font-size:25px;margin:6px 0 2px;letter-spacing:.5px}
+  .sub{font-size:14px;color:var(--muted)}
+  .meta{display:flex;justify-content:space-between;font-size:12.5px;color:var(--muted);
+    margin-top:10px;border-top:1px solid var(--line);padding-top:8px;flex-wrap:wrap;gap:6px}
+  .legend{background:var(--box);border:1px solid var(--line);border-radius:8px;
+    padding:12px 16px;margin:18px 0;font-size:12.5px}
+  .legend b{display:block;margin-bottom:6px;font-size:12px;letter-spacing:1px;
+    text-transform:uppercase;color:var(--accent2)}
+  .clorow{display:flex;gap:8px;margin:3px 0;align-items:flex-start}
+  .clo{font-family:system-ui,sans-serif;font-size:10.5px;font-weight:700;color:#fff;
+    border-radius:4px;padding:2px 7px;white-space:nowrap;letter-spacing:.3px}
+  .c1{background:var(--clo1)}.c2{background:var(--clo2)}.c3{background:var(--clo3)}
+  .c4{background:var(--clo4)}.c5{background:var(--clo5)}
+  section.cloblk{margin:26px 0 8px}
+  .cloh{display:flex;align-items:center;gap:10px;border-bottom:1.5px solid var(--line);
+    padding-bottom:6px;margin-bottom:14px}
+  .cloh h2{font-size:16px;margin:0;color:var(--accent2);font-weight:700}
+  .q{margin:0 0 16px;padding-left:4px}
+  .qhead{display:flex;justify-content:space-between;gap:12px;align-items:baseline}
+  .qno{font-weight:bold}
+  .marks{font-family:system-ui,sans-serif;font-size:11px;color:var(--muted);white-space:nowrap}
+  .qtext{margin:3px 0 0}
+  details{margin:8px 0 0;border-left:3px solid var(--accent2);background:#f7f4ec;
+    border-radius:0 6px 6px 0;padding:0 14px}
+  summary{cursor:pointer;font-family:system-ui,sans-serif;font-size:12px;font-weight:600;
+    color:var(--accent2);padding:8px 0;list-style:none;user-select:none}
+  summary::-webkit-details-marker{display:none}
+  summary::before{content:"▸ ";color:var(--accent2)}
+  details[open] summary::before{content:"▾ "}
+  .ans{font-size:13.5px;padding:2px 0 12px;color:#222}
+  .ans ul{margin:4px 0;padding-left:20px}.ans li{margin:3px 0}
+  table.cmp{width:100%;border-collapse:collapse;margin:6px 0;font-size:12.7px}
+  table.cmp th,table.cmp td{border:1px solid var(--line);padding:5px 8px;text-align:left;vertical-align:top}
+  table.cmp th{background:var(--box);color:var(--accent2);font-family:system-ui,sans-serif;font-size:11.5px}
+  .toolbar{max-width:820px;margin:0 auto;display:flex;gap:10px;padding:0 56px;flex-wrap:wrap}
+  .btn{font-family:system-ui,sans-serif;font-size:12px;border:1px solid var(--accent2);
+    background:#fff;color:var(--accent2);border-radius:6px;padding:7px 14px;cursor:pointer}
+  .btn:hover{background:var(--accent2);color:#fff}
+  .nav{font-family:system-ui,sans-serif;font-size:12px;color:var(--muted);margin-left:auto}
+  .nav a{color:var(--accent2);text-decoration:none;margin-left:8px}
+  .foot{margin-top:30px;border-top:1px solid var(--line);padding-top:10px;
+    font-size:11px;color:var(--muted);text-align:center}
+  @media print{
+    body{background:#fff}.sheet{box-shadow:none;margin:0;max-width:100%;padding:0 8mm}
+    .toolbar{display:none}details{break-inside:avoid}.q{break-inside:avoid}
+  }
+</style>
+</head>
+<body>
+<div class="toolbar">
+  <button class="btn" onclick="toggleAll(true)">Reveal all answers</button>
+  <button class="btn" onclick="toggleAll(false)">Hide all</button>
+  <button class="btn" onclick="window.print()">Print / PDF</button>
+  <span class="nav">Theory set: <a href="theory-paper-1.html">1·Recall</a> <a href="theory-paper-2.html">2·Explain</a> <a href="theory-paper-3.html">3·Compare</a> <a href="theory-paper-4.html">4·Mock</a></span>
+</div>
+<div class="sheet">
+  <header class="head">
+    <div class="uni">Mechanical Engineering · MIE 3223</div>
+    <span class="pill">Paper 3 · Compare — contrast / when-to-use / justify</span>
+    <h1>Machine Tool Technology — Theory Paper 3</h1>
+    <div class="sub">Midterm revision · all 5 CLOs · comparison &amp; design-choice lens</div>
+    <div class="meta"><span>Time: 90 min</span><span>Max marks: ~50</span><span>Answer ALL · CLO-tagged</span></div>
+  </header>
+
+  <div class="legend">
+    <b>Course Learning Outcomes</b>
+    <div class="clorow"><span class="clo c1">CLO1</span><span>Identify the drives, process kinematics and working motions of machine tools.</span></div>
+    <div class="clorow"><span class="clo c2">CLO2</span><span>Deduce the means to regulate the speed and feed in machine tools.</span></div>
+    <div class="clorow"><span class="clo c3">CLO3</span><span>Design the machine-tool guideways, identifying their functions and requirements.</span></div>
+    <div class="clorow"><span class="clo c4">CLO4</span><span>Apply the strength and stiffness criteria for designing machine-tool structures.</span></div>
+    <div class="clorow"><span class="clo c5">CLO5</span><span>Identify the sources of vibration in machine tools and the means to eliminate it.</span></div>
+  </div>
+
+  <!-- CLO1 -->
+  <section class="cloblk">
+    <div class="cloh"><span class="clo c1">CLO1</span><h2>Drives, Process Kinematics &amp; Working Motions</h2></div>
+
+    <div class="q"><div class="qhead"><span class="qno">Q1.</span><span class="marks">[4]</span></div>
+      <p class="qtext">Compare the <i>forming</i> and <i>generation</i> methods of producing a surface. Which gives higher accuracy for gears and why?</p>
+      <details><summary>Model answer</summary><div class="ans">
+        <b>Forming</b> — the tool profile is the exact mirror of the surface; one form cut reproduces it (form-cutter gear). Simple, fast, but accuracy depends entirely on tool-profile accuracy and a separate cutter is needed per profile/size. <b>Generation</b> — the surface is enveloped by the relative rolling motion of tool and work (hobbing/gear shaping); one cutter makes many sizes and the profile is mathematically correct. Generation gives higher gear accuracy because the tooth form is created by the conjugate rolling action, not copied from a tool.
+      </div></details></div>
+  </section>
+
+  <!-- CLO2 -->
+  <section class="cloblk">
+    <div class="cloh"><span class="clo c2">CLO2</span><h2>Regulation of Speed &amp; Feed</h2></div>
+
+    <div class="q"><div class="qhead"><span class="qno">Q2.</span><span class="marks">[4]</span></div>
+      <p class="qtext">Compare stepped and stepless (infinitely variable) speed drives.</p>
+      <details><summary>Model answer</summary><div class="ans">
+        <table class="cmp"><tr><th>Aspect</th><th>Stepped</th><th>Stepless</th></tr>
+        <tr><td>Speeds</td><td>discrete (GP set)</td><td>continuous</td></tr>
+        <tr><td>Example</td><td>sliding-gear / cone-pulley box</td><td>PIV / variable-pulley, hydraulic, VFD motor</td></tr>
+        <tr><td>Optimum V</td><td>only nearest step</td><td>exact V at any diameter</td></tr>
+        <tr><td>Merit</td><td>positive drive, holds torque, stiff</td><td>best surface finish / MRR economy</td></tr>
+        <tr><td>Demerit</td><td>cannot hit exact V</td><td>slip, lower stiffness, cost</td></tr></table>
+      </div></details></div>
+
+    <div class="q"><div class="qhead"><span class="qno">Q3.</span><span class="marks">[3]</span></div>
+      <p class="qtext">Compare arithmetic and geometric progression of spindle speeds for machine-tool drives.</p>
+      <details><summary>Model answer</summary><div class="ans">
+        AP: constant <i>difference</i> between speeds — relative loss is large at low rpm and tiny at high rpm, so the high range is wasted and many steps are needed. GP: constant <i>ratio</i> — equal percentage speed loss at every step, economical at all diameters, fewest steps for a given range. Machine tools therefore always use GP (standardised φ).
+      </div></details></div>
+  </section>
+
+  <!-- CLO3 -->
+  <section class="cloblk">
+    <div class="cloh"><span class="clo c3">CLO3</span><h2>Guideways</h2></div>
+
+    <div class="q"><div class="qhead"><span class="qno">Q4.</span><span class="marks">[4]</span></div>
+      <p class="qtext">Compare flat, vee and dovetail guideways. Why does the dovetail resist lift-off?</p>
+      <details><summary>Model answer</summary><div class="ans">
+        <b>Flat</b> — easy to make, large load-bearing area, but needs a gib/strip to retain and gives no self-alignment. <b>Vee</b> — self-aligning and wear is automatically compensated by gravity, but lower load capacity and harder to make. <b>Dovetail</b> — compact, takes loads in several directions and resists overturning. Its <b>inclined retaining faces wrap the mating member</b>, so any lifting/tipping force is reacted by those faces — the slide cannot rise off the way (used on tool/cross-slides).
+      </div></details></div>
+
+    <div class="q"><div class="qhead"><span class="qno">Q5.</span><span class="marks">[4]</span></div>
+      <p class="qtext">Compare sliding, rolling, hydrostatic and aerostatic guideways. When would you choose each?</p>
+      <details><summary>Model answer</summary><div class="ans">
+        <table class="cmp"><tr><th>Type</th><th>Friction / wear</th><th>Damping</th><th>Use when</th></tr>
+        <tr><td>Sliding</td><td>high, stick-slip risk</td><td>high</td><td>general, cost-sensitive, shock loads</td></tr>
+        <tr><td>Rolling</td><td>very low, no stick-slip</td><td>low</td><td>precise positioning, CNC, light-medium load</td></tr>
+        <tr><td>Hydrostatic</td><td>≈zero, no wear</td><td>excellent</td><td>heavy precision machines, high stiffness needed</td></tr>
+        <tr><td>Aerostatic</td><td>≈zero (air)</td><td>low</td><td>ultra-precision, light loads, clean/high-speed</td></tr></table>
+      </div></details></div>
+
+    <div class="q"><div class="qhead"><span class="qno">Q6.</span><span class="marks">[3]</span></div>
+      <p class="qtext">Of the flat-flat, flat-V and V-V slideway combinations, which gives the least radial deflection? Justify briefly.</p>
+      <details><summary>Model answer</summary><div class="ans">
+        <b>V-V</b>. The symmetric V faces split the load evenly and produce no net overturning couple, so the carriage stays centred and radial deflection is least. Flat-flat needs gibs and allows more lateral play; flat-V is intermediate. (Proved by comparing the reaction-induced deflections of each combination.)
+      </div></details></div>
+  </section>
+
+  <!-- CLO4 -->
+  <section class="cloblk">
+    <div class="cloh"><span class="clo c4">CLO4</span><h2>Strength &amp; Stiffness of Structures</h2></div>
+
+    <div class="q"><div class="qhead"><span class="qno">Q7.</span><span class="marks">[3]</span></div>
+      <p class="qtext">Compare perpendicular and diagonal stiffeners for stiffening a bed/table wall.</p>
+      <details><summary>Model answer</summary><div class="ans">
+        <b>Perpendicular</b> stiffeners (ribs at right angles to the walls) recover most of the bending rigidity of a solid box and are easy to cast. <b>Diagonal</b> stiffeners additionally form triangulated frames, so they resist <b>torsion and combined bending+torsion</b> better and give higher rigidity for the same weight — preferred where twisting is significant, at some pattern/casting complexity.
+      </div></details></div>
+
+    <div class="q"><div class="qhead"><span class="qno">Q8.</span><span class="marks">[4]</span></div>
+      <p class="qtext">Compare anti-friction (rolling) and sliding (hydrodynamic) bearings as spindle supports.</p>
+      <details><summary>Model answer</summary><div class="ans">
+        <table class="cmp"><tr><th>Aspect</th><th>Anti-friction</th><th>Sliding (hydrodynamic)</th></tr>
+        <tr><td>Stiffness</td><td>high (esp. preloaded)</td><td>good at speed (film)</td></tr>
+        <tr><td>Damping</td><td>low</td><td>high (oil film) — vibration stable</td></tr>
+        <tr><td>Accuracy</td><td>standardised, good</td><td>very high at proper speed</td></tr>
+        <tr><td>Speed limit</td><td>heating limits very high speed</td><td>suits very high speeds</td></tr>
+        <tr><td>Use</td><td>most general spindles</td><td>precision/high-speed, shock &amp; vibration</td></tr></table>
+      </div></details></div>
+
+    <div class="q"><div class="qhead"><span class="qno">Q9.</span><span class="marks">[3]</span></div>
+      <p class="qtext">A designer proposes a higher-strength alloy steel to make a spindle stiffer. Evaluate this choice.</p>
+      <details><summary>Model answer</summary><div class="ans">
+        It will not help. Spindle deflection depends on the modulus of elasticity E and the section, not on strength; all steels have nearly the same E (≈2.1×10⁶ kgf/cm²), so a stronger alloy gives essentially no stiffness gain. To raise stiffness you increase the section/diameter, shorten the overhang, or improve bearing support/preload. The better alloy is justified only for wear/hardness at the nose, not for rigidity.
+      </div></details></div>
+  </section>
+
+  <!-- CLO5 -->
+  <section class="cloblk">
+    <div class="cloh"><span class="clo c5">CLO5</span><h2>Vibration</h2></div>
+
+    <div class="q"><div class="qhead"><span class="qno">Q10.</span><span class="marks">[4]</span></div>
+      <p class="qtext">Compare free, forced and self-excited vibration in machine tools.</p>
+      <details><summary>Model answer</summary><div class="ans">
+        <table class="cmp"><tr><th>Type</th><th>Driven by</th><th>Frequency</th><th>Behaviour</th></tr>
+        <tr><td>Free</td><td>initial shock, then none</td><td>natural freq.</td><td>decays with damping</td></tr>
+        <tr><td>Forced</td><td>external periodic force (unbalance, gears)</td><td>excitation freq.</td><td>steady; large at resonance</td></tr>
+        <tr><td>Self-excited (chatter)</td><td>the cutting process itself</td><td>near a natural freq.</td><td>grows without external periodicity</td></tr></table>
+      </div></details></div>
+
+    <div class="q"><div class="qhead"><span class="qno">Q11.</span><span class="marks">[3]</span></div>
+      <p class="qtext">Compare primary chatter and regenerative chatter.</p>
+      <details><summary>Model answer</summary><div class="ans">
+        <b>Primary chatter</b> arises from instabilities in the cutting process itself (friction, built-up edge, chip-formation/force variation) without needing a previous surface. <b>Regenerative chatter</b> (the more common and more restrictive) arises from cutting the wavy surface left by the previous pass — the regenerative phase feeds energy in; its limiting depth of cut is roughly half that for primary chatter, so it is harder to avoid.
+      </div></details></div>
+
+    <div class="q"><div class="qhead"><span class="qno">Q12.</span><span class="marks">[4]</span></div>
+      <p class="qtext">Compare passive and active vibration control. When is each appropriate?</p>
+      <details><summary>Model answer</summary><div class="ans">
+        <b>Passive</b> — inherent damping, isolators, tuned-mass absorbers; no power or sensing, simple, reliable, fixed tuning. Best for known, steady disturbances and most production machines. <b>Active</b> — sensor → controller → actuator feedback applies a counter-force in real time; adapts to changing conditions and targets specific modes, but needs power, instrumentation and is costly. Reserved for advanced precision/high-value machine tools where passive means are insufficient.
+      </div></details></div>
+  </section>
+
+  <div class="foot">MIE 3223 · Theory Paper 3 (Compare) · curated from N.K. Mehta + course PPTs (Modules 1–6) · 3 of 4 in the theory set</div>
+</div>
+<script>
+  function toggleAll(open){document.querySelectorAll('details').forEach(d=>d.open=open);}
+  window.addEventListener('beforeprint',()=>toggleAll(true));
+</script>
+</body>
+</html>

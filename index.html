@@ -108,11 +108,15 @@
   <div class="callout" style="border-left:4px solid #1f4e5f;background:#eef4f2">
     <b>📄 Exam Papers (CLO-mapped, printable):</b><br>
     <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:8px">
-      <a href="theory-paper.html" style="text-decoration:none;border:1px solid #1f4e5f;color:#1f4e5f;border-radius:6px;padding:7px 14px;font-weight:600">Theory Paper →</a>
+      <a href="theory-paper.html" style="text-decoration:none;border:1px solid #1f4e5f;color:#1f4e5f;border-radius:6px;padding:7px 14px;font-weight:600">Theory · Core →</a>
+    <a href="theory-paper-1.html" style="text-decoration:none;border:1px solid #1f4e5f;color:#1f4e5f;border-radius:6px;padding:7px 14px;font-weight:600">Theory 1 · Recall →</a>
+    <a href="theory-paper-2.html" style="text-decoration:none;border:1px solid #1f4e5f;color:#1f4e5f;border-radius:6px;padding:7px 14px;font-weight:600">Theory 2 · Explain →</a>
+    <a href="theory-paper-3.html" style="text-decoration:none;border:1px solid #1f4e5f;color:#1f4e5f;border-radius:6px;padding:7px 14px;font-weight:600">Theory 3 · Compare →</a>
+    <a href="theory-paper-4.html" style="text-decoration:none;border:1px solid #1f4e5f;color:#1f4e5f;border-radius:6px;padding:7px 14px;font-weight:600">Theory 4 · Mock →</a>
       <a href="numerical-paper.html" style="text-decoration:none;border:1px solid #7a2e2e;color:#7a2e2e;border-radius:6px;padding:7px 14px;font-weight:600">Numerical Paper + Solutions →</a>
       <a href="viva-questions.html" style="text-decoration:none;border:1px solid #b45309;color:#b45309;border-radius:6px;padding:7px 14px;font-weight:600">Viva Questions →</a>
     </div>
-    <span style="font-size:13px;color:#555;display:block;margin-top:7px">Theory across all 5 CLOs · 7 design numericals (3.8, 3.9, 4.1, 4.2, 5.1–5.3) with inline step solutions · viva speed/feed + topic-classification set.</span>
+    <span style="font-size:13px;color:#555;display:block;margin-top:7px">5 theory papers (Core + 4 lenses: Recall / Explain / Compare / Mock) across all 5 CLOs · 7 design numericals (3.8, 3.9, 4.1, 4.2, 5.1–5.3) with figures + inline step solutions · viva speed/feed + topic-classification set.</span>
   </div>
 
   <div class="callout red">
@@ -703,11 +707,12 @@ Optimum (V_σ=V_δ):  (l²/h)_opt = 6E[δ]/[σ]</span>
   <p class="ask"><b>Find:</b> maximum angle of slope.</p>
   <div class="soln-wrap"><span class="soln-toggle">Show solution ▸</span><div class="soln">
     <p class="step"><b>Section:</b> I = [100×20³ − 95×15³]/12 = 39 948 cm⁴; EI = 8.39×10¹⁰ kgf·cm².</p>
-    <p class="step"><b>Reactions:</b> from ΣM, ΣF on the Fig 3.36 spans (loads → 800 kgf etc.).</p>
-    <p class="step"><b>Slope (moment-area):</b> θ = (1/EI)∫M dx; max slope at a support = A<sub>M</sub>/EI.</p>
-    <p class="answer"><b>Answer:</b> with EI = 8.39×10¹⁰, θ<sub>max</sub> ≈ 10⁻⁴ rad — well inside the ~0.5°/m machine-tool limit. (Insert exact Fig 3.36 reactions for the final number.)</p>
+    <p class="step"><b>Foundation:</b> k = 125·b = 125·100 = 12 500 kgf/cm²; m = (k/4EI)<sup>¼</sup> = (12 500/(4·8.39×10¹⁰))<sup>¼</sup> = 0.01389 cm⁻¹.</p>
+    <p class="step"><b>Slope (Mehta Eq 3.66):</b> θ = Σ(q·<b>m</b>·b/k)K<sub>q</sub> + (M·<b>m³</b>/k)K<sub>M</sub>. Loads→cm: q₁=20, q₂=15 kgf/cm; M=2×10⁵ kgf·mm=2×10⁴ kgf·cm; K<sub>q1</sub>≈0.30, K<sub>q2</sub>≈0.41, K<sub>M</sub>≈3.1 (Fig 3.26).</p>
+    <p class="step"><b>Terms:</b> θ<sub>q1</sub>=(20·m·100/12500)·0.30=6.67×10⁻⁴; θ<sub>q2</sub>=(15·m·100/12500)·0.41=6.84×10⁻⁴; θ<sub>M</sub>=(2×10⁴·m³/12500)·3.1=0.13×10⁻⁴.</p>
+    <p class="answer"><b>Answer:</b> θ<sub>max</sub> = 1.36×10⁻³ rad ≈ <b>0.078°</b> (≈4.7′) — inside the ~0.5°/m machine-tool limit. ✓</p>
   </div>
-  <p class="tip"><b>Exam tip:</b> I = [BH³−(B−2t)(H−2t)³]/12, then θ = ∫M dx/EI by moment-area; max slope at a support.</p></div>
+  <p class="tip"><b>Exam tip:</b> I = [BH³−(B−2t)(H−2t)³]/12, then k=125b, m=(k/4EI)<sup>¼</sup>, θ=Σ(q·m·b/k)K<sub>q</sub>+(M·m³/k)K<sub>M</sub>. <b>Keep the ·m</b> in the load term — dropping it gives a bogus ~5–6°.</p></div>
 </article>
 
 <article class="prob" id="p3-9">
