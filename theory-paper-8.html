@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MIE 3223 — Theory Paper 8 · Advanced</title>
+<style>
+  :root{
+    --ink:#1a1a1a; --muted:#5b5b5b; --line:#d8d2c4; --paper:#fbf9f3;
+    --accent:#7a2e2e; --accent2:#1f4e5f; --chip:#eee7d6; --box:#f4efe2;
+    --clo1:#2563eb; --clo2:#0891b2; --clo3:#b45309; --clo4:#7a2e2e; --clo5:#6d28d9;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:#e9e5db;color:var(--ink);font-family:Georgia,'Times New Roman',serif;line-height:1.5;}
+  .sheet{max-width:820px;margin:24px auto;background:var(--paper);padding:46px 56px 64px;box-shadow:0 6px 30px rgba(0,0,0,.18);}
+  header.head{border-bottom:3px double var(--accent);padding-bottom:14px;margin-bottom:6px}
+  .uni{font-size:13px;letter-spacing:2px;text-transform:uppercase;color:var(--muted)}
+  .pill{display:inline-block;font-family:system-ui,sans-serif;font-size:10.5px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:#fff;background:var(--accent);border-radius:4px;padding:2px 9px;margin-bottom:6px}
+  h1{font-size:25px;margin:6px 0 2px;letter-spacing:.5px}
+  .sub{font-size:14px;color:var(--muted)}
+  .meta{display:flex;justify-content:space-between;font-size:12.5px;color:var(--muted);margin-top:10px;border-top:1px solid var(--line);padding-top:8px;flex-wrap:wrap;gap:6px}
+  .legend{background:var(--box);border:1px solid var(--line);border-radius:8px;padding:12px 16px;margin:18px 0;font-size:12.5px}
+  .legend b{display:block;margin-bottom:6px;font-size:12px;letter-spacing:1px;text-transform:uppercase;color:var(--accent2)}
+  .clorow{display:flex;gap:8px;margin:3px 0;align-items:flex-start}
+  .clo{font-family:system-ui,sans-serif;font-size:10.5px;font-weight:700;color:#fff;border-radius:4px;padding:2px 7px;white-space:nowrap;letter-spacing:.3px}
+  .c1{background:var(--clo1)}.c2{background:var(--clo2)}.c3{background:var(--clo3)}.c4{background:var(--clo4)}.c5{background:var(--clo5)}
+  section.cloblk{margin:26px 0 8px}
+  .cloh{display:flex;align-items:center;gap:10px;border-bottom:1.5px solid var(--line);padding-bottom:6px;margin-bottom:14px}
+  .cloh h2{font-size:16px;margin:0;color:var(--accent2);font-weight:700}
+  .q{margin:0 0 16px;padding-left:4px}
+  .qhead{display:flex;justify-content:space-between;gap:12px;align-items:baseline}
+  .qno{font-weight:bold}
+  .marks{font-family:system-ui,sans-serif;font-size:11px;color:var(--muted);white-space:nowrap}
+  .qtext{margin:3px 0 0}
+  details{margin:8px 0 0;border-left:3px solid var(--accent2);background:#f7f4ec;border-radius:0 6px 6px 0;padding:0 14px}
+  summary{cursor:pointer;font-family:system-ui,sans-serif;font-size:12px;font-weight:600;color:var(--accent2);padding:8px 0;list-style:none;user-select:none}
+  summary::-webkit-details-marker{display:none}
+  summary::before{content:"▸ ";color:var(--accent2)}
+  details[open] summary::before{content:"▾ "}
+  .ans{font-size:13.5px;padding:2px 0 12px;color:#222}
+  .ans ul{margin:4px 0;padding-left:20px}.ans li{margin:3px 0}
+  .eq{font-family:'Cambria Math',Georgia,serif;background:#fff;border:1px solid #dfe8e5;border-radius:5px;padding:4px 10px;display:inline-block;margin:3px 0}
+  .toolbar{max-width:820px;margin:0 auto;display:flex;gap:10px;padding:0 56px;flex-wrap:wrap}
+  .btn{font-family:system-ui,sans-serif;font-size:12px;border:1px solid var(--accent2);background:#fff;color:var(--accent2);border-radius:6px;padding:7px 14px;cursor:pointer}
+  .btn:hover{background:var(--accent2);color:#fff}
+  .nav{font-family:system-ui,sans-serif;font-size:11.5px;color:var(--muted);margin-left:auto}
+  .nav a{color:var(--accent2);text-decoration:none;margin-left:7px}
+  .foot{margin-top:30px;border-top:1px solid var(--line);padding-top:10px;font-size:11px;color:var(--muted);text-align:center}
+  @media print{body{background:#fff}.sheet{box-shadow:none;margin:0;max-width:100%;padding:0 8mm}.toolbar{display:none}details{break-inside:avoid}.q{break-inside:avoid}}
+</style>
+</head>
+<body>
+<div class="toolbar">
+  <button class="btn" onclick="toggleAll(true)">Reveal all answers</button>
+  <button class="btn" onclick="toggleAll(false)">Hide all</button>
+  <button class="btn" onclick="window.print()">Print / PDF</button>
+  <span class="nav"><a href="theory-paper-1.html">1·Recall</a> <a href="theory-paper-2.html">2·Explain</a> <a href="theory-paper-3.html">3·Compare</a> <a href="theory-paper-4.html">4·Mock</a> <a href="theory-paper-5.html">5·Notes</a> <a href="theory-paper-6.html">6·Sketch</a> <a href="theory-paper-7.html">7·Applied</a> <a href="theory-paper-8.html">8·Advanced</a></span>
+</div>
+<div class="sheet">
+  <header class="head">
+    <div class="uni">Mechanical Engineering · MIE 3223</div>
+    <span class="pill">Paper 8 · Advanced — depth &amp; derivation</span>
+    <h1>Machine Tool Technology — Theory Paper 8</h1>
+    <div class="sub">The deeper theory · dynamics, bearing principles, derivations · all 5 CLOs</div>
+    <div class="meta"><span>Time: 90 min</span><span>Max marks: ~52</span><span>Answer ALL · CLO-tagged</span></div>
+  </header>
+
+  <div class="legend">
+    <b>Course Learning Outcomes</b>
+    <div class="clorow"><span class="clo c1">CLO1</span><span>Drives, process kinematics and working motions.</span></div>
+    <div class="clorow"><span class="clo c2">CLO2</span><span>Regulation of speed and feed.</span></div>
+    <div class="clorow"><span class="clo c3">CLO3</span><span>Guideways — functions and requirements.</span></div>
+    <div class="clorow"><span class="clo c4">CLO4</span><span>Strength and stiffness of structures.</span></div>
+    <div class="clorow"><span class="clo c5">CLO5</span><span>Vibration — sources and elimination.</span></div>
+  </div>
+
+  <!-- CLO5 advanced -->
+  <section class="cloblk">
+    <div class="cloh"><span class="clo c5">CLO5</span><h2>Machine-Tool Dynamics</h2></div>
+
+    <div class="q"><div class="qhead"><span class="qno">Q1.</span><span class="marks">[6]</span></div>
+      <p class="qtext">Describe the machine tool as a closed-loop system (elastic system + cutting process) and state how the Nyquist criterion is used to judge dynamic stability.</p>
+      <details><summary>Model answer</summary><div class="ans">
+        The machine-tool <b>elastic system (MTES)</b> and the <b>cutting process (CP)</b> form a closed loop: a relative tool–work displacement changes the chip thickness → changes the cutting force → deflects the structure → changes the displacement. Stability is assessed from the open-loop frequency response (polar/Nyquist plot). By the <b>Nyquist criterion</b>, the system is <b>stable</b> if the open-loop locus crosses the negative-real axis to the <b>right</b> of (−1, 0) and unstable if it crosses to the left; the crossing point fixes the limiting depth of cut and chatter frequency.
+      </div></details></div>
+
+    <div class="q"><div class="qhead"><span class="qno">Q2.</span><span class="marks">[6]</span></div>
+      <p class="qtext">Compare the Tlusty (static) and Kudinov/Tobias (time-lag) models of the cutting process. Explain phase lag vs phase lead and the damping contributed by the tool flank wear land.</p>
+      <details><summary>Model answer</summary><div class="ans">
+        <b>Tlusty:</b> dynamic force proportional to and <b>instantaneous</b> with chip-thickness change (P = k<sub>s</sub>y) — a static, frequency-independent, real characteristic (no phase). <b>Kudinov/Tobias:</b> the force builds up over a chip-formation time constant T<sub>c</sub>, so <span class="eq">W = k<sub>s</sub>/(T<sub>c</sub>p+1)</span> — the force <b>lags</b> the displacement, which pumps energy in and <b>aggravates</b> vibration. A force component that <b>leads</b> the displacement instead removes energy (damping). The rubbing of the <b>flank wear land</b> produces such a leading component — process damping — so a small wear land (h≈0.1–0.2 mm) actually improves stability.
+      </div></details></div>
+
+    <div class="q"><div class="qhead"><span class="qno">Q3.</span><span class="marks">[4]</span></div>
+      <p class="qtext">Define dynamic stiffness and receptance, and explain how they differ from static stiffness.</p>
+      <details><summary>Model answer</summary><div class="ans">
+        <b>Static stiffness</b> = force/deflection under a steady load (a constant). <b>Dynamic stiffness</b> = the frequency-dependent ratio of a harmonic force to the resulting harmonic displacement; it is complex (real = stiffness, imaginary = damping) and drops sharply near resonance. <b>Receptance</b> = its inverse, displacement per unit force (a frequency-response function). Chatter resistance depends on the <b>minimum dynamic stiffness</b> (peak receptance), not the static value.
+      </div></details></div>
+  </section>
+
+  <!-- CLO2 advanced -->
+  <section class="cloblk">
+    <div class="cloh"><span class="clo c2">CLO2</span><h2>Speed Regulation — Theory</h2></div>
+
+    <div class="q"><div class="qhead"><span class="qno">Q4.</span><span class="marks">[5]</span></div>
+      <p class="qtext">Show how the standard values of the step ratio φ arise from (i) the two-speed-motor condition and (ii) the preferred-number requirement.</p>
+      <details><summary>Model answer</summary><div class="ans">
+        (i) Drives often use two-speed motors whose speeds are in the ratio 2, so after some u steps of the GP the speed must double: <span class="eq">φ<sup>u</sup> = 2</span>. (ii) The series should also fit the <b>preferred numbers</b> (R-series), where speeds repeat every decade: <span class="eq">φ<sup>E</sup> = 10</span>. Both must hold for integer step counts, which forces φ to the standard set <b>1.06, 1.12, 1.26, 1.41, 1.58, 1.78, 2.0</b> (e.g. 1.06 = 10<sup>1/40</sup> = 2<sup>1/12</sup>). These are the only ratios that simultaneously double and decade-repeat at whole numbers of steps.
+      </div></details></div>
+
+    <div class="q"><div class="qhead"><span class="qno">Q5.</span><span class="marks">[4]</span></div>
+      <p class="qtext">State the economic aim of speed/feed regulation: give the machining-cost components and the idea of optimum cutting speed.</p>
+      <details><summary>Model answer</summary><div class="ans">
+        Aim: choose v and feed to minimise cost per component. Cost = machining-time cost + non-productive cost + tool-changing cost + tool cost: <span class="eq">C = (W+E)t<sub>m</sub> + (W+E)t<sub>np</sub> + (W+E)t<sub>c</sub>(t<sub>m</sub>/T) + C<sub>t</sub>(t<sub>m</sub>/T)</span>. As speed rises, machining time falls but tool life T falls (Taylor vTⁿ=C), raising tool/changing cost — so total cost has a minimum at an <b>optimum cutting speed v<sub>opt</sub></b> (and similarly s<sub>opt</sub>). The regulated drive must make v<sub>opt</sub> available.
+      </div></details></div>
+
+    <div class="q"><div class="qhead"><span class="qno">Q6.</span><span class="marks">[4]</span></div>
+      <p class="qtext">Explain the harmonic and logarithmic laws of stepped regulation and why neither is used in practice.</p>
+      <details><summary>Model answer</summary><div class="ans">
+        <b>Harmonic</b> keeps the <i>diameter range</i> served by each speed constant: 1/n<sub>k</sub> − 1/n<sub>k+1</sub> = constant. This packs steps sensibly only at large diameters and gives an awkward, very wide rpm spread at small diameters. <b>Logarithmic</b> is a limiting/special case with similar drawbacks. Neither gives the <b>constant relative (percentage) speed loss</b> that GP gives, so both are impractical — GP is adopted.
+      </div></details></div>
+  </section>
+
+  <!-- CLO3 advanced -->
+  <section class="cloblk">
+    <div class="cloh"><span class="clo c3">CLO3</span><h2>Fluid-Film Bearings &amp; Ways</h2></div>
+
+    <div class="q"><div class="qhead"><span class="qno">Q7.</span><span class="marks">[6]</span></div>
+      <p class="qtext">Explain the working principle of hydrodynamic, hydrostatic and aerostatic bearings used as spindle/slideway supports — how the supporting film is generated in each.</p>
+      <details><summary>Model answer</summary><div class="ans">
+        <b>Hydrodynamic:</b> relative motion drags oil into a converging wedge, generating pressure that lifts and separates the surfaces — load capacity exists <b>only when moving</b> (no film at rest/low speed). <b>Hydrostatic:</b> oil is <b>pumped in under external pressure</b> through restrictors to pockets, so a stiff film carries load <b>even at zero speed</b> — very high stiffness, no wear, excellent damping. <b>Aerostatic:</b> same idea but with <b>pressurised air</b> — frictionless and clean for ultra-precision/light loads, but low stiffness/damping and risk of instability.
+      </div></details></div>
+
+    <div class="q"><div class="qhead"><span class="qno">Q8.</span><span class="marks">[4]</span></div>
+      <p class="qtext">In a hydrostatic pad bearing, explain how a restrictor (capillary or orifice) controls the load capacity and stiffness.</p>
+      <details><summary>Model answer</summary><div class="ans">
+        Each pocket is fed from a constant-pressure supply through a <b>restrictor</b>. When load increases, the gap narrows and pocket outflow drops, so the pressure drop across the restrictor falls and <b>pocket pressure rises automatically</b> to support the extra load — giving stiffness. A <b>capillary</b> restrictor gives flow ∝ pressure drop (linear); an <b>orifice</b> gives flow ∝ √(pressure drop) (higher stiffness, more sensitive). Sizing the restrictor sets the pad's stiffness and flow.
+      </div></details></div>
+  </section>
+
+  <!-- CLO4 advanced -->
+  <section class="cloblk">
+    <div class="cloh"><span class="clo c4">CLO4</span><h2>Spindle Support Modelling</h2></div>
+
+    <div class="q"><div class="qhead"><span class="qno">Q9.</span><span class="marks">[4]</span></div>
+      <p class="qtext">When a spindle runs in a sleeve (journal) bearing, how is that support represented in the design diagram, and what is the reactive moment M<sub>r</sub>?</p>
+      <details><summary>Model answer</summary><div class="ans">
+        A sleeve bearing resists not just a transverse force but also a slight tilt, so it is modelled as a <b>simple hinge plus a reactive moment M<sub>r</sub></b> acting at the middle of the bearing (a ball/anti-friction bearing is modelled as a plain hinge only). M<sub>r</sub> = k·M, where M is the bending moment at the support and k ≈ 0–0.35 (k→0 at light load, up to ≈0.3–0.35 at heavy load). Including M<sub>r</sub> makes the support stiffer than a pure hinge, reducing computed nose deflection.
+      </div></details></div>
+  </section>
+
+  <!-- CLO1 advanced -->
+  <section class="cloblk">
+    <div class="cloh"><span class="clo c1">CLO1</span><h2>Surface Generation</h2></div>
+
+    <div class="q"><div class="qhead"><span class="qno">Q10.</span><span class="marks">[4]</span></div>
+      <p class="qtext">Distinguish single-point and multi-point generation of surfaces, giving the tool–work kinematics of each.</p>
+      <details><summary>Model answer</summary><div class="ans">
+        <b>Single-point:</b> one cutting edge produces the surface by combined primary + feed motion — turning, shaping, planing (generatrix = the single edge, swept along the directrix). <b>Multi-point:</b> many edges act together — milling, drilling, broaching, grinding — each edge removing part of the layer; the envelope of all edges (with the feed) forms the surface. Multi-point gives higher MRR and (for milling/grinding) better finish, but interrupted cutting raises dynamic force.
+      </div></details></div>
+  </section>
+
+  <div class="foot">MIE 3223 · Theory Paper 8 (Advanced) · curated from N.K. Mehta (incl. Ch6 Dynamics) + course PPTs · 8 of 8 in the theory set</div>
+</div>
+<script>
+  function toggleAll(open){document.querySelectorAll('details').forEach(d=>d.open=open);}
+  window.addEventListener('beforeprint',()=>toggleAll(true));
+</script>
+</body>
+</html>
