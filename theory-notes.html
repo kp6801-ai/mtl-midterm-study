@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MIE 3223 — Theory Notes (all modules, PPT-only)</title>
+<style>
+  :root{
+    --ink:#1a1a1a; --muted:#5b5b5b; --line:#d8d2c4; --paper:#fbf9f3;
+    --accent:#7a2e2e; --accent2:#1f4e5f; --box:#f4efe2;
+    --m1:#2563eb; --m2:#0891b2; --m3:#b45309; --m45:#7a2e2e; --m6:#6d28d9;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:#e9e5db;color:var(--ink);font-family:Georgia,'Times New Roman',serif;line-height:1.55}
+  .sheet{max-width:860px;margin:24px auto;background:var(--paper);padding:46px 56px 64px;box-shadow:0 6px 30px rgba(0,0,0,.18)}
+  header.head{border-bottom:3px double var(--accent);padding-bottom:14px;margin-bottom:6px}
+  .uni{font-size:13px;letter-spacing:2px;text-transform:uppercase;color:var(--muted)}
+  h1{font-size:25px;margin:6px 0 2px;letter-spacing:.4px}
+  .sub{font-size:14px;color:var(--muted)}
+  .srcnote{background:#fff7ea;border:1px solid #e8d9b6;border-radius:7px;padding:9px 14px;margin:14px 0;font-size:12.5px;color:#6b5a2e}
+  .jump{display:flex;flex-wrap:wrap;gap:7px;margin:14px 0 6px}
+  .jump a{font-family:system-ui,sans-serif;font-size:11.5px;font-weight:600;text-decoration:none;color:#fff;border-radius:5px;padding:4px 10px}
+  .j1{background:var(--m1)}.j2{background:var(--m2)}.j3{background:var(--m3)}.j45{background:var(--m45)}.j6{background:var(--m6)}
+  .mod{margin:30px 0 6px;scroll-margin-top:14px}
+  .modband{display:flex;align-items:center;gap:11px;border-radius:8px;padding:11px 16px;color:#fff;margin-bottom:12px}
+  .mb1{background:var(--m1)}.mb2{background:var(--m2)}.mb3{background:var(--m3)}.mb45{background:var(--m45)}.mb6{background:var(--m6)}
+  .modband .tag{font-family:system-ui,sans-serif;font-size:11px;font-weight:700;letter-spacing:.5px;background:rgba(255,255,255,.22);padding:2px 9px;border-radius:5px}
+  .modband h2{font-size:17px;margin:0;font-weight:700}
+  details.topic{border-left:3px solid var(--line);margin:9px 0;padding:0 0 0 14px}
+  details.topic>summary{cursor:pointer;font-weight:bold;font-size:14.5px;color:var(--accent2);padding:5px 0;list-style:none}
+  details.topic>summary::-webkit-details-marker{display:none}
+  details.topic>summary::before{content:"▸ ";color:var(--accent2)}
+  details.topic[open]>summary::before{content:"▾ "}
+  .body{font-size:13.6px;padding:2px 0 10px}
+  .body p{margin:6px 0}
+  .body ul{margin:5px 0;padding-left:20px}.body li{margin:3px 0}
+  .body b{color:#163b47}
+  .term{font-weight:bold;color:var(--accent)}
+  .toolbar{max-width:860px;margin:0 auto;display:flex;gap:10px;padding:0 56px;flex-wrap:wrap}
+  .btn{font-family:system-ui,sans-serif;font-size:12px;border:1px solid var(--accent2);background:#fff;color:var(--accent2);border-radius:6px;padding:7px 14px;cursor:pointer}
+  .btn:hover{background:var(--accent2);color:#fff}
+  .nav{font-family:system-ui,sans-serif;font-size:11.5px;color:var(--muted);margin-left:auto}
+  .nav a{color:var(--accent2);text-decoration:none;margin-left:8px}
+  .foot{margin-top:30px;border-top:1px solid var(--line);padding-top:10px;font-size:11px;color:var(--muted);text-align:center}
+  @media print{body{background:#fff}.sheet{box-shadow:none;margin:0;max-width:100%;padding:0 8mm}.toolbar{display:none}details.topic{break-inside:avoid}}
+</style>
+</head>
+<body>
+<div class="toolbar">
+  <button class="btn" onclick="setAll(true)">Expand all</button>
+  <button class="btn" onclick="setAll(false)">Collapse all</button>
+  <button class="btn" onclick="window.print()">Print / PDF</button>
+  <span class="nav"><a href="index.html">Hub</a> <a href="theory-paper-1.html">Theory papers</a> <a href="numerical-paper.html">Numericals</a></span>
+</div>
+<div class="sheet">
+  <header class="head">
+    <div class="uni">Mechanical Engineering · MIE 3223</div>
+    <h1>Machine Tool Technology — Theory Notes</h1>
+    <div class="sub">Complete theory · all modules · for the midterm</div>
+  </header>
+
+  <div class="srcnote"><b>Source:</b> curated <b>only from the course module PPTs</b> (Dr. Vyshak Sureshkumar — Intro, Module 2, 3, 4&amp;5, 6). No textbook mapping. Concept-level theory as taught in the slides.</div>
+
+  <div class="jump">
+    <a class="j1" href="#m1">Module 1 · Drives &amp; Kinematics</a>
+    <a class="j2" href="#m2">Module 2 · Speed &amp; Feed</a>
+    <a class="j3" href="#m3">Module 3 · Structures &amp; Guideways</a>
+    <a class="j45" href="#m45">Module 4&amp;5 · Spindles</a>
+    <a class="j6" href="#m6">Module 6 · Vibration</a>
+  </div>
+
+  <!-- ===================== MODULE 1 ===================== -->
+  <section class="mod" id="m1">
+    <div class="modband mb1"><span class="tag">MODULE 1</span><h2>Machine Tools, Drives &amp; Kinematics</h2></div>
+
+    <details class="topic" open><summary>What a machine tool is &amp; basic elements</summary><div class="body">
+      <p>A <span class="term">machine tool</span> is a power-driven machine that uses a cutting tool to remove material from a workpiece to give the required shape, size and smooth surface at high precision. It holds a cutting tool and a workpiece in fixed/controlled relative motion and removes excess material layer by layer (metals, plastics, composites — by cutting, drilling, milling, grinding), controlling size, geometry and finish.</p>
+      <p><b>Basic elements of any machine tool:</b> drive system (motor, belts, gears) · structure (bed, frame) · tool-holding mechanism · workpiece-holding mechanism · control system.</p>
+    </div></details>
+
+    <details class="topic" open><summary>Types, applications &amp; evolution</summary><div class="body">
+      <p><b>Types &amp; use:</b> lathe (shafts, bolts, cylindrical parts), milling (gears, slots, flats), drilling (holes), grinding (high finish/precision), CNC (automated mass production). Used in automotive, aerospace, tool manufacturing, dies/moulds.</p>
+      <ul>
+        <li><b>Early (before 1900):</b> manual; hand/water/steam power; low accuracy, slow.</li>
+        <li><b>Industrial revolution (1900–50):</b> electric motors, gear/belt drives, stronger structures → higher speed, better finish, repeatability.</li>
+        <li><b>Modern (after 1950):</b> NC → CNC → automation/robotics → high precision, mass production, complex shapes, less human error.</li>
+        <li><b>Today:</b> part of Flexible Manufacturing Systems, smart factories, Industry 4.0 (sensors, CNC/PLC, robots, CAD/CAM).</li>
+      </ul>
+    </div></details>
+
+    <details class="topic" open><summary>Drive systems</summary><div class="body">
+      <p>Drive systems supply and control power, speed and precision from motor to tool/work.</p>
+      <ul>
+        <li><b>Belt drive</b> — flexible, cheap, shock-absorbing; but slip + less accurate speed control (older lathes/drills).</li>
+        <li><b>Gear drive</b> — high torque, no slip, accurate ratios (heavy lathes, milling).</li>
+        <li><b>Motor/servo (direct) drive</b> — motor coupled to spindle, electronic speed control, high precision, minimal loss (CNC).</li>
+        <li><b>Individual drive</b> — each machine has its own motor → transmission → spindle (cutting) + feed mechanism. Independent speed, efficient, modern.</li>
+        <li><b>Group drive</b> — one motor → many machines via a line shaft; economical but obsolete.</li>
+      </ul>
+      <p><b>Backgear mechanism</b> (gear-driven individual drive): small gear on the belt pulley + bull gear on the spindle + backgear cluster on a pivoting plate. <b>Direct mode</b> = pulley gear drives the spindle directly (high speed, light cuts). <b>Backgear mode</b> = cluster engaged → power through intermediate gears → spindle speed drops, torque rises (heavy cuts). In a lathe, <b>one motor supplies both cutting and feed motions</b> through different mechanisms.</p>
+    </div></details>
+
+    <details class="topic" open><summary>Process kinematics &amp; working motions</summary><div class="body">
+      <p>Material removal needs <b>relative motion between tool and workpiece</b> — no motion, no cutting.</p>
+      <ul>
+        <li><b>Cutting (primary) motion</b> — highest velocity, removes material, sets cutting speed (work rotation in lathe, cutter rotation in milling, ram reciprocation in shaper).</li>
+        <li><b>Feed motion</b> — advances the tool into the work, sets MRR, slower than cutting (tool travel in lathe, table travel in milling).</li>
+        <li><b>Depth-of-cut motion</b> — penetration into material, sets chip thickness (cross-slide in lathe).</li>
+      </ul>
+      <p><b>Lathe</b> = single-point continuous cutting (one edge, continuous chip); feed longitudinal/cross/angular(taper). <b>Milling</b> = multi-point, intermittent cutting, higher MRR. <b>Drilling</b> = tool rotates + axial feed. <b>Shaper</b> = tool reciprocates, work indexes stepwise.</p>
+    </div></details>
+
+    <details class="topic" open><summary>Kinematic chains</summary><div class="body">
+      <ul>
+        <li><b>Speed chain:</b> motor → gearbox → spindle (generates cutting motion, controls spindle speed).</li>
+        <li><b>Feed chain:</b> spindle → change gears → feed gearbox → lead screw → tool movement (controlled feed).</li>
+      </ul>
+      <p>Elements: gears, belts, lead screws, gearboxes. The kinematic chain determines <b>speed range, feed range, torque transmission, machine accuracy and vibration behaviour</b> — even a powerful motor gives poor results with a poor chain.</p>
+    </div></details>
+  </section>
+
+  <!-- ===================== MODULE 2 ===================== -->
+  <section class="mod" id="m2">
+    <div class="modband mb2"><span class="tag">MODULE 2</span><h2>Regulation of Speed &amp; Feed</h2></div>
+
+    <details class="topic" open><summary>Need for regulation</summary><div class="body">
+      <p>A machine can't work efficiently at one fixed speed: workpiece diameters vary, tool materials differ, cutting conditions change, material properties differ (steel vs aluminium). Single speed → tool breakage, poor finish, overheating.</p>
+    </div></details>
+
+    <details class="topic" open><summary>Speed regulation</summary><div class="body">
+      <p><span class="term">Speed regulation</span> = the arrangement giving multiple spindle speeds so machining runs efficiently and safely under different conditions. Different materials and rough-vs-finish cuts need different speeds; tool life and finish depend on the right speed.</p>
+      <ul>
+        <li><b>Slow speed</b> — heavy cuts, large diameters, high torque, roughing.</li>
+        <li><b>High speed</b> — finishing, small diameters, better finish, lower forces.</li>
+        <li><b>Stepped vs continuous:</b> stepped = discrete levels, gearbox-based, conventional (e.g. 100/200/400/800 rpm); continuous = smooth, electronic, CNC.</li>
+        <li><b>Achieved by:</b> step pulleys, gearboxes, backgear, variable-speed drives, CNC spindle control → better tool life, less chatter, better finish, higher efficiency.</li>
+      </ul>
+    </div></details>
+
+    <details class="topic" open><summary>Feed regulation</summary><div class="body">
+      <p><span class="term">Feed regulation</span> = the arrangement giving different feed rates so the tool moves at the required speed relative to the work. Rough cutting → higher feed; finishing → smaller feed.</p>
+      <ul>
+        <li><b>Low feed</b> → finishing, accuracy, finish. <b>High feed</b> → roughing, fast removal, productivity.</li>
+        <li>Balance feed with cutting speed, depth, tool and work material — wrong feed → vibration, poor finish, tool breakage.</li>
+      </ul>
+      <p><b>Feed vs speed:</b> feed controls tool movement / affects finish / too high → rough surface; speed controls cutting velocity / affects temperature / too high → tool wear. <b>S/N ratio (Taguchi):</b> roughness "smaller-is-better", MRR "larger-is-better", higher S/N = better. Design is a compromise of speed range, power, torque, cost — high speed → low torque, low speed → high torque.</p>
+    </div></details>
+
+    <details class="topic" open><summary>Stepped speed design (GP)</summary><div class="body">
+      <p>Key terms: speed range, number of steps Z, step ratio. <b>Speeds follow geometric progression</b> (each speed = previous × the step ratio) — the standard arrangement in the slides; choose Z, then round to standardized values.</p>
+    </div></details>
+
+    <details class="topic" open><summary>Flow, structural &amp; ray diagrams</summary><div class="body">
+      <ul>
+        <li><b>Flow diagram</b> — sequence/order of transmission elements + direction of power flow + possible paths. Does NOT show dimensions, tooth numbers, geometry.</li>
+        <li><b>Structural diagram</b> — arrangement of speed-changing stages, how the total number of speeds is obtained (shafts, gear groups, complexity). For 8 speeds, 2×2×2 preferred over 4×2 (balanced load); more stages → smoother but more complex.</li>
+        <li><b>Ray diagram</b> — how speeds arise from gear-pair combinations across stages. Shafts = vertical parallel equally-spaced lines; speeds plotted on a <b>logarithmic scale</b> with spacing = log φ; each <b>ray</b> = a gear engagement between two shafts. Shows stages, options/stage, all paths, speed multiplication — not tooth numbers/casing.</li>
+      </ul>
+    </div></details>
+  </section>
+
+  <!-- ===================== MODULE 3 ===================== -->
+  <section class="mod" id="m3">
+    <div class="modband mb3"><span class="tag">MODULE 3</span><h2>Machine-Tool Structures &amp; Guideways</h2></div>
+
+    <details class="topic" open><summary>Structures — definition &amp; requirements</summary><div class="body">
+      <p>The <span class="term">structure</span> is the framework supporting all components and holding the tool–work relationship: bed, column, table, saddle, cross-slide, spindle housing, ram, base. (Lathe: bed, headstock, tailstock, carriage, saddle, cross-slide. Milling: base, column, knee, saddle, table.)</p>
+      <ul>
+        <li><b>High static stiffness</b> — cutting force travels a chain (tool→holder→post→carriage→bed→foundation); each part has its own stiffness → the machine behaves like <b>springs in series</b>.</li>
+        <li><b>High dynamic stiffness</b> — forces vary (interrupted cutting, imbalance, gear vibration, chatter) → prevents resonance/amplification.</li>
+        <li><b>High damping</b> — absorbs vibration energy → less chatter/amplitude/noise/roughness (why beds are cast iron).</li>
+        <li><b>High wear resistance</b> (sliding parts) and <b>good manufacturability</b> (easy to cast/machine/assemble).</li>
+      </ul>
+    </div></details>
+
+    <details class="topic" open><summary>Design procedure &amp; principles</summary><div class="body">
+      <p>Mark all external forces (location + direction) → identify critical sections (max bending/torsion/shear) → analyse mainly as <b>bending in two perpendicular planes + torsion</b> → design for bending stiffness, then torsional stiffness, verify strength, pick material + section form.</p>
+      <p><b>Stiffness rules:</b> increase moment of inertia · reduce unsupported length · use closed sections · avoid thin plates · maintain symmetry. <b>Forms:</b> closed-frame (heavy milling/CNC — very rigid) and <b>box structures</b> (most modern — large moment of inertia, high stiffness, good load distribution). Loads: cutting force, dynamic amplification (harmonic), inertial/peak-torque at start/stop. Thermal: symmetry, thermal barriers, cooling.</p>
+    </div></details>
+
+    <details class="topic" open><summary>Specific members (bed, column, base/table, cross-rail, arm, ram)</summary><div class="body">
+      <ul>
+        <li><b>Bed</b> — analysed for bending + torsion; <b>reduced bending rigidity</b> with perpendicular &amp; diagonal stiffeners; lathe bed checked for normal bending stresses (vertical + horizontal) and section properties.</li>
+        <li><b>Columns</b> — checked for shearing deformation and torsion (twist angle → guideway displacement).</li>
+        <li><b>Bases &amp; tables</b> — the table supports the work; the base = a stationary table; tables are rectangular or circular.</li>
+        <li><b>Cross rails</b> — vertical ribs + horizontal stiffeners → higher bending/torsional/dynamic stiffness.</li>
+        <li><b>Arms/traverses</b> (single-column) — near uniform-strength beams, analysed as cantilevers under <b>combined bending + torsion</b> (one plane for a radial drill, two for a single-column planer).</li>
+        <li><b>Ram</b> — carries the tool/spindle head, gives linear motion (shapers/planers/slotters); cutting force far from support → <b>cantilever</b>; flexible ram → tool-point deflection (error) + low dynamic stiffness (chatter) → designed for bending + torsional stiffness.</li>
+      </ul>
+    </div></details>
+
+    <details class="topic" open><summary>Guideways — functions</summary><div class="body">
+      <p><span class="term">Guideways</span> guide moving parts (table, carriage, saddle, cross-slide, spindle head) along a predetermined path. Functions: provide accurate motion (deviation → taper/dimensional errors) · carry cutting + weight + dynamic loads · absorb vibration · maintain alignment · reduce friction.</p>
+    </div></details>
+
+    <details class="topic" open><summary>Guideway classification &amp; stick-slip</summary><div class="body">
+      <ul>
+        <li><b>Sliding</b> — direct contact + lubrication: simple, high load capacity, good damping, cheap; but high friction, stick-slip, wear.</li>
+        <li><b>Rolling</b> — balls/rollers: very low friction, smooth, high positioning accuracy; but low damping, lower load capacity, expensive (CNC/precision).</li>
+        <li><b>Hydrostatic</b> — oil pumped under pressure → film, zero metal contact, very low friction, high accuracy, excellent damping; but expensive, needs a pump (ultra-precision/grinding).</li>
+        <li><b>Aerostatic</b> — pressurised air film: extremely low friction, no wear, very high precision; but very low load capacity, expensive (semiconductor/ultra-precision).</li>
+      </ul>
+      <p><b>Stick-slip</b> — static friction &gt; kinetic friction → motion alternates sticking/sudden sliding → vibration, irregular motion, poor finish. Reduce with low-friction materials, lubrication, <b>Turcite coatings</b>, or rolling guideways.</p>
+      <p><b>Shapes:</b> flat (easy, simple; poor alignment) · V (good alignment, prevents lateral motion) · dovetail (prevents lifting — milling slides, tool posts) · combination (lathe = flat + V → alignment + load support).</p>
+    </div></details>
+
+    <details class="topic" open><summary>Slideway design (force analysis, pressure, stiffness)</summary><div class="body">
+      <p><b>Design requirements:</b> high accuracy, long life, low friction, adequate stiffness, wear resistance, damping (cast iron / polymer concrete), proper lubrication (oil bath / forced / grease).</p>
+      <p>Slideways are designed from the <b>forces on the mating surfaces</b> for two cases — a combination of <b>V + flat</b> slideways (Figure A) and a combination of <b>two flat</b> slideways (Figure B) — which give the reactions, then the <b>pressure distribution</b>, checked against <b>permissible maximum and average pressures</b>. Also <b>design of slideways for stiffness</b> (two-flat and flat+V) using contact compliance and approximate design formulae.</p>
+    </div></details>
+  </section>
+
+  <!-- ===================== MODULE 4 & 5 ===================== -->
+  <section class="mod" id="m45">
+    <div class="modband mb45"><span class="tag">MODULE 4 &amp; 5</span><h2>Spindles &amp; Spindle Supports</h2></div>
+
+    <details class="topic" open><summary>Spindle functions, assemblies, ends &amp; materials</summary><div class="body">
+      <p>A <span class="term">spindle</span> is the rotating shaft holding/driving the work or tool. Functions: support the rotating element, transmit power/motion, maintain alignment, withstand cutting forces, achieve accuracy &amp; finish. Weak spindle → vibration; excess deflection → reduced accuracy; poor design → reduced tool/bearing life.</p>
+      <ul>
+        <li><b>Lathe spindle</b> — holds/rotates work; carries chuck/faceplate/gears/pulley; usually <b>hollow</b> (bars pass through); radial + axial loads; low runout.</li>
+        <li><b>Drilling spindle</b> — rotates drill + axial feed; mainly torsion + thrust; stiffness to avoid drill wandering.</li>
+        <li><b>Comparison:</b> lathe → high rotational accuracy; milling → resist fluctuating loads (high stiffness); drilling → axial thrust + guidance.</li>
+        <li><b>Spindle ends</b> — front end locates/centres tool/chuck/faceplate/arbor; <b>taper standardized</b> per machine for mounting, alignment, motion transmission.</li>
+        <li><b>Materials</b> — rolled stock &lt;150 mm, castings (centrifugal) &gt;150 mm. <b>Stiffness, not strength</b> is the criterion (steels share similar E). Normal accuracy → plain carbon (C45/C59) hardened+tempered; above-normal → low-alloy induction-hardened; precision (sliding bearings) → low-alloy case-hardened/nitrided; hollow heavy-duty → grey/SG cast iron.</li>
+      </ul>
+    </div></details>
+
+    <details class="topic" open><summary>Compliance, accuracy &amp; spindle deflection</summary><div class="body">
+      <p><b>Effect of machine-tool compliance on accuracy:</b> deflection of the centres and workpiece, the maximum/minimum displacement along the work, and the <b>effect of saddle compliance</b> all shift the tool–work position → machining error.</p>
+      <p><b>Spindle deflection</b> is built from: <b>bending of the spindle axis</b>; <b>compliance of the supports</b> (front + rear deflect → final support-compliance deflection); <b>optimum spacing between supports</b> (an optimum span for minimum nose deflection, depending on stated factors); and <b>compliance of the tapered joint</b> (with <b>taper-angle errors</b> reducing stiffness → measures to improve it). Plus <b>permissible deflection + strength check</b>, axial &amp; torsional stiffness, and spindles under <b>combined bending and torsion</b>.</p>
+    </div></details>
+
+    <details class="topic" open><summary>Anti-friction bearing supports</summary><div class="body">
+      <p>Overall spindle stiffness depends strongly on the <b>front and rear support compliance</b>. Supports need high guiding accuracy, good operation under varying conditions, high stiffness, minimum heating, good vibration stability (damping).</p>
+      <ul>
+        <li><b>Anti-friction (rolling) bearings</b> — low frictional moment/heat, low starting resistance, high load capacity per width, easy maintenance, low lubricant use.</li>
+        <li><b>Ball vs roller:</b> balls — less heating, higher speed, cheaper, less alignment-sensitive; rollers — higher load capacity, when stiffness/load matter more than speed.</li>
+        <li><b>Combinations</b> judged on performance (radial/axial stiffness, radial/axial runout, heat, max speed, thermal deformation, manufacturability). Taper-roller → more runout; only-cylindrical-roller front → more axial thermal deformation at the nose; <b>angular-contact ball front</b> → low heat + fair axial stiffness → high speed. Selection is always a <b>compromise</b>.</li>
+      </ul>
+    </div></details>
+
+    <details class="topic" open><summary>Preloading</summary><div class="body">
+      <p><b>Clearance fit</b> → spindle shifts before rolling elements take load; on <b>load reversal</b> the deformation jumps → unstable position, accuracy loss. <b>Interference/preload</b> → removes the jump, smooth deformation–load relation, stiffer, predictable, better accuracy.</p>
+      <p><b>Why stiffer:</b> preload restrains the support, shifting behaviour from <b>simply-supported toward clamped</b> (a clamped beam is stiffer) → nose deflection drops. <b>Excessive preload</b> → more heat, larger contact deformation, reduced bearing life → preload must be <b>optimum</b>. Preloading = an initial internal load (small relative axial displacement between inner/outer races) before the working load, applied via paired ball/angular-contact bearings; <b>constant preload</b> set during assembly by grinding race faces or controlled-length spacers.</p>
+    </div></details>
+
+    <details class="topic" open><summary>Sliding bearing supports</summary><div class="body">
+      <p>Used when very high accuracy or very high speed is required, or under shocks/vibration — key advantage is <b>inherent damping</b>. Classified by lubrication:</p>
+      <ul>
+        <li><b>Sleeve</b> — very thin film, metal-to-metal contact, <b>semi-liquid friction</b>, designed for wear resistance (limit bearing pressure and pressure×speed).</li>
+        <li><b>Hydrodynamic journal</b> — a complete film separates journal and bearing by hydrodynamic action from rotation.</li>
+        <li><b>Hydrostatic journal</b> — lubricant supplied under external pressure.</li>
+      </ul>
+      <p>Covered with the <b>Hersey–Stribeck</b> relationship and the working principle of a sliding journal bearing; hydrodynamic design uses the transition condition to full-film lubrication, the critical Sommerfeld number, recommended clearances, load capacity and eccentricity ratio.</p>
+    </div></details>
+  </section>
+
+  <!-- ===================== MODULE 6 ===================== -->
+  <section class="mod" id="m6">
+    <div class="modband mb6"><span class="tag">MODULE 6</span><h2>Vibration in Machine Tools</h2></div>
+
+    <details class="topic" open><summary>What vibration is &amp; its sources</summary><div class="body">
+      <p><span class="term">Vibration</span> = unwanted oscillatory motion of components/tool/work/structure during machining. Even a tiny tool-tip vibration leaves visible marks; it affects accuracy, finish, tool life, machine life, productivity, cutting stability.</p>
+      <p><b>Sources:</b> misalignment of shafts/couplings · gear errors (profile/pitch error, eccentricity, backlash, bad meshing, worn teeth) · bearing defects (wear, bad lubrication, excess clearance, wrong preload, poor mounting, contamination) · cutting-force variation (chip-thickness change, tool wear, interrupted cut, non-uniform material, built-up edge) · tool wear/geometry (blunt tool, bad rake/clearance, large overhang, poor clamping) · workpiece flexibility (long/slender/thin parts) · structural flexibility · external disturbances (nearby machines, floor/foundation, impacts, poor installation).</p>
+    </div></details>
+
+    <details class="topic" open><summary>Types of vibration &amp; chatter</summary><div class="body">
+      <ul>
+        <li><b>Free</b> — transient, after a disturbance, decays with damping.</li>
+        <li><b>Forced</b> — from a periodic external force; worst at <b>resonance</b> (forcing ≈ natural frequency).</li>
+        <li><b>Self-excited</b> — generated and sustained by the cutting process itself (no external periodic force); energy from cutting.</li>
+        <li><b>Chatter</b> — self-excited, from tool/work/chip/structure interaction → wavy surface + loud noise.</li>
+        <li><b>Primary chatter</b> — instability in the cutting process (friction, chip-formation instability, force variation, built-up edge).</li>
+        <li><b>Regenerative chatter</b> (most common/important) — waviness left in one revolution/tooth pass changes the chip thickness on the next cut → fluctuating force → growing amplitude.</li>
+      </ul>
+    </div></details>
+
+    <details class="topic" open><summary>Effects of vibration</summary><div class="body">
+      <ul>
+        <li><b>Accuracy</b> — taper, ovality, out-of-roundness, poor flatness/cylindricity/straightness.</li>
+        <li><b>Surface finish</b> — wavy/rough, chatter marks. <b>Roughness vs waviness:</b> roughness = small closely-spaced irregularities (feed marks, geometry); <b>waviness</b> = larger widely-spaced undulations from vibration/chatter/deflection (matters more in vibration problems).</li>
+        <li><b>Tool life</b> — fluctuating force → faster flank/crater wear, chipping, micro-cracks, breakage, thermal fatigue; <b>edge chipping</b> (carbide/ceramic).</li>
+        <li><b>Machine</b> — damages bearings, spindle, guideways, lead screws, gears, fixtures; loosens fasteners, lost alignment; bearing/spindle wear → runout → accuracy loss.</li>
+        <li>More <b>heat</b> (rubbing/friction → thermal distortion), <b>noise</b> (first warning sign), reduced <b>productivity</b> (conservative cutting → time, rework, rejects), higher power consumption, safety risks.</li>
+        <li><b>Examples:</b> turning slender shaft → diameter varies; milling → waviness + tooth chipping; drilling → oversize/deviated holes.</li>
+      </ul>
+    </div></details>
+
+    <details class="topic" open><summary>Vibration control</summary><div class="body">
+      <ul>
+        <li><b>Reduce the source first</b> (most effective) — balance rotating parts, correct alignment, replace damaged bearings, improve gear quality, reduce backlash, improve lubrication, tighten loose parts, improve foundation. (Otherwise you only treat the symptom.)</li>
+        <li><b>Increase stiffness</b> — box/ribbed structures, thicker sections, less overhang, rigid joints, shorter tool holders, support long work, wider guideways, better spindle support. (Reducing tool overhang greatly cuts chatter.)</li>
+        <li><b>Increase damping</b> — cast-iron beds, polymer concrete, damping layers, viscous/friction damping, tuned absorbers, damping pads.</li>
+        <li><b>Avoid resonance</b> — change the natural frequency away from the forcing frequency.</li>
+        <li><b>Cutting conditions</b> — adjust speed/feed/depth/geometry/fluid; excessive depth → chatter; very low speed → built-up-edge instability.</li>
+        <li><b>Tool geometry</b> — sharp tools, proper rake/clearance, optimum nose radius (large → better finish but more radial force/chatter), avoid overhang, rigid holders.</li>
+        <li><b>Workpiece support</b> — tailstock, steady rest, follower rest, less unsupported length, good chucking/fixtures, support thin plates.</li>
+        <li><b>Clamping</b> — clamp tool + work firmly; loose clamping → micro-movement → chatter.</li>
+        <li><b>Foundation &amp; isolation</b> — heavy blocks, anti-vibration mounts, levelling, isolation from heavy machines; <b>isolators</b> (rubber/spring/cork/elastomeric/pneumatic) cut transmission — but too-soft supports reduce stability.</li>
+        <li><b>Dampers</b> — viscous, friction, constrained-layer, tuned-mass dampers, dynamic vibration absorbers (when stiffness alone can't fix it).</li>
+        <li><b>Chatter control</b> — change spindle speed, reduce depth/feed, raise stiffness/damping, sharp tools, less overhang, better support, change geometry, variable-pitch cutters. For <b>regenerative</b> chatter, changing spindle speed is effective because it changes the <b>phase</b> between the previous waviness and the current cut.</li>
+        <li><b>Process-specific</b> — turning/milling/drilling each have their own control checklists (overhang, holders, supports, depth, speed, geometry, alignment).</li>
+        <li><b>Monitoring</b> — accelerometers, displacement sensors, acoustic-emission, force sensors, spindle-current sensors → detect chatter/bearing defects/tool wear/imbalance/misalignment → preventive maintenance.</li>
+        <li><b>Active vs passive</b> — active (sensor+controller+actuator+feedback applies a counter-force; precise but costly) vs passive (stiffness/damping/isolation; cheaper, no power).</li>
+      </ul>
+    </div></details>
+  </section>
+
+  <div class="foot">MIE 3223 Machine Tool Technology · Theory Notes — curated from the course module PPTs only (Modules 1, 2, 3, 4&amp;5, 6) · Revision aid</div>
+</div>
+<script>
+  function setAll(open){document.querySelectorAll('details.topic').forEach(d=>d.open=open);}
+  window.addEventListener('beforeprint',()=>setAll(true));
+</script>
+</body>
+</html>
